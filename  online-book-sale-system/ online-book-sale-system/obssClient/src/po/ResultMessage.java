@@ -1,5 +1,5 @@
 package po;
 
 public enum ResultMessage {
-	SUCCEED,FAILED;
+	EXIST,NOTEXIST,SUCCEED,FAILED;
 }
