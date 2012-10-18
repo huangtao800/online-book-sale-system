@@ -1,8 +1,9 @@
+//»ÆÌÎ
 package bussinessLogic.controller;
 
 import bussinessLogicService.MemberBLService;
 
-public class MemberClient {
+public class Client {
 
 	public static void main(String[] args){
 		MemberBLService memberBLService=new MemberBLService_Stub("111111", "huangtao");
