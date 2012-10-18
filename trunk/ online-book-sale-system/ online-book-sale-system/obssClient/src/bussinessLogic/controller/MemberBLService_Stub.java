@@ -82,7 +82,7 @@ public class MemberBLService_Stub implements MemberBLService{
 	@Override
 	public ResultMessage cancel(String id, String password) {
 		// TODO Auto-generated method stub
-		return ResultMessage.SUCCEED;
+		return ResultMessage.SUCCEED; 
 	}
 
 	@Override
