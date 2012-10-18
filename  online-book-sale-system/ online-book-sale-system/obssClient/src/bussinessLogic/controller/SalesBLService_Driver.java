@@ -31,8 +31,8 @@ public class SalesBLService_Driver {
 		removeFromCart_Drive("00001");
 		calculate_Drive();
 		chooseCoupon_Drive(0.8);
-		chooseVoucher_Drive(5);
-		chooseVoucher_Drive(50);
+		chooseEquivalent_Drive(5);
+		chooseEquivalent_Drive(50);
 		purchase_Drive();
 	}
 
@@ -73,10 +73,10 @@ public class SalesBLService_Driver {
 				+ "%):" + totalPrice);
 	}
 
-	public void chooseVoucher_Drive(double voucher) {
-		System.out.println("chooseVoucher_Drive:");
-		double totalPrice = salesBLService.chooseVoucher(voucher);
-		System.out.println("total price after using voucher(" + (-voucher)
+	public void chooseEquivalent_Drive(double equivalent) {
+		System.out.println("chooseEquivalent_Drive:");
+		double totalPrice = salesBLService.chooseEquivalent(equivalent);
+		System.out.println("total price after using Equivalent(" + (-equivalent)
 				+ "):" + totalPrice);
 	}
 
