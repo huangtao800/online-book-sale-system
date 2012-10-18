@@ -46,8 +46,8 @@ public class SalesBLService_Stub implements SalesBLService{
 		return totalPrice*percent;
 	}
 //选择等价券__传入的是等价券面值
-	public double chooseVoucher(double voucher) {
-		totalPrice -= voucher;
+	public double chooseEquivalent(double equivalent) {
+		totalPrice -= equivalent;
 		if(totalPrice < 0)
 			totalPrice = 0;
 		return totalPrice;
