@@ -13,7 +13,7 @@ public interface SalesBLService {
 	public ResultMessage removeFromCart(String id);//进入购物车之后，进行删除，结束后要刷新
 	public double calculate();//计算总价
 	public double chooseCoupon (double percent);//选择打折券
-	public double chooseVoucher (double voucher);//选择等价券
+	public double chooseEquivalent (double voucher);//选择等价券
 	public OrderPO purchase();//生成订单
 	public void endSale ();//结束整个购买 不会写！！！！！！！！！！！
 }
