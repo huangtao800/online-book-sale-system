@@ -6,8 +6,8 @@ public interface MemberBLService {
 	public String getMemberName();//获得会员名称
 	public String getMemberID();//获得会员ID
 	
-	public ResultMessage addToFavority(String id);//添加图书进入收藏夹
-	public ResultMessage removeFromFavoriy(String id);//从收藏夹中移除
+	public ResultMessage addFavorities(String id);//添加图书进入收藏夹
+	public ResultMessage removeFavorities(String id);//从收藏夹中移除
 	
 	public ResultMessage addEquivalent(String id);//添加等价券
 	public ResultMessage addCoupon(String id);//添加打折券
