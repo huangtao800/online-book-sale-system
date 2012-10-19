@@ -9,5 +9,17 @@ public class Member {
 		this.memberPO=memberPO;
 	}
 	
+	public ResultMessage addFavorities(){
+		return ResultMessage.SUCCEED;
+	}
 	
+	public ResultMessage addEquivalent(String id){
+		return ResultMessage.SUCCEED;
+	}
+	
+	//修改订单状态
+	//目前尚缺少状态！！！！
+	public ResultMessage setOrderState(OrderPO orderPO){
+		return ResultMessage.SUCCEED;
+	}
 }
