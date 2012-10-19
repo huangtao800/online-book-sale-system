@@ -2,6 +2,7 @@ package bussinessLogic.controller;
 //’≈—≈Ê√
 import java.util.ArrayList;
 
+import po.LineItemPO;
 import po.OrderPO;
 import po.ResultMessage;
 
@@ -17,15 +18,14 @@ public class SalesBLService_Driver {
 	}
 
 	public static void main(String[] args) {
-		SalesBLService salesBLService = new SalesBLService_Stub("Õº È±‡∫≈ 0001 Õº È",
-				new OrderPO(), 20);
+		SalesBLService salesBLService = new SalesBLService_Stub( 20);
 		SalesBLService_Driver driver = new SalesBLService_Driver(salesBLService);
 		driver.drive();
 	}
 	
 	public void drive() {
 		putInCart_Drive(null);
-		putInCart_Drive("00001");
+		putInCart_Drive(new LineItemPO());
 		enterCart_Drive();
 		removeFromCart_Drive("00003");
 		removeFromCart_Drive("00001");
@@ -36,18 +36,18 @@ public class SalesBLService_Driver {
 		purchase_Drive();
 	}
 
-	public void putInCart_Drive(String id) {
+	public void putInCart_Drive(LineItemPO lineItem) {
 		System.out.println("putInCart_Drive:");
-		ResultMessage result = salesBLService.putInCart(id);
+		ResultMessage result = salesBLService.putInCart(lineItem);
 		if (result == ResultMessage.EXIST)
-			System.out.println("book id:" + id + ",add success!");
+			System.out.println("book add success!");
 		else
-			System.out.println("book id:null" + ",please choose the book!");
+			System.out.println("book is null,please choose the book!");
 	}
 
 	public void enterCart_Drive() {
 		System.out.println("enterCart_Drive:");
-		ArrayList<String> cartRecord = salesBLService.enterCart();
+		ArrayList<LineItemPO> cartRecord = salesBLService.enterCart();
 		for (int i = 0; i < cartRecord.size(); i++)
 			System.out.println(cartRecord.get(i));
 	}
