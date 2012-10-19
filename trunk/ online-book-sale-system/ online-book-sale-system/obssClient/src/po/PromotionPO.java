@@ -7,6 +7,16 @@ public class PromotionPO implements PO{
 	private double proportionOfCoupons;//等价券的最大使用比例
 	private double discount;//打折券的打折率
 	
+	public PromotionPO(){
+		
+	}
+	public PromotionPO(double ex,int va,double pr,double di){
+		this.exchangeOfScore=ex;
+		this.valueOfCoupons=va;
+		this.proportionOfCoupons=pr;
+		this.discount=di;
+	}
+	
 	public double getExchangeOfScore(){
 		return exchangeOfScore;
 	}
