@@ -1,5 +1,5 @@
 package bussinessLogic.controller;
-
+//尤佳琪
 import java.util.ArrayList;
 
 import po.*;
@@ -20,7 +20,7 @@ public class BookBLService_Stub implements BookBLService{
 	    }
 	
 	    //销售界面查询图书和图书的促销信息
-		public ArrayList<BookPO>  find(String name){      //根据关键字返回相应的图书列表
+		public ArrayList<BookPO>  findByKey(String name){      //根据关键字返回相应的图书列表
 			   ArrayList<BookPO> bookArray = new ArrayList<BookPO>();
 			   return bookArray;
 		}
@@ -46,7 +46,7 @@ public class BookBLService_Stub implements BookBLService{
 		}
 		
 		public ResultMessage deleteBook(String id){
-			if(id=="00001"){
+			if(id=="11111"){
 				return ResultMessage.SUCCEED ;
 			}else{
 				return ResultMessage.FAILED ;
@@ -54,7 +54,7 @@ public class BookBLService_Stub implements BookBLService{
 		}
 		
 		public ResultMessage modifyBook(String id){
-			if(id=="00001"){
+			if(id=="11111"){
 				return ResultMessage.SUCCEED ;
 			}else{
 				return ResultMessage.FAILED ;
