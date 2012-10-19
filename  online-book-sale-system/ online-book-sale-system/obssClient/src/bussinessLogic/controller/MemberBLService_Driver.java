@@ -30,7 +30,7 @@ public class MemberBLService_Driver {
 		
 		ResultMessage m5=memberBLService.cancel("111111", "111111");
 		if(m5==ResultMessage.SUCCEED){
-			System.out.println("cance succeed");
+			System.out.println("cancel succeed");
 		}
 		
 	}
