@@ -1,6 +1,8 @@
 //»ÆÌÎ
 package bussinessLogic.controller;
 
+import po.CouponPO;
+import po.EquivalentPO;
 import po.ResultMessage;
 import bussinessLogicService.MemberBLService;
 
@@ -11,12 +13,12 @@ public class MemberBLService_Driver {
 			System.out.println("add succeed");
 		}
 		
-		ResultMessage m2=memberBLService.addCoupon("111111");
+		ResultMessage m2=memberBLService.addCoupon(new CouponPO());
 		if(m2==ResultMessage.SUCCEED){
 			System.out.println("add succeed");
 		}
 		
-		ResultMessage m3=memberBLService.addEquivalent("111111");
+		ResultMessage m3=memberBLService.addEquivalent(new EquivalentPO());
 		if(m3==ResultMessage.SUCCEED){
 			System.out.println("add succeed");
 		}
