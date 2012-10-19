@@ -19,7 +19,7 @@ public class PromotionBLService_Stub implements PromotionBLService  {
     	return ResultMessage.SUCCEED;
     }
     
-    public ResultMessage setCoupon(String vipLevel,int quantity){//设置大范围促销中打折券的赠送规则
+    public ResultMessage setCoupon(String vipLevel,int quantity,Calendar startDate,Calendar endDate){//设置大范围促销中打折券的赠送规则
     	return ResultMessage.SUCCEED;
     }
     
