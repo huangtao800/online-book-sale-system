@@ -6,6 +6,9 @@ public class LineItemPO implements PO {
 	private int number;
 	private double sumPrice;
 	
+	public LineItemPO(){
+		
+	}
 	public LineItemPO(BookPO book,int number){
 		this.book = book;
 		this.number = number;
