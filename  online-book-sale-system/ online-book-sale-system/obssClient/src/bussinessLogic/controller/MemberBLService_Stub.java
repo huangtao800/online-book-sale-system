@@ -48,23 +48,15 @@ public class MemberBLService_Stub implements MemberBLService{
 	}
 
 	@Override
-	public ResultMessage addEquivalent(String id) {
+	public ResultMessage addEquivalent(EquivalentPO e) {
 		// TODO Auto-generated method stub
-		if(id.equals("111111")){
-			return ResultMessage.SUCCEED;
-		}else {
-			return ResultMessage.FAILED;
-		}
+		return ResultMessage.SUCCEED;
 	}
 
 	@Override
-	public ResultMessage addCoupon(String id) {
+	public ResultMessage addCoupon(CouponPO c) {
 		// TODO Auto-generated method stub
-		if(id.equals("111111")){
-			return ResultMessage.SUCCEED;
-		}else {
-			return ResultMessage.FAILED;
-		}
+		return ResultMessage.SUCCEED;
 	}
 
 	@Override
