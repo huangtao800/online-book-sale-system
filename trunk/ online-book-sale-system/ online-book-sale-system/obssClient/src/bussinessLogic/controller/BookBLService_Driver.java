@@ -1,8 +1,6 @@
 package bussinessLogic.controller;
 //ÓÈ¼Ñç÷
-import java.util.ArrayList;
 import po.BookPO;
-import po.PromotionPO;
 import po.ResultMessage;
 import bussinessLogicService.*;
 

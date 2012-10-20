@@ -6,11 +6,11 @@ import bussinessLogicService.PromotionBLService;
 import po.*;
 
 public class PromotionBLService_Stub implements PromotionBLService  {
+	
     public ResultMessage setPromotion(double exchangeOfScore,int valueOfCoupons, double proportionOfCoupons,double discount){//…Ë÷√¥Ÿœ˙ ÷∂Œ
     	return ResultMessage.SUCCEED;
     }
     
-    //
     public PromotionPO getPromotion(){
     	return new PromotionPO();
     }

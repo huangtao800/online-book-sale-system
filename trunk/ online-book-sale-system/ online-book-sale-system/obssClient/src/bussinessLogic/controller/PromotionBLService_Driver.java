@@ -15,7 +15,7 @@ public class PromotionBLService_Driver {
 			System.out.println("Set promotion successfully!");
 		else  System.out.println("Set promotion unsuccessfully!");
 		
-		//
+	
 		PromotionPO promotion=promotionBLService.getPromotion();
 		System.out.println("Look up  promotion successfully!");
 			
@@ -29,7 +29,6 @@ public class PromotionBLService_Driver {
 		if(result3==ResultMessage.SUCCEED)
 			System.out.println("Set coupon successfully!");
 		else  System.out.println("Set coupon unsuccessfully!");
-		
-		
+			
 	}
 }
