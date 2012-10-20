@@ -6,11 +6,9 @@ import po.*;
 import po.ResultMessage;
 import bussinessLogicService.*;
 
-
 public class BookBLService_Stub implements BookBLService{
 	    String bookName,bookType,bookID;
 	    BookPO book = new BookPO();
-	    
 	    
 	    public BookBLService_Stub(String name,String type,String id,BookPO b){
 	    	  bookName = name;
