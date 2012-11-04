@@ -1,7 +1,7 @@
 package po;
 
 import java.util.Calendar;
-
+//∂≠» π„
 public class EquivalentPO implements PO {//µ»º€»Ø
       private int quantity;
       private Calendar startDate;
