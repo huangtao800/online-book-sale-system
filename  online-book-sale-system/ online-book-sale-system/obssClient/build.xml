@@ -16,6 +16,18 @@
         name="obssClient_jar"
         value="obssClient.jar" />
 
+    <property
+        name="report"
+        value="report" />
+
+    <property
+        name="report.xml"
+        value="${report}/junit/xml" />
+
+    <property
+        name="report.html"
+        value="${report}/junit/html" />
+
     <target name="init" >
 
         <mkdir dir="${dest}" />
