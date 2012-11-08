@@ -27,7 +27,7 @@ public class MemberBLService_StubTest extends TestCase{
 
 	@Test
 	public void testRemoveFavorities() {
-		assertEquals(ResultMessage.SUCCEED, stub.removeFavorities("111111"));
+		assertEquals(ResultMessage.SUCCEED, stub.removeFavorities("1111111"));
 	}
 
 }
