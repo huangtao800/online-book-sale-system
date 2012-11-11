@@ -37,6 +37,9 @@
 
 
     <target name="init" >
+                    <tstamp/> 
+              <delete dir="${dest}"/> 
+              <delete dir="${report}"/> 
 
         <mkdir dir="${dest}" />
     </target>
