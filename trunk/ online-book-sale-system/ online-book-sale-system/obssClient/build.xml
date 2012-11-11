@@ -2,7 +2,13 @@
 <project
     name="obssClient"
     basedir="."
-    default="run" >
+    default="test" >
+    
+           <!--配置测试报告的属性--> 
+       <property name="report"   value="report"/> 
+       <property name="report.xml" value="${report}/junit/xml"/> 
+       <property name="report.html" value="${report}/junit/html"/> 
+    
 
     <property
         name="src"
@@ -59,5 +65,28 @@
             classname="bussinessLogic.controller.Client"
             classpath="${obssClient_jar}" />
     </target>
+    
+           <!--配置JUnit测试，打印测试结果--> 
+       <target name="test" depends="compile, build"> 
+              <mkdir dir="${report.xml}"/> 
+              <mkdir dir="${report.html}"/> 
+              <junit printsummary="yes" haltonfailure="no"> 
+                     <classpath refid="classpath.run"/> 
+                     <formatter type="xml"/> 
+                     <batchtest fork="yes" todir="${report.xml}"> 
+                            <fileset dir="${src}" includes="**/Test*.java"/> 
+                     </batchtest> 
+              </junit> 
+              <junitreport todir="${report.html}"> 
+                     <fileset dir="${report.xml}"> 
+                            <include name="*.xml"/> 
+                     </fileset> 
+                     <report format="frames" todir="${report.html}"/> 
+              </junitreport> 
+       </target> 
+    
+    
+     
+    
 
 </project>
