@@ -7,7 +7,9 @@
            <!--配置测试报告的属性--> 
        <property name="report"   value="report"/> 
        <property name="report.xml" value="${report}/junit/xml"/> 
-       <property name="report.html" value="${report}/junit/html"/> 
+       <property name="report.html" value="${report}/junit/html"/>
+       
+
     
 
     <property
@@ -18,21 +20,21 @@
         name="dest"
         value="classes" />
 
+    <property name="classpath" location="${dest}"/> 
+    
+           <!--配置运行时classpath--> 
+       <path id="classpath.run"> 
+              <pathelement path="${classpath}"/> 
+              <fileset dir="lib"> 
+                     <include name="*.jar"/> 
+              </fileset> 
+       </path> 
+    
+    
     <property
         name="obssClient_jar"
         value="obssClient.jar" />
 
-    <property
-        name="report"
-        value="report" />
-
-    <property
-        name="report.xml"
-        value="${report}/junit/xml" />
-
-    <property
-        name="report.html"
-        value="${report}/junit/html" />
 
     <target name="init" >
 
@@ -45,36 +47,28 @@
 
         <javac
             destdir="${dest}"
-            srcdir="${src}" />
+            srcdir="${src}" >
+            <classpath refid="classpath.run" /> 
+         </javac>
+         
+                <javac
+            destdir="${dest}"
+            srcdir="testsrc" >
+            <classpath refid="classpath.run" /> 
+         </javac>
+        
     </target>
 
-    <target
-        name="build"
-        depends="compile" >
-
-        <jar
-            basedir="${dest}"
-            jarfile="${obssClient_jar}" />
-    </target>
-
-    <target
-        name="run"
-        depends="build" >
-
-        <java
-            classname="bussinessLogic.controller.Client"
-            classpath="${obssClient_jar}" />
-    </target>
     
            <!--配置JUnit测试，打印测试结果--> 
-       <target name="test" depends="compile, build"> 
+       <target name="test" depends="compile"> 
               <mkdir dir="${report.xml}"/> 
               <mkdir dir="${report.html}"/> 
               <junit printsummary="yes" haltonfailure="no"> 
                      <classpath refid="classpath.run"/> 
                      <formatter type="xml"/> 
                      <batchtest fork="yes" todir="${report.xml}"> 
-                            <fileset dir="${src}" includes="**/Test*.java"/> 
+                            <fileset dir="testsrc" includes="**/*Test.java"/> 
                      </batchtest> 
               </junit> 
               <junitreport todir="${report.html}"> 
