@@ -47,13 +47,15 @@
 
         <javac
             destdir="${dest}"
-            srcdir="${src}" >
+            srcdir="${src}" 
+            includeantruntime="on">
             <classpath refid="classpath.run" /> 
          </javac>
          
                 <javac
             destdir="${dest}"
-            srcdir="testsrc" >
+            srcdir="testsrc" 
+            includeantruntime="on">
             <classpath refid="classpath.run" /> 
          </javac>
         
