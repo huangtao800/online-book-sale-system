@@ -7,16 +7,14 @@ import po.LineItemPO;
 import po.ResultMessage;
 
 public class MockBook extends Book{
-	public MockBook(){
-		
-	}
+
 	
 	public MockBook(String name,String type,String isbn,BookPO po){
     	super(name,type,isbn,po);
     }
 	
 	public BookPO findByISBN(String ISBN){      //输入图书ISBN，返回相应的图书列表
-		   BookPO bookPO = book.findByISBN(ISBN);
+		   BookPO bookPO = new BookPO();
 		   return bookPO;
 	}
 	
