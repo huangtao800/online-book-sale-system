@@ -1,6 +1,8 @@
 //黄涛
 package bussinessLogic.domain;
 
+import java.util.ArrayList;
+
 import po.*;
 
 public class Member {
@@ -26,6 +28,21 @@ public class Member {
 	
 	
 	public ResultMessage cancel(String id,String password){
+		return ResultMessage.SUCCEED;
+	}
+	
+	//返回持有的打折券列表
+	public ArrayList<CouponPO> getCouponList(){
+		return null;
+	}
+	
+	//返回持有的等价券列表
+	public ArrayList<EquivalentPO> getEquivalentList(){
+		return null;
+	}
+	
+	//增加一条订单记录
+	public ResultMessage addOrder(OrderPO order){
 		return ResultMessage.SUCCEED;
 	}
 	
