@@ -7,7 +7,9 @@ import po.LineItemPO;
 import po.ResultMessage;
 
 public class MockBook extends Book{
-
+    public MockBook(){
+    	
+    }
 	
 	public MockBook(String name,String type,String isbn,BookPO po){
     	super(name,type,isbn,po);
