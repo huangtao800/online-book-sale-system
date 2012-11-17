@@ -10,6 +10,9 @@ public class Member {
 		this.memberPO = memberPO;
 	}
 
+	public ResultMessage addFavorities(String id){
+		return ResultMessage.SUCCEED;
+	}
 	
 	public ResultMessage removeFavorities(String id){
 		return ResultMessage.SUCCEED;
