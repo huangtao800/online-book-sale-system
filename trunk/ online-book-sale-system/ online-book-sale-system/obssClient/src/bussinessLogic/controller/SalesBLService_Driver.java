@@ -9,9 +9,9 @@ import po.ResultMessage;
 import bussinessLogicService.SalesBLService;
 
 public class SalesBLService_Driver {
-	SalesBLService salesBLService;
+	SalesBLService_Stub salesBLService;
 	
-	public void drive(SalesBLService salesBLService) {
+	public void drive(SalesBLService_Stub salesBLService) {
 		this.salesBLService = salesBLService;
 		putInCart_Drive(null);
 		putInCart_Drive(new LineItemPO());
