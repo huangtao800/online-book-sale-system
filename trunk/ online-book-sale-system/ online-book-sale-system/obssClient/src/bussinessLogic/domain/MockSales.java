@@ -20,7 +20,7 @@ public class MockSales extends Sales{
 
 	public ResultMessage enterCart() {
 		ArrayList<LineItemPO> cartList = salesPo.getCartList();
-		if(cartList.size() != 0)
+		if(cartList == null)
 			return ResultMessage.SUCCEED;
 		else
 			return ResultMessage.FAILED;
