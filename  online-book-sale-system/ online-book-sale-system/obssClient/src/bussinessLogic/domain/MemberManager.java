@@ -32,6 +32,10 @@ public class MemberManager {
 		return new MemberPO("111111", "huang");
 	}
 	
+	public ResultMessage changeOrder(int orderNumber,OrderState state){
+		return ResultMessage.SUCCEED;
+	}
+	
 	public ArrayList<OrderPO> getOrderRecord(String id) {
 		// TODO Auto-generated method stub
 		return null;
