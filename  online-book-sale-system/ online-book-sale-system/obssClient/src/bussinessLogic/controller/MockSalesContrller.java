@@ -67,9 +67,10 @@ public class MockSalesContrller extends SalesController {
 	}
 	public ResultMessage endSale(){
 		ArrayList<LineItemPO> salesList = sales.getSalesList();
+		if(salesList == null)
+			return ResultMessage.FAILED;
 	    book.updateBook(salesList);
 		member.update();
-		sales.updateSale();	
-		return ResultMessage.SUCCEED;
+		return sales.updateSale();	
 	}
 }
