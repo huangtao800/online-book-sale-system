@@ -10,19 +10,25 @@ public class Member {
 		this.memberPO = memberPO;
 	}
 
-	public ResultMessage addFavorities() {
+	
+	public ResultMessage removeFavorities(String id){
 		return ResultMessage.SUCCEED;
 	}
-
-	public ResultMessage addEquivalent(String id) {
+	
+	
+	
+	public ResultMessage register(String name,String password){
+		return ResultMessage.SUCCEED;
+	}
+	
+	
+	public ResultMessage cancel(String id,String password){
 		return ResultMessage.SUCCEED;
 	}
 	
 	//修改订单状态
 	//目前尚缺少状态类！！！！
-	public ResultMessage setOrderState(OrderPO orderPO,OrderState state){
-		return ResultMessage.SUCCEED;
-	}
+
 
 
 	// 修改订单状态
