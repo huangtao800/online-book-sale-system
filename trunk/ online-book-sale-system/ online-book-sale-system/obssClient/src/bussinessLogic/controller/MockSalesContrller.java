@@ -1,28 +1,25 @@
 package bussinessLogic.controller;
 
-import java.awt.print.Book;
 import java.util.ArrayList;
 
-import bussinessLogic.domain.*;
 import bussinessLogic.domain.MockBook;
 import bussinessLogic.domain.MockSales;
-import bussinessLogicService.BookBLService;
-import bussinessLogicService.MemberBLService;
-import bussinessLogicService.SalesBLService;
+import bussinessLogic.domain.Sales;
 
 import po.BookPO;
 import po.CouponPO;
 import po.EquivalentPO;
 import po.LineItemPO;
-import po.MemberPO;
 import po.OrderPO;
-import po.PromotionPO;
 import po.ResultMessage;
 
 public class MockSalesContrller extends SalesController {
-	Book book =new MockBook();
-	MemberBLService member = new Member();
-	SalesBLService sales = new MockSales();
+	MockBook book = new MockBook();
+	
+	MemberController member = new MemberController();
+	
+	Sales sales = new MockSales();
+
 	OrderPO orderPO;
 		
 	public ResultMessage putInCart(String isbn, int number){
@@ -43,7 +40,7 @@ public class MockSalesContrller extends SalesController {
 	public ResultMessage purchase(){
 		ArrayList<LineItemPO> cartList = sales.getSalesList();
 		orderPO = new OrderPO(cartList, member.getMemberID());
-		member.addOder(order);
+		member.addOrder(orderPO);
 		return ResultMessage.SUCCEED;
 	}
 	
@@ -56,19 +53,19 @@ public class MockSalesContrller extends SalesController {
 		ArrayList<EquivalentPO> equivalentList = member.getEquivalentList();
 		return ResultMessage.SUCCEED;	
 	}
-	public ResultMessage calculateByEquivalent(){
-		//getStrategy
-		return ResultMessage.SUCCEED;
+	public double calculateByEquivalent(){
+		double common = sales.commonCalculate();
+		return common - 20;
 		
 	}
-    public ResultMessage calculateByCupon(){
-    	//getStrategy
-		return ResultMessage.SUCCEED;
+    public double calculateByCupon(){
+    	double common = sales.commonCalculate();
+		return common*0.8;
 	}
 	public ResultMessage endSale(){
 		ArrayList<LineItemPO> salesList = sales.getSalesList();
 	    book.updateBook(salesList);
-		member.updateMember();
+		member.update();
 		sales.updateSale();	
 		return ResultMessage.SUCCEED;
 	}
