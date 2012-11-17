@@ -85,6 +85,12 @@ public class MemberBLService_Stub implements MemberBLService{
 		// TODO Auto-generated method stub
 		return member.addOrder(order);
 	}
+
+	@Override
+	public ResultMessage update() {
+		// TODO Auto-generated method stub
+		return ResultMessage.SUCCEED;
+	}
 	
 
 }
