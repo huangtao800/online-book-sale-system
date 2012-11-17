@@ -8,10 +8,7 @@ public class SalesPO {
 	public boolean addInCart(BookPO book, int number) {
 		@SuppressWarnings("unused")
 		LineItemPO lineItem = new LineItemPO(book, number);
-		//addBookInCart(lineItem);
-		if(book.equals("00001"))
-			return true;
-		return false;
+		return true;
 	}
 
 	public ArrayList<LineItemPO> getCartList() {
