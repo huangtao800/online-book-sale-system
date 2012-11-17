@@ -8,6 +8,7 @@ import po.CouponPO;
 import po.EquivalentPO;
 import po.MemberPO;
 import po.OrderPO;
+import po.OrderState;
 import po.ResultMessage;
 import bussinessLogic.domain.*;
 import bussinessLogicService.MemberManagerBLService;
@@ -34,9 +35,9 @@ public class MemberManagerBLService_Stub implements MemberManagerBLService{
 	}
 
 	@Override
-	public ResultMessage changeOrder() {
+	public ResultMessage changeOrder(int orderNumber,OrderState state) {
 		// TODO Auto-generated method stub
-		return ResultMessage.SUCCEED;
+		return manager.changeOrder(orderNumber, state);
 	}
 
 	@Override
