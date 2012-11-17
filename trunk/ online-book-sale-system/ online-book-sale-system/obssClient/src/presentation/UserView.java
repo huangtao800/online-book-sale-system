@@ -1,12 +1,13 @@
 package presentation;
 //尤佳琪
 
+import bussinessLogic.controller.UserBLService_Stub;
 import bussinessLogic.domain.User;
 import bussinessLogicService.UserBLService;
 
 public class UserView {
 
-	UserBLService user = new User("张三","123456","11111");
+	UserBLService user = new UserBLService_Stub("张三","123456","11111");
     
 	private void start(){
 		user.login("11111", "123456");
