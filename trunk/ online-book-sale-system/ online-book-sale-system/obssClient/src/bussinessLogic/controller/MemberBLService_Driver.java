@@ -13,16 +13,6 @@ public class MemberBLService_Driver {
 			System.out.println("add succeed");
 		}
 		
-		ResultMessage m2=memberBLService.addCoupon(new CouponPO());
-		if(m2==ResultMessage.SUCCEED){
-			System.out.println("add succeed");
-		}
-		
-		ResultMessage m3=memberBLService.addEquivalent(new EquivalentPO());
-		if(m3==ResultMessage.SUCCEED){
-			System.out.println("add succeed");
-		}
-		
 		ResultMessage m4=memberBLService.register("111111", "111111");
 		if(m4==ResultMessage.SUCCEED){
 			System.out.println("register succeed");
