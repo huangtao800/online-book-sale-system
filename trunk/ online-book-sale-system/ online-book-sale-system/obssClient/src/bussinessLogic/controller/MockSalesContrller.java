@@ -3,7 +3,7 @@ package bussinessLogic.controller;
 import java.awt.print.Book;
 import java.util.ArrayList;
 
-import bussinessLogic.domain.Member;
+import bussinessLogic.domain.*;
 import bussinessLogic.domain.MockBook;
 import bussinessLogic.domain.MockSales;
 import bussinessLogicService.BookBLService;
@@ -20,7 +20,7 @@ import po.PromotionPO;
 import po.ResultMessage;
 
 public class MockSalesContrller extends SalesController {
-	BookBLService book = new MockBook();
+	Book book =new Book();
 	MemberBLService member = new Member();
 	SalesBLService sales = new MockSales();
 	OrderPO orderPO;

@@ -14,7 +14,6 @@ import po.ResultMessage;
 public class Book{
 	String bookName,bookType,bookISBN;
     BookPO bookPO = new BookPO();
-    Book book;
     
     
     public Book(){
@@ -39,7 +38,7 @@ public class Book{
 	}
 	
 	public BookPO findByISBN(String ISBN){      //输入图书ISBN，返回相应的图书列表
-		   BookPO bookPO = book.findByISBN(ISBN);
+		   BookPO bookPO = new BookPO();
 		   return bookPO;
 	}
 
