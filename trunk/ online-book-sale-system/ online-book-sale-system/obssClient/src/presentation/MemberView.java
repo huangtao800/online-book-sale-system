@@ -3,14 +3,13 @@ package presentation;
 
 import po.CouponPO;
 import bussinessLogic.controller.*;
-import bussinessLogicService.MemberBLService;
+import bussinessLogicService.*;
 
 public class MemberView {
 
-	MemberBLService memberBL=new MemberBLService_Stub("111111", "huangtao");
+	MemberManagerBLService memberBL=new MemberManagerBLService_Stub();
 	public void start(){
 		memberBL.addCoupon(new CouponPO());
-		memberBL.addFavorities("111111");
 	}
 	
 	public static void main(String[] args){
