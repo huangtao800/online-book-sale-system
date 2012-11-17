@@ -11,7 +11,7 @@ import po.ResultMessage;
 
 //ÓÈ¼Ñç÷
 
-public class Book implements BookBLService{
+public class Book{
 	String bookName,bookType,bookISBN;
     BookPO bookPO = new BookPO();
     Book book;

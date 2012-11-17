@@ -1,11 +1,10 @@
 package bussinessLogic.domain;
 
-import bussinessLogicService.UserBLService;
 import po.ResultMessage;
-import po.UserPO;
+
 
 //ÓÈ¼Ñç÷
-public class User implements UserBLService{
+public class User{
     String userName,userPassword,userID;
 	
     public User(String name,String password,String id){
