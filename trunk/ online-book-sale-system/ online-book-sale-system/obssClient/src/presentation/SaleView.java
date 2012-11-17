@@ -6,6 +6,6 @@ import bussinessLogicService.SalesBLService;
 
 public class SaleView {
 
-	SalesBLService saleBLService = new SalesBLService_Stub(20);
+	SalesBLService_Stub saleBLService = new SalesBLService_Stub(20);
 
 }
