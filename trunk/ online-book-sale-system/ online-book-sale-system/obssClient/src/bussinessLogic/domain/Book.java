@@ -1,6 +1,7 @@
 package bussinessLogic.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import bussinessLogicService.BookBLService;
 
@@ -11,16 +12,19 @@ import po.ResultMessage;
 //尤佳琪
 
 public class Book implements BookBLService{
-	String bookName,bookType,bookID;
+	String bookName,bookType,bookISBN;
     BookPO bookPO = new BookPO();
     Book book;
     
     
-    public Book(String name,String type,String id,BookPO b){
-    	  bookName = name;
-    	  bookType = type;
-    	  bookID = id;
-    	  bookPO = b;
+    public Book(){
+    }
+    
+    public Book(String name,String type,String isbn,BookPO po){
+    	bookISBN = isbn;
+    	bookName = name;
+    	bookType = type;
+    	bookPO = po;
     }
 
     //销售界面查询图书和图书的促销信息
