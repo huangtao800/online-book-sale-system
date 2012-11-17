@@ -1,4 +1,5 @@
 //黄涛
+//Member模块中涉及顾客部分的逻辑
 package bussinessLogic.controller;
 import java.util.ArrayList;
 
@@ -9,6 +10,7 @@ import bussinessLogic.domain.*;
 public class MemberBLService_Stub implements MemberBLService{
 	private String name;
 	private String id;
+	private MockMember mockMember;
 	
 	public MemberBLService_Stub(String id,String name){
 		this.id=id;
@@ -30,51 +32,27 @@ public class MemberBLService_Stub implements MemberBLService{
 	@Override
 	public ResultMessage addFavorities(String id) {
 		// TODO Auto-generated method stub
-		if(id.equals("111111")){
-			return ResultMessage.SUCCEED;
-		}else {
-			return ResultMessage.FAILED;
-		}
+		return mockMember.addFavorities(id);
 	}
+
 
 	@Override
 	public ResultMessage removeFavorities(String id) {
 		// TODO Auto-generated method stub
-		if(id.equals("111111")){
-			return ResultMessage.SUCCEED;
-		}else {
-			return ResultMessage.FAILED;
-		}
+		return mockMember.removeFavorities(id);
 	}
 
-	@Override
-	public ResultMessage addEquivalent(EquivalentPO e) {
-		// TODO Auto-generated method stub
-		return ResultMessage.SUCCEED;
-	}
 
 	@Override
-	public ResultMessage addCoupon(CouponPO c) {
+	public ResultMessage register(String name, String password) {
 		// TODO Auto-generated method stub
-		return ResultMessage.SUCCEED;
-	}
-
-	@Override
-	public ResultMessage changeOrder() {
-		// TODO Auto-generated method stub
-		return ResultMessage.SUCCEED;
-	}
-
-	@Override
-	public ResultMessage register(String id, String password) {
-		// TODO Auto-generated method stub
-		return ResultMessage.SUCCEED;
+		return mockMember.register(name,password);
 	}
 
 	@Override
 	public ResultMessage cancel(String id, String password) {
 		// TODO Auto-generated method stub
-		return ResultMessage.SUCCEED; 
+		return mockMember.cancel(id, password); 
 	}
 
 	@Override
