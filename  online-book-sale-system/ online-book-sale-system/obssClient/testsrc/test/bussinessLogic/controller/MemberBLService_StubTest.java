@@ -19,7 +19,7 @@ public class MemberBLService_StubTest extends TestCase{
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-		stub=new MemberBLService_Stub(new Member(new MemberPO("111111", "huang")));
+		stub=new MemberBLService_Stub();
 	}
 
 	@After
