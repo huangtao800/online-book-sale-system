@@ -1,5 +1,6 @@
 package bussinessLogic.domain;
 
+import java.awt.List;
 import java.util.ArrayList;
 
 import po.BookPO;
@@ -21,7 +22,9 @@ public class MockBook extends Book{
 	}
 	
 	public ResultMessage updateBook(ArrayList<LineItemPO> salesList){
-		LineItemPO list = salesList.get(0);
+		if(salesList == null)
+			return ResultMessage.FAILED;
+    	LineItemPO list = salesList.get(0);
 		bookPO = list.getBook();
 		String isbn = bookPO.getISBN();
 		if(isbn=="11111"){
