@@ -14,7 +14,11 @@ import bussinessLogicService.MemberManagerBLService;
 
 public class MemberManagerBLService_Stub implements MemberManagerBLService{
 	
-	private MockMemberManager manager;
+	private MemberManager manager;
+	
+	public MemberManagerBLService_Stub(MemberManager manager){
+		this.manager=manager;
+	}
 	
 	
 	@Override
