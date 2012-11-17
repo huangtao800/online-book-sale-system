@@ -2,6 +2,7 @@ package test.mock.member.memberManager;
 
 import po.CouponPO;
 import po.EquivalentPO;
+import po.OrderState;
 import po.ResultMessage;
 import bussinessLogic.controller.MemberManagerBLService_Stub;
 import bussinessLogic.domain.*;
@@ -15,9 +16,14 @@ import org.junit.Test;
 
 public class MemberManagerIntegrationTest extends TestCase{
 	
+	MemberManagerBLService memberManagerService;
+	
+	
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
+		MockMemberManager mockManager=new MockMemberManager();
+		memberManagerService=new MemberManagerBLService_Stub(mockManager);
 	}
 
 	@After
@@ -26,15 +32,20 @@ public class MemberManagerIntegrationTest extends TestCase{
 	}
 	
 	@Test
-	public void testMember(){
-		MockMemberManager mockManager=new MockMemberManager();
-		MemberManagerBLService memberManagerService=new MemberManagerBLService_Stub
-														(mockManager);
-		
+	public void testAddCoupon(){
 		ResultMessage couponMessage=memberManagerService.addCoupon(new CouponPO());
-		ResultMessage equivalentMessage=memberManagerService.addEquivalent(new EquivalentPO());
-		
 		assertEquals(couponMessage,ResultMessage.SUCCEED);
+	}
+	
+	@Test
+	public void testAddEquivalent(){
+		ResultMessage equivalentMessage=memberManagerService.addEquivalent(new EquivalentPO());
 		assertEquals(equivalentMessage,ResultMessage.SUCCEED);
+	}
+	
+	@Test
+	public void testChangerOrder(){
+		ResultMessage orderMessage=memberManagerService.changeOrder(1,OrderState.SIGNED);
+		assertEquals(orderMessage, ResultMessage.SUCCEED);
 	}
 }
