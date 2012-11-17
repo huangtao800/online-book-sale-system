@@ -9,7 +9,7 @@ import po.ResultMessage;
 
 import bussinessLogicService.SalesBLService;
 
-public class SalesBLService_Stub implements SalesBLService {
+public class SalesBLService_Stub{
 	ArrayList<LineItemPO> cartRecords = new ArrayList<LineItemPO>();
 	OrderPO order;
 	double totalPrice;
@@ -54,14 +54,9 @@ public class SalesBLService_Stub implements SalesBLService {
 	}
 
 	public OrderPO purchase() {
-		order = new OrderPO(cartRecords);
-		return order;
+		return null;
 	}
 
-	@Override
-	public void endSale() {
-		// TODO Auto-generated method stub
 
-	}
 
 }
