@@ -68,4 +68,23 @@ public class MemberBLService_Stub implements MemberBLService{
 		return new MemberPO("111111", "member");
 	}
 
+	@Override
+	public ArrayList<CouponPO> getCouponList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<EquivalentPO> getEquivalentList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage addOrder(OrderPO order) {
+		// TODO Auto-generated method stub
+		return member.addOrder(order);
+	}
+	
+
 }
