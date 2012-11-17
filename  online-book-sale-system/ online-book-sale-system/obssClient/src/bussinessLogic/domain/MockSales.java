@@ -38,20 +38,12 @@ public class MockSales extends Sales{
 		return 100;
 	}
 
-	@Override
-	public ResultMessage purchase() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public ArrayList<LineItemPO> getSalesList() {
-		// TODO Auto-generated method stub
-		return null;
+		return salesPo.getCartList();
 	}
 
 	public ResultMessage updateSale() {
 		//updatePo
-		return null;
+		return ResultMessage.SUCCEED;
 	}
 }
