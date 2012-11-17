@@ -20,6 +20,7 @@ public interface MemberBLService {
 	public ResultMessage addOrder(OrderPO order);//增加一条订单记录
 	
 	public ArrayList<OrderPO> getOrderRecord();//查看自己的购买记录
+	public ResultMessage update();//更新会员信息
 	public MemberPO getInfo();//查看自己的会员信息
 	
 }
