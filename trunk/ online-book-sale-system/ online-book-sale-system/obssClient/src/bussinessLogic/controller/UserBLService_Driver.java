@@ -5,7 +5,7 @@ import bussinessLogicService.UserBLService;
 
 public class UserBLService_Driver {
 	
-	public void drive(UserBLService userBLService){
+	public void drive(UserBLService_Stub userBLService){
 		
 		 ResultMessage result1 = userBLService.login("11111", "123456");
   	     if(result1==ResultMessage.SUCCEED){

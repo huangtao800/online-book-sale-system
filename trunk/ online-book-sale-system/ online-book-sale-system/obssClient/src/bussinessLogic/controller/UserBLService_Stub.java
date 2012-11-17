@@ -3,7 +3,7 @@ package bussinessLogic.controller;
 import po.ResultMessage;
 import bussinessLogicService.UserBLService;
 
-public class UserBLService_Stub implements UserBLService{
+public class UserBLService_Stub {
 	    String userName,userPassword,userID;
 	
 	    public UserBLService_Stub(String name,String password,String id){

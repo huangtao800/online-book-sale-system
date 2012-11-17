@@ -2,11 +2,10 @@ package bussinessLogic.controller;
 //ÓÈ¼Ñç÷
 import po.BookPO;
 import po.ResultMessage;
-import bussinessLogicService.*;
 
 public class BookBLService_Driver {
 	
-     public void drive(BookBLService bookBLService){
+     public void drive(BookBLService_Stub bookBLService){
     	 BookPO bookPO = new BookPO();
     	 
     	 ResultMessage result1 = bookBLService.addBook(bookPO);
@@ -31,9 +30,6 @@ public class BookBLService_Driver {
     	 bookBLService.findByType("¼ÆËã»úÀà");
     	 System.out.println("FindByType Succeed!");
     	
-    	 
-    	 bookBLService.getBookPromotionListByID("11111");
-    	 System.out.println("GetBookPromotionListByID Succeed!");
     	
      }
 }
