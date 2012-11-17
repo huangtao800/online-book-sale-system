@@ -17,6 +17,8 @@ public interface MemberBLService {
 	public ArrayList<CouponPO> getCouponList();//获得打折券列表
 	public ArrayList<EquivalentPO> getEquivalentList();//获得等价券列表
 	
+	public ResultMessage addOrder(OrderPO order);//增加一条订单记录
+	
 	public ArrayList<OrderPO> getOrderRecord();//查看自己的购买记录
 	public MemberPO getInfo();//查看自己的会员信息
 	
