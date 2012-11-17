@@ -2,12 +2,14 @@
 package bussinessLogic.controller;
 
 import po.BookPO;
+import po.MemberPO;
+import bussinessLogic.domain.Member;
 import bussinessLogicService.MemberBLService;
 
 public class Client {
 
 	public static void main(String[] args){
-		MemberBLService memberBLService=new MemberBLService_Stub("111111", "huangtao");
+		MemberBLService memberBLService=new MemberBLService_Stub(new Member(new MemberPO("111111", "huang")));
 		MemberBLService_Driver driver=new MemberBLService_Driver();
 		System.out.println("test MemberBLService_Driver:");
 		driver.drive(memberBLService);
