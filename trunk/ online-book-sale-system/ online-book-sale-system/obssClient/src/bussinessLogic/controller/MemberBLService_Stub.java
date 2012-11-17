@@ -12,10 +12,11 @@ public class MemberBLService_Stub implements MemberBLService{
 	private String id;
 	private Member member;
 	
-	public MemberBLService_Stub(Member member){
+	public MemberBLService_Stub(){
 		this.id=id;
 		this.name=name;
-		this.member=member;
+		this.member=new Member(new MemberPO("111111", "huang"));
+		
 	}
 
 	@Override
