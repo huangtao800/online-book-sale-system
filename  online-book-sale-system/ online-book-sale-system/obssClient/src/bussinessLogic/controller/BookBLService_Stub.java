@@ -6,7 +6,7 @@ import po.*;
 import po.ResultMessage;
 import bussinessLogicService.*;
 
-public class BookBLService_Stub implements BookBLService{
+public class BookBLService_Stub {
 	    String bookName,bookType,bookID;
 	    BookPO book = new BookPO();
 	    
@@ -28,11 +28,7 @@ public class BookBLService_Stub implements BookBLService{
 			   return bookArray;
 		}
 		
-		public ArrayList<PromotionPO> getBookPromotionListByID(String bookID){         //返回相应图书的促销信息
-			   ArrayList<PromotionPO> promotionArray = new ArrayList<PromotionPO>();
-			   return promotionArray;
-		}
-		
+	
 		
 		//管理图书（增，删，改）
 		public ResultMessage addBook(BookPO b){
