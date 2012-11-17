@@ -10,11 +10,12 @@ import bussinessLogic.domain.*;
 public class MemberBLService_Stub implements MemberBLService{
 	private String name;
 	private String id;
-	private MockMember mockMember;
+	private Member member;
 	
-	public MemberBLService_Stub(String id,String name){
+	public MemberBLService_Stub(Member member){
 		this.id=id;
 		this.name=name;
+		this.member=member;
 	}
 
 	@Override
@@ -32,27 +33,27 @@ public class MemberBLService_Stub implements MemberBLService{
 	@Override
 	public ResultMessage addFavorities(String id) {
 		// TODO Auto-generated method stub
-		return mockMember.addFavorities(id);
+		return member.addFavorities(id);
 	}
 
 
 	@Override
 	public ResultMessage removeFavorities(String id) {
 		// TODO Auto-generated method stub
-		return mockMember.removeFavorities(id);
+		return member.removeFavorities(id);
 	}
 
 
 	@Override
 	public ResultMessage register(String name, String password) {
 		// TODO Auto-generated method stub
-		return mockMember.register(name,password);
+		return member.register(name,password);
 	}
 
 	@Override
 	public ResultMessage cancel(String id, String password) {
 		// TODO Auto-generated method stub
-		return mockMember.cancel(id, password); 
+		return member.cancel(id, password); 
 	}
 
 	@Override
