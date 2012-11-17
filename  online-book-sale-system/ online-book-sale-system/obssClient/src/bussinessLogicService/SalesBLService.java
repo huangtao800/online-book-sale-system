@@ -11,7 +11,7 @@ public interface SalesBLService {
 	public ResultMessage enterCart();
 	public ResultMessage removeFromCart(String id);
 	public double commonCalculate();
-	public ResultMessage purchase();
+	public ArrayList<LineItemPO> purchase();
 	public ArrayList<LineItemPO> getSalesList();
 	public ResultMessage updateSale() ;
 }
