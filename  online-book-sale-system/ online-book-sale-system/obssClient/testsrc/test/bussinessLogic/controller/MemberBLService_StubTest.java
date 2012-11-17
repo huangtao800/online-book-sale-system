@@ -7,9 +7,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import po.MemberPO;
 import po.ResultMessage;
 
 import bussinessLogic.controller.MemberBLService_Stub;
+import bussinessLogic.domain.Member;
 
 public class MemberBLService_StubTest extends TestCase{
 
@@ -17,7 +19,7 @@ public class MemberBLService_StubTest extends TestCase{
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-		stub=new MemberBLService_Stub("11111","huang");
+		stub=new MemberBLService_Stub(new Member(new MemberPO("111111", "huang")));
 	}
 
 	@After
