@@ -10,10 +10,13 @@ public class OrderPO implements PO{
 	private ArrayList<LineItemPO> productItem;
 	private double totalPrice;
 	private OrderState state;
-	public OrderPO(ArrayList<LineItemPO> productItem){
+	private String id;
+	
+	public OrderPO(ArrayList<LineItemPO> productItem, String id){
 		orderNum = count ++;
 		this.productItem = productItem;
 		this.state = OrderState.ORDERDED;
+		this.id = id;
 	}
 	public long getOrderNum(){
 		return orderNum;
