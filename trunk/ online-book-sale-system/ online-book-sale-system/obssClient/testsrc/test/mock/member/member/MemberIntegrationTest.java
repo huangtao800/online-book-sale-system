@@ -23,8 +23,7 @@ public class MemberIntegrationTest extends TestCase{
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-		MockMember member=new MockMember(new MemberPO("111111", "huangtao"));
-		memberBLService=new MemberBLService_Stub(member);
+		memberBLService=new MemberBLService_Stub();
 	}
 
 	@After
