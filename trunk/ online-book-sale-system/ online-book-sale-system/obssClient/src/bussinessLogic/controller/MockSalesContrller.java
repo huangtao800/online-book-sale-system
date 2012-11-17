@@ -14,13 +14,16 @@ import po.OrderPO;
 import po.ResultMessage;
 
 public class MockSalesContrller extends SalesController {
+
 	MockBook book = new MockBook();
 	
 	MemberController member = new MemberController();
 	
 	Sales sales = new MockSales();
-
+	
 	OrderPO orderPO;
+	
+
 		
 	public ResultMessage putInCart(String isbn, int number){
 		BookPO bookPo = book.findByISBN(isbn);
