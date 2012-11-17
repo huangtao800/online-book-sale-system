@@ -14,6 +14,9 @@ public interface MemberBLService {
 	public ResultMessage register(String id,String password);//注册会员
 	public ResultMessage cancel(String id,String password);//注销会员
 	
+	public ArrayList<CouponPO> getCouponList();//获得打折券列表
+	public ArrayList<EquivalentPO> getEquivalentList();//获得等价券列表
+	
 	public ArrayList<OrderPO> getOrderRecord();//查看自己的购买记录
 	public MemberPO getInfo();//查看自己的会员信息
 	
