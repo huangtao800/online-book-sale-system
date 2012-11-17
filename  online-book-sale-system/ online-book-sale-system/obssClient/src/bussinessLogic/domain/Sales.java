@@ -8,7 +8,7 @@ import po.ResultMessage;
 import po.SalesPO;
 import bussinessLogicService.SalesBLService;
 
-public class Sales implements SalesBLService{
+public class Sales {
 	SalesPO salesPo = new SalesPO();
 
 	public ResultMessage putInCart(BookPO book, int number) {
@@ -37,19 +37,11 @@ public class Sales implements SalesBLService{
 		return 0;
 	}
 
-	@Override
-	public ResultMessage purchase() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public ArrayList<LineItemPO> getSalesList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public ResultMessage updateSale() {
 		// TODO Auto-generated method stub
 		return null;
