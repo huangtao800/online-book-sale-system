@@ -20,7 +20,7 @@ import po.PromotionPO;
 import po.ResultMessage;
 
 public class MockSalesContrller extends SalesController {
-	Book book =new Book();
+	Book book =new MockBook();
 	MemberBLService member = new Member();
 	SalesBLService sales = new MockSales();
 	OrderPO orderPO;
