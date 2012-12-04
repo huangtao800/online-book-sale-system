@@ -6,6 +6,17 @@ import java.io.*;
 public class UserPO implements PO,Serializable{
     private String userID,userName,userPassword;
     private UserRole userRole;
+    
+    public UserPO(){
+    	
+    }
+    
+    public UserPO(String id,String name,String password,UserRole role){
+    	userID = id;
+    	userName = name;
+    	userPassword = password;
+    	userRole = role;
+    }
  
     public void setUserName(String name){
     	userName = name;
