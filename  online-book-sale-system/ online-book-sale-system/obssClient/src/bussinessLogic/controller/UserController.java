@@ -25,10 +25,10 @@ public class UserController implements UserBLService,Serializable{
 		}
 		
 		//根据输入查找是否存在相应的user
-		public PO login(String userName,String password,UserRole userRole){
+		public UserPO login(String userName,String password,UserRole userRole){
 				User user = new User();
-				PO po = user.isExist(userName, password, userRole);
-				return po;
+				UserPO userPO = user.isExist(userName, password, userRole);
+				return userPO;
 		}
 		
 		//对用户的调整
