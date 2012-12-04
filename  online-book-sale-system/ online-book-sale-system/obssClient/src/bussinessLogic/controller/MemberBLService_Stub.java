@@ -15,7 +15,7 @@ public class MemberBLService_Stub implements MemberBLService{
 	public MemberBLService_Stub(){
 		this.id=id;
 		this.name=name;
-		this.member=new Member(new MemberPO("111111", "huang"));
+		this.member=new Member(new MemberPO("111111", "huang","111111"));
 		
 	}
 
@@ -66,7 +66,7 @@ public class MemberBLService_Stub implements MemberBLService{
 	@Override
 	public MemberPO getInfo() {
 		// TODO Auto-generated method stub
-		return new MemberPO("111111", "member");
+		return new MemberPO("111111", "member","111111");
 	}
 
 	@Override
