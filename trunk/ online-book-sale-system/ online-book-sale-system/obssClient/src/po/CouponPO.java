@@ -3,7 +3,7 @@ package po;
 import java.util.Calendar;
 //董仁广
 public class CouponPO implements PO {//打折券
-    private int quantity;
+    private double rate;//打折率
     private Calendar startDate;
     private Calendar endDate;
     
@@ -11,16 +11,16 @@ public class CouponPO implements PO {//打折券
   	  
     }
     public CouponPO (int qu,Calendar st,Calendar ed){
-  	  this.quantity=qu;
+  	  this.rate=qu;
   	  this.startDate=st;
   	  this.endDate=ed;
     }
     
-    public int getQuantity(){
-  	  return quantity;
+    public double getRate(){
+  	  return rate;
     }
-    public void setQuantity(int q){
-  	  this.quantity=q;
+    public void setRate(double q){
+  	  this.rate=q;
     }
     
     public Calendar getStartDate(){
