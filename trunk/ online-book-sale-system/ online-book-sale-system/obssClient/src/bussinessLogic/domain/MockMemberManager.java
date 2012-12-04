@@ -27,7 +27,7 @@ public class MockMemberManager extends MemberManager {
 	}
 	
 	public MemberPO getInfo(String id){
-		return new MemberPO("111111", "huang");
+		return new MemberPO("111111", "huang","111111");
 	}
 	
 	public ArrayList<OrderPO> getOrderRecord(String id) {
