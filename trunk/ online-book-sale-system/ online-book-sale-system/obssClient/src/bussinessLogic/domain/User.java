@@ -1,71 +1,37 @@
 package bussinessLogic.domain;
 
-import po.ResultMessage;
-
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
+import po.*;
 
 //尤佳琪
-public class User{
-    String userName,userPassword,userID;
+public class User implements Serializable{
+	public User(){
+		
+	}
 	
-    public User(String name,String password,String id){
-    	userName=name;
-    	userPassword=password;
-    	userID=id;
+    public PO isExist(String userName,String password,UserRole userRole){
+    	UserPO user = new UserPO();
+    	user = null;
+    	
+    	try{
+    		FileInputStream is = new FileInputStream("user.ser");
+    		ObjectInputStream os = new ObjectInputStream(is);
+    		UserPO userPO = (UserPO)os.readObject();
+    		while(userPO!=null){
+    			boolean b1 = userName.equals(userPO.getUserName());
+    			boolean b2 = password.equals(userPO.getUserPassword());
+    			boolean b3 = userRole.equals(userPO.getUserRole());
+    			if(b1&&b2&&b3){
+    				user = userPO;
+    			}
+    			userPO = (UserPO)os.readObject();
+    		}
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    	
+        return user;
     }
-    
-    //用户界面获得用户信息
- 	public String getUserName(int id){
-		return userName;
-	}
-	
-	public String getUserId(){
-		return userID;
-	}
-	
-	public String getUserPassword(int id){
-		return userPassword;
-	}
-	
-	//根据输入查找是否存在相应的user
-	public ResultMessage login(String id,String password){
-		if((id=="11111")&&(password=="123456")){
-			return ResultMessage.SUCCEED;
-		}else{
-			return ResultMessage.FAILED;
-		}
-	}
-	
-	//对用户的调整
-	public ResultMessage addUser(String id,String name,String identity,String password){
-		if(id=="11111"){
-			return ResultMessage.SUCCEED;
-		}else{
-			return ResultMessage.FAILED;
-		}
-	}
-	
-	public ResultMessage deleteUser(String id){
-		if(id=="11111"){
-			return ResultMessage.SUCCEED;
-		}else{
-			return ResultMessage.FAILED;
-		}
-	}
-	
-	public ResultMessage changeUser(String id, String name,String identity,String password){
-		if(id=="11111"){
-			return ResultMessage.SUCCEED;
-		}else{
-			return ResultMessage.FAILED;
-		}
-	}
-	
-	public ResultMessage findChangingUser(String id){
-		if(id=="11111"){
-			return ResultMessage.SUCCEED;
-		}else{
-			return ResultMessage.FAILED;
-		}
-	}
-	
 }

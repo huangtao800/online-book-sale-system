@@ -1,9 +1,10 @@
 package bussinessLogic.controller;
 //尤佳琪
+import po.*;
 import po.ResultMessage;
 import bussinessLogicService.UserBLService;
 
-public class UserBLService_Stub implements UserBLService{
+public class UserBLService_Stub {
     String userName,userPassword,userID;
 	
     public UserBLService_Stub(String name,String password,String id){
@@ -26,13 +27,14 @@ public class UserBLService_Stub implements UserBLService{
 	}
 	
 	//根据输入查找是否存在相应的user
-	public ResultMessage login(String id,String password){
-		if((id=="11111")&&(password=="123456")){
-			return ResultMessage.SUCCEED;
-		}else{
-			return ResultMessage.FAILED;
+		public PO login(String id,String password,UserRole userRole){
+			PO po = new UserPO();
+			if((id=="11111")&&(password=="123456")){
+				return po;
+			}else{
+				return po;
+			}
 		}
-	}
 	
 	//对用户的调整
 	public ResultMessage addUser(String id,String name,String identity,String password){
