@@ -29,7 +29,7 @@ public class MemberManager {
 	}
 	
 	public MemberPO getInfo(String id){
-		return new MemberPO("111111", "huang");
+		return new MemberPO("111111", "huang","111111");
 	}
 	
 	public ResultMessage changeOrder(int orderNumber,OrderState state){
