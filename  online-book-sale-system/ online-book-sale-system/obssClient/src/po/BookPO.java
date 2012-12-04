@@ -7,19 +7,6 @@ public class BookPO implements PO{
     private Date publishDate;
     private double price;
     
-    public BookPO(){
-    	
-    }
-    
-    public BookPO(String isbn,String name,String a,String p,Date date,double m){
-    	ISBN = isbn;
-    	bookName = name;
-    	author = a;
-    	press = p;
-    	publishDate = date;
-    	price = m;
-    }
-    
     public String getISBN(){
     	return ISBN;
     }
