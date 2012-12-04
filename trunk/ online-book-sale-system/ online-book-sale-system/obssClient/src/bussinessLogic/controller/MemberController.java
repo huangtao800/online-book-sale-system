@@ -15,7 +15,7 @@ public class MemberController implements MemberBLService{
 	public MemberController(){
 		this.id=id;
 		this.name=name;
-		this.member=new Member(new MemberPO("111111", "huang"));
+		this.member=new Member(new MemberPO("111111", "huang","111111"));
 		
 	}
 
@@ -66,7 +66,7 @@ public class MemberController implements MemberBLService{
 	@Override
 	public MemberPO getInfo() {
 		// TODO Auto-generated method stub
-		return new MemberPO("111111", "member");
+		return new MemberPO("111111", "member","111111");
 	}
 
 	@Override
