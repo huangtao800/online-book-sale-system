@@ -11,7 +11,7 @@ public class User implements Serializable{
 		
 	}
 	
-    public PO isExist(String userName,String password,UserRole userRole){
+    public UserPO isExist(String userName,String password,UserRole userRole){
     	UserPO user = new UserPO();
     	user = null;
     	
