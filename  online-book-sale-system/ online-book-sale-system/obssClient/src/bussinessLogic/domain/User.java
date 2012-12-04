@@ -6,7 +6,7 @@ import java.io.Serializable;
 import po.*;
 
 //ÓÈ¼Ñç÷
-public class User implements Serializable{
+public class User {
 	public User(){
 		
 	}
