@@ -4,6 +4,7 @@ import java.util.Calendar;
 //董仁广
 public class EquivalentPO implements PO {//等价券
       private double deno;//面额
+      private double min;//使用该面额的等价券所需的最低消费
       private Calendar startDate;
       private Calendar endDate;
       
@@ -16,11 +17,17 @@ public class EquivalentPO implements PO {//等价券
     	  this.endDate=ed;
       }
       
-      public double getQuantity(){
+      public double getDeno(){
     	  return deno;
       }
-      public void setQuantity(double q){
+      public void setDeno(double q){
     	  this.deno=q;
+      }
+      public double getMin(){
+    	  return min;
+      }
+      public void setMin(double m){
+    	  this.min=m;
       }
       
       public Calendar getStartDate(){
