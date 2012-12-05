@@ -12,6 +12,8 @@ import javax.swing.JPasswordField;
 import java.awt.Font;
 import javax.swing.JButton;
 
+import po.ResultMessage;
+
 import bussinessLogicService.RegistryBLService;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
