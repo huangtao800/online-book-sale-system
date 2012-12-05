@@ -3,19 +3,27 @@ package bussinessLogic.domain;
 
 import java.util.ArrayList;
 
+import databaseService.member.MemberDatabaseService;
+
 import po.*;
 
 
 public class Member {
 //	private MemberPO memberPO;
+	private MemberDatabaseService memberDatabase;
 
 	public Member() {
 //		this.memberPO = memberPO;
+		
 	}
 
-	public ResultMessage addFavorities(BookPO bookPO,String memberID){
+	public ResultMessage addFavorities(BookPO bookPO,MemberPO memberPO){
 		
-		return null;
+		return memberDatabase.addFavorities(bookPO, memberPO);
+	}
+	
+	public ResultMessage removeFavorities(BookPO bookPO, MemberPO memberPO){
+		return memberDatabase.removeFavorities(bookPO, memberPO);
 	}
 	
 	
