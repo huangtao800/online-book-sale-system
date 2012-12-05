@@ -1,8 +1,10 @@
 //»ÆÌÎ
 package databaseService.member;
 
+import po.BookPO;
 import po.MemberPO;
 import po.PO;
+import po.ResultMessage;
 
 public class MemberDatabaseService_Stub implements MemberDatabaseService{
 
@@ -29,6 +31,18 @@ public class MemberDatabaseService_Stub implements MemberDatabaseService{
 		// TODO Auto-generated method stub
 		PO po=new MemberPO("111111", "huangtao","111111");
 		return po;
+	}
+
+	@Override
+	public ResultMessage addFavorities(BookPO bookPO, MemberPO memberPO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage removeFavorities(BookPO bookPO, MemberPO memberPO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
