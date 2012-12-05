@@ -3,7 +3,7 @@ package po;
 import java.io.*;
 
 //ÓÈ¼Ñç÷
-public class UserPO implements PO,Serializable{
+public class UserPO implements PO{
     private String userID,userName,userPassword;
     private UserRole userRole;
     
