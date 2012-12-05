@@ -1,8 +1,11 @@
 //»ÆÌÎ
 package databaseService.user;
 
+import java.rmi.RemoteException;
+
 import po.PO;
 import po.UserPO;
+import po.UserRole;
 
 public class UserDatabaseService_Stub implements UserDatabaseService{
 
@@ -30,6 +33,13 @@ public class UserDatabaseService_Stub implements UserDatabaseService{
 		System.out.println("find succeed");
 		PO po=new UserPO();
 		return po;
+	}
+
+	@Override
+	public UserPO isExisit(String userName, String password, UserRole userRole)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
