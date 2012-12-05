@@ -6,6 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import po.BookPO;
 import po.CouponPO;
 import po.EquivalentPO;
+import po.MemberPO;
 import po.ResultMessage;
 import po.VIPRank;
 import database.init.InitDatabase;
@@ -45,7 +46,7 @@ public class MemberDatabase extends UnicastRemoteObject implements MemberDataseS
 	}
 
 	@Override
-	public ResultMessage addFavorities(BookPO bookPO, String memberID)
+	public ResultMessage addFavorities(BookPO bookPO, MemberPO memberPO)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		
