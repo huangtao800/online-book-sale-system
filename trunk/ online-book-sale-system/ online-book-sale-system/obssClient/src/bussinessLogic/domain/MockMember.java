@@ -5,8 +5,8 @@ import po.ResultMessage;
 
 public class MockMember extends Member {
 
-	public MockMember(MemberPO memberPO) {
-		super(memberPO);
+	public MockMember() {
+		
 		// TODO Auto-generated constructor stub
 	}
 	
