@@ -67,7 +67,7 @@ public class StartController implements StartBLService {
 	public void enterMainView(UserRole role,UserPO userPO) {
 		// TODO Auto-generated method stub
 		if (role == UserRole.Member) {
-
+			
 		} else if (role == UserRole.SalesManager) {
 
 		}
