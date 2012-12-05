@@ -13,9 +13,8 @@ public class MemberController implements MemberBLService{
 	private Member member;
 	
 	public MemberController(){
-		this.id=id;
-		this.name=name;
-		this.member=new Member(new MemberPO("111111", "huang","111111"));
+		
+		this.member=new Member();
 		
 	}
 
@@ -31,18 +30,6 @@ public class MemberController implements MemberBLService{
 		return id;
 	}
 
-	@Override
-	public ResultMessage addFavorities(String id) {
-		// TODO Auto-generated method stub
-		return member.addFavorities(id);
-	}
-
-
-	@Override
-	public ResultMessage removeFavorities(String id) {
-		// TODO Auto-generated method stub
-		return member.removeFavorities(id);
-	}
 
 
 	@Override
@@ -81,16 +68,29 @@ public class MemberController implements MemberBLService{
 		return null;
 	}
 
-	@Override
-	public ResultMessage addOrder(OrderPO order) {
-		// TODO Auto-generated method stub
-		return member.addOrder(order);
-	}
 
 	@Override
 	public ResultMessage update() {
 		// TODO Auto-generated method stub
 		return ResultMessage.SUCCEED;
+	}
+
+	@Override
+	public ResultMessage addFavorities(BookPO bookPO, MemberPO memberPO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage removeFavorities(BookPO bookPO, MemberPO memberPO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage addOrder(OrderPO order, MemberPO memberPO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
