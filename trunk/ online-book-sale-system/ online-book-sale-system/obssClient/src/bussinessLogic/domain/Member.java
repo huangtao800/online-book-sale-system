@@ -5,13 +5,20 @@ import java.util.ArrayList;
 
 import po.*;
 
-public class Member {
-	private MemberPO memberPO;
 
-	public Member(MemberPO memberPO) {
-		this.memberPO = memberPO;
+public class Member {
+//	private MemberPO memberPO;
+
+	public Member() {
+//		this.memberPO = memberPO;
 	}
 
+	public ResultMessage addFavorities(BookPO bookPO,String memberID){
+		
+		return null;
+	}
+	
+	
 	public ResultMessage addFavorities(String id){
 		return ResultMessage.SUCCEED;
 	}
