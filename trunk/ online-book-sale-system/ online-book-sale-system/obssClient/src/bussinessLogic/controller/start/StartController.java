@@ -1,6 +1,11 @@
 package bussinessLogic.controller.start;
 
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+
 import javax.swing.JOptionPane;
+
+import databaseService.init.InitDatabaseService;
 
 import po.ResultMessage;
 import po.UserPO;
@@ -13,13 +18,18 @@ import bussinessLogicService.StartBLService;
 import bussinessLogicService.UserBLService;
 
 public class StartController implements StartBLService {
-	StartView startView;
-	UserBLService userController;
-	RegistryBLService registryController;
+	private StartView startView;
+	private InitDatabaseService initDatabase;
+	private RegistryBLService registryController;
 
 	// 构造函数应传入Model
 	public StartController() {
-		userController = UserController.getInstance();
+		try {
+			initDatabase=(InitDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/InitDatabase");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		startView = new StartView(this);
 		startView.setVisible(true);
 	}
@@ -27,13 +37,19 @@ public class StartController implements StartBLService {
 	@Override
 	public void logIn(String name, String password, UserRole role) {
 		// TODO Auto-generated method stub
-		UserPO userPO = userController.login(name, password, role);
+		UserPO userPO=null;
+		try {
+			userPO = initDatabase.logIn(name, password, role);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		if (userPO != null) {
 			startView.setVisible(false);
 			startView.dispose();
 			
-			enterMainView(role);
+			enterMainView(role,userPO);
 			System.out.println("success!");
 		} else {
 			JOptionPane.showMessageDialog(null, "对不起！用户名或密码错误！");
@@ -48,7 +64,7 @@ public class StartController implements StartBLService {
 	}
 
 	@Override
-	public void enterMainView(UserRole role) {
+	public void enterMainView(UserRole role,UserPO userPO) {
 		// TODO Auto-generated method stub
 		if (role == UserRole.Member) {
 

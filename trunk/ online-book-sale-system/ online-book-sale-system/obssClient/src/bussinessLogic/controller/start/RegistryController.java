@@ -28,7 +28,7 @@ public class RegistryController implements RegistryBLService{
 //		String id=userController.generateID(UserRole.Member);	//User模块提供，生成一个新的ID
 //		userController.addUser(name, id, password, UserRole.Member);
 		
-		startController.enterMainView(UserRole.Member);
+//		startController.enterMainView(UserRole.Member);	//需要UserPO作为参数
 		return null;
 	}
 
