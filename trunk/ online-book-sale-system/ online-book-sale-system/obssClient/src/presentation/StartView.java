@@ -146,13 +146,14 @@ public class StartView extends JFrame {
 		passwordField.setBounds(152, 129, 180, 33);
 		contentPane.add(passwordField);
 		
-		JButton btnNewButton = new JButton("\u6CE8\u518C\u65B0\u7528\u6237");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton registryButton = new JButton("\u6CE8\u518C\u65B0\u7528\u6237");
+		registryButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				startController.startRegistry();
 			}
 		});
-		btnNewButton.setBounds(342, 78, 93, 33);
-		contentPane.add(btnNewButton);
+		registryButton.setBounds(342, 78, 93, 33);
+		contentPane.add(registryButton);
 		
 		
 		
