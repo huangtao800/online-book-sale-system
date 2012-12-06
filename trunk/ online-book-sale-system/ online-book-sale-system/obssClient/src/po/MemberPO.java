@@ -3,32 +3,36 @@ package po;
 import java.util.*;
 
 public class MemberPO extends UserPO{
-//	private String id;
-//	private String name;
-//	private String password;
+
 	private ArrayList<OrderPO> orderList;
 	private FavorityPO favority;
-	private ArrayList<PromotionPO> promotionList;
+	private ArrayList<CouponPO> couponList;
+	private ArrayList<EquivalentPO> equivalentList;
 	
 	public MemberPO(String id,String name,String password){
 		super(id, name, password, UserRole.Member);
 	}
 
-//	public String getId() {
-//		return id;
-//	}
-//
-//	public void setId(String id) {
-//		this.id = id;
-//	}
-//
-//	public String getName() {
-//		return name;
-//	}
-//
-//	public void setName(String name) {
-//		this.name = name;
-//	}
+
+	public ArrayList<CouponPO> getCouponList() {
+		return couponList;
+	}
+
+
+	public void setCouponList(ArrayList<CouponPO> couponList) {
+		this.couponList = couponList;
+	}
+
+
+	public ArrayList<EquivalentPO> getEquivalentList() {
+		return equivalentList;
+	}
+
+
+	public void setEquivalentList(ArrayList<EquivalentPO> equivalentList) {
+		this.equivalentList = equivalentList;
+	}
+
 
 	public ArrayList<OrderPO> getOrderList() {
 		return orderList;
@@ -38,13 +42,6 @@ public class MemberPO extends UserPO{
 		this.orderList = orderList;
 	}
 
-//	public String getPassword() {
-//		return password;
-//	}
-//
-//	public void setPassword(String password) {
-//		this.password = password;
-//	}
 
 	public FavorityPO getFavority() {
 		return favority;
@@ -52,16 +49,6 @@ public class MemberPO extends UserPO{
 
 	public void setFavority(FavorityPO favority) {
 		this.favority = favority;
-	}
-
-	public ArrayList<PromotionPO> getPromotionList() {
-		return promotionList;
-	}
-
-	public void setPromotionList(ArrayList<PromotionPO> promotionList) {
-		this.promotionList = promotionList;
-	}
-
-	
+	}	
 	
 }
