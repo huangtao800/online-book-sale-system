@@ -23,4 +23,6 @@ public interface MemberDataseService extends DatabaseService {
 
 	public ResultMessage addEquivalent(EquivalentPO equivalentPO, VIPRank rank)
 			throws RemoteException;
+
+	public ResultMessage updataMember(MemberPO memberPO) throws RemoteException;
 }
