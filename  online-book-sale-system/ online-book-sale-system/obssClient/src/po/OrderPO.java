@@ -7,22 +7,20 @@ public class OrderPO implements PO{
 	//productItem 是订单中的商品信息列表
 	private static long count = 00000;
 	private long orderNum;
-	private ArrayList<LineItemPO> productItem;
+	private ArrayList<LineItemPO> productList;
 	private double totalPrice;
 	private OrderState state;
-	private String id;
+	private String memberID;
 	
-	public OrderPO(ArrayList<LineItemPO> productItem, String id){
-		orderNum = count ++;
-		this.productItem = productItem;
+	public OrderPO(ArrayList<LineItemPO> productList, String memberID, double totalPrice){
+		this.orderNum = count ++;
 		this.state = OrderState.ORDERDED;
-		this.id = id;
+		this.productList = productList;
+		this.memberID = memberID;
+		this.totalPrice = totalPrice;
 	}
 	public long getOrderNum(){
 		return orderNum;
-	}
-	public double getTotalPrice(){
-		return totalPrice;
 	}
 	public void setOrderState(OrderState state){
 		this.state = state;
@@ -30,8 +28,14 @@ public class OrderPO implements PO{
 	public OrderState getOrderState(){
 		return state;
 	}
-	public ArrayList<LineItemPO> getProductItem(){
-		return productItem;
+	public ArrayList<LineItemPO> getProductList(){
+		return productList;
+	}
+	public String getMemberID(){
+		return memberID;
+	}
+	public double getTotalPrice(){
+		return totalPrice;
 	}
 	
 
