@@ -7,11 +7,14 @@ import javax.swing.JOptionPane;
 
 import databaseService.init.InitDatabaseService;
 
+import po.MemberPO;
 import po.ResultMessage;
 import po.UserPO;
 import po.UserRole;
 import presentation.RegistryView;
 import presentation.StartView;
+import presentationController.Member.MemberViewController;
+import presentationController.Member.MemberViewService;
 import bussinessLogic.controller.UserController;
 import bussinessLogicService.RegistryBLService;
 import bussinessLogicService.StartBLService;
@@ -67,7 +70,8 @@ public class StartController implements StartBLService {
 	public void enterMainView(UserRole role,UserPO userPO) {
 		// TODO Auto-generated method stub
 		if (role == UserRole.Member) {
-			
+			MemberPO memberPO=(MemberPO) userPO;
+			MemberViewService memberViewController=MemberViewController.getInstance(memberPO);
 		} else if (role == UserRole.SalesManager) {
 
 		}
