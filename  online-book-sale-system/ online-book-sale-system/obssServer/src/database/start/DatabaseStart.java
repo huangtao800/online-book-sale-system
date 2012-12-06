@@ -17,7 +17,7 @@ public class DatabaseStart {
 		// TODO Auto-generated method stub
 		try {
 			LocateRegistry.createRegistry(5000);
-			InitDatabaseService initDatabase=new InitDatabase();
+			InitDatabaseService initDatabase=InitDatabase.getInstance();
 			Naming.rebind("rmi://127.0.0.1:5000/InitDatabase", initDatabase);
 		} catch (Exception e) {
 			// TODO: handle exception
