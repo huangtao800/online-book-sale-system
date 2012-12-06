@@ -1,16 +1,20 @@
 package bussinessLogicService;
 //’≈—≈Ê√
 
+import java.util.ArrayList;
+
+import po.LineItemPO;
+import po.MemberPO;
 import po.ResultMessage;
 
 public interface SalesBLService {
 	public ResultMessage putInCart(String isbn, int number);
-	public ResultMessage enterCart();
+	public ArrayList<LineItemPO> enterCart();
 	public ResultMessage removeFrromCart(String itemID);	
-	public ResultMessage purchase();	
+	public ResultMessage purchase(double price, MemberPO memberPO);	
 	public double calucalte();
-	public ResultMessage showSpecial();
-	public double calculateByEquivalent();
-    public double calculateByCupon();
+	public ArrayList<String> showSpecial();
+	public double calculateByEquivalent(double deno);
+    public double calculateByCupon(double rate);
 	public ResultMessage endSale();
 }
