@@ -4,9 +4,9 @@ import java.awt.EventQueue;
 import javax.swing.UIManager;
 import org.pushingpixels.substance.api.skin.SubstanceDustCoffeeLookAndFeel;
 
-import bussinessLogic.controller.start.StartController;
 import bussinessLogicService.StartBLService;
 import presentation.StartView;
+import presentationController.start.StartController;
 
 public class ClientStart {
 
