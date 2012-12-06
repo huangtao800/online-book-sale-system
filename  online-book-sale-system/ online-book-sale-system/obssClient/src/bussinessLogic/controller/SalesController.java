@@ -2,8 +2,7 @@ package bussinessLogic.controller;
 
 import java.util.ArrayList;
 
-import bussinessLogic.domain.MockBook;
-import bussinessLogic.domain.MockSales;
+import bussinessLogic.domain.Book;
 import bussinessLogic.domain.Sales;
 import bussinessLogicService.SalesBLService;
 
@@ -11,17 +10,15 @@ import po.BookPO;
 import po.CouponPO;
 import po.EquivalentPO;
 import po.LineItemPO;
+import po.MemberPO;
 import po.OrderPO;
 import po.ResultMessage;
-
+//end sale需要完善
 public class SalesController implements SalesBLService{
-	MockBook book = new MockBook();
 	
 	MemberController member = new MemberController();
-	
-	Sales sales = new MockSales();
-
-	OrderPO orderPO;
+	Book book = new Book();
+	Sales sales = new Sales();
 	
 	public ResultMessage putInCart(String isbn, int number){
 		BookPO bookPo = book.findByISBN(isbn);
@@ -29,19 +26,20 @@ public class SalesController implements SalesBLService{
 		return result;		
 	}
 	
-	public ResultMessage enterCart(){
-		ResultMessage result = sales.enterCart();
-		return result;
+	public ArrayList<LineItemPO> enterCart(){
+		ArrayList<LineItemPO> cartList = sales.getCartList();
+		return cartList;
 	}
+	
 	public ResultMessage removeFrromCart(String itemID){
 		ResultMessage result = sales.removeFromCart(itemID);
 		return result;
 	}
 	
-	public ResultMessage purchase(){
-		ArrayList<LineItemPO> cartList = sales.getSalesList();
-		orderPO = new OrderPO(cartList, member.getMemberID());
-		member.addOrder(orderPO);
+	public ResultMessage purchase(double price, MemberPO memberPO){
+		ArrayList<LineItemPO> cartList = sales.getCartList();
+		OrderPO orderPO = new OrderPO(cartList, memberPO.getUserID(), price);
+		member.addOrder(orderPO, memberPO);
 		return ResultMessage.SUCCEED;
 	}
 	
@@ -49,26 +47,47 @@ public class SalesController implements SalesBLService{
 		double totalPrice = sales.commonCalculate();
 		return totalPrice;
 	}
-	public ResultMessage showSpecial(){
+	
+	public ArrayList<String> showSpecial(){
 		ArrayList<CouponPO> couponList = member.getCouponList();
 		ArrayList<EquivalentPO> equivalentList = member.getEquivalentList();
-		return ResultMessage.SUCCEED;	
-	}
-	public double calculateByEquivalent(){
-		double common = sales.commonCalculate();
-		return common - 20;
+		ArrayList<String> voList = new ArrayList<String>();
 		
+		for(int i = 0; i < couponList.size(); i ++){
+			String s = couponList.get(i).getRate() * 10 + "折"; 
+			voList.add(s);
+		}
+		for(int i = 0; i < equivalentList.size(); i ++){
+			EquivalentPO equivalentPO = equivalentList.get(i);
+			if(sales.commonCalculate() >= equivalentPO.getMin())
+				break;
+			String s = equivalentPO.getDeno() + "元"; 
+			voList.add(s);
+		}
+		return voList;	
 	}
-    public double calculateByCupon(){
+	
+	public double calculateByEquivalent(double deno){
+		double common = sales.commonCalculate();
+		double price = common - deno;
+		if(price > 0)
+			return price;
+		else 
+			return 0;
+	}
+	
+    public double calculateByCupon(double rate){
     	double common = sales.commonCalculate();
-		return common*0.8;
+    	double price = common * rate;
+		return price;
 	}
+    
 	public ResultMessage endSale(){
-		ArrayList<LineItemPO> salesList = sales.getSalesList();
+		ArrayList<LineItemPO> salesList = sales.getCartList();
 	    book.updateBook(salesList);
 		member.update();
 		sales.updateSale();	
 		return ResultMessage.SUCCEED;
 	}
-
+	
 }
