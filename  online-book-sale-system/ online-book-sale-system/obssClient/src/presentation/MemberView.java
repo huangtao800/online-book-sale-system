@@ -547,16 +547,11 @@ public class MemberView extends JFrame {
 	        javax.swing.GroupLayout gl_jPanel5 = new javax.swing.GroupLayout(jPanel5);
 	        gl_jPanel5.setHorizontalGroup(
 	        	gl_jPanel5.createParallelGroup(Alignment.LEADING)
-	        		.addGroup(gl_jPanel5.createSequentialGroup()
-	        			.addContainerGap()
-	        			.addComponent(jScrollPane3, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
-	        			.addGap(140))
+	        		.addComponent(jScrollPane3, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
 	        );
 	        gl_jPanel5.setVerticalGroup(
-	        	gl_jPanel5.createParallelGroup(Alignment.LEADING)
-	        		.addGroup(Alignment.TRAILING, gl_jPanel5.createSequentialGroup()
-	        			.addContainerGap()
-	        			.addComponent(jScrollPane3, GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
+	        	gl_jPanel5.createParallelGroup(Alignment.TRAILING)
+	        		.addComponent(jScrollPane3, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
 	        );
 	        jPanel5.setLayout(gl_jPanel5);
 
