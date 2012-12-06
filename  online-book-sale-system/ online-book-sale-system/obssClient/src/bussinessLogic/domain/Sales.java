@@ -6,10 +6,14 @@ import po.BookPO;
 import po.LineItemPO;
 import po.ResultMessage;
 import po.SalesPO;
-import bussinessLogicService.SalesBLService;
 
+// updateÎ´Íê³É
 public class Sales {
 	SalesPO salesPo = new SalesPO();
+	
+	public ArrayList<LineItemPO> getCartList() {
+		return salesPo.getCartList();
+	}
 
 	public ResultMessage putInCart(BookPO book, int number) {
 		boolean b = salesPo.addInCart(book, number);
@@ -19,32 +23,25 @@ public class Sales {
 			return ResultMessage.FAILED;
 	}
 
-	public ResultMessage enterCart() {
-		ArrayList<LineItemPO> cartList = salesPo.getCartList();
-		if(cartList.size() != 0)
+	public ResultMessage removeFromCart(String id) {
+		if(salesPo.removeFromCart(id))
 			return ResultMessage.SUCCEED;
 		else
 			return ResultMessage.FAILED;
 	}
 
-	public ResultMessage removeFromCart(String id) {
-		salesPo.removeFromCart(id);
-		return ResultMessage.SUCCEED;
-	}
-
 	public double commonCalculate() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public ArrayList<LineItemPO> getSalesList() {
-		// TODO Auto-generated method stub
-		return null;
+		double commonPrice = 0;
+		ArrayList<LineItemPO> cartList = salesPo.getCartList();
+		for(int i = 0; i < cartList.size(); i ++)
+			commonPrice += cartList.get(i).getSumPrice();
+		return commonPrice;
 	}
 
 	public ResultMessage updateSale() {
 		// TODO Auto-generated method stub
-		return null;
+		//updatePo
+		return ResultMessage.SUCCEED;
 	}
 
 }
