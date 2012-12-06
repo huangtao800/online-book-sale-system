@@ -3,6 +3,8 @@ package bussinessLogic.domain;
 
 import java.util.ArrayList;
 
+import bussinessObject.Customer;
+
 import databaseService.member.MemberDatabaseService;
 
 import po.*;
@@ -17,13 +19,28 @@ public class Member {
 		
 	}
 
+	//想收藏夹中添加图书
 	public ResultMessage addFavorities(BookPO bookPO,MemberPO memberPO){
+		Customer customer=new Customer(memberPO);
+		ResultMessage resultMessage=customer.addFavority(bookPO);
 		
-		return memberDatabase.addFavorities(bookPO, memberPO);
+		if(resultMessage==ResultMessage.FULL){
+			return resultMessage;
+		}
+		
+		return memberDatabase.updateMember(memberPO);
 	}
 	
+	//从收藏夹中删除图书
 	public ResultMessage removeFavorities(BookPO bookPO, MemberPO memberPO){
-		return memberDatabase.removeFavorities(bookPO, memberPO);
+		Customer customer=new Customer(memberPO);
+		ResultMessage resultMessage=customer.removeFavority(bookPO);
+		
+		if(resultMessage!=ResultMessage.SUCCEED){
+			return resultMessage;
+		}
+		
+		return memberDatabase.updateMember(memberPO);
 	}
 	
 	
