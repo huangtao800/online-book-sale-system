@@ -45,4 +45,10 @@ public class MemberDatabaseService_Stub implements MemberDatabaseService{
 		return null;
 	}
 
+	@Override
+	public ResultMessage updateMember(MemberPO memberPO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
