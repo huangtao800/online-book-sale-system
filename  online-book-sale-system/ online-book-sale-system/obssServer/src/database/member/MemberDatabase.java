@@ -19,7 +19,7 @@ public class MemberDatabase extends UnicastRemoteObject implements MemberDataseS
 
 	public MemberDatabase() throws RemoteException{
 		super();
-		initDatabase=InitDatabase.getInstaDatabase();
+		initDatabase=InitDatabase.getInstance();
 	}
 
 	@Override
@@ -48,6 +48,13 @@ public class MemberDatabase extends UnicastRemoteObject implements MemberDataseS
 	@Override
 	public ResultMessage addFavorities(BookPO bookPO, MemberPO memberPO)
 			throws RemoteException {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
+	@Override
+	public ResultMessage updataMember(MemberPO memberPO) throws RemoteException {
 		// TODO Auto-generated method stub
 		
 		return null;
