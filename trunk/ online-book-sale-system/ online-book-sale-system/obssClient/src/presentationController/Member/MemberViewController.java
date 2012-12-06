@@ -1,15 +1,18 @@
 package presentationController.Member;
 
+import po.MemberPO;
 import presentation.MemberView;
 
 public class MemberViewController implements MemberViewService{
 	
 	private MemberView memberView;
 	private static MemberViewService instance;
+	private MemberPO memberPO;
 	
-	private MemberViewController(){
+	private MemberViewController(MemberPO memberPO){
 		memberView=new MemberView(this);
 		memberView.setVisible(true);
+		this.memberPO=memberPO;
 	}
 
 	@Override
@@ -18,9 +21,9 @@ public class MemberViewController implements MemberViewService{
 		
 	}
 
-	public static MemberViewService getInstance(){
+	public static MemberViewService getInstance(MemberPO memberPO){
 		if(instance==null){
-			instance=new MemberViewController();
+			instance=new MemberViewController(memberPO);
 		}
 		
 		return instance;
