@@ -31,12 +31,6 @@ public class MemberDatabaseService_Stub implements MemberDatabaseService{
 		return null;
 	}
 
-	@Override
-	public PO find(String id) {
-		// TODO Auto-generated method stub
-		PO po=new MemberPO("111111", "huangtao","111111");
-		return po;
-	}
 
 
 	@Override
