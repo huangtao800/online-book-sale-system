@@ -36,11 +36,11 @@ public class UserController implements UserBLService, Serializable {
 	}
 
 	// 根据输入查找是否存在相应的user
-	public UserPO login(String userName, String password, UserRole userRole) {
+	/*public UserPO login(String userName, String password, UserRole userRole) {
 		User user = new User();
 		UserPO userPO = user.isExist(userName, password, userRole);
 		return userPO;
-	}
+	} */
 
 	// 对用户的调整
 	public ResultMessage addUser(String userName, String id, String password,
@@ -59,6 +59,15 @@ public class UserController implements UserBLService, Serializable {
 			return ResultMessage.FAILED;
 		}
 	}
+	
+	public ResultMessage changeUser(String userName, String id,
+			String password, UserRole userRole) {
+		if (id == "11111") {
+			return ResultMessage.SUCCEED;
+		} else {
+			return ResultMessage.FAILED;
+		}
+	}
 
 	public ResultMessage findChangingUser(String id) {
 		if (id == "11111") {
@@ -68,13 +77,6 @@ public class UserController implements UserBLService, Serializable {
 		}
 	}
 
-	public ResultMessage changeUser(String userName, String id,
-			String password, UserRole userRole) {
-		if (id == "11111") {
-			return ResultMessage.SUCCEED;
-		} else {
-			return ResultMessage.FAILED;
-		}
-	}
+	
 
 }
