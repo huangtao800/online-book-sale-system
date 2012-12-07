@@ -10,7 +10,7 @@ public interface UserBLService {
 	public UserRole getUserRole(String id);
 	
 	//根据输入查找是否存在相应的user
-	public UserPO login(String userName,String password,UserRole userRole);
+	//public UserPO login(String userName,String password,UserRole userRole);
 	
 	//对用户的调整
 	public ResultMessage addUser(String userName,String id,String password,UserRole userRole);
