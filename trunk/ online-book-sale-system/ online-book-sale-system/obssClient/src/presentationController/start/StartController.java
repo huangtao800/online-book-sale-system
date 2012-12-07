@@ -77,4 +77,10 @@ public class StartController implements StartBLService {
 		}
 	}
 
+	@Override
+	public void setStartViewFalse() {
+		// TODO Auto-generated method stub
+		startView.setVisible(false);
+	}
+
 }
