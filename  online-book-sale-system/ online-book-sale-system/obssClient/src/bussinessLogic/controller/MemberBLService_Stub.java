@@ -12,10 +12,10 @@ public class MemberBLService_Stub implements MemberBLService{
 	private String id;
 	private Member member;
 	
-	public MemberBLService_Stub(){
+	public MemberBLService_Stub(MemberPO memberPO){
 		this.id=id;
 		this.name=name;
-		this.member=new Member();
+		this.member=new Member(memberPO);
 		
 	}
 
@@ -33,15 +33,9 @@ public class MemberBLService_Stub implements MemberBLService{
 
 
 	@Override
-	public ResultMessage register(String name, String password) {
+	public ResultMessage cancel(String password) {
 		// TODO Auto-generated method stub
-		return member.register(name,password);
-	}
-
-	@Override
-	public ResultMessage cancel(String id, String password) {
-		// TODO Auto-generated method stub
-		return member.cancel(id, password); 
+		return member.cancel(password); 
 	}
 
 	@Override
@@ -50,11 +44,6 @@ public class MemberBLService_Stub implements MemberBLService{
 		return null;
 	}
 
-	@Override
-	public MemberPO getInfo() {
-		// TODO Auto-generated method stub
-		return new MemberPO("111111", "member","111111");
-	}
 
 	@Override
 	public ArrayList<CouponPO> getCouponList() {
@@ -70,25 +59,19 @@ public class MemberBLService_Stub implements MemberBLService{
 
 
 	@Override
-	public ResultMessage update() {
-		// TODO Auto-generated method stub
-		return ResultMessage.SUCCEED;
-	}
-
-	@Override
-	public ResultMessage addFavorities(BookPO bookPO, MemberPO memberPO) {
+	public ResultMessage addFavorities(BookPO bookPO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage removeFavorities(BookPO bookPO, MemberPO memberPO) {
+	public ResultMessage removeFavorities(BookPO bookPO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage addOrder(OrderPO order, MemberPO memberPO) {
+	public ResultMessage addOrder(OrderPO order) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -11,10 +11,20 @@ public class MemberController implements MemberBLService{
 	private String name;
 	private String id;
 	private Member member;
+	private MemberPO memberPO;
 	
-	public MemberController(){
+	private static MemberBLService instance;
+	
+	public static MemberBLService getInstance(MemberPO memberPO){
+		if(instance==null){
+			instance=new MemberController(memberPO);
+		}
+		return instance;
+	}
+	
+	protected MemberController(MemberPO memberPO){
 		
-		this.member=new Member();
+		this.member=new Member(memberPO);
 		
 	}
 
@@ -31,29 +41,16 @@ public class MemberController implements MemberBLService{
 	}
 
 
-
 	@Override
-	public ResultMessage register(String name, String password) {
+	public ResultMessage cancel(String password) {
 		// TODO Auto-generated method stub
-		return member.register(name,password);
-	}
-
-	@Override
-	public ResultMessage cancel(String id, String password) {
-		// TODO Auto-generated method stub
-		return member.cancel(id, password); 
+		return member.cancel(password); 
 	}
 
 	@Override
 	public ArrayList<OrderPO> getOrderRecord() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public MemberPO getInfo() {
-		// TODO Auto-generated method stub
-		return new MemberPO("111111", "member","111111");
 	}
 
 	@Override
@@ -70,25 +67,19 @@ public class MemberController implements MemberBLService{
 
 
 	@Override
-	public ResultMessage update() {
+	public ResultMessage addFavorities(BookPO bookPO) {
 		// TODO Auto-generated method stub
-		return ResultMessage.SUCCEED;
+		return member.addFavorities(bookPO);
 	}
 
 	@Override
-	public ResultMessage addFavorities(BookPO bookPO, MemberPO memberPO) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ResultMessage removeFavorities(BookPO bookPO, MemberPO memberPO) {
+	public ResultMessage removeFavorities(BookPO bookPO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage addOrder(OrderPO order, MemberPO memberPO) {
+	public ResultMessage addOrder(OrderPO order) {
 		// TODO Auto-generated method stub
 		return null;
 	}
