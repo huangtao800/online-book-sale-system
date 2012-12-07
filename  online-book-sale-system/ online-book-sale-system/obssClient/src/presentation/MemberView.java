@@ -22,6 +22,10 @@ import javax.swing.GroupLayout;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class MemberView extends JFrame {
 
@@ -69,6 +73,7 @@ public class MemberView extends JFrame {
     private javax.swing.JTextField publisherYearField;
 	
 	private MemberViewService memberViewController;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -164,6 +169,7 @@ public class MemberView extends JFrame {
 	        jScrollPane2 = new javax.swing.JScrollPane();
 	        jTable2 = new javax.swing.JTable();
 	        jPanel10 = new javax.swing.JPanel();
+	        jPanel10.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "  \u6211\u7684\u6253\u6298\u5238  ", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 	        jPanel5 = new javax.swing.JPanel();
 	        jScrollPane3 = new javax.swing.JScrollPane();
 	        jTable3 = new javax.swing.JTable();
@@ -495,17 +501,43 @@ public class MemberView extends JFrame {
 	            gl_jPanel9.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
 	        );
+	        
+	        JScrollPane scrollPane = new JScrollPane();
 
 	        javax.swing.GroupLayout gl_jPanel10 = new javax.swing.GroupLayout(jPanel10);
-	        jPanel10.setLayout(gl_jPanel10);
 	        gl_jPanel10.setHorizontalGroup(
-	            gl_jPanel10.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGap(0, 0, Short.MAX_VALUE)
+	        	gl_jPanel10.createParallelGroup(Alignment.LEADING)
+	        		.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
 	        );
 	        gl_jPanel10.setVerticalGroup(
-	            gl_jPanel10.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGap(0, 198, Short.MAX_VALUE)
+	        	gl_jPanel10.createParallelGroup(Alignment.LEADING)
+	        		.addGroup(Alignment.TRAILING, gl_jPanel10.createSequentialGroup()
+	        			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
+	        			.addContainerGap(23, Short.MAX_VALUE))
 	        );
+	        
+	        table = new JTable();
+	        table.setModel(new DefaultTableModel(
+	        	new Object[][] {
+	        		{null, null, null, null, null},
+	        		{null, null, null, null, null},
+	        		{null, null, null, null, null},
+	        		{null, null, null, null, null},
+	        		{null, null, null, null, null},
+	        		{null, null, null, null, null},
+	        		{null, null, null, null, null},
+	        		{null, null, null, null, null},
+	        		{null, null, null, null, null},
+	        		{null, null, null, null, null},
+	        		{null, null, null, null, null},
+	        		{null, null, null, null, null},
+	        	},
+	        	new String[] {
+	        		"\u6253\u6298\u5238\u7F16\u53F7", "\u6253\u6298\u7387", "\u6570\u91CF/\u5F20", "\u622A\u6B62\u65E5\u671F", "\u6700\u4F4E\u6D88\u8D39"
+	        	}
+	        ));
+	        scrollPane.setViewportView(table);
+	        jPanel10.setLayout(gl_jPanel10);
 
 	        javax.swing.GroupLayout gl_jPanel4 = new javax.swing.GroupLayout(jPanel4);
 	        jPanel4.setLayout(gl_jPanel4);
@@ -570,5 +602,4 @@ public class MemberView extends JFrame {
 
 	        pack();
 	}
-	
 }
