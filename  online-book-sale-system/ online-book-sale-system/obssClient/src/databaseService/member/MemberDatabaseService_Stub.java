@@ -1,6 +1,8 @@
 //»ÆÌÎ
 package databaseService.member;
 
+import java.rmi.RemoteException;
+
 import po.BookPO;
 import po.MemberPO;
 import po.PO;
@@ -9,21 +11,24 @@ import po.ResultMessage;
 public class MemberDatabaseService_Stub implements MemberDatabaseService{
 
 	@Override
-	public void insert(PO po) {
+	public ResultMessage insert(PO po) {
 		// TODO Auto-generated method stub
 		System.out.println("insert succeed");
+		return null;
 	}
 
 	@Override
-	public void delete(PO po) {
+	public ResultMessage delete(PO po) {
 		// TODO Auto-generated method stub
 		System.out.println("Delete succeed");
+		return null;
 	}
 
 	@Override
-	public void update(PO po) {
+	public ResultMessage update(PO po) {
 		// TODO Auto-generated method stub
 		System.out.println("Update succeed");
+		return null;
 	}
 
 	@Override
@@ -33,20 +38,9 @@ public class MemberDatabaseService_Stub implements MemberDatabaseService{
 		return po;
 	}
 
-	@Override
-	public ResultMessage addFavorities(BookPO bookPO, MemberPO memberPO) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
-	public ResultMessage removeFavorities(BookPO bookPO, MemberPO memberPO) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ResultMessage updateMember(MemberPO memberPO) {
+	public ResultMessage cancel(MemberPO memberPO){
 		// TODO Auto-generated method stub
 		return null;
 	}
