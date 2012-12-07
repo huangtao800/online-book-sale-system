@@ -1,5 +1,7 @@
 package po;
 //ÓÈ¼Ñç÷
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.Date;
 
 public class BookPO implements PO{
@@ -53,5 +55,25 @@ public class BookPO implements PO{
     
     public void setPrice(double m){
     	price = m;
+    }
+    
+    public void save(String isbn,String bookName,String author,String press,
+    		Date publishDate,double price){
+    	BookPO bookPO = new BookPO();
+    	bookPO.setISBN(isbn);
+    	bookPO.setBookName(bookName);
+    	bookPO.setAuthor(author);
+    	bookPO.setPress(press);
+    	bookPO.setPublishDate(publishDate);
+    	bookPO.setPrice(price);
+    	
+    	try{
+    		FileOutputStream fs = new FileOutputStream("book.ser");
+    		ObjectOutputStream os  = new ObjectOutputStream(fs);
+    		os.writeObject(bookPO);
+    		os.close();
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
     }
 }
