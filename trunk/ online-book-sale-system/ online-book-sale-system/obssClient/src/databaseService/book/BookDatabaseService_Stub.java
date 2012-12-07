@@ -2,25 +2,29 @@ package databaseService.book;
 
 import po.BookPO;
 import po.PO;
+import po.ResultMessage;
 
 public class BookDatabaseService_Stub implements BookDatabaseService{
 
 	@Override
-	public void insert(PO po) {
+	public ResultMessage insert(PO po) {
 		// TODO Auto-generated method stub
 		System.out.println("insert succeed");
+		return null;
 	}
 
 	@Override
-	public void delete(PO po) {
+	public ResultMessage delete(PO po) {
 		// TODO Auto-generated method stub
 		System.out.println("delete succeed");
+		return null;
 	}
 
 	@Override
-	public void update(PO po) {
+	public ResultMessage update(PO po) {
 		// TODO Auto-generated method stub
 		System.out.println("update succeed");
+		return null;
 	}
 
 	@Override
