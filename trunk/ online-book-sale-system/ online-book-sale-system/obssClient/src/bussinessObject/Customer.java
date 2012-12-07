@@ -3,6 +3,7 @@ package bussinessObject;
 import po.BookPO;
 import po.FavorityPO;
 import po.MemberPO;
+import po.OrderPO;
 import po.ResultMessage;
 
 public class Customer {
@@ -29,6 +30,9 @@ public class Customer {
 		return memberPO.getFavority().removeBook(bookPO);
 	}
 	
+	public void addOrder(OrderPO order){
+		memberPO.getOrderList().add(order);
+	}
 	
 	public MemberPO getMemberPO() {
 		return memberPO;
