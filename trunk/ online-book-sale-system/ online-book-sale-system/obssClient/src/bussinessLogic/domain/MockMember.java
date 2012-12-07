@@ -5,11 +5,12 @@ import po.ResultMessage;
 
 public class MockMember extends Member {
 
-	public MockMember() {
-		
+	
+	public MockMember(MemberPO memberPO) {
+		super(memberPO);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public ResultMessage addFavorities(String id){
 		return ResultMessage.SUCCEED;
 	}

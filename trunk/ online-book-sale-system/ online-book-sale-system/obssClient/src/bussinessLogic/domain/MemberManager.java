@@ -10,11 +10,6 @@ import po.OrderState;
 import po.ResultMessage;
 
 public class MemberManager {
-	
-	
-	public ResultMessage addFavorities(String id) {
-		return ResultMessage.SUCCEED;
-	}
 
 	public ResultMessage addEquivalent(EquivalentPO e) {
 		return ResultMessage.SUCCEED;
