@@ -9,7 +9,7 @@ import bussinessLogicService.MemberBLService;
 public class Client {
 
 	public static void main(String[] args){
-		MemberBLService memberBLService=new MemberBLService_Stub();
+		MemberBLService memberBLService=new MemberBLService_Stub(new MemberPO("111111", "huang", "111111"));
 		MemberBLService_Driver driver=new MemberBLService_Driver();
 		System.out.println("test MemberBLService_Driver:");
 		driver.drive(memberBLService);
