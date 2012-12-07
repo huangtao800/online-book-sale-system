@@ -14,7 +14,7 @@ public class User {
 		
 	}
 	
-    public UserPO isExist(String userName,String password,UserRole userRole){
+    /*public UserPO isExist(String userName,String password,UserRole userRole){
     	UserPO user = new UserPO();
     	user = null;
     	
@@ -29,5 +29,5 @@ public class User {
     	
     	
         return user;
-    }
+    }*/
 }
