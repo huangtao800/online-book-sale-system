@@ -40,20 +40,5 @@ public class AdministratorPO extends UserPO{
     	return adminPassword;
     }
     
-    public void save(String name,String id,String password){
-    	AdministratorPO adminPO = new AdministratorPO();
-    	adminPO.setAdminName(name);
-    	adminPO.setAdminID(id);
-    	adminPO.setAdminPassword(password);
-    	
-    	try{
-    		FileOutputStream fs = new FileOutputStream("admin.ser");
-    		ObjectOutputStream os  = new ObjectOutputStream(fs);
-    		os.writeObject(adminPO);
-    		os.close();
-    	}catch(Exception e){
-    		e.printStackTrace();
-    	}
-    }
 }
 
