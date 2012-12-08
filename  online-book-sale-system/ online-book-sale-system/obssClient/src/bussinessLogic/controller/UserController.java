@@ -1,4 +1,5 @@
 package bussinessLogic.controller;
+//尤佳琪
 
 import java.io.Serializable;
 
@@ -8,7 +9,8 @@ import bussinessLogicService.UserBLService;
 
 public class UserController implements UserBLService, Serializable {
 	private static UserController userController;
-	
+	private User user;
+
 	public static UserController getInstance(){
 		if(userController==null){
 			userController=new UserController();
@@ -18,55 +20,25 @@ public class UserController implements UserBLService, Serializable {
 		}
 	}
 
-	// 用户界面获得用户信息
-	public String getUserName(String id) {
-		return id;
-	}
+	
 
-	public String getUserId(String id) {
-		return id;
-	}
-
-	public String getUserPassword(String id) {
-		return id;
-	}
-
-	public UserRole getUserRole(String id) {
-		return UserRole.Member;
-	}
-
-	// 根据输入查找是否存在相应的user
-	/*public UserPO login(String userName, String password, UserRole userRole) {
-		User user = new User();
-		UserPO userPO = user.isExist(userName, password, userRole);
-		return userPO;
-	} */
-
-	// 对用户的调整
-	public ResultMessage addUser(String userName, String id, String password,
+	// 对用户的调整(增加，删除，修改)
+	public void addUser(String userName, String id, String password,
 			UserRole userRole) {
-		if (id == "11111") {
-			return ResultMessage.SUCCEED;
-		} else {
-			return ResultMessage.FAILED;
-		}
+		UserPO userPO = new UserPO(userName,id,password,userRole);
+		user.addUser(userPO,userRole);
+		
 	}
 
 	public ResultMessage deleteUser(String id) {
-		if (id == "11111") {
-			return ResultMessage.SUCCEED;
-		} else {
-			return ResultMessage.FAILED;
-		}
+		return user.deleteUser(id);
 	}
 	
+	//顾客，总经理，销售经理（密码） , 管理员
 	public ResultMessage changeUser(String userName, String id,
 			String password, UserRole userRole) {
-		if (id == "11111") {
-			return ResultMessage.SUCCEED;
-		} else {
-			return ResultMessage.FAILED;
-		}
+		UserPO userPO = new UserPO(userName,id,password,userRole);
+		return user.changeUser(userPO,id);
 	}
 
 	public ResultMessage findChangingUser(String id) {
