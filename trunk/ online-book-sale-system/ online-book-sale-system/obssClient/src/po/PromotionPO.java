@@ -14,16 +14,6 @@ public class PromotionPO implements PO{
 		for(int i=0;i<line;i++)
 			for(int j=0;j<column;j++)
 				equivalent[i][j]=0.0;
-		
-	}
-	public PromotionPO(double ex,double [][] equ,double di){
-		this.exchangeOfScore=ex;
-		this.discount=di;
-		for(int i=0;i<line;i++)
-			for(int j=0;j<column;j++)
-				equivalent[i][j]=equ[i][j];
-				
-			
 	}
 	
 	public double getExchangeOfScore(){
