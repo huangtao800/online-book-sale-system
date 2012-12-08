@@ -4,6 +4,7 @@ import po.BookPO;
 import po.FavorityPO;
 import po.MemberPO;
 import po.OrderPO;
+import po.OrderState;
 import po.ResultMessage;
 
 public class Customer {
@@ -28,6 +29,16 @@ public class Customer {
 		}
 		
 		return memberPO.getFavority().removeBook(bookPO);
+	}
+	
+	public boolean checkIsOrderSigned(){
+		for(int i=0;i<memberPO.getOrderList().size();i++){
+			if(memberPO.getOrderList().get(i).getOrderState()!=OrderState.SIGNED){
+				return false;
+			}
+		}
+		
+		return true;
 	}
 	
 	public void addOrder(OrderPO order){
