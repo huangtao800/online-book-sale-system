@@ -2,13 +2,16 @@
 package po;
 import java.util.*;
 
+import bussinessObject.Cart;
+
 public class MemberPO extends UserPO{
 
 	private ArrayList<OrderPO> orderList;
 	private FavorityPO favority;
 	private ArrayList<CouponPO> couponList;
 	private ArrayList<EquivalentPO> equivalentList;
-	
+	private Cart cart;
+
 	public MemberPO(String id,String name,String password){
 		super(id, name, password, UserRole.Member);
 	}
@@ -26,6 +29,15 @@ public class MemberPO extends UserPO{
 
 	public ArrayList<EquivalentPO> getEquivalentList() {
 		return equivalentList;
+	}
+	
+	public Cart getCart() {
+		return cart;
+	}
+
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 
 
