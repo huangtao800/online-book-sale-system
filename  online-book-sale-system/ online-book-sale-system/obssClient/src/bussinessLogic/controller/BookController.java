@@ -8,7 +8,6 @@ import bussinessLogicService.*;
 
 public class BookController implements BookBLService,Serializable{
 	private static BookController bookController;
-	BookPO bookPO = new BookPO();
     Book book;
 	
 	public static BookController getInstance(){
@@ -38,31 +37,21 @@ public class BookController implements BookBLService,Serializable{
 
 	
 	//管理图书（增，删，改）
-	public ResultMessage addBook(BookPO b){
-		if(b==bookPO){
-			return ResultMessage.SUCCEED ;
-		}else{
-			return ResultMessage.FAILED;
-		}
+	public void addBook(BookPO b){
+		book.addBook(b);
 	}
 	
-	public ResultMessage deleteBook(String id){
-		if(id=="11111"){
-			return ResultMessage.SUCCEED ;
-		}else{
-			return ResultMessage.FAILED ;
-		}
+	public ResultMessage deleteBook(String isbn){
+		return book.deleteBook(isbn);
 	}
 	
-	public ResultMessage modifyBook(String id){
-		if(id=="11111"){
-			return ResultMessage.SUCCEED ;
-		}else{
-			return ResultMessage.FAILED ;
-		}
+	public ResultMessage modifyBook(BookPO b){
+		String isbn = b.getISBN();
+		return book.modifyBook(b, isbn);
 	}
 	
 	public ResultMessage updateBook(ArrayList<LineItemPO> salesList){
+		BookPO bookPO = new BookPO();
 		LineItemPO list = salesList.get(0);
 		bookPO = list.getBook();
 		String isbn = bookPO.getISBN();
