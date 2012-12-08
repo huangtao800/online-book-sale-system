@@ -1,31 +1,30 @@
 package bussinessLogic.domain;
 
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.text.ChangedCharSetException;
+
 import bussinessLogicService.BookBLService;
 
+import po.AdministratorPO;
 import po.BookPO;
+import po.GeneralManagerPO;
 import po.LineItemPO;
+import po.MemberPO;
 import po.ResultMessage;
+import po.SalesManagerPO;
+import po.UserPO;
+import po.UserRole;
 
 //尤佳琪
 
 public class Book{
-	String bookName,bookType,bookISBN;
-    BookPO bookPO = new BookPO();
-    
-    
-    public Book(){
-    }
-    
-    public Book(String name,String type,String isbn,BookPO po){
-    	bookISBN = isbn;
-    	bookName = name;
-    	bookType = type;
-    	bookPO = po;
-    }
-
+	ArrayList<BookPO> array = new ArrayList<BookPO>();
+	Book book;
+	
     //销售界面查询图书和图书的促销信息
 	public ArrayList<BookPO>  findByKey(String name){      //根据关键字返回相应的图书列表
 		   ArrayList<BookPO> bookArray = new ArrayList<BookPO>();
@@ -43,33 +42,51 @@ public class Book{
 	}
 
 	
-	//管理图书（增，删，改）
-	public ResultMessage addBook(BookPO b){
-		if(b==bookPO){
-			return ResultMessage.SUCCEED ;
-		}else{
-			return ResultMessage.FAILED;
-		}
+    //管理图书（增，删，改）
+	public ResultMessage addBook(BookPO bookPO){
+			array.add(bookPO);	
+			return ResultMessage.SUCCEED;
 	}
 	
-	public ResultMessage deleteBook(String id){
-		if(id=="11111"){
+	public ResultMessage deleteBook(String isbn){
+		BookPO bookPO = book.findBook(isbn);
+		
+		if(bookPO!=null){
+			array.remove(bookPO);
 			return ResultMessage.SUCCEED ;
 		}else{
 			return ResultMessage.FAILED ;
 		}
 	}
 	
-	public ResultMessage modifyBook(String id){
-		if(id=="11111"){
+	public ResultMessage modifyBook(BookPO b,String isbn){
+        BookPO bookPO = book.findBook(isbn);
+		
+		if(bookPO!=null){
+			array.remove(bookPO);
+			array.add(b);
+			
 			return ResultMessage.SUCCEED ;
 		}else{
 			return ResultMessage.FAILED ;
 		}
+	}
+	
+	private BookPO findBook(String isbn){
+		BookPO bookPO = null;
+		
+		for(int i=0;i<array.size();i++){
+			if(isbn.equals(array.get(i).getISBN())){
+				bookPO = array.get(i);
+			}
+		}
+		
+		return bookPO;
 	}
 	
 	public ResultMessage updateBook(ArrayList<LineItemPO> salesList){
 		LineItemPO list = salesList.get(0);
+		BookPO bookPO = new BookPO();
 		bookPO = list.getBook();
 		String isbn = bookPO.getISBN();
 		if(isbn=="11111"){
