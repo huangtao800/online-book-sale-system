@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import bussinessLogic.domain.Book;
 import bussinessLogic.domain.Sales;
+import bussinessLogicService.MemberBLService;
 import bussinessLogicService.SalesBLService;
 
 import po.BookPO;
@@ -13,12 +14,26 @@ import po.LineItemPO;
 import po.MemberPO;
 import po.OrderPO;
 import po.ResultMessage;
-//end sale需要完善
+
 public class SalesController implements SalesBLService{
+	private MemberBLService memberController;//改成单键
+	Book book = new Book(); //改成单键
+	private Sales sales;
+	private MemberPO memberPO;
 	
-	MemberController member = new MemberController();
-	Book book = new Book();
-	Sales sales = new Sales();
+	private static SalesController uniqueInstance;
+	
+	private SalesController(MemberPO memberPO){
+		this.memberPO = memberPO;
+		sales = new Sales(memberPO);
+		memberController = MemberController.getInstance(memberPO); 
+	}
+	
+	public static SalesController getInstance(MemberPO memberPO){
+		if(uniqueInstance == null)
+			uniqueInstance = new SalesController(memberPO);
+		return uniqueInstance;
+	}
 	
 	public ResultMessage putInCart(String isbn, int number){
 		BookPO bookPo = book.findByISBN(isbn);
@@ -31,15 +46,16 @@ public class SalesController implements SalesBLService{
 		return cartList;
 	}
 	
-	public ResultMessage removeFrromCart(String itemID){
-		ResultMessage result = sales.removeFromCart(itemID);
+	public ResultMessage removeFrromCart(String isbn){
+		ResultMessage result = sales.removeFromCart(isbn);
 		return result;
 	}
 	
-	public ResultMessage purchase(double price, MemberPO memberPO){
+	public ResultMessage purchase(double price){
 		ArrayList<LineItemPO> cartList = sales.getCartList();
 		OrderPO orderPO = new OrderPO(cartList, memberPO.getUserID(), price);
-		member.addOrder(orderPO, memberPO);
+		memberController.addOrder(orderPO);
+		endSale(orderPO);
 		return ResultMessage.SUCCEED;
 	}
 	
@@ -49,8 +65,8 @@ public class SalesController implements SalesBLService{
 	}
 	
 	public ArrayList<String> showSpecial(){
-		ArrayList<CouponPO> couponList = member.getCouponList();
-		ArrayList<EquivalentPO> equivalentList = member.getEquivalentList();
+		ArrayList<CouponPO> couponList = memberController.getCouponList();
+		ArrayList<EquivalentPO> equivalentList = memberController.getEquivalentList();
 		ArrayList<String> voList = new ArrayList<String>();
 		
 		for(int i = 0; i < couponList.size(); i ++){
@@ -82,11 +98,10 @@ public class SalesController implements SalesBLService{
 		return price;
 	}
     
-	public ResultMessage endSale(){
+	public ResultMessage endSale(OrderPO orderPO){
 		ArrayList<LineItemPO> salesList = sales.getCartList();
 	    book.updateBook(salesList);
-		member.update();
-		sales.updateSale();	
+		sales.updateSale(orderPO);	
 		return ResultMessage.SUCCEED;
 	}
 	
