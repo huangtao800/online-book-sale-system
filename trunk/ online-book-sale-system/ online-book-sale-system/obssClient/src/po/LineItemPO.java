@@ -20,7 +20,7 @@ public class LineItemPO implements PO {
 		return number;
 	}
 	public double getSumPrice(){
-		return sumPrice;
+		return book.getPrice() * number;
 	}
 
 }
