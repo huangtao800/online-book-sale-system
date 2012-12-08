@@ -1,4 +1,4 @@
-package Promotion;
+package View;
 //∂≠» π„
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +12,12 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import org.omg.CORBA.PRIVATE_MEMBER;
+
+import Promotion.PresentPO;
+import Promotion.PromotionControllerInterface;
+import Promotion.PromotionModelInterface;
+import Promotion.PromotionPO;
+import Promotion.VIPRank;
 
 
 public class PromotionView extends JFrame implements ActionListener{
