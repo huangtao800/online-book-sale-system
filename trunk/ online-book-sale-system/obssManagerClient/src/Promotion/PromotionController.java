@@ -1,5 +1,7 @@
 package Promotion;
 
+import View.PromotionView;
+
 public class PromotionController implements PromotionControllerInterface{
 	PromotionModelInterface model;
 	PromotionView view;
