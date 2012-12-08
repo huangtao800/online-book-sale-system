@@ -26,6 +26,14 @@ public class Member {
 		}
 	}
 
+	public String getMemberName(){
+		return memberPO.getUserName();
+	}
+	
+	public String getMemberID(){
+		return memberPO.getUserID();
+	}
+	
 	//想收藏夹中添加图书
 	public ResultMessage addFavorities(BookPO bookPO){
 		Customer customer=new Customer(this.memberPO);
@@ -58,7 +66,7 @@ public class Member {
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return ResultMessage.FAILED;
+			return ResultMessage.FAILED;	//RMI出现异常
 		}
 	}
 	
@@ -67,13 +75,24 @@ public class Member {
 		if(!password.equals(memberPO.getUserPassword())){
 			return ResultMessage.ERROR;		//密码输入错误
 		}
+		if(!checkIsOrderSigned()){
+			return ResultMessage.NOTPREPARED;	//有未签收的订单，拒绝注销
+		}
+		
 		try {
 			return memberDatabase.delete(memberPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return ResultMessage.FAILED;
+			return ResultMessage.FAILED;	//RMI出现异常
 		}
+	}
+	
+	//检查顾客所有的订单是否都已签收
+	private boolean checkIsOrderSigned(){
+		Customer customer=new Customer(this.memberPO);
+		return customer.checkIsOrderSigned();
+		
 	}
 	
 	//返回持有的打折券列表
@@ -96,22 +115,13 @@ public class Member {
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return ResultMessage.FAILED;
+			return ResultMessage.FAILED;	//RMI出现异常
 		}
 	}
 	
-
-	//修改订单状态
-	//目前尚缺少状态类！！！！
-
-
-
-	// 修改订单状态
-	// 目前尚缺少状态！！！！
-	/*张雅婷————我觉得，虽然setOrderState是order的功能，当需要修改时，
-	   只用调用order的setOrderState方法就够了,member类不用提供这个方法   */
-//	public ResultMessage setOrderState(OrderPO orderPO) {
-//>>>>>>> .r132
-//		return ResultMessage.SUCCEED;
-//	}
+	public ArrayList<OrderPO> getOrderRecord(){
+		return memberPO.getOrderList();
+	}
+	
+	
 }
