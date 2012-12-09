@@ -46,7 +46,7 @@ public class MemberView extends JFrame {
 	private javax.swing.JButton jButton1;
 	private javax.swing.JButton removeFavorityButton;
 	private javax.swing.JButton changeNameButton;
-	private javax.swing.JButton jButton4;
+	private javax.swing.JButton bookDetailButton;
 	private javax.swing.JButton keywordSearchButton;
 	private javax.swing.JButton typeSearchButton;
 	private javax.swing.JComboBox typeComboBox;
@@ -144,18 +144,19 @@ public class MemberView extends JFrame {
 				String author = authorField.getText();
 				String publisher = publisherField.getText();
 				String yearString = publisherYearField.getText();
-				int year = 0;
-
-				try {
-					year = Integer.parseInt(yearString);
-
-					KeywordVO keywordVO = new KeywordVO(bookName, author,
-							publisher, yearString);
-					memberViewController.searchKeyword(keywordVO);
-				} catch (NumberFormatException e2) {
-					// TODO: handle exception
-					JOptionPane.showMessageDialog(null, "出版年份输入错误！");
+				
+				if(yearString!=null){
+					try{
+						Integer.parseInt(yearString);
+					}catch (NumberFormatException e2) {
+						// TODO: handle exception
+						JOptionPane.showMessageDialog(null, "出版年份输入错误！");
+					}
 				}
+				
+				KeywordVO keywordVO = new KeywordVO(bookName, author,
+						publisher, yearString);
+				memberViewController.searchKeyword(keywordVO);
 
 			}
 		});
@@ -182,9 +183,16 @@ public class MemberView extends JFrame {
 		changeNameButton = new javax.swing.JButton();
 		changeNameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				String newName=JOptionPane.showInputDialog("请输入新的用户名:");
+				ResultMessage message=memberViewController.changeName(newName);
+				if(message==ResultMessage.SUCCEED){
+					JOptionPane.showMessageDialog(null, "修改成功！");
+				}else{
+					JOptionPane.showMessageDialog(null, "抱歉！该用户名已被使用！");
+				}
 			}
 		});
+		
 		jLabel1 = new javax.swing.JLabel();
 		jLabel10 = new javax.swing.JLabel();
 		jButton1 = new javax.swing.JButton();
@@ -204,7 +212,13 @@ public class MemberView extends JFrame {
 			}
 		});
 
-		jButton4 = new javax.swing.JButton();
+		bookDetailButton = new javax.swing.JButton();
+		bookDetailButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BookPO bookPO=memberPO.getFavority().getFavorities().get(favorityTable.getSelectedRow());
+				memberViewController.bookDetail(bookPO);
+			}
+		});
 		jPanel4 = new javax.swing.JPanel();
 		jPanel9 = new javax.swing.JPanel();
 		jScrollPane2 = new javax.swing.JScrollPane();
@@ -454,7 +468,7 @@ public class MemberView extends JFrame {
 		// rankLabel.setText("XXX");
 		rankLabel.setText(memberPO.getRank().toString());
 
-		changeNameButton.setText("修改");
+		changeNameButton.setText("\u4FEE\u6539\u540D\u79F0");
 
 		jLabel1.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
 		jLabel1.setText("常用地址:");
@@ -463,159 +477,98 @@ public class MemberView extends JFrame {
 		jLabel10.setText("XXX");
 
 		jButton1.setText("修改地址");
-
+		
+		JButton changePasswordButton = new JButton("\u4FEE\u6539\u5BC6\u7801");
+		changePasswordButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String oldPassword=JOptionPane.showInputDialog("请输入原始密码：");
+				if(!memberViewController.checkPassword(oldPassword)){
+					JOptionPane.showMessageDialog(null, "抱歉！密码输入错误！");
+				}else{
+					String password1=JOptionPane.showInputDialog("请输入新密码：");
+					String password2=JOptionPane.showInputDialog("请再次输入新密码：");
+					
+					if(password1.equals(password2)){
+						ResultMessage message=memberViewController.changePassword(password1);
+						if(message==ResultMessage.SUCCEED){
+							JOptionPane.showMessageDialog(null, "修改成功！");
+						}
+					}else{
+						JOptionPane.showMessageDialog(null, "密码输入不一致！");
+					}
+					
+				}
+			}
+		});
+		
 		javax.swing.GroupLayout gl_jPanel2 = new javax.swing.GroupLayout(
 				jPanel2);
-		gl_jPanel2
-				.setHorizontalGroup(gl_jPanel2
-						.createParallelGroup(Alignment.TRAILING)
-						.addGroup(
-								gl_jPanel2
-										.createSequentialGroup()
-										.addGap(33)
-										.addGroup(
-												gl_jPanel2
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																gl_jPanel2
-																		.createSequentialGroup()
-																		.addComponent(
-																				jLabel1)
-																		.addGap(18)
-																		.addComponent(
-																				jLabel10,
-																				GroupLayout.PREFERRED_SIZE,
-																				315,
-																				GroupLayout.PREFERRED_SIZE))
-														.addGroup(
-																gl_jPanel2
-																		.createSequentialGroup()
-																		.addGroup(
-																				gl_jPanel2
-																						.createParallelGroup(
-																								Alignment.LEADING,
-																								false)
-																						.addGroup(
-																								gl_jPanel2
-																										.createSequentialGroup()
-																										.addComponent(
-																												jLabel3)
-																										.addGap(18)
-																										.addComponent(
-																												nameLabel))
-																						.addGroup(
-																								gl_jPanel2
-																										.createSequentialGroup()
-																										.addComponent(
-																												ID,
-																												GroupLayout.PREFERRED_SIZE,
-																												46,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addPreferredGap(
-																												ComponentPlacement.RELATED,
-																												GroupLayout.DEFAULT_SIZE,
-																												Short.MAX_VALUE)
-																										.addComponent(
-																												idLabel)))
-																		.addGap(29)
-																		.addComponent(
-																				changeNameButton,
-																				GroupLayout.PREFERRED_SIZE,
-																				94,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED,
-																				149,
-																				Short.MAX_VALUE)
-																		.addGroup(
-																				gl_jPanel2
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(
-																								jLabel4,
-																								GroupLayout.PREFERRED_SIZE,
-																								61,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								jLabel5))))
-										.addGap(44)
-										.addGroup(
-												gl_jPanel2
-														.createParallelGroup(
-																Alignment.TRAILING)
-														.addComponent(
-																pointLabel)
-														.addComponent(rankLabel))
-										.addContainerGap(171, Short.MAX_VALUE))
-						.addGroup(
-								gl_jPanel2
-										.createSequentialGroup()
-										.addContainerGap(567, Short.MAX_VALUE)
-										.addComponent(jButton1,
-												GroupLayout.PREFERRED_SIZE, 97,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(25)));
-		gl_jPanel2
-				.setVerticalGroup(gl_jPanel2
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								gl_jPanel2
-										.createSequentialGroup()
-										.addGap(13)
-										.addGroup(
-												gl_jPanel2
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																gl_jPanel2
-																		.createParallelGroup(
-																				Alignment.BASELINE)
-																		.addComponent(
-																				jLabel4,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				Short.MAX_VALUE)
-																		.addComponent(
-																				pointLabel))
-														.addGroup(
-																gl_jPanel2
-																		.createParallelGroup(
-																				Alignment.BASELINE)
-																		.addComponent(
-																				idLabel)
-																		.addComponent(
-																				ID)))
-										.addGap(57)
-										.addGroup(
-												gl_jPanel2
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(jLabel3)
-														.addComponent(nameLabel)
-														.addComponent(
-																changeNameButton,
-																GroupLayout.PREFERRED_SIZE,
-																34,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(jLabel5)
-														.addComponent(rankLabel))
-										.addGap(50)
-										.addGroup(
-												gl_jPanel2
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(jLabel1)
-														.addComponent(
-																jLabel10,
-																GroupLayout.PREFERRED_SIZE,
-																31,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(41)
-										.addComponent(jButton1,
-												GroupLayout.PREFERRED_SIZE, 35,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(99)));
+		gl_jPanel2.setHorizontalGroup(
+			gl_jPanel2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_jPanel2.createSequentialGroup()
+					.addGap(33)
+					.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_jPanel2.createSequentialGroup()
+							.addComponent(jLabel1)
+							.addGap(18)
+							.addComponent(jLabel10, GroupLayout.PREFERRED_SIZE, 477, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(gl_jPanel2.createSequentialGroup()
+							.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING, false)
+								.addGroup(gl_jPanel2.createSequentialGroup()
+									.addComponent(jLabel3)
+									.addGap(18)
+									.addComponent(nameLabel))
+								.addGroup(gl_jPanel2.createSequentialGroup()
+									.addComponent(ID, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(idLabel)))
+							.addGap(29)
+							.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING)
+								.addComponent(changeNameButton, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+								.addComponent(changePasswordButton, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
+							.addGap(149)
+							.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING)
+								.addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
+								.addComponent(jLabel5))
+							.addGap(44)
+							.addGroup(gl_jPanel2.createParallelGroup(Alignment.TRAILING)
+								.addComponent(pointLabel)
+								.addComponent(rankLabel))
+							.addGap(171))))
+				.addGroup(gl_jPanel2.createSequentialGroup()
+					.addContainerGap(645, Short.MAX_VALUE)
+					.addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
+					.addGap(73))
+		);
+		gl_jPanel2.setVerticalGroup(
+			gl_jPanel2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_jPanel2.createSequentialGroup()
+					.addGap(13)
+					.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_jPanel2.createParallelGroup(Alignment.BASELINE)
+							.addComponent(jLabel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(pointLabel))
+						.addGroup(gl_jPanel2.createParallelGroup(Alignment.BASELINE)
+							.addComponent(idLabel)
+							.addComponent(ID)))
+					.addGap(57)
+					.addGroup(gl_jPanel2.createParallelGroup(Alignment.BASELINE)
+						.addComponent(jLabel3)
+						.addComponent(nameLabel)
+						.addComponent(jLabel5)
+						.addComponent(rankLabel)
+						.addComponent(changeNameButton, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
+					.addGap(37)
+					.addComponent(changePasswordButton, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					.addGap(29)
+					.addGroup(gl_jPanel2.createParallelGroup(Alignment.BASELINE)
+						.addComponent(jLabel1)
+						.addComponent(jLabel10, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
+					.addGap(32)
+					.addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addGap(98))
+		);
 		jPanel2.setLayout(gl_jPanel2);
 
 		javax.swing.GroupLayout gl_jPanel1 = new javax.swing.GroupLayout(
@@ -669,8 +622,8 @@ public class MemberView extends JFrame {
 		removeFavorityButton.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
 		removeFavorityButton.setText("移除");
 
-		jButton4.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
-		jButton4.setText("查看详情");
+		bookDetailButton.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
+		bookDetailButton.setText("查看详情");
 
 		javax.swing.GroupLayout gl_jPanel3 = new javax.swing.GroupLayout(
 				jPanel3);
@@ -687,7 +640,7 @@ public class MemberView extends JFrame {
 												GroupLayout.PREFERRED_SIZE,
 												125, GroupLayout.PREFERRED_SIZE)
 										.addGap(47)
-										.addComponent(jButton4,
+										.addComponent(bookDetailButton,
 												GroupLayout.PREFERRED_SIZE,
 												130, GroupLayout.PREFERRED_SIZE)
 										.addGap(167)));
@@ -711,7 +664,7 @@ public class MemberView extends JFrame {
 																37,
 																GroupLayout.PREFERRED_SIZE)
 														.addComponent(
-																jButton4,
+																bookDetailButton,
 																GroupLayout.DEFAULT_SIZE,
 																37,
 																Short.MAX_VALUE))
@@ -948,13 +901,20 @@ public class MemberView extends JFrame {
 		scrollPane_1.setViewportView(table_1);
 		panel.setLayout(gl_panel);
 
-		jTable3.setModel(new DefaultTableModel(new Object[][] {
-				{ null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, },
-				new String[] { "Title 1", "Title 2", "Title 3", "Title 4" }) {
-			boolean[] columnEditables = new boolean[] { false, false, false,
-					false };
-
+		jTable3.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+			},
+			new String[] {
+				"\u8BA2\u5355\u7F16\u53F7", "Title 2", "Title 3", "Title 4"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false
+			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
