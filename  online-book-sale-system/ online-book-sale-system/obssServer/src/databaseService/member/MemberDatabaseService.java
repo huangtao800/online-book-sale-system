@@ -12,5 +12,4 @@ import po.VIPRank;
 import databaseService.DatabaseService;
 
 public interface MemberDatabaseService extends DatabaseService {
-	public ResultMessage updataMember(MemberPO memberPO) throws RemoteException;
 }
