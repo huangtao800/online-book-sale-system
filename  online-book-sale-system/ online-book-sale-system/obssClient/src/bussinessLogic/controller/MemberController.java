@@ -8,21 +8,23 @@ import bussinessLogicService.*;
 import bussinessLogic.domain.*;
 
 public class MemberController implements MemberBLService{
-	private Member member;
+	private static Member member;
 	
 	private static MemberBLService instance;
 	
-	public static MemberBLService getInstance(MemberPO memberPO){
+	public static MemberBLService getInstance(){
 		if(instance==null){
-			instance=new MemberController(memberPO);
+			instance=new MemberController();
 		}
 		return instance;
 	}
 	
-	private MemberController(MemberPO memberPO){
-		
-		this.member=new Member(memberPO);
-		
+	private MemberController(){
+
+	}
+	
+	public static void setMember(MemberPO memberPO){
+		member=new Member(memberPO);
 	}
 
 	@Override
@@ -96,13 +98,13 @@ public class MemberController implements MemberBLService{
 	@Override
 	public ResultMessage putInCart(LineItemPO lineItemPO) {
 		// TODO Auto-generated method stub
-		return null;
+		return member.putInCart(lineItemPO);
 	}
 
 	@Override
 	public ResultMessage removeFromCart(int index) {
 		// TODO Auto-generated method stub
-		return null;
+		return member.removeFromCart(index);
 	}
 	
 
