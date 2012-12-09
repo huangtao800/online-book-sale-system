@@ -17,4 +17,5 @@ public interface SalesBLService {
 	public double calculateByEquivalent(double deno);
     public double calculateByCupon(double rate);
 	public ResultMessage endSale(OrderPO orderPO);
+	public double getSpecialPrice(int i);
 }
