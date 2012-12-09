@@ -1,7 +1,9 @@
 package database.init;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -39,9 +41,26 @@ public class InitDatabase extends UnicastRemoteObject implements
 					inputStream);
 
 			memberPOList = (ArrayList<MemberPO>) objectInputStream.readObject();
+			
+			inputStream.close();
+			objectInputStream.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+		}
+	}
+	
+	private void saveMember(){
+		try {
+			FileOutputStream outputStream=new FileOutputStream("member.ser");
+			ObjectOutputStream objectOutputStream=new ObjectOutputStream(outputStream);
+			
+			objectOutputStream.writeObject(memberPOList);
+			
+			outputStream.close();
+			objectOutputStream.close();
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 	}
 
@@ -89,6 +108,8 @@ public class InitDatabase extends UnicastRemoteObject implements
 		if(role==UserRole.Member){
 			MemberPO memberPO=(MemberPO) userPO;
 			return updateMemberPO(memberPO);
+		}else if (role==UserRole.GeneralManager) {
+			
 		}
 		
 		
@@ -116,5 +137,36 @@ public class InitDatabase extends UnicastRemoteObject implements
 		}
 		
 		return -1;
+	}
+
+	@Override
+	public MemberPO registry(String name, String password)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		if(!isNameValid(name)){
+			return null;		//用户名已被使用
+		}
+		
+		int newId=generateNewID();
+		String id=""+newId;
+		MemberPO newMemberPO=new MemberPO(id, name, password);
+		memberPOList.add(newMemberPO);
+		
+		saveMember();
+		return newMemberPO;
+	}
+	
+	private int generateNewID(){
+		return memberPOList.size()+1;
+	}
+	
+	private boolean isNameValid(String name){
+		for(int i=0;i<memberPOList.size();i++){
+			if(name.equals(memberPOList.get(i).getUserName())){
+				return false;
+			}
+		}
+		
+		return true;
 	}
 }
