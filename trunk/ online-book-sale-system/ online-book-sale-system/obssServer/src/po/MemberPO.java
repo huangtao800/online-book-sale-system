@@ -2,15 +2,47 @@
 package po;
 import java.util.*;
 
+
 public class MemberPO extends UserPO{
 
 	private ArrayList<OrderPO> orderList;
 	private FavorityPO favority;
 	private ArrayList<CouponPO> couponList;
 	private ArrayList<EquivalentPO> equivalentList;
-	
+	private Cart cart;
+	private int points;
+	private VIPRank rank;
+
 	public MemberPO(String id,String name,String password){
 		super(id, name, password, UserRole.Member);
+		
+		this.orderList=new ArrayList<OrderPO>();
+		favority=new FavorityPO();
+		couponList=new ArrayList<CouponPO>();
+		equivalentList=new ArrayList<EquivalentPO>();
+		cart=new Cart();
+		points=0;
+		rank=VIPRank.VIP1;
+	}
+
+
+	public int getPoints() {
+		return points;
+	}
+
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+
+	public VIPRank getRank() {
+		return rank;
+	}
+
+
+	public void setRank(VIPRank rank) {
+		this.rank = rank;
 	}
 
 
@@ -26,6 +58,15 @@ public class MemberPO extends UserPO{
 
 	public ArrayList<EquivalentPO> getEquivalentList() {
 		return equivalentList;
+	}
+	
+	public Cart getCart() {
+		return cart;
+	}
+
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 
 
@@ -52,4 +93,3 @@ public class MemberPO extends UserPO{
 	}	
 	
 }
-

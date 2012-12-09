@@ -51,21 +51,6 @@ public class UserPO implements PO{
     	return userRole;
     }
     
-    public void save(String name,String id,String password,UserRole userRole){
-    	UserPO userPO = new UserPO();
-    	userPO.setUserName(name);
-    	userPO.setUserID(id);
-    	userPO.setUserPassword(password);
-    	userPO.setUserRole(userRole);
-    	
-    	try{
-    		FileOutputStream fs = new FileOutputStream("user.ser");
-    		ObjectOutputStream os  = new ObjectOutputStream(fs);
-    		os.writeObject(userPO);
-    		os.close();
-    	}catch(Exception e){
-    		e.printStackTrace();
-    	}
-    }
+   
     
 }

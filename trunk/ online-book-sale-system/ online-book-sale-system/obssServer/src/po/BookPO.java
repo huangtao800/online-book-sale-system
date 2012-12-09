@@ -3,8 +3,7 @@ package po;
 import java.util.Date;
 
 public class BookPO implements PO{
-    private String ISBN,bookName,author,press;
-    private Date publishDate;
+    private String ISBN,bookName,author,press,publishDate;
     private double price;
     
     public String getISBN(){
@@ -39,12 +38,12 @@ public class BookPO implements PO{
     	press = p;
     }
     
-    public Date getPublishDate(){
+    public String getPublishDate(){
     	return publishDate;
     }
     
-    public void setPublishDate(Date date){
-    	publishDate =date;
+    public void setPublishDate(String date){
+    	publishDate = date;
     }
     
     public double getPrice(){
