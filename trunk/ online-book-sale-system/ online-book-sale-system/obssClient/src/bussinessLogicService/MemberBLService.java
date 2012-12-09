@@ -19,5 +19,9 @@ public interface MemberBLService {
 	public ResultMessage addOrder(OrderPO order);//增加一条订单记录
 	
 	public ArrayList<OrderPO> getOrderRecord();//查看自己的购买记录
+	public ResultMessage changeName(String newName);//修改用户名
+	public ResultMessage changePassword(String password);//修改密码
 	
+	public ResultMessage putInCart(LineItemPO lineItemPO);//添加到购物车
+	public ResultMessage removeFromCart(int index);
 }
