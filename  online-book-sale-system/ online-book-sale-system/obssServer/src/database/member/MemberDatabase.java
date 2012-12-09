@@ -3,60 +3,63 @@ package database.member;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import javax.management.InstanceAlreadyExistsException;
+
 import po.BookPO;
 import po.CouponPO;
 import po.EquivalentPO;
 import po.MemberPO;
+import po.PO;
 import po.ResultMessage;
+import po.UserRole;
 import po.VIPRank;
 import database.init.InitDatabase;
 import databaseService.init.InitDatabaseService;
-import databaseService.member.MemberDataseService;
+import databaseService.member.MemberDatabaseService;
 
-public class MemberDatabase extends UnicastRemoteObject implements MemberDataseService{
+public class MemberDatabase extends UnicastRemoteObject implements MemberDatabaseService{
 	private InitDatabaseService initDatabase;
-	
+	private static MemberDatabase instance=null;
 
-	public MemberDatabase() throws RemoteException{
+	protected MemberDatabase() throws RemoteException{
 		super();
 		initDatabase=InitDatabase.getInstance();
 	}
 
-	@Override
-	public ResultMessage addCoupon(CouponPO couponPO, VIPRank rank)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public ResultMessage removeFromFavorities(String bookID, String memberID)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ResultMessage addEquivalent(EquivalentPO equivalentPO, VIPRank rank)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ResultMessage addFavorities(BookPO bookPO, MemberPO memberPO)
-			throws RemoteException {
-		// TODO Auto-generated method stub
+	
+	public static MemberDatabase getInstance(){
+		if(instance==null){
+			try {
+				instance=new MemberDatabase();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
+		return instance;
+	}
+
+
+	@Override
+	public ResultMessage insert(PO po) throws RemoteException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
+
 	@Override
-	public ResultMessage updataMember(MemberPO memberPO) throws RemoteException {
+	public ResultMessage delete(PO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		
 		return null;
-	};
+	}
+
+
+	@Override
+	public ResultMessage update(PO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		MemberPO memberPO=(MemberPO) po;
+		
+		return initDatabase.updateUserPO(memberPO, UserRole.Member);
+	}
 }
