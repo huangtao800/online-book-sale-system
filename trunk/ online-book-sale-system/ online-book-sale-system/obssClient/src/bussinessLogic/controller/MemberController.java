@@ -8,10 +8,7 @@ import bussinessLogicService.*;
 import bussinessLogic.domain.*;
 
 public class MemberController implements MemberBLService{
-	private String name;
-	private String id;
 	private Member member;
-	private MemberPO memberPO;
 	
 	private static MemberBLService instance;
 	
@@ -22,7 +19,7 @@ public class MemberController implements MemberBLService{
 		return instance;
 	}
 	
-	protected MemberController(MemberPO memberPO){
+	private MemberController(MemberPO memberPO){
 		
 		this.member=new Member(memberPO);
 		
@@ -31,13 +28,13 @@ public class MemberController implements MemberBLService{
 	@Override
 	public String getMemberName() {
 		// TODO Auto-generated method stub
-		return name;
+		return member.getMemberName();
 	}
 
 	@Override
 	public String getMemberID() {
 		// TODO Auto-generated method stub
-		return id;
+		return member.getMemberID();
 	}
 
 
@@ -50,19 +47,19 @@ public class MemberController implements MemberBLService{
 	@Override
 	public ArrayList<OrderPO> getOrderRecord() {
 		// TODO Auto-generated method stub
-		return null;
+		return member.getOrderRecord();
 	}
 
 	@Override
 	public ArrayList<CouponPO> getCouponList() {
 		// TODO Auto-generated method stub
-		return null;
+		return member.getCouponList();
 	}
 
 	@Override
 	public ArrayList<EquivalentPO> getEquivalentList() {
 		// TODO Auto-generated method stub
-		return null;
+		return member.getEquivalentList();
 	}
 
 
@@ -75,13 +72,13 @@ public class MemberController implements MemberBLService{
 	@Override
 	public ResultMessage removeFavorities(BookPO bookPO) {
 		// TODO Auto-generated method stub
-		return null;
+		return member.removeFavorities(bookPO);
 	}
 
 	@Override
 	public ResultMessage addOrder(OrderPO order) {
 		// TODO Auto-generated method stub
-		return null;
+		return member.addOrder(order);
 	}
 	
 
