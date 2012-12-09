@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import po.PO;
+import po.ResultMessage;
 import po.UserPO;
 import po.UserRole;
 
@@ -68,6 +69,24 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 			}
 		}
 		
+		return null;
+	}
+
+	@Override
+	public ResultMessage insert(PO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage delete(PO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage update(PO po) throws RemoteException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	
