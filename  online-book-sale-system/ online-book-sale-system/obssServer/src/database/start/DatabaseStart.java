@@ -4,8 +4,10 @@ import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 
 import database.init.InitDatabase;
+import database.member.MemberDatabase;
 import database.user.UserDatabase;
 import databaseService.init.InitDatabaseService;
+import databaseService.member.MemberDatabaseService;
 import databaseService.user.UserDatabaseService;
 
 public class DatabaseStart {
@@ -19,6 +21,9 @@ public class DatabaseStart {
 			LocateRegistry.createRegistry(5000);
 			InitDatabaseService initDatabase=InitDatabase.getInstance();
 			Naming.rebind("rmi://127.0.0.1:5000/InitDatabase", initDatabase);
+			
+			MemberDatabaseService memberDatabase=MemberDatabase.getInstance();
+			Naming.rebind("rmi://127.0.0.1:5000/MemberDatabase", memberDatabase);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
