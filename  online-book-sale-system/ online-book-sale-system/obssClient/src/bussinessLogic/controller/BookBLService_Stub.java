@@ -5,7 +5,7 @@ import po.*;
 import bussinessLogic.domain.Book;
 import bussinessLogicService.*;
 
-public class BookBLService_Stub implements BookBLService{
+public class BookBLService_Stub {
 	String bookName,bookType,bookISBN;
     BookPO bookPO = new BookPO();
     Book book;
