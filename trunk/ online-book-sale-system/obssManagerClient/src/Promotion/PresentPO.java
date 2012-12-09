@@ -29,6 +29,18 @@ public class PresentPO implements PO{
 	public void setVipLevel(VIPRank vip){
 		this.vipLevel=vip;
 	}
+	public String getVipLevel_String(){
+		if(this.vipLevel==VIPRank.VIP1)
+			return "VIP1";
+		else if (this.vipLevel==VIPRank.VIP2)
+			return "VIP2";
+		else if (this.vipLevel==VIPRank.VIP3)
+			return "VIP3";
+		else if (this.vipLevel==VIPRank.VIP4)
+			return "VIP4";
+		else 
+			return "VIP5";
+	}
 	
 	public String[][] getEquivalent(){
 		return equivalent;
