@@ -25,7 +25,7 @@ public class PromotionView extends JFrame implements ActionListener{
 	   private static final int line2=10;//presentTable
 	   private static final int column=2;//第一列表示等价券额度，第二列表示等价券的最低消费
 	   private static final int column2=3;//第三列为等价券有效截止日期
-	    private PromotionModelInterface proModel;//模型
+	   private PromotionModelInterface proModel;//模型
 	    private PromotionControllerInterface proController ;//控制器
 	    
 	//	DecimalFormat decimalFormat=new DecimalFormat("####.00");
@@ -623,6 +623,7 @@ public class PromotionView extends JFrame implements ActionListener{
 		
 //查看促销手段
 		if(event.getSource()==checkUpdateButton){
+			promotionShow_setClear();
 			promotionShow_check();
 		}
 		

@@ -1,4 +1,5 @@
 package Promotion;
+
 //董仁广
 public class PromotionPO implements PO{
 	private static final int line=10;//界面上默认有十行关于等价券的信息

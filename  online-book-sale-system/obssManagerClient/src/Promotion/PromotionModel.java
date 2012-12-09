@@ -28,7 +28,7 @@ public class PromotionModel implements PromotionModelInterface{
 	 public PromotionPO promotionPORead(){
 		 //解序列化
 		 try {
-			 ObjectInputStream poInputStream=new ObjectInputStream(new FileInputStream("promotionPO.ser"));
+			 ObjectInputStream poInputStream=new ObjectInputStream(new FileInputStream(PromotionPO_Ser));
 			 promotionPO=(PromotionPO)poInputStream.readObject();
 			poInputStream.close();
 		} catch (Exception e) {
@@ -42,7 +42,7 @@ public class PromotionModel implements PromotionModelInterface{
 		//序列化
 		promotionPO=proPO;
 		try {
-			ObjectOutputStream poOutPutStream=new ObjectOutputStream(new FileOutputStream("promotionPO.ser"));
+			ObjectOutputStream poOutPutStream=new ObjectOutputStream(new FileOutputStream(PromotionPO_Ser));
 			poOutPutStream.writeObject(promotionPO);
 			poOutPutStream.close();
 		} catch (IOException e) {
@@ -57,7 +57,7 @@ public class PromotionModel implements PromotionModelInterface{
 	public void presentPOWrite(PresentPO presentPO){
 		//解序列化，先把数据层存储的已有礼券信息读取进来(如果已有presentPO.ser的话)
 		try {
-			ObjectInputStream poInputStream=new ObjectInputStream(new FileInputStream("presentPO.ser"));
+			ObjectInputStream poInputStream=new ObjectInputStream(new FileInputStream(PresentPOList_Ser));
 			presentPOList=(ArrayList<PresentPO>)poInputStream.readObject();
 			poInputStream.close();
 		} catch (Exception e) {
@@ -68,7 +68,7 @@ public class PromotionModel implements PromotionModelInterface{
 		//序列化
 		try{
 			presentPOList.add(presentPO);
-			ObjectOutputStream poOutPutStream=new ObjectOutputStream(new FileOutputStream("presentPO.ser"));
+			ObjectOutputStream poOutPutStream=new ObjectOutputStream(new FileOutputStream(PresentPOList_Ser));
 			
 			poOutPutStream.writeObject(presentPOList);
 			poOutPutStream.close();
