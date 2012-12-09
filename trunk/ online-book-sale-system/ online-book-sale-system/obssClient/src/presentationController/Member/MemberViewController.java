@@ -2,7 +2,9 @@ package presentationController.Member;
 
 import bussinessLogic.controller.MemberController;
 import bussinessLogicService.MemberBLService;
+import po.BookPO;
 import po.MemberPO;
+import po.ResultMessage;
 import presentation.MemberView;
 
 public class MemberViewController implements MemberViewService{
@@ -13,7 +15,7 @@ public class MemberViewController implements MemberViewService{
 	private MemberBLService memberController;
 	
 	private MemberViewController(MemberPO memberPO){
-		memberView=new MemberView(this);
+		memberView=new MemberView(this,memberPO);
 		memberView.setVisible(true);
 		this.memberPO=memberPO;
 		this.memberController=MemberController.getInstance(memberPO);
@@ -42,4 +44,11 @@ public class MemberViewController implements MemberViewService{
 	public void setViewVisible(){
 		memberView.setVisible(true);
 	}
+
+	@Override
+	public ResultMessage removeFavority(BookPO bookPO) {
+		// TODO Auto-generated method stub
+		return memberController.removeFavorities(bookPO);
+	}
+	
 }
