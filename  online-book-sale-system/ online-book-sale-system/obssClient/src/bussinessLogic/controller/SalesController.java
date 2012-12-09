@@ -13,6 +13,7 @@ import po.EquivalentPO;
 import po.LineItemPO;
 import po.MemberPO;
 import po.OrderPO;
+import po.PO;
 import po.ResultMessage;
 
 public class SalesController implements SalesBLService{
@@ -64,7 +65,7 @@ public class SalesController implements SalesBLService{
 		return totalPrice;
 	}
 	
-	public ArrayList<String> showSpecial(){
+	public ArrayList<String> showSpecial(){//需要修改
 		ArrayList<CouponPO> couponList = memberController.getCouponList();
 		ArrayList<EquivalentPO> equivalentList = memberController.getEquivalentList();
 		ArrayList<String> voList = new ArrayList<String>();
@@ -82,6 +83,19 @@ public class SalesController implements SalesBLService{
 		}
 		return voList;	
 	}
+	private ArrayList<PO> getSpecialList(){
+		//优惠券要不要做继承？
+		ArrayList<PO> specialList = new ArrayList<PO>();
+		ArrayList<CouponPO> couponList = memberController.getCouponList();
+		ArrayList<EquivalentPO> equivalentList = memberController.getEquivalentList();
+		for(int i = 0; i < couponList.size(); i ++){
+			specialList.add(couponList.get(i));
+		}
+		for(int i = 0; i < equivalentList.size(); i ++){
+			specialList.add(equivalentList.get(i));
+		}
+		return specialList;
+	}
 	
 	public double calculateByEquivalent(double deno){
 		double common = sales.commonCalculate();
@@ -98,11 +112,27 @@ public class SalesController implements SalesBLService{
 		return price;
 	}
     
+	@Override
+	public double getSpecialPrice(int i) {//else的情况需要修改
+		double specialPrice = 0;
+		PO special = getSpecialList().get(i);
+		if(special instanceof EquivalentPO){
+			EquivalentPO equivalentPO = (EquivalentPO)special;
+			specialPrice = calculateByCupon(equivalentPO.getDeno());
+		}
+		else if(special instanceof CouponPO){
+			CouponPO couponPO = (CouponPO)special;
+			specialPrice = calculateByCupon(couponPO.getRate());
+		}	
+		return specialPrice;
+	}
+    
 	public ResultMessage endSale(OrderPO orderPO){
 		ArrayList<LineItemPO> salesList = sales.getCartList();
 	    book.updateBook(salesList);
 		sales.updateSale(orderPO);	
 		return ResultMessage.SUCCEED;
 	}
+
 	
 }
