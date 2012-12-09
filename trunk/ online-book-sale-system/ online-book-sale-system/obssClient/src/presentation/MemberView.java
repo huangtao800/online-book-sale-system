@@ -12,7 +12,6 @@ import po.CouponPO;
 import po.EquivalentPO;
 import po.FavorityPO;
 import po.MemberPO;
-import po.MockMemberPO;
 import po.ResultMessage;
 import presentationController.Member.KeywordVO;
 import presentationController.Member.MemberViewService;
@@ -101,8 +100,7 @@ public class MemberView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MemberView frame = new MemberView(null, new MockMemberPO("1",
-							"huang", "1"));
+					MemberView frame = new MemberView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
