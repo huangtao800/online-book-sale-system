@@ -62,4 +62,7 @@ public class FavorityPO implements PO{
 		return favorities.isEmpty();
 	}
 	
+	public int getSize(){
+		return favorities.size();
+	}
 }
