@@ -24,4 +24,5 @@ public interface MemberBLService {
 	
 	public ResultMessage putInCart(LineItemPO lineItemPO);//添加到购物车
 	public ResultMessage removeFromCart(int index);
+	
 }
