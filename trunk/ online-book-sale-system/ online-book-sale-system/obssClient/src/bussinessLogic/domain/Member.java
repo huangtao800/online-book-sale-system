@@ -123,5 +123,51 @@ public class Member {
 		return memberPO.getOrderList();
 	}
 	
+	public ResultMessage changeName(String newName){
+		if(newName.equals(memberPO.getUserName())){
+			return ResultMessage.SUCCEED;
+		}else {
+			try {
+				return memberDatabase.changeName(newName,memberPO);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				return ResultMessage.FAILED;	//RMI出现异常
+			}
+		}
+	}
+	
+	public ResultMessage changePassword(String password){
+		try {
+			return memberDatabase.changePassword(password, memberPO);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResultMessage.FAILED;	//RMI出现异常
+		}
+	}
+	
+	public ResultMessage putInCart(LineItemPO lineItemPO){
+		memberPO.getCart().putInCart(lineItemPO);
+		try {
+			return memberDatabase.update(memberPO);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResultMessage.FAILED;	//RMI出现异常
+		}
+	}
+	
+	public ResultMessage removeFromCart(int index){
+		memberPO.getCart().removeFromCart(index);
+		
+		try {
+			return memberDatabase.update(memberPO);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+	}
 	
 }
