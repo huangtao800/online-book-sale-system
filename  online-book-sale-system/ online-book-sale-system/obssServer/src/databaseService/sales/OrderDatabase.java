@@ -14,7 +14,9 @@ import po.PO;
 import po.ResultMessage;
 
 public class OrderDatabase implements OrderDatabaseService{
-	ArrayList<OrderPO> orderList = reloadOrderList();
+	//在创建的时候就能够初始化，所以不需加载
+	//初始化，只是把数据从文件中读入服务器，客户端要单独储存吗？？
+	private ArrayList<OrderPO> orderList = reloadOrderList();
 
 	public ResultMessage insert(PO orderpo) {
 		if(orderpo instanceof OrderPO){
@@ -45,6 +47,10 @@ public class OrderDatabase implements OrderDatabaseService{
 			return ResultMessage.SUCCEED;
 		}
 		return ResultMessage.FAILED;
+	}
+	
+	public ArrayList<OrderPO> getUnfinishedOrder(){
+		return orderList;
 	}
 	
 	public ResultMessage save() {
