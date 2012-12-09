@@ -80,6 +80,30 @@ public class MemberController implements MemberBLService{
 		// TODO Auto-generated method stub
 		return member.addOrder(order);
 	}
+
+	@Override
+	public ResultMessage changeName(String newName) {
+		// TODO Auto-generated method stub
+		return member.changeName(newName);
+	}
+
+	@Override
+	public ResultMessage changePassword(String password) {
+		// TODO Auto-generated method stub
+		return member.changePassword(password);
+	}
+
+	@Override
+	public ResultMessage putInCart(LineItemPO lineItemPO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage removeFromCart(int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }
