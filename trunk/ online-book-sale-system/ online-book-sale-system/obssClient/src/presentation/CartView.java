@@ -10,7 +10,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
-import po.Cart;
 import po.LineItemPO;
 import po.ResultMessage;
 import presentationController.Sales.SalesViewController;
@@ -34,7 +33,7 @@ public class CartView extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    //    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         
         jTable1.setModel(new CartTableModel());
 
