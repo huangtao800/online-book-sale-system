@@ -98,7 +98,7 @@ public class SalesViewController {
 	public void pay(){
 		OrderVO orderVO = salesController.pay(priceBuffer);
 		initOrderView(orderVO);
-		//endsale
+		salesController.endSale();
 		
 	}
 
