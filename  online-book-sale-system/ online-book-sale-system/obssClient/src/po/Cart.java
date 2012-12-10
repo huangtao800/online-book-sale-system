@@ -16,15 +16,17 @@ public class Cart implements  PO{
 		cartList.add(lineItemPO);
 		return ResultMessage.SUCCEED;
 	}
-	public ResultMessage removeFromCart(String ISBN) {
-		for(int i = 0; i < cartList.size(); i ++){
-			LineItemPO lineItem = cartList.get(i);
-			if(ISBN.equals(lineItem.getBook().getISBN())){
-				cartList.remove(lineItem);
-				return ResultMessage.SUCCEED;
-			}
-		}
-		return ResultMessage.FAILED;		
+	public ResultMessage removeFromCart(int index) {
+//		for(int i = 0; i < cartList.size(); i ++){
+//			LineItemPO lineItem = cartList.get(i);
+//			if(ISBN.equals(lineItem.getBook().getISBN())){
+//				cartList.remove(lineItem);
+//				return ResultMessage.SUCCEED;
+//			}
+//		}
+//		return ResultMessage.FAILED;	
+		cartList.remove(index);
+		return ResultMessage.SUCCEED;
 	}
 	public double getTotalPrice() {
 		double commonPrice = 0;
