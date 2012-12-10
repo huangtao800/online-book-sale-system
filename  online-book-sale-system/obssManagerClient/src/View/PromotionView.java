@@ -2,33 +2,26 @@ package View;
 //董仁广
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-import org.omg.CORBA.PRIVATE_MEMBER;
-
-import Promotion.PresentPO;
-import Promotion.PromotionControllerInterface;
-import Promotion.PromotionModelInterface;
-import Promotion.PromotionPO;
-import Promotion.VIPRank;
+import Controller.PromotionControllerInterface;
+import PO.PresentPO;
+import PO.PromotionPO;
+import PO.VIPRank;
 
 
+@SuppressWarnings("serial")
 public class PromotionView extends JFrame implements ActionListener{
 	   private static final int line=10;//checkEqualityTable,setEqualityTable界面上默认有十行关于等价券的信息
 	   private static final int line2=10;//presentTable
 	   private static final int column=2;//第一列表示等价券额度，第二列表示等价券的最低消费
 	   private static final int column2=3;//第三列为等价券有效截止日期
-	   private PromotionModelInterface proModel;//模型
+	   
 	    private PromotionControllerInterface proController ;//控制器
-	    
-	//	DecimalFormat decimalFormat=new DecimalFormat("####.00");
 	    
         private JTable checkEqualityTable;
 	    private DefaultTableModel tableModel;
@@ -61,8 +54,8 @@ public class PromotionView extends JFrame implements ActionListener{
 	    private javax.swing.JPanel jPanel2;
 	    private javax.swing.JPanel jPanel3;
 	    private javax.swing.JPanel jPanel4;
-	    private javax.swing.JPopupMenu jPopupMenu1;
-	    private javax.swing.JPopupMenu jPopupMenu2;
+//	    private javax.swing.JPopupMenu jPopupMenu1;
+//	    private javax.swing.JPopupMenu jPopupMenu2;
 	    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
 	    private javax.swing.JScrollPane jScrollPane1;
 	    private javax.swing.JScrollPane jScrollPane2;
@@ -88,8 +81,8 @@ public class PromotionView extends JFrame implements ActionListener{
 	    // End of variables declaration
 	 
 	    
-	    public PromotionView(PromotionControllerInterface proContr,PromotionModelInterface proMod ){
-	    	this.proModel=proMod;
+	    public PromotionView(PromotionControllerInterface proContr ){
+	    	super("总经理操作界面");
 	    	this.proController=proContr;
 	       // proModel.registerObserver(this);	
 	    }
@@ -98,8 +91,8 @@ public class PromotionView extends JFrame implements ActionListener{
 	    	
 	    	 jLabel6 = new javax.swing.JLabel();
 	         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
-	         jPopupMenu1 = new javax.swing.JPopupMenu();
-	         jPopupMenu2 = new javax.swing.JPopupMenu();
+//	         jPopupMenu1 = new javax.swing.JPopupMenu();
+//	         jPopupMenu2 = new javax.swing.JPopupMenu();
 	         jLabel13 = new javax.swing.JLabel();
 	         jTabbedPane1 = new javax.swing.JTabbedPane();
 	         jPanel1 = new javax.swing.JPanel();
@@ -355,11 +348,13 @@ public class PromotionView extends JFrame implements ActionListener{
 	                 "等价券额度/元", "最低消费/元"
 	             }
 	         ) {
-	             Class[] types = new Class [] {
+	             @SuppressWarnings("rawtypes")
+				Class[] types = new Class [] {
 	                 java.lang.Double.class, java.lang.Double.class
 	             };
 
-	             public Class getColumnClass(int columnIndex) {
+	             @SuppressWarnings({ "unchecked", "rawtypes" })
+				public Class getColumnClass(int columnIndex) {
 	                 return types [columnIndex];
 	             }
 	         });
@@ -474,11 +469,13 @@ public class PromotionView extends JFrame implements ActionListener{
 	                 "等价券额度/元", "赠送数量/张", "截止日期（年/月/日）"
 	             }
 	         ) {
-	             Class[] types = new Class [] {
+	             @SuppressWarnings("rawtypes")
+				Class[] types = new Class [] {
 	                 java.lang.Double.class, java.lang.Short.class, java.lang.Object.class
 	             };
 
-	             public Class getColumnClass(int columnIndex) {
+	             @SuppressWarnings({ "unchecked", "rawtypes" })
+				public Class getColumnClass(int columnIndex) {
 	                 return types [columnIndex];
 	             }
 	         });
@@ -748,21 +745,24 @@ public class PromotionView extends JFrame implements ActionListener{
 //查看促销手段界面
 	public void promotionShow_check(){
 		 getPromotionPO();
-		
-		 checkExchangeRateTextField.setText(""+proPO.getExchangeOfScore());
-		 checkRateOfCouponTextField.setText(""+proPO.getDiscount());
-		 equivalentList=proPO.getEquivalentList();                                                 
-		 for(int i=0;i<line;i++){
-				 if(   (Math.abs(equivalentList[i][0]-0.0))>0.000001){//等价券的额度不等于0
+		if(proPO==null){
+			JOptionPane.showMessageDialog(null,"您还尚未设置促销手段！");
+		}else{
+		         checkExchangeRateTextField.setText(""+proPO.getExchangeOfScore());
+		         checkRateOfCouponTextField.setText(""+proPO.getDiscount());
+		         equivalentList=proPO.getEquivalentList();                                                 
+		         for(int i=0;i<line;i++){
+				         if(   (Math.abs(equivalentList[i][0]-0.0))>0.000001){//等价券的额度不等于0
 
-					 tableModel.setValueAt(equivalentList[i][0], i, 0);
-					 tableModel.setValueAt(equivalentList[i][1], i, 1);
-				 } 
-				 else{
-					 checkEqualityTable.setValueAt(null, i,0);
-					 checkEqualityTable.setValueAt(null, i,1);
-				 }
-		 }//for 	
+					                 tableModel.setValueAt(equivalentList[i][0], i, 0);
+					                 tableModel.setValueAt(equivalentList[i][1], i, 1);
+				          } 
+				         else{
+					             checkEqualityTable.setValueAt(null, i,0);
+					             checkEqualityTable.setValueAt(null, i,1);
+				          }
+		        }//for 	
+		}//else
 	}
 	
 //取消设置促销手段后，界面清空
@@ -805,9 +805,9 @@ public class PromotionView extends JFrame implements ActionListener{
 	
 //判断string是否可以转换成double型
 	public boolean stringToDoubel(String s){
-		double d;
 		try{
-		   d=Double.parseDouble(s);
+		   @SuppressWarnings("unused")
+		double d=Double.parseDouble(s);
 		   return true;
 		}catch(Exception e){
 			return false;
@@ -818,6 +818,7 @@ public class PromotionView extends JFrame implements ActionListener{
 	public boolean stringToCalendar(String s){
 		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
 		try{
+			@SuppressWarnings("unused")
 			Date date=format.parse(s);
 			return true;	
 		}catch(Exception e){
@@ -855,6 +856,7 @@ public class PromotionView extends JFrame implements ActionListener{
 		double d;
 		int in;
         //boolean boo=false;//判断表格是否为空
+		@SuppressWarnings("unused")
 		Date date;
 		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
 		
