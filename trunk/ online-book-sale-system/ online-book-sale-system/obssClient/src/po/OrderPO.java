@@ -1,6 +1,8 @@
 package po;
 //张雅婷
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class OrderPO implements PO{
 	//下单时间 date  单独做~  在utility包中添加一个Date类~
@@ -11,6 +13,7 @@ public class OrderPO implements PO{
 	private double totalPrice;
 	private OrderState state;
 	private String memberID;
+	private Calendar date;
 	
 	public OrderPO(ArrayList<LineItemPO> productList, String memberID, double totalPrice){
 		this.orderNum = count ++;
@@ -18,6 +21,11 @@ public class OrderPO implements PO{
 		this.productList = productList;
 		this.memberID = memberID;
 		this.totalPrice = totalPrice;
+		
+		this.date=new GregorianCalendar();
+	}
+	public Calendar getDate() {
+		return date;
 	}
 	public long getOrderNum(){
 		return orderNum;
