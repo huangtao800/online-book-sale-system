@@ -119,6 +119,12 @@ public class MemberController implements MemberBLService{
 		return member.deleteCoupon(couponPO);
 	}
 
+	@Override
+	public double getTotalPrice() {
+		// TODO Auto-generated method stub
+		return member.getTotalPrice();
+	}
+
 	
 
 }
