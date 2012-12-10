@@ -1,8 +1,11 @@
 package presentationController.Member;
 
+import javax.sound.sampled.Line;
+
 import bussinessLogic.controller.MemberController;
 import bussinessLogicService.MemberBLService;
 import po.BookPO;
+import po.LineItemPO;
 import po.MemberPO;
 import po.ResultMessage;
 import presentation.MemberView;
@@ -18,7 +21,9 @@ public class MemberViewController implements MemberViewService{
 		memberView=new MemberView(this,memberPO);
 		memberView.setVisible(true);
 		this.memberPO=memberPO;
-		this.memberController=MemberController.getInstance(memberPO);
+		
+		MemberController.setMember(memberPO);
+		this.memberController=MemberController.getInstance();
 	}
 
 	@Override
@@ -49,6 +54,31 @@ public class MemberViewController implements MemberViewService{
 	public ResultMessage removeFavority(BookPO bookPO) {
 		// TODO Auto-generated method stub
 		return memberController.removeFavorities(bookPO);
+	}
+
+	@Override
+	public ResultMessage changeName(String newName) {
+		// TODO Auto-generated method stub
+		return memberController.changeName(newName);
+	}
+
+	@Override
+	public boolean checkPassword(String password) {
+		// TODO Auto-generated method stub
+		return this.memberPO.getUserPassword().equals(password);
+	}
+
+	@Override
+	public ResultMessage changePassword(String password) {
+		// TODO Auto-generated method stub
+		return memberController.changePassword(password);
+	}
+
+	@Override
+	public ResultMessage putInCart(BookPO bookPO) {
+		// TODO Auto-generated method stub
+		LineItemPO lineItemPO=new LineItemPO(bookPO, 1);
+		return memberController.putInCart(lineItemPO);
 	}
 	
 }
