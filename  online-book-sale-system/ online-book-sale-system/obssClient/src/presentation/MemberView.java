@@ -102,7 +102,7 @@ public class MemberView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MemberView frame = new MemberView();
+					MemberView frame = new MemberView(null,new MemberPO(null, null, null));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -200,14 +200,20 @@ public class MemberView extends JFrame {
 		jScrollPane1 = new javax.swing.JScrollPane();
 		favorityTable = new javax.swing.JTable();
 		removeFavorityButton = new javax.swing.JButton();
+		
 		removeFavorityButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int selectedRow=favorityTable.getSelectedRow();
-				BookPO bookPO=memberPO.getFavority().getFavorities().get(selectedRow);
-				ResultMessage message=memberViewController.removeFavority(bookPO);
-				if(message==ResultMessage.SUCCEED){
-					freshTableModel(favorityTable);
-					JOptionPane.showMessageDialog(null, "移除成功！");
+				
+				if(selectedRow==-1){
+					JOptionPane.showMessageDialog(null, "请选择一本图书！");
+				}else{
+					BookPO bookPO=memberPO.getFavority().getFavorities().get(selectedRow);
+					ResultMessage message=memberViewController.removeFavority(bookPO);
+					if(message==ResultMessage.SUCCEED){
+						freshTableModel(favorityTable);
+						JOptionPane.showMessageDialog(null, "移除成功！");
+					}
 				}
 			}
 		});
@@ -215,8 +221,12 @@ public class MemberView extends JFrame {
 		putInCartButton = new javax.swing.JButton();
 		putInCartButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BookPO bookPO=memberPO.getFavority().getFavorities().get(favorityTable.getSelectedRow());
-				memberViewController.putInCart(bookPO);
+				if(favorityTable.getSelectedRow()==-1){
+					JOptionPane.showMessageDialog(null, "请选择一本图书！");
+				}else{
+					BookPO bookPO=memberPO.getFavority().getFavorities().get(favorityTable.getSelectedRow());
+					memberViewController.putInCart(bookPO);
+				}
 			}
 		});
 		jPanel4 = new javax.swing.JPanel();
@@ -345,7 +355,7 @@ public class MemberView extends JFrame {
 		enterCartButton = new JButton("\u8FDB\u5165\u8D2D\u7269\u8F66");
 		enterCartButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				memberViewController.enterCart();
 			}
 		});
 
