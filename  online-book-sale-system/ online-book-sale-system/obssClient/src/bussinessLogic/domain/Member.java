@@ -170,4 +170,54 @@ public class Member {
 		}
 	}
 	
+	public ResultMessage deleteEquivalenet(EquivalentPO equivalentPO){
+		int index=searchEquivalentIndex(equivalentPO);
+		if(index==-1){
+			return ResultMessage.NOTEXIST;
+		}
+		
+		memberPO.getEquivalentList().remove(index);
+		try {
+			return memberDatabase.update(memberPO);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+	}
+	
+	public ResultMessage deleteCoupon(CouponPO couponPO){
+		int index=searchCoupon(couponPO);
+		if(index==-1){
+			return ResultMessage.NOTEXIST;
+		}
+		
+		memberPO.getCouponList().remove(index);
+		try {
+			return memberDatabase.update(memberPO);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+	}
+	
+	private int searchCoupon(CouponPO couponPO){
+		for(int i=0;i<memberPO.getCouponList().size();i++){
+			if(couponPO.getID().equals(memberPO.getCouponList().get(i).getID())){
+				return i;
+			}
+		}
+		
+		return -1;
+	}
+	
+	private int searchEquivalentIndex(EquivalentPO equivalentPO){
+		for(int i=0;i<memberPO.getEquivalentList().size();i++){
+			if(equivalentPO.getID().equals(memberPO.getEquivalentList().get(i).getID())){
+				return i;
+			}
+		}
+		return -1;
+	}
 }
