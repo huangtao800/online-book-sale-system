@@ -221,5 +221,10 @@ public class Member {
 		return -1;
 	}
 
+	public double getTotalPrice() {
+		// TODO Auto-generated method stub
+		return memberPO.getCart().getTotalPrice();
+	}
+
 
 }
