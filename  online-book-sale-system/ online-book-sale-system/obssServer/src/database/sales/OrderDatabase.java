@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import databaseService.sales.OrderDatabaseService;
@@ -15,9 +16,9 @@ import po.OrderPO;
 import po.PO;
 import po.ResultMessage;
 
-public class OrderDatabase implements OrderDatabaseService{
-	//在创建的时候就能够初始化，所以不需加载
-	//初始化，只是把数据从文件中读入服务器，客户端要单独储存吗？？
+public class OrderDatabase extends UnicastRemoteObject implements OrderDatabaseService{
+	
+	private static final long serialVersionUID = 1L;
 	private ArrayList<OrderPO> orderList = reloadOrderList();
 
 	private static OrderDatabase instance = null;
