@@ -19,7 +19,7 @@ import po.ResultMessage;
 import presentationController.Sales.OrderVO;
 
 public class SalesController implements SalesBLService{
-	private MemberBLService memberController ;
+	private MemberBLService memberController = MemberController.getInstance();
 	Book book = new Book(); //¸Ä³Éµ¥¼ü
 	private Sales sales;
 	
