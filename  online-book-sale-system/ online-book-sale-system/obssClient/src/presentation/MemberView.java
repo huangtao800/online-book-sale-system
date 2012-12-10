@@ -225,7 +225,11 @@ public class MemberView extends JFrame {
 					JOptionPane.showMessageDialog(null, "请选择一本图书！");
 				}else{
 					BookPO bookPO=memberPO.getFavority().getFavorities().get(favorityTable.getSelectedRow());
-					memberViewController.putInCart(bookPO);
+					ResultMessage result=memberViewController.putInCart(bookPO);
+					
+					if(result==ResultMessage.SUCCEED){
+						JOptionPane.showMessageDialog(null, "添加成功！");
+					}
 				}
 			}
 		});
