@@ -9,6 +9,9 @@ import po.LineItemPO;
 import po.MemberPO;
 import po.ResultMessage;
 import presentation.MemberView;
+import presentationController.Sales.SalesViewController;
+import presentationController.book.BookViewController;
+import presentationController.book.BookViewService;
 
 public class MemberViewController implements MemberViewService{
 	
@@ -43,7 +46,7 @@ public class MemberViewController implements MemberViewService{
 	@Override
 	public void searchType(String type) {
 		// TODO Auto-generated method stub
-		
+		 
 	}
 	
 	public void setViewVisible(){
@@ -79,6 +82,12 @@ public class MemberViewController implements MemberViewService{
 		// TODO Auto-generated method stub
 		LineItemPO lineItemPO=new LineItemPO(bookPO, 1);
 		return memberController.putInCart(lineItemPO);
+	}
+
+	@Override
+	public void enterCart() {
+		// TODO Auto-generated method stub
+		SalesViewController salesViewController=SalesViewController.getInstance();
 	}
 	
 }
