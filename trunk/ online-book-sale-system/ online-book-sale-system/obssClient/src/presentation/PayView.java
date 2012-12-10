@@ -182,8 +182,8 @@ public class PayView extends javax.swing.JFrame {
     	jButton1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if(complete){
-					salesViewController.endSale();
 					setVisible(false);
+					salesViewController.pay();
 				}
 				else
 					JOptionPane.showMessageDialog(null, "请确认优惠类型");
