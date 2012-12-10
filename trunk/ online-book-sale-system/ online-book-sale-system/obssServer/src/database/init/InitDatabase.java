@@ -61,6 +61,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 			objectOutputStream.close();
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 
@@ -168,5 +169,35 @@ public class InitDatabase extends UnicastRemoteObject implements
 		}
 		
 		return true;
+	}
+
+	@Override
+	public ResultMessage changeName(String newName,UserPO userPO,UserRole role) throws RemoteException {
+		// TODO Auto-generated method stub
+		if(role==UserRole.Member){
+			MemberPO memberPO=(MemberPO) userPO;
+			for(int i=0;i<memberPOList.size();i++){
+				if(newName.equals(memberPOList.get(i).getUserName())){
+					return ResultMessage.EXIST;
+				}
+			}
+			
+			memberPO.setUserName(newName);
+			return updateMemberPO(memberPO);
+		}
+		return null;
+	}
+
+	@Override
+	public ResultMessage changePassword(String password, UserPO userPO,
+			UserRole role) throws RemoteException {
+		// TODO Auto-generated method stub
+		if(role==UserRole.Member){
+			MemberPO memberPO=(MemberPO) userPO;
+			memberPO.setUserPassword(password);
+			
+			return updateMemberPO(memberPO);
+		}
+		return null;
 	}
 }
