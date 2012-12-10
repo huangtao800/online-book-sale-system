@@ -5,8 +5,10 @@ import javax.swing.JOptionPane;
 
 import bussinessLogic.controller.UserController;
 
+import po.ResultMessage;
 import po.UserPO;
 import po.UserRole;
+import presentationController.Admin.AdminViewController;
 
 /**
 *
@@ -91,7 +93,7 @@ public class AdminView extends javax.swing.JFrame {
 
        jLabel5.setText("用户类型：");
 
-       jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "顾客", "总经理", "销售经理", "系统管理员" }));
+       jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new UserRole[] { UserRole.Member, UserRole.GeneralManager, UserRole.SalesManager, UserRole.Administrator }));
 
        jTextField3.setText("  ");
 
@@ -172,11 +174,11 @@ public class AdminView extends javax.swing.JFrame {
 
        jButton3.setText("修改");
 
-       jLabel6.setText("用户类型（不可修改）：");
+       jLabel6.setText("用户类型(不可修改)：");
 
-       jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "顾客", "总经理", "销售经理", "系统管理员" }));
+       jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new UserRole[] { UserRole.Member,UserRole.GeneralManager,UserRole.SalesManager,UserRole.Administrator}));
 
-       jLabel7.setText("用户ID：");
+       jLabel7.setText("用户ID(不可修改)：");
 
        jLabel8.setText("用户姓名：");
 
@@ -312,7 +314,7 @@ public class AdminView extends javax.swing.JFrame {
 
        jLabel15.setText("用户密码：");
 
-       jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "顾客", "总经理", "销售经理", "系统管理员" }));
+       jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new UserRole[] { UserRole.Member,UserRole.GeneralManager,UserRole.SalesManager,UserRole.Administrator}));
 
        jButton7.setText("确认删除");
 
@@ -435,10 +437,10 @@ public class AdminView extends javax.swing.JFrame {
 	   if(password1.equals(password2)){
 		   userPassword = password1;
 	   }else{
-		   JOptionPane.showMessageDialog(jFrame, "密码输入不一致，请重新输入!");
+		   JOptionPane.showMessageDialog(jFrame, "");
 	   }
 	   
-	   userController.addUser(userName, userID, userPassword, userRole);
+	   adminViewController.add(userName, userID, userPassword, userRole);
 	   
 	   
    }
@@ -446,21 +448,64 @@ public class AdminView extends javax.swing.JFrame {
    //清空
    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
        // TODO add your handling code here:
+	   
+	   jTextField1.setText("");
+	   jTextField2.setText("");
+	   jTextField3.setText("");
+	   jTextField4.setText("");
    }
    
    //修改，通过用户姓名或者ID查找用户，将相应的信息显示在相应的文本框中
    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
        // TODO add your handling code here:
+	   String id=" ",name=" ";
+	   
+	   if(jRadioButton1.isSelected()){
+		   id = jTextField5.getText().trim();
+	   }else if(jRadioButton2.isSelected()){
+		   name = jTextField5.getText().trim();
+	   }
+	   
+	   UserPO userPO = adminViewController.search(id, name);
+	   
+	   jTextField6.setText(userPO.getUserID());
+	   jTextField7.setText(userPO.getUserName());
+	   jTextField8.setText(userPO.getUserPassword());
+  
+	   
    }
 
    //确认修改
    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
        // TODO add your handling code here:
+	   UserRole userRole = (UserRole)jComboBox2.getSelectedItem();
+	   String  userID = jTextField6.getText().trim();
+	   String userName = jTextField7.getText().trim();
+	   String a = jTextField9.getText().trim();
+	   String b = jTextField10.getText().trim();
+	   String userPassword = " ";
+	   if(a.equals(b)){
+	         userPassword = jTextField9.getText().trim();
+	   }else{
+		   JOptionPane.showMessageDialog(jFrame, "密码输入不一致，请重新输入!");   
+	   }
+	   
+	   ResultMessage result = adminViewController.change(userName, userID, userPassword, userRole);
+	   if(result==ResultMessage.SUCCEED){
+		   JOptionPane.showMessageDialog(jFrame,"修改成功!");
+	   }else{
+		   JOptionPane.showMessageDialog(jFrame,"修改失败，请重试!");
+	   }
    }
    
    //清空
    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
        // TODO add your handling code here:
+	   jTextField6.setText("");
+	   jTextField7.setText("");
+	   jTextField8.setText("");
+	   jTextField9.setText("");
+	   jTextField10.setText("");
    }
 
    //删除，通过用户姓名或者ID查找用户，将相应的信息显示在相应的文本框中
@@ -563,5 +608,5 @@ public class AdminView extends javax.swing.JFrame {
    private javax.swing.JTextField jTextField8;
    private javax.swing.JTextField jTextField9;
    // End of variables declaration
-   private UserController userController;
+   private AdminViewController adminViewController;
 }
