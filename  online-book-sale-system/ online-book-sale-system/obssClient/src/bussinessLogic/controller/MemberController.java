@@ -120,9 +120,9 @@ public class MemberController implements MemberBLService{
 	}
 
 	@Override
-	public double getTotalPrice() {
+	public ArrayList<LineItemPO> getCartList() {
 		// TODO Auto-generated method stub
-		return member.getTotalPrice();
+		return member.getCartList();
 	}
 
 	
