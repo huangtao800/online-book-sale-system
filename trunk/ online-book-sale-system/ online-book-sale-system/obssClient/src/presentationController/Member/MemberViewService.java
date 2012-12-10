@@ -12,4 +12,5 @@ public interface MemberViewService {
 	public ResultMessage changePassword(String password);
 	
 	public ResultMessage putInCart(BookPO bookPO);
+	public void enterCart();	//进入购物车
 }
