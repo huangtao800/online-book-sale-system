@@ -5,18 +5,22 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import presentationController.Sales.PayViewController;
+import javax.swing.JOptionPane;
+
+import presentationController.Sales.SalesViewController;
 
 
 public class PayView extends javax.swing.JFrame {
 	
-    public PayView(PayViewController payViewController) {
-    	this.payViewController = payViewController;
+    public PayView(SalesViewController salesViewController) {
+    	this.salesViewController = salesViewController;
         initComponents();
         addListener();
+
     }
 
-    private void initComponents() {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -160,39 +164,8 @@ public class PayView extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
-
-
-/*    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-    /*    try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PayView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PayView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PayView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PayView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-  /*      java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PayView().setVisible(true);
-            }
-        });
-    } */
+    
+//对外的方法
     public void setCommonPrice(double price){
     	jLabel2.setText(price+"元");
     }
@@ -205,28 +178,33 @@ public class PayView extends javax.swing.JFrame {
     	jComboBox1.updateUI();
     }
     
-    public void addListener(){
+    private void addListener(){
     	jButton1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("提交");
+				if(complete){
+					salesViewController.endSale();
+					setVisible(false);
+				}
+				else
+					JOptionPane.showMessageDialog(null, "请确认优惠类型");
 			}
 		});
     	jButton2.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("撤销");
+				setVisible(false);
 			}
 		});
     	jButton3.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("优惠");
+				complete = true;
 				int i = jComboBox1.getSelectedIndex();
-				double specialPrice = payViewController.getSpecialPrice(i - 1);
+				double specialPrice = salesViewController.getSpecialPrice(i - 1);
 				jLabel5.setText(specialPrice+"元");
 				setVisible(true);
 			}
 		});
     }
-    
     
     // Variables declaration - do not modify
     private javax.swing.JButton jButton1;//提交
@@ -240,6 +218,7 @@ public class PayView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;//优惠后价格
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private PayViewController payViewController;
+    private SalesViewController salesViewController;
+    private boolean complete = false;
     // End of variables declaration
 }
