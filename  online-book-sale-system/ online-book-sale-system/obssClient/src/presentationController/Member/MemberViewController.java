@@ -88,6 +88,7 @@ public class MemberViewController implements MemberViewService{
 	public void enterCart() {
 		// TODO Auto-generated method stub
 		SalesViewController salesViewController=SalesViewController.getInstance();
+		salesViewController.initCartView();
 	}
 	
 }
