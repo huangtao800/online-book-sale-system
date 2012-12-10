@@ -106,6 +106,18 @@ public class MemberController implements MemberBLService{
 		// TODO Auto-generated method stub
 		return member.removeFromCart(index);
 	}
+
+	@Override
+	public ResultMessage deleteEquivalent(EquivalentPO equivalentPO) {
+		// TODO Auto-generated method stub
+		return member.deleteEquivalenet(equivalentPO);
+	}
+
+	@Override
+	public ResultMessage deleteCouponPO(CouponPO couponPO) {
+		// TODO Auto-generated method stub
+		return member.deleteCoupon(couponPO);
+	}
 	
 
 }
