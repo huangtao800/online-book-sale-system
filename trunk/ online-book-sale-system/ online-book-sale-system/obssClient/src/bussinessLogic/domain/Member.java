@@ -204,7 +204,7 @@ public class Member {
 	
 	private int searchCoupon(CouponPO couponPO){
 		for(int i=0;i<memberPO.getCouponList().size();i++){
-			if(couponPO.getID().equals(memberPO.getCouponList().get(i).getID())){
+			if(couponPO.getID()==memberPO.getCouponList().get(i).getID()){
 				return i;
 			}
 		}
@@ -214,10 +214,12 @@ public class Member {
 	
 	private int searchEquivalentIndex(EquivalentPO equivalentPO){
 		for(int i=0;i<memberPO.getEquivalentList().size();i++){
-			if(equivalentPO.getID().equals(memberPO.getEquivalentList().get(i).getID())){
+			if(equivalentPO.getID()==memberPO.getEquivalentList().get(i).getID()){
 				return i;
 			}
 		}
 		return -1;
 	}
+
+
 }
