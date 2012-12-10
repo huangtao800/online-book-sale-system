@@ -221,9 +221,9 @@ public class Member {
 		return -1;
 	}
 
-	public double getTotalPrice() {
+	public ArrayList<LineItemPO> getCartList() {
 		// TODO Auto-generated method stub
-		return memberPO.getCart().getTotalPrice();
+		return memberPO.getCart().getCartList();
 	}
 
 
