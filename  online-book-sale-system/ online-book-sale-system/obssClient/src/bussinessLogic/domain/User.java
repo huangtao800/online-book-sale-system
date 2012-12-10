@@ -37,7 +37,7 @@ public class User {
 	}
 	
 	public ResultMessage deleteUser(String id){
-		UserPO userPO = user.findUser(id);
+		UserPO userPO = user.findUserThroughID(id);
 		
 		if(userPO!=null){
 			if(userPO.getUserRole()==UserRole.Member){
@@ -57,7 +57,7 @@ public class User {
 	}
 	
 	public ResultMessage changeUser(UserPO u,String id){
-        UserPO userPO = user.findUser(id);
+        UserPO userPO = user.findUserThroughID(id);
 		
 		if(userPO!=null){
 			if(userPO.getUserRole()==UserRole.Member){
@@ -80,7 +80,37 @@ public class User {
 		}
 	}
 	
-	private UserPO findUser(String id){
+	public UserPO findUserThroughName(String name){
+		UserPO userPO = null;
+		
+		for(int i=0;i<arrayMember.size();i++){
+			if(name.equals(arrayMember.get(i).getUserName())){
+				userPO = arrayMember.get(i);
+			}
+		}
+		
+		for(int i=0;i<arrayGeneralManager.size();i++){
+			if(name.equals(arrayGeneralManager.get(i).getUserName())){
+				userPO = arrayGeneralManager.get(i);
+			}
+		}
+		
+		for(int i=0;i<arrayAdmin.size();i++){
+			if(name.equals(arrayAdmin.get(i).getUserName())){
+				userPO = arrayAdmin.get(i);
+			}
+		}
+		
+		for(int i=0;i<arraySalesManager.size();i++){
+			if(name.equals(arraySalesManager.get(i).getUserName())){
+				userPO = arraySalesManager.get(i);
+			}
+		}
+		
+		return userPO;
+	}
+	
+	public UserPO findUserThroughID(String id){
 		UserPO userPO = null;
 		
 		for(int i=0;i<arrayMember.size();i++){
