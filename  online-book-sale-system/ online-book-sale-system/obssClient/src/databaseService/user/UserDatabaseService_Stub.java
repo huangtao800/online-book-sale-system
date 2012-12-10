@@ -4,35 +4,31 @@ package databaseService.user;
 import java.rmi.RemoteException;
 
 import po.PO;
+import po.ResultMessage;
 import po.UserPO;
 import po.UserRole;
 
 public class UserDatabaseService_Stub implements UserDatabaseService{
 
 	@Override
-	public void insert(PO po) {
+	public ResultMessage insert(PO po) {
 		// TODO Auto-generated method stub
 		System.out.println("insert succeed");
+		return null;
 	}
 
 	@Override
-	public void delete(PO po) {
+	public ResultMessage delete(PO po) {
 		// TODO Auto-generated method stub
 		System.out.println("Delete succeed");
+		return null;
 	}
 
 	@Override
-	public void update(PO po) {
+	public ResultMessage update(PO po) {
 		// TODO Auto-generated method stub
 		System.out.println("Update succeed");
-	}
-
-	@Override
-	public PO find(String id) {
-		// TODO Auto-generated method stub
-		System.out.println("find succeed");
-		PO po=new UserPO();
-		return po;
+		return null;
 	}
 
 	@Override
