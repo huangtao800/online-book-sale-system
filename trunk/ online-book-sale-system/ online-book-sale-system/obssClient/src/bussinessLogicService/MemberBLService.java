@@ -28,4 +28,6 @@ public interface MemberBLService {
 	public ResultMessage deleteEquivalent(EquivalentPO equivalentPO);	//删除等价券
 	public ResultMessage deleteCouponPO(CouponPO couponPO);		//删除打折券
 	
+	public double getTotalPrice();	//返回购物车总价
+	
 }
