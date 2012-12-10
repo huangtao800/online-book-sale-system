@@ -55,8 +55,7 @@ public class SalesViewController {
 		payView.setVisible(true);
 	}
 //初始化订单
-	public void initOrderView(){
-		OrderVO orderVO = salesController.endSale();
+	public void initOrderView(OrderVO orderVO){
 		orderView = new OrderView(orderVO.getProductList());	
 		orderView.initText(orderVO.getOrderNum(),orderVO.getMemberID(),"暂无",
 				orderVO.getOrderState(),orderVO.getTotalPrice());
@@ -96,9 +95,11 @@ public class SalesViewController {
 		return priceBuffer;
 	}
 	
-	public void endSale(){
-		salesController.purchase(priceBuffer);
-		initOrderView();
+	public void pay(){
+		OrderVO orderVO = salesController.pay(priceBuffer);
+		initOrderView(orderVO);
+		//endsale
+		
 	}
 
 	public ArrayList<LineItemPO> getCartList() {
