@@ -93,12 +93,13 @@ public class SalesController implements SalesBLService{
 		return specialPrice;
 	}
 	
-	public ResultMessage purchase(double price){
+	public OrderVO pay(double price){
 		ArrayList<LineItemPO> cartList = getCartList();
 		OrderPO orderPO = new OrderPO(cartList, memberController.getMemberID(), price);
 		memberController.addOrder(orderPO);
 		sales.addOrder(orderPO);
-		return ResultMessage.SUCCEED;
+		OrderVO orderVO = new OrderVO(orderPO);
+		return orderVO;
 	}
     
 	@Override
@@ -138,13 +139,10 @@ public class SalesController implements SalesBLService{
 		return price;
 	}
 
-	public OrderVO endSale(){
-		OrderPO orderPO = sales.endSale();
-		OrderVO orderVO = new OrderVO(orderPO);
+	public void endSale(){		
 		ArrayList<LineItemPO> salesList = getCartList();
 	    book.updateBook(salesList);
 		sales.updateSale();	
-		return orderVO;
 	}
 
 
