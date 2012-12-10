@@ -62,4 +62,26 @@ public class MemberDatabase extends UnicastRemoteObject implements MemberDatabas
 		
 		return initDatabase.updateUserPO(memberPO, UserRole.Member);
 	}
+
+
+	@Override
+	public ResultMessage cancel(MemberPO memberPO) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ResultMessage changeName(String newName,MemberPO memberPO) throws RemoteException {
+		// TODO Auto-generated method stub
+		return initDatabase.changeName(newName,memberPO,UserRole.Member);
+	}
+
+
+	@Override
+	public ResultMessage changePassword(String password, MemberPO memberPO)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return initDatabase.changePassword(password, memberPO, UserRole.Member);
+	}
 }
