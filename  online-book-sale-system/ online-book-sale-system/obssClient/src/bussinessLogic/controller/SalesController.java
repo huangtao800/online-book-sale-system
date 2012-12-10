@@ -54,8 +54,11 @@ public class SalesController implements SalesBLService{
 	
 	@Override
 	public double getTotalPrice() {
-		return memberController.getTotalPrice();
-		//memberController 调用 memberPO中cart的总价
+		ArrayList<LineItemPO> cartList = getCartList();
+		double totalPrice = 0;
+		for(int i = 0; i < cartList.size(); i ++)
+			totalPrice += cartList.get(i).getSumPrice();
+		return totalPrice;
 	}
 	
 	@Override
@@ -104,9 +107,7 @@ public class SalesController implements SalesBLService{
     
 	@Override
 	public ArrayList<LineItemPO> getCartList() {
-		memberController.getCartList();
-		//只返还list给我，不要cart,对cart的操作交付给memberController
-		return null;
+		return memberController.getCartList();	
 	}
 	
 	
@@ -144,8 +145,5 @@ public class SalesController implements SalesBLService{
 	    book.updateBook(salesList);
 		sales.updateSale();	
 	}
-
-
-
 	
 }
