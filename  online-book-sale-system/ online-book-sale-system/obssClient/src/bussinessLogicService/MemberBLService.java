@@ -23,6 +23,9 @@ public interface MemberBLService {
 	public ResultMessage changePassword(String password);//修改密码
 	
 	public ResultMessage putInCart(LineItemPO lineItemPO);//添加到购物车
-	public ResultMessage removeFromCart(int index);
+	public ResultMessage removeFromCart(int index);	//从购物车中删除
+	
+	public ResultMessage deleteEquivalent(EquivalentPO equivalentPO);	//删除等价券
+	public ResultMessage deleteCouponPO(CouponPO couponPO);		//删除打折券
 	
 }
