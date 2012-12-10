@@ -22,9 +22,6 @@ public class Sales {
 	public void addOrder(OrderPO orderBuffer){
 		this.orderBuffer = orderBuffer;
 	}
-	public OrderPO endSale(){
-		return orderBuffer;
-	}
 
 	public ResultMessage updateSale() {
 		if(orderBuffer == null)
