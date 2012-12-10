@@ -1,9 +1,10 @@
 package po;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 //董仁广
 public class EquivalentPO implements PO {//等价券
-	private String id;
+	private long id;
       private double deno;//面额
       private double min;//使用该面额的等价券所需的最低消费
       private Calendar endDate;
@@ -11,16 +12,17 @@ public class EquivalentPO implements PO {//等价券
       public EquivalentPO(){
     	  
       }
-      public EquivalentPO(String id,double deno,Calendar ed){
+      public EquivalentPO(long id,double deno,double min,Calendar ed){
     	  this.id=id;
     	  this.deno=deno;
+    	  this.min=min;
     	  this.endDate=ed;
       }
       
-      public String getID(){
+      public long getID(){
     	  return id;
       }
-      public void setID(String id){
+      public void setID(long id){
     	  this.id=id;
       }
       
@@ -43,6 +45,15 @@ public class EquivalentPO implements PO {//等价券
       }
       public void setEndDate(Calendar en){
     	  this.endDate =en;
+      }
+      
+      public String toString(){
+    	  return "面额:\t"+deno+"\t"+"有效截止日期:\t"+calendarToString();
+      }
+      
+      private  String calendarToString(){
+    	  SimpleDateFormat  dateFormat=new SimpleDateFormat("yyyy/MM/dd");
+    	  return dateFormat.format(endDate.getTime());
       }
 	
 }
