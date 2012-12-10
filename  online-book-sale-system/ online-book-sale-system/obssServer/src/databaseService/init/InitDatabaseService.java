@@ -20,4 +20,7 @@ public interface InitDatabaseService extends Remote {
 			throws RemoteException; // 更新UserPO的信息
 	
 	public MemberPO registry(String name,String password) throws RemoteException;
+	
+	public ResultMessage changeName(String newName,UserPO userPO,UserRole role) throws RemoteException;
+	public ResultMessage changePassword(String password,UserPO userPO,UserRole role) throws RemoteException;
 }
