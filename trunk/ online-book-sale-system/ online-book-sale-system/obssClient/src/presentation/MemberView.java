@@ -12,6 +12,7 @@ import po.CouponPO;
 import po.EquivalentPO;
 import po.FavorityPO;
 import po.MemberPO;
+import po.OrderPO;
 import po.ResultMessage;
 import presentationController.Member.KeywordVO;
 import presentationController.Member.MemberViewService;
@@ -45,7 +46,7 @@ public class MemberView extends JFrame {
 	private javax.swing.JButton jButton1;
 	private javax.swing.JButton removeFavorityButton;
 	private javax.swing.JButton changeNameButton;
-	private javax.swing.JButton bookDetailButton;
+	private javax.swing.JButton putInCartButton;
 	private javax.swing.JButton keywordSearchButton;
 	private javax.swing.JButton typeSearchButton;
 	private javax.swing.JComboBox typeComboBox;
@@ -92,6 +93,7 @@ public class MemberView extends JFrame {
 	private JButton removeButton;
 	private JButton calcButton;
 	private JTable table_1;
+	private JButton enterCartButton;
 
 	/**
 	 * Launch the application.
@@ -210,11 +212,11 @@ public class MemberView extends JFrame {
 			}
 		});
 
-		bookDetailButton = new javax.swing.JButton();
-		bookDetailButton.addActionListener(new ActionListener() {
+		putInCartButton = new javax.swing.JButton();
+		putInCartButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BookPO bookPO=memberPO.getFavority().getFavorities().get(favorityTable.getSelectedRow());
-				memberViewController.bookDetail(bookPO);
+				memberViewController.putInCart(bookPO);
 			}
 		});
 		jPanel4 = new javax.swing.JPanel();
@@ -248,122 +250,50 @@ public class MemberView extends JFrame {
 
 		javax.swing.GroupLayout gl_jPanel7 = new javax.swing.GroupLayout(
 				jPanel7);
-		gl_jPanel7
-				.setHorizontalGroup(gl_jPanel7
-						.createParallelGroup(Alignment.TRAILING)
-						.addGroup(
-								gl_jPanel7
-										.createSequentialGroup()
-										.addGap(49)
-										.addGroup(
-												gl_jPanel7
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																bookNameLabel)
-														.addComponent(
-																publisherLabel))
-										.addGap(31)
-										.addGroup(
-												gl_jPanel7
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																publisherField,
-																193, 193, 193)
-														.addComponent(
-																bookNameField,
-																193, 193, 193))
-										.addPreferredGap(
-												ComponentPlacement.RELATED, 75,
-												Short.MAX_VALUE)
-										.addGroup(
-												gl_jPanel7
-														.createParallelGroup(
-																Alignment.TRAILING)
-														.addComponent(
-																publisherYearLabel,
-																GroupLayout.PREFERRED_SIZE,
-																69,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																authorLabel))
-										.addGap(18)
-										.addGroup(
-												gl_jPanel7
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																authorField,
-																GroupLayout.PREFERRED_SIZE,
-																178,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																publisherYearField,
-																GroupLayout.PREFERRED_SIZE,
-																180,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(44))
-						.addGroup(
-								gl_jPanel7
-										.createSequentialGroup()
-										.addContainerGap(330, Short.MAX_VALUE)
-										.addComponent(keywordSearchButton,
-												GroupLayout.PREFERRED_SIZE,
-												110, GroupLayout.PREFERRED_SIZE)
-										.addGap(267)));
-		gl_jPanel7
-				.setVerticalGroup(gl_jPanel7
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								gl_jPanel7
-										.createSequentialGroup()
-										.addGap(24)
-										.addGroup(
-												gl_jPanel7
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																authorLabel)
-														.addComponent(
-																authorField,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																bookNameLabel)
-														.addComponent(
-																bookNameField,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(37)
-										.addGroup(
-												gl_jPanel7
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																publisherYearLabel,
-																GroupLayout.PREFERRED_SIZE,
-																21,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																publisherYearField,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																publisherLabel)
-														.addComponent(
-																publisherField,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(18)
-										.addComponent(keywordSearchButton,
-												GroupLayout.PREFERRED_SIZE, 31,
-												GroupLayout.PREFERRED_SIZE)
-										.addContainerGap(20, Short.MAX_VALUE)));
+		gl_jPanel7.setHorizontalGroup(
+			gl_jPanel7.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_jPanel7.createSequentialGroup()
+					.addGap(49)
+					.addGroup(gl_jPanel7.createParallelGroup(Alignment.LEADING)
+						.addComponent(bookNameLabel)
+						.addComponent(publisherLabel))
+					.addGap(31)
+					.addGroup(gl_jPanel7.createParallelGroup(Alignment.LEADING)
+						.addComponent(publisherField, 193, 193, 193)
+						.addComponent(bookNameField, 193, 193, 193))
+					.addPreferredGap(ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+					.addGroup(gl_jPanel7.createParallelGroup(Alignment.TRAILING)
+						.addComponent(publisherYearLabel, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+						.addComponent(authorLabel))
+					.addGap(18)
+					.addGroup(gl_jPanel7.createParallelGroup(Alignment.LEADING)
+						.addComponent(authorField, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+						.addComponent(publisherYearField, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE))
+					.addGap(44))
+				.addGroup(gl_jPanel7.createSequentialGroup()
+					.addContainerGap(381, Short.MAX_VALUE)
+					.addComponent(keywordSearchButton, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+					.addGap(324))
+		);
+		gl_jPanel7.setVerticalGroup(
+			gl_jPanel7.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_jPanel7.createSequentialGroup()
+					.addGap(24)
+					.addGroup(gl_jPanel7.createParallelGroup(Alignment.BASELINE)
+						.addComponent(authorLabel)
+						.addComponent(authorField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(bookNameLabel)
+						.addComponent(bookNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(37)
+					.addGroup(gl_jPanel7.createParallelGroup(Alignment.BASELINE)
+						.addComponent(publisherYearLabel, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+						.addComponent(publisherYearField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(publisherLabel)
+						.addComponent(publisherField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(keywordSearchButton, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(20, Short.MAX_VALUE))
+		);
 		jPanel7.setLayout(gl_jPanel7);
 
 		jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(
@@ -411,26 +341,36 @@ public class MemberView extends JFrame {
 																GroupLayout.PREFERRED_SIZE))
 										.addContainerGap(89, Short.MAX_VALUE)));
 		jPanel8.setLayout(gl_jPanel8);
+		
+		enterCartButton = new JButton("\u8FDB\u5165\u8D2D\u7269\u8F66");
+		enterCartButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 
 		javax.swing.GroupLayout gl_jPanel6 = new javax.swing.GroupLayout(
 				jPanel6);
-		gl_jPanel6.setHorizontalGroup(gl_jPanel6
-				.createParallelGroup(Alignment.LEADING)
-				.addComponent(jPanel7, Alignment.TRAILING,
-						GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
-				.addComponent(jPanel8, GroupLayout.DEFAULT_SIZE,
-						GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-		gl_jPanel6.setVerticalGroup(gl_jPanel6.createParallelGroup(
-				Alignment.LEADING).addGroup(
-				gl_jPanel6
-						.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(jPanel7, GroupLayout.PREFERRED_SIZE,
-								GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(18)
-						.addComponent(jPanel8, GroupLayout.DEFAULT_SIZE, 171,
-								Short.MAX_VALUE)));
+		gl_jPanel6.setHorizontalGroup(
+			gl_jPanel6.createParallelGroup(Alignment.LEADING)
+				.addComponent(jPanel7, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
+				.addComponent(jPanel8, GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
+				.addGroup(gl_jPanel6.createSequentialGroup()
+					.addGap(332)
+					.addComponent(enterCartButton, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(385, Short.MAX_VALUE))
+		);
+		gl_jPanel6.setVerticalGroup(
+			gl_jPanel6.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_jPanel6.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(jPanel7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(jPanel8, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+					.addGap(27)
+					.addComponent(enterCartButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(32, Short.MAX_VALUE))
+		);
 		jPanel6.setLayout(gl_jPanel6);
 
 		jTabbedPane1.addTab("   首页   ", jPanel6);
@@ -620,8 +560,8 @@ public class MemberView extends JFrame {
 		removeFavorityButton.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
 		removeFavorityButton.setText("移除");
 
-		bookDetailButton.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
-		bookDetailButton.setText("查看详情");
+		putInCartButton.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
+		putInCartButton.setText("\u653E\u5165\u8D2D\u7269\u8F66");
 
 		javax.swing.GroupLayout gl_jPanel3 = new javax.swing.GroupLayout(
 				jPanel3);
@@ -638,7 +578,7 @@ public class MemberView extends JFrame {
 												GroupLayout.PREFERRED_SIZE,
 												125, GroupLayout.PREFERRED_SIZE)
 										.addGap(47)
-										.addComponent(bookDetailButton,
+										.addComponent(putInCartButton,
 												GroupLayout.PREFERRED_SIZE,
 												130, GroupLayout.PREFERRED_SIZE)
 										.addGap(167)));
@@ -662,7 +602,7 @@ public class MemberView extends JFrame {
 																37,
 																GroupLayout.PREFERRED_SIZE)
 														.addComponent(
-																bookDetailButton,
+																putInCartButton,
 																GroupLayout.DEFAULT_SIZE,
 																37,
 																Short.MAX_VALUE))
@@ -907,7 +847,7 @@ public class MemberView extends JFrame {
 				{null, null, null, null},
 			},
 			new String[] {
-				"\u8BA2\u5355\u7F16\u53F7", "Title 2", "Title 3", "Title 4"
+				"\u8BA2\u5355\u7F16\u53F7", "\u8BA2\u5355\u603B\u4EF7", "\u8BA2\u5355\u72B6\u6001", "\u4E0B\u5355\u65E5\u671F"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
@@ -1027,13 +967,13 @@ public class MemberView extends JFrame {
 			// TODO Auto-generated method stub
 			switch (columnIndex) {
 			case 0:
-				return equivalentList.get(columnIndex).getID();
+				return equivalentList.get(rowIndex).getID();
 			case 1:
-				return equivalentList.get(columnIndex).getDeno();
+				return equivalentList.get(rowIndex).getDeno();
 			case 2:
-				return equivalentList.get(columnIndex).getEndDate();
+				return equivalentList.get(rowIndex).getEndDate();
 			default:
-				return equivalentList.get(columnIndex).getMin();
+				return equivalentList.get(rowIndex).getMin();
 			}
 		}
 		
@@ -1071,11 +1011,11 @@ public class MemberView extends JFrame {
 			// TODO Auto-generated method stub
 			switch (columnIndex) {
 			case 0:
-				return couponList.get(columnIndex).getID();
+				return couponList.get(rowIndex).getID();
 			case 1:
-				return couponList.get(columnIndex).getRate();
+				return couponList.get(rowIndex).getRate();
 			default:
-				return couponList.get(columnIndex).getEndDate();
+				return couponList.get(rowIndex).getEndDate();
 			}
 		}
 		
@@ -1088,6 +1028,50 @@ public class MemberView extends JFrame {
 				return "打折率";
 			default:
 				return "截止日期";
+			}
+		}
+	}
+	
+	class OrderTableModel extends AbstractTableModel{
+		ArrayList<OrderPO> orderList=memberPO.getOrderList();
+		@Override
+		public int getRowCount() {
+			// TODO Auto-generated method stub
+			return orderList.size();
+		}
+
+		@Override
+		public int getColumnCount() {
+			// TODO Auto-generated method stub
+			return 4;
+		}
+
+		@Override
+		public Object getValueAt(int rowIndex, int columnIndex) {
+			// TODO Auto-generated method stub
+			switch (columnIndex) {
+			case 0:
+				return orderList.get(rowIndex).getOrderNum();
+			case 1:
+				return orderList.get(rowIndex).getTotalPrice();
+			case 2:
+				return orderList.get(rowIndex).getOrderState();
+			default:
+				return orderList.get(rowIndex).getDate().toString();//返回日期
+			}
+		}
+		
+		public String getColumnName(int c) {
+
+			switch (c) {
+			case 0:
+				return "订单编号";
+			case 1:
+				return "订单总价";
+			case 2:
+				return "订单状态";
+			default:
+				return "下单日期";
 			}
 		}
 	}
