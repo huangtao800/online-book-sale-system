@@ -1,6 +1,5 @@
 package presentationController.Member;
 
-import javax.sound.sampled.Line;
 
 import bussinessLogic.controller.MemberController;
 import bussinessLogicService.MemberBLService;
@@ -10,8 +9,7 @@ import po.MemberPO;
 import po.ResultMessage;
 import presentation.MemberView;
 import presentationController.Sales.SalesViewController;
-import presentationController.book.BookViewController;
-import presentationController.book.BookViewService;
+
 
 public class MemberViewController implements MemberViewService{
 	
