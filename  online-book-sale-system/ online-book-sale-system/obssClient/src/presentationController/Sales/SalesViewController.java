@@ -12,7 +12,7 @@ import presentation.PayView;
 import bussinessLogic.controller.SalesController;
 import bussinessLogicService.SalesBLService;
 
-public class SalesViewController {
+public class SalesViewController implements SalesViewService{
 	private static SalesViewController uniqueInstance;
 	private static SalesBLService salesController;
 	private PayView payView;
