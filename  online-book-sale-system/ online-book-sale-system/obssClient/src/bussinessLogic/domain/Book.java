@@ -12,11 +12,11 @@ import po.ResultMessage;
 
 public class Book{
 	private BookPO bookPO;
-	private BookDatabaseService bookDatabaseService;
+	private BookDatabaseService bookDatabase;
 	
 	public Book(){
 		try {
-			bookDatabaseService = (BookDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/BookDatabase");
+			bookDatabase = (BookDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/BookDatabase");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -26,7 +26,7 @@ public class Book{
 	public ArrayList<BookPO>  findByKey(String name,String author,String press,String publishDate){    
 		   ArrayList<BookPO> bookArray = new ArrayList<BookPO>();
 		   try {
-			    bookArray = bookDatabaseService.findByKey(name,author,press,publishDate);
+			    bookArray = bookDatabase.findByKey(name,author,press,publishDate);
 		   } catch (RemoteException e) {
 			   e.printStackTrace();
 		   }
@@ -36,7 +36,7 @@ public class Book{
 	public ArrayList<BookPO> findByType(String type){      //选择图书类别，返回相应的图书列表
 		   ArrayList<BookPO> bookArray = new ArrayList<BookPO>();
 		   try {
-			    bookArray = bookDatabaseService.findByType(type);
+			    bookArray = bookDatabase.findByType(type);
 		   } catch (RemoteException e) {
 			   e.printStackTrace();
 		   }
@@ -46,9 +46,8 @@ public class Book{
 	public BookPO findByISBN(String isbn){      //输入图书ISBN，返回相应的图书列表
 		   BookPO bookPO = new BookPO();
 		   try {
-			    bookPO = bookDatabaseService.findThroughISBN(isbn);
+			    bookPO = bookDatabase.findThroughISBN(isbn);
 		   } catch (RemoteException e) {
-			// TODO: handle exception
 			   e.printStackTrace();
 		   }
 		   return bookPO;
@@ -59,9 +58,9 @@ public class Book{
 	public ResultMessage addBook(BookPO bookPO){
 			
 			try {
-				return bookDatabaseService.insert(this.bookPO);
+				return bookDatabase.insert(this.bookPO);
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
+			
 				e.printStackTrace();
 				return ResultMessage.FAILED;
 			}
@@ -70,12 +69,12 @@ public class Book{
 	
 	public ResultMessage deleteBook(String isbn){
 		try {
-			BookPO bookPO = bookDatabaseService.findThroughISBN(isbn);
+			BookPO bookPO = bookDatabase.findThroughISBN(isbn);
 			if(bookPO==null){
 				return ResultMessage.FAILED;
 			}
 			
-			return bookDatabaseService.delete(bookPO);
+			return bookDatabase.delete(bookPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,16 +84,12 @@ public class Book{
 	
 	public ResultMessage modifyBook(BookPO b,String isbn){
  	    try {
-			BookPO bookPO = bookDatabaseService.findThroughISBN(isbn);
+			BookPO bookPO = bookDatabase.findThroughISBN(isbn);
+			
 			if(bookPO==null){
 				return ResultMessage.FAILED;
-			}
-			
-			ResultMessage result = bookDatabaseService.delete(bookPO);
-			if(result==ResultMessage.SUCCEED){
-				return bookDatabaseService.insert(b);
 			}else{
-				return ResultMessage.FAILED;
+				return bookDatabase.update(bookPO);
 			}
 				
 		} catch (RemoteException e) {
@@ -108,17 +103,18 @@ public class Book{
 	public ResultMessage updateBook(ArrayList<LineItemPO> salesList){
 		  ArrayList<ResultMessage> resultList = new ArrayList<ResultMessage>();
 		  ResultMessage result = ResultMessage.SUCCEED;
+		  
 		  for(int i=0;i<salesList.size();i++){
 			  bookPO = salesList.get(i).getBook();
 			  bookPO.setNumOfBook(bookPO.getNumOfBook()-salesList.get(i).getNumber());
 			  
 			  try {
-				  resultList.add( bookDatabaseService.update(bookPO));
-			   } catch (RemoteException e) {
+				  resultList.add( bookDatabase.update(bookPO));
+			  } catch (RemoteException e) {
 				 
 				  e.printStackTrace();
 				  resultList.add( ResultMessage.FAILED);	//RMI出现异常
-			   }
+			  }
 		  }
 		   
 		  for(int j=0;j<resultList.size();j++){
