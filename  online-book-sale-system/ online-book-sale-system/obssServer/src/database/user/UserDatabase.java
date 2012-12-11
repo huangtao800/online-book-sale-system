@@ -10,14 +10,33 @@ import po.ResultMessage;
 import po.UserPO;
 import po.UserRole;
 
+import database.init.InitDatabase;
+import database.member.MemberDatabase;
+import databaseService.init.InitDatabaseService;
 import databaseService.user.UserDatabaseService;
 
 public class UserDatabase extends UnicastRemoteObject implements UserDatabaseService{
+	private UserDatabaseService userDatabase;
+	private static UserDatabase instance=null;
 
-	public UserDatabase() throws RemoteException {
-		// TODO Auto-generated constructor stub
+	protected UserDatabase() throws RemoteException{
+
 	}
 
+	
+	public static UserDatabase getInstance(){
+		if(instance==null){
+			try {
+				instance=new UserDatabase();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return instance;
+	}
+	
 	@Override
 	public UserPO isExisit(String userName, String password, UserRole userRole) {
 		// TODO Auto-generated method stub
