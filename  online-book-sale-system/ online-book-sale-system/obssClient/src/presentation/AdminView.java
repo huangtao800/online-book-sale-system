@@ -437,11 +437,13 @@ public class AdminView extends javax.swing.JFrame {
 	   if(password1.equals(password2)){
 		   userPassword = password1;
 	   }else{
-		   JOptionPane.showMessageDialog(jFrame, "");
+		   JOptionPane.showMessageDialog(null, "密码输入不一致，请重新输入!");
 	   }
 	   
-	   adminViewController.add(userName, userID, userPassword, userRole);
-	   
+	   ResultMessage resultMessage = adminViewController.add(userName, userID, userPassword, userRole);
+	   if(resultMessage==ResultMessage.SUCCEED){
+		   JOptionPane.showMessageDialog(null, " ");
+	   }
 	   
    }
  
@@ -487,14 +489,14 @@ public class AdminView extends javax.swing.JFrame {
 	   if(a.equals(b)){
 	         userPassword = jTextField9.getText().trim();
 	   }else{
-		   JOptionPane.showMessageDialog(jFrame, "密码输入不一致，请重新输入!");   
+		   JOptionPane.showMessageDialog(null, "密码输入不一致，请重新输入!");   
 	   }
 	   
 	   ResultMessage result = adminViewController.change(userName, userID, userPassword, userRole);
 	   if(result==ResultMessage.SUCCEED){
-		   JOptionPane.showMessageDialog(jFrame,"修改成功!");
+		   JOptionPane.showMessageDialog(null,"修改成功!");
 	   }else{
-		   JOptionPane.showMessageDialog(jFrame,"修改失败，请重试!");
+		   JOptionPane.showMessageDialog(null,"修改失败，请重试!");
 	   }
    }
    
@@ -558,7 +560,6 @@ public class AdminView extends javax.swing.JFrame {
        });
    }
    // Variables declaration - do not modify
-   private javax.swing.JFrame jFrame;
    private javax.swing.JButton jButton1;
    private javax.swing.JButton jButton2;
    private javax.swing.JButton jButton3;
