@@ -30,5 +30,6 @@ public interface MemberBLService {
 	public ResultMessage deleteCouponPO(CouponPO couponPO);		//删除打折券
 	
 	public ArrayList<LineItemPO> getCartList();	//返回购物车
+	public ResultMessage changeAddress(String newAddress);//修改地址
 	
 }
