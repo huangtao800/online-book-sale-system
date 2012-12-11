@@ -1,22 +1,24 @@
 package bussinessLogic.controller;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import po.*;
 import bussinessLogic.domain.Book;
 import bussinessLogicService.*;
 
-public class BookController implements BookBLService,Serializable{
-	private static BookController bookController;
-    Book book;
+public class BookController implements BookBLService{
+	private static BookController uniqueInstance;
+    private Book book;
+    
+    private BookController(){
+    	book = new Book();
+    }
 	
 	public static BookController getInstance(){
-		if(bookController==null){
-			bookController = new BookController();
-			return bookController;
-		}else{
-			return bookController;
+		if(uniqueInstance==null){
+			uniqueInstance = new BookController();
 		}
+		
+		return uniqueInstance;
 	}
 
     //通过关键词或者图书类型来查找图书
