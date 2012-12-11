@@ -231,5 +231,17 @@ public class Member {
 		return memberPO.getAddress();
 	}
 
+	public ResultMessage changeAddress(String newAddress) {
+		// TODO Auto-generated method stub
+		memberPO.setAddress(newAddress);
+		try {
+			return memberDatabase.update(memberPO);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+	}
+
 
 }
