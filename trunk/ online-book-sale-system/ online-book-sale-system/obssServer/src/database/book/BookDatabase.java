@@ -1,8 +1,10 @@
 package database.book;
 
+import java.awt.print.Book;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 import po.BookPO;
 import po.PO;
@@ -57,6 +59,24 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		BookPO bookPO=(BookPO) po;
 		
 		return null;
+	}
+	
+	public BookPO findThroughISBN(String isbn) {
+		BookPO bookPO = new BookPO();
+		return bookPO;
+	}
+	
+	//根据关键字返回相应的图书列表
+	public ArrayList<BookPO>  findByKey(String name,String author,String press,
+		     String publishDate) throws RemoteException{ 
+		ArrayList<BookPO> arrayList = new ArrayList<BookPO>();
+		return arrayList;
+	}
+		
+	//通过图书类型查找返回相应的图书列表
+	public ArrayList<BookPO> findByType(String type)  {
+		ArrayList<BookPO> arrayList = new ArrayList<BookPO>();
+		return arrayList;
 	}
 	
 }
