@@ -1,5 +1,6 @@
 package database.book;
 
+import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -11,13 +12,14 @@ import database.init.InitDatabase;
 import databaseService.book.BookDatabaseService;
 import databaseService.init.InitDatabaseService;
 
+//´úÀí
 public class BookDatabase extends UnicastRemoteObject implements BookDatabaseService{
-	private InitDatabaseService initDatabase;
+	private BookDatabaseService bookDatabaseService;
 	private static BookDatabase instance=null;
 
 	protected BookDatabase() throws RemoteException{
 		super();
-		initDatabase=InitDatabase.getInstance();
+		bookDatabaseService=BookDatabase.getInstance();
 	}
 
 	
@@ -36,25 +38,26 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 
 
 	@Override
-	public ResultMessage insert(PO po) throws RemoteException {
+	public ResultMessage insert(PO po){
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	@Override
-	public ResultMessage delete(PO po) throws RemoteException {
+	public ResultMessage delete(PO po) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	@Override
-	public ResultMessage update(PO po) throws RemoteException {
+	public ResultMessage update(PO po) {
 		// TODO Auto-generated method stub
 		BookPO bookPO=(BookPO) po;
 		
 		return null;
 	}
+	
 }
 
