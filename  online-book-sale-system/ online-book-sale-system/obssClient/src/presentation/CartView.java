@@ -13,6 +13,7 @@ import javax.swing.table.AbstractTableModel;
 import po.LineItemPO;
 import po.ResultMessage;
 import presentationController.Sales.SalesViewController;
+import presentationController.Sales.SalesViewService;
 
 
 public class CartView extends javax.swing.JFrame {
@@ -37,34 +38,6 @@ public class CartView extends javax.swing.JFrame {
         
         jTable1.setModel(new CartTableModel());
 
-        /*jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "ISBN", "书名", "作者", "出版社", "年份", "数量", "单价", "总价"
-            }
-        ));
-        */
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("微软雅黑", 0, 18)); // NOI18N
@@ -267,7 +240,7 @@ public class CartView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;//总价格
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private SalesViewController salesViewController;
+    private SalesViewService salesViewController;
     private int index;
     // End of variables declaration
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import presentationController.Sales.SalesViewController;
+import presentationController.Sales.SalesViewService;
 
 
 public class PayView extends javax.swing.JFrame {
@@ -219,7 +220,7 @@ public class PayView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;//优惠后价格
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private SalesViewController salesViewController;
+    private SalesViewService salesViewController;
     private boolean complete = false;
     // End of variables declaration
 }
