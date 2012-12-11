@@ -141,7 +141,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 	}
 
 	@Override
-	public MemberPO registry(String name, String password)
+	public MemberPO registry(String name, String password,String address)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		if(!isNameValid(name)){
@@ -150,7 +150,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 		
 		int newId=generateNewID();
 		String id=""+newId;
-		MemberPO newMemberPO=new MemberPO(id, name, password);
+		MemberPO newMemberPO=new MemberPO(id, name, password,address);
 		memberPOList.add(newMemberPO);
 		
 		saveMember();
