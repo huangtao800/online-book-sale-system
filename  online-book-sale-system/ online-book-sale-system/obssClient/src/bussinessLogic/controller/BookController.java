@@ -10,7 +10,7 @@ public class BookController implements BookBLService{
     private Book book;
     
     private BookController(){
-    	book = new Book();
+    	
     }
 	
 	public static BookController getInstance(){
