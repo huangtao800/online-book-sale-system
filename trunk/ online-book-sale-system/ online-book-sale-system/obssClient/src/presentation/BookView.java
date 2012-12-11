@@ -592,8 +592,6 @@ public class BookView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            	KeywordVO keywordVO = BookViewController.getInstance().getKeywordVO();
-            	String type = BookViewController.getInstance().getBookType();
                 new BookView().setVisible(true);
             }
         });
