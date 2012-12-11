@@ -2,6 +2,8 @@ package presentation;
 //ÓÈ¼Ñç÷
 import po.BookPO;
 import po.LineItemPO;
+import presentationController.Member.KeywordVO;
+import presentationController.book.BookViewController;
 import bussinessLogic.controller.BookBLService_Stub;
 import bussinessLogic.controller.MemberController;
 import bussinessLogicService.BookBLService;
@@ -590,6 +592,8 @@ public class BookView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+            	KeywordVO keywordVO = BookViewController.getInstance().getKeywordVO();
+            	String type = BookViewController.getInstance().getBookType();
                 new BookView().setVisible(true);
             }
         });
