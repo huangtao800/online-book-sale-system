@@ -131,6 +131,12 @@ public class MemberController implements MemberBLService{
 		return member.getAddress();
 	}
 
+	@Override
+	public ResultMessage changeAddress(String newAddress) {
+		// TODO Auto-generated method stub
+		return member.changeAddress(newAddress);
+	}
+
 	
 
 }
