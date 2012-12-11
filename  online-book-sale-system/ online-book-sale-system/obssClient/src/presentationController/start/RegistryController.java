@@ -40,11 +40,11 @@ public class RegistryController implements RegistryBLService {
 	}
 
 	@Override
-	public void registry(String name, String password) {
+	public void registry(String name, String password,String address) {
 		// TODO Auto-generated method stub
 		MemberPO newMemberPO = null;
 		try {
-			newMemberPO = initDatabase.registry(name, password);
+			newMemberPO = initDatabase.registry(name, password,address);
 
 			if (newMemberPO == null) {
 				JOptionPane.showMessageDialog(null, "抱歉！该用户名已被使用！");
