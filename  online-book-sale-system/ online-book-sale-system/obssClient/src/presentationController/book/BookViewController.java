@@ -11,22 +11,24 @@ import presentationController.Member.KeywordVO;
 import presentationController.Member.MemberViewController;
 import presentationController.Member.MemberViewService;
 
-public class BookViewController {
+public class BookViewController implements BookViewService{
 	 private BookView bookView;
-	 private static BookViewController uniqueInstance;
+	 private static BookViewService uniqueInstance;
 	 private static BookBLService bookController;
 	 private KeywordVO keywordVO;
 	 private String type;
 	 
 	 
-	 private BookViewController (){
+	 private BookViewController (KeywordVO keywordVO,String type){
+		 bookView = new BookView();
+		 bookView.setVisible(true);
 		 bookController = BookController.getInstance();
 		
 	 }
 	 
-	 public static BookViewController getInstance(){
-		 if(bookController==null){
-			 uniqueInstance = new BookViewController();
+	 public static BookViewService getInstance(KeywordVO keywordVO,String type){
+		 if(uniqueInstance==null){
+			 uniqueInstance = new BookViewController(keywordVO, type) ;
 		 }
 		 
 		 return uniqueInstance;
