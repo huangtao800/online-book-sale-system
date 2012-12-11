@@ -7,11 +7,13 @@ import bussinessLogicService.UserBLService;
 import po.ResultMessage;
 import po.UserPO;
 import po.UserRole;
+import presentation.AdminView;
 import presentationController.book.BookViewController;
 
 public class AdminViewController {
 	 private static AdminViewController uniqueInstance;
 	 private static UserBLService userController;
+	 private AdminView adminView;
 
 	 private AdminViewController (){
 		 userController = UserController.getInstance();
@@ -27,7 +29,8 @@ public class AdminViewController {
 
 	
 	 public void initAdminView(){
-		 
+		 adminView = new AdminView();
+		 adminView.setVisible(true);
 	 }
 	 
      public ResultMessage add(String userName,String userID,String userPassword,UserRole userRole){
