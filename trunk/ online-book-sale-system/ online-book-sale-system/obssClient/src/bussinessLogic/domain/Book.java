@@ -76,7 +76,6 @@ public class Book{
 			
 			return bookDatabase.delete(bookPO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ResultMessage.FAILED;	//RMI≥ˆœ÷“Ï≥£
 		}
