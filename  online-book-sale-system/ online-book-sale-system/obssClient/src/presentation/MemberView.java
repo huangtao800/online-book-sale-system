@@ -43,7 +43,7 @@ public class MemberView extends JFrame {
 
 	private MemberPO memberPO;
 
-	private javax.swing.JButton jButton1;
+	private javax.swing.JButton changeAddressButton;
 	private javax.swing.JButton removeFavorityButton;
 	private javax.swing.JButton changeNameButton;
 	private javax.swing.JButton putInCartButton;
@@ -51,7 +51,7 @@ public class MemberView extends JFrame {
 	private javax.swing.JButton typeSearchButton;
 	private javax.swing.JComboBox typeComboBox;
 	private javax.swing.JLabel jLabel1;
-	private javax.swing.JLabel jLabel10;
+	private javax.swing.JLabel addressLabel;
 	private javax.swing.JLabel bookNameLabel;
 	private javax.swing.JLabel authorLabel;
 	private javax.swing.JLabel publisherLabel;
@@ -194,8 +194,18 @@ public class MemberView extends JFrame {
 		});
 		
 		jLabel1 = new javax.swing.JLabel();
-		jLabel10 = new javax.swing.JLabel();
-		jButton1 = new javax.swing.JButton();
+		addressLabel = new javax.swing.JLabel();
+		changeAddressButton = new javax.swing.JButton();
+		changeAddressButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String newAddress=JOptionPane.showInputDialog("请输入新的地址:");
+				ResultMessage result=memberViewController.changeAddress(newAddress);
+				
+				if(result==ResultMessage.SUCCEED){
+					JOptionPane.showMessageDialog(null, "修改成功！");
+				}
+			}
+		});
 		jPanel3 = new javax.swing.JPanel();
 		jScrollPane1 = new javax.swing.JScrollPane();
 		favorityTable = new javax.swing.JTable();
@@ -425,10 +435,11 @@ public class MemberView extends JFrame {
 		jLabel1.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
 		jLabel1.setText("常用地址:");
 
-		jLabel10.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
-		jLabel10.setText("XXX");
+		addressLabel.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+//		addressLabel.setText("XXX");
+		addressLabel.setText(memberPO.getAddress());
 
-		jButton1.setText("修改地址");
+		changeAddressButton.setText("修改地址");
 		
 		JButton changePasswordButton = new JButton("\u4FEE\u6539\u5BC6\u7801");
 		changePasswordButton.addActionListener(new ActionListener() {
@@ -463,7 +474,7 @@ public class MemberView extends JFrame {
 						.addGroup(gl_jPanel2.createSequentialGroup()
 							.addComponent(jLabel1)
 							.addGap(18)
-							.addComponent(jLabel10, GroupLayout.PREFERRED_SIZE, 477, GroupLayout.PREFERRED_SIZE)
+							.addComponent(addressLabel, GroupLayout.PREFERRED_SIZE, 477, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())
 						.addGroup(gl_jPanel2.createSequentialGroup()
 							.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING, false)
@@ -490,7 +501,7 @@ public class MemberView extends JFrame {
 							.addGap(171))))
 				.addGroup(gl_jPanel2.createSequentialGroup()
 					.addContainerGap(645, Short.MAX_VALUE)
-					.addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
+					.addComponent(changeAddressButton, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
 					.addGap(73))
 		);
 		gl_jPanel2.setVerticalGroup(
@@ -516,9 +527,9 @@ public class MemberView extends JFrame {
 					.addGap(29)
 					.addGroup(gl_jPanel2.createParallelGroup(Alignment.BASELINE)
 						.addComponent(jLabel1)
-						.addComponent(jLabel10, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
+						.addComponent(addressLabel, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
 					.addGap(32)
-					.addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(changeAddressButton, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 					.addGap(98))
 		);
 		jPanel2.setLayout(gl_jPanel2);
