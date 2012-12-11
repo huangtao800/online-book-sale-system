@@ -13,8 +13,6 @@ import po.ResultMessage;
 public class Book{
 	private BookPO bookPO;
 	private BookDatabaseService bookDatabaseService;
-	Book book;
-	private ArrayList<BookPO> array = new ArrayList<BookPO>();
 	
 	public Book(){
 		try {
@@ -25,18 +23,34 @@ public class Book{
 	}
 	
     //销售界面查询图书和图书的促销信息
-	public ArrayList<BookPO>  findByKey(String name){      //根据关键字返回相应的图书列表
+	public ArrayList<BookPO>  findByKey(String name,String author,String press,String publishDate){    
 		   ArrayList<BookPO> bookArray = new ArrayList<BookPO>();
+		   try {
+			    bookArray = bookDatabaseService.findByKey(name,author,press,publishDate);
+		   } catch (RemoteException e) {
+			   e.printStackTrace();
+		   }
 		   return bookArray;
 	}
 	
 	public ArrayList<BookPO> findByType(String type){      //选择图书类别，返回相应的图书列表
 		   ArrayList<BookPO> bookArray = new ArrayList<BookPO>();
+		   try {
+			    bookArray = bookDatabaseService.findByType(type);
+		   } catch (RemoteException e) {
+			   e.printStackTrace();
+		   }
 		   return bookArray;
 	}
 	
-	public BookPO findByISBN(String ISBN){      //输入图书ISBN，返回相应的图书列表
+	public BookPO findByISBN(String isbn){      //输入图书ISBN，返回相应的图书列表
 		   BookPO bookPO = new BookPO();
+		   try {
+			    bookPO = bookDatabaseService.findThroughISBN(isbn);
+		   } catch (RemoteException e) {
+			// TODO: handle exception
+			   e.printStackTrace();
+		   }
 		   return bookPO;
 	}
 
@@ -55,13 +69,12 @@ public class Book{
 	}
 	
 	public ResultMessage deleteBook(String isbn){
-		BookPO bookPO = book.findBook(isbn);
-		
-		if(bookPO==null){
-			return ResultMessage.FAILED;
-		}
-		
 		try {
+			BookPO bookPO = bookDatabaseService.findThroughISBN(isbn);
+			if(bookPO==null){
+				return ResultMessage.FAILED;
+			}
+			
 			return bookDatabaseService.delete(bookPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -71,13 +84,12 @@ public class Book{
 	}
 	
 	public ResultMessage modifyBook(BookPO b,String isbn){
-        BookPO bookPO = book.findBook(isbn);
-		
-        if(bookPO==null){
-			return ResultMessage.FAILED;
-		}
-		
-		try {
+ 	    try {
+			BookPO bookPO = bookDatabaseService.findThroughISBN(isbn);
+			if(bookPO==null){
+				return ResultMessage.FAILED;
+			}
+			
 			ResultMessage result = bookDatabaseService.delete(bookPO);
 			if(result==ResultMessage.SUCCEED){
 				return bookDatabaseService.insert(b);
@@ -92,18 +104,7 @@ public class Book{
 		}
 	}
 	
-	private BookPO findBook(String isbn){
-		BookPO bookPO = null;
-		
-		for(int i=0;i<array.size();i++){
-			if(isbn.equals(array.get(i).getISBN())){
-				bookPO = array.get(i);
-			}
-		}
-		
-		return bookPO;
-	}
-	
+
 	public ResultMessage updateBook(ArrayList<LineItemPO> salesList){
 		  ArrayList<ResultMessage> resultList = new ArrayList<ResultMessage>();
 		  ResultMessage result = ResultMessage.SUCCEED;
