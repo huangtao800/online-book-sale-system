@@ -60,7 +60,7 @@ public class StartView extends JFrame {
 	 */
 	public StartView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 477, 380);
+		setBounds(100, 100, 499, 425);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -83,23 +83,23 @@ public class StartView extends JFrame {
 		
 		final JRadioButton memberButton = new JRadioButton("\u987E\u5BA2");
 		buttonGroup.add(memberButton);
-		memberButton.setBounds(49, 183, 54, 23);
+		memberButton.setBounds(49, 183, 77, 23);
 		memberButton.setSelected(true);
 		contentPane.add(memberButton);
 		
 		final JRadioButton saleManagerButton = new JRadioButton("\u9500\u552E\u7ECF\u7406");
 		buttonGroup.add(saleManagerButton);
-		saleManagerButton.setBounds(117, 183, 78, 23);
+		saleManagerButton.setBounds(128, 183, 93, 23);
 		contentPane.add(saleManagerButton);
 		
 		final JRadioButton managerButton = new JRadioButton("\u603B\u7ECF\u7406");
 		buttonGroup.add(managerButton);
-		managerButton.setBounds(204, 183, 67, 23);
+		managerButton.setBounds(237, 183, 87, 23);
 		contentPane.add(managerButton);
 		
 		JRadioButton radioButton_3 = new JRadioButton("\u7BA1\u7406\u5458");
 		buttonGroup.add(radioButton_3);
-		radioButton_3.setBounds(293, 184, 72, 21);
+		radioButton_3.setBounds(348, 184, 87, 22);
 		contentPane.add(radioButton_3);
 		
 		JButton logButton = new JButton("\u767B\u5F55");
@@ -127,7 +127,7 @@ public class StartView extends JFrame {
 			}
 		});
 		
-		logButton.setBounds(103, 234, 117, 33);
+		logButton.setBounds(104, 275, 117, 33);
 		contentPane.add(logButton);
 		
 		JButton cancelButton = new JButton("\u9000\u51FA");
@@ -139,7 +139,7 @@ public class StartView extends JFrame {
 			}
 		});
 		
-		cancelButton.setBounds(254, 234, 111, 33);
+		cancelButton.setBounds(254, 275, 111, 33);
 		contentPane.add(cancelButton);
 		
 		passwordField = new JPasswordField();
@@ -152,7 +152,7 @@ public class StartView extends JFrame {
 				startController.startRegistry();
 			}
 		});
-		registryButton.setBounds(342, 78, 93, 33);
+		registryButton.setBounds(342, 78, 111, 33);
 		contentPane.add(registryButton);
 		
 		
