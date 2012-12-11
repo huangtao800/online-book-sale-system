@@ -8,25 +8,28 @@ import bussinessLogic.domain.User;
 import bussinessLogicService.UserBLService;
 
 public class UserController implements UserBLService, Serializable {
-	private static UserController userController;
+	private static UserController uniqueInstance;
 	private User user;
+	
+	private UserController(){
+		user = new User();
+	}
 
 	public static UserController getInstance(){
-		if(userController==null){
-			userController=new UserController();
-			return userController;
-		}else{
-			return userController;
+		if(uniqueInstance==null){
+			uniqueInstance = new UserController();
 		}
+
+		return uniqueInstance;
 	}
 
 	
 
 	// 对用户的调整(增加，删除，修改)
-	public void addUser(String userName, String id, String password,
+	public ResultMessage addUser(String userName, String id, String password,
 			UserRole userRole) {
 		UserPO userPO = new UserPO(userName,id,password,userRole);
-		user.addUser(userPO,userRole);
+		return user.addUser(userPO,userRole);
 		
 	}
 
@@ -52,11 +55,7 @@ public class UserController implements UserBLService, Serializable {
 	}
 
 	public ResultMessage findChangingUser(String id) {
-		if (id == "11111") {
-			return ResultMessage.SUCCEED;
-		} else {
-			return ResultMessage.FAILED;
-		}
+		
 	}
 
 	
