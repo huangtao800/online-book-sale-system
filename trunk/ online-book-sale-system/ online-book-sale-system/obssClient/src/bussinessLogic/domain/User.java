@@ -6,23 +6,29 @@ import java.io.Serializable;
 import java.rmi.Naming;
 import java.util.ArrayList;
 
+import databaseService.sales.OrderDatabaseService;
 import databaseService.user.UserDatabaseService;
 import po.*;
 
 //尤佳琪
 public class User {
-	ArrayList<MemberPO> arrayMember = new ArrayList<MemberPO>();
-	ArrayList<AdministratorPO>  arrayAdmin = new ArrayList<AdministratorPO>();
-	ArrayList<GeneralManagerPO> arrayGeneralManager = new ArrayList<GeneralManagerPO>();
-	ArrayList<SalesManagerPO> arraySalesManager = new ArrayList<SalesManagerPO>();
-	User user;
+	private ArrayList<MemberPO> arrayMember = new ArrayList<MemberPO>();
+	private ArrayList<AdministratorPO>  arrayAdmin = new ArrayList<AdministratorPO>();
+	private ArrayList<GeneralManagerPO> arrayGeneralManager = new ArrayList<GeneralManagerPO>();
+	private ArrayList<SalesManagerPO> arraySalesManager = new ArrayList<SalesManagerPO>();
+	private User user;
+	private UserDatabaseService userDatabaseService;
 	
 	public User(){
-		
+		try {
+			userDatabaseService = (UserDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/UserDatabase");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	//系统管理员管理用户（增，删，改）
-	public void addUser(UserPO userPO,UserRole userRole){
+	public ResultMessage addUser(UserPO userPO,UserRole userRole){
 		if(userRole==UserRole.Member){
 			arrayMember.add((MemberPO)userPO);
 		}else if(userRole==UserRole.Administrator){
@@ -33,7 +39,7 @@ public class User {
 			arraySalesManager.add((SalesManagerPO)userPO);
 		}
 		
-		
+		return ResultMessage.SUCCEED;
 	}
 	
 	public ResultMessage deleteUser(String id){
