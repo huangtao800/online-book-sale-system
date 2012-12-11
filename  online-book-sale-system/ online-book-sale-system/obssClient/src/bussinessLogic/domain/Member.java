@@ -226,5 +226,10 @@ public class Member {
 		return memberPO.getCart().getCartList();
 	}
 
+	public String getAddress() {
+		// TODO Auto-generated method stub
+		return memberPO.getAddress();
+	}
+
 
 }
