@@ -24,6 +24,4 @@ public interface InitDatabaseService extends Remote {
 	public MemberPO registry(String name,String password,String address) throws RemoteException;
 	
 
-    public ArrayList<PresentPO> getPresentPOList();//∂≠» π„
-    public ResultMessage sendPresent();
 }
