@@ -50,6 +50,7 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 	
 	
 	@SuppressWarnings("unchecked")
+	
 	//根据UserRole打开相应序列化文件
 	private ArrayList<UserPO> readFileByRole(UserRole userRole){
 		FileInputStream inputStream;
@@ -104,9 +105,20 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 	}
 
 	@Override
+	//修改用户信息
 	public ResultMessage update(PO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public UserPO findUserThroughID(String id) {
+		UserPO userPO = new UserPO();
+		return userPO;
+	}
+	
+	public UserPO findUserThroughName(String name){
+		UserPO userPO = new UserPO();
+		return userPO;
 	}
 	
 }
