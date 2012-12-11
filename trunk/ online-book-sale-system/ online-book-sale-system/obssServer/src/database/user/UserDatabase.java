@@ -1,15 +1,20 @@
 package database.user;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+
+import po.BookPO;
 import po.PO;
 import po.ResultMessage;
 import po.UserPO;
 import po.UserRole;
 
+import database.book.BookDatabase;
 import database.init.InitDatabase;
 import database.member.MemberDatabase;
 import databaseService.init.InitDatabaseService;
@@ -94,30 +99,77 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 
 	@Override
 	public ResultMessage insert(PO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		UserPO userPO = (UserPO)po;
+		UserRole userRole = userPO.getUserRole();
+		
+		try {
+			FileOutputStream fos;
+			if(userRole==UserRole.Member){
+				fos=new FileOutputStream("member.ser");
+			}else if(userRole==UserRole.GeneralManager){
+				fos=new FileOutputStream("generalManager.ser");
+			}else if(userRole==UserRole.SalesManager){
+				fos=new FileOutputStream("salesManager.ser");
+			}else{
+				fos=new FileOutputStream("admin.ser");
+			}
+			
+            ObjectOutputStream oos = new ObjectOutputStream(fos);                       
+            oos.writeObject(po);
+            oos.close();                        
+            return ResultMessage.SUCCEED;
+        } catch (Exception ex) { 
+      	    ex.printStackTrace();   
+      	    return ResultMessage.FAILED;
+        }
+		
 	}
 
-	@Override
+	
 	public ResultMessage delete(PO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	//修改用户信息
 	public ResultMessage update(PO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		UserPO userPO = (UserPO)po;
+		UserRole userRole = userPO.getUserRole();
+		ArrayList<UserPO> userList = UserDatabase.getInstance().readFileByRole(userRole);
+		ResultMessage resultMessage = ResultMessage.FAILED;
+		
+		for(int i=0;i<userList.size();i++){
+			//用户ID和用户类型不可修改，只有用户密码和用户名可以修改
+			if(userList.get(i).getUserID().equals(userPO.getUserID())){
+				userList.get(i).setUserName(userPO.getUserName());
+				userList.get(i).setUserPassword(userPO.getUserPassword());
+				
+				resultMessage = ResultMessage.SUCCEED;
+			}
+		}
+		
+		return resultMessage;
 	}
 	
-	public UserPO findUserThroughID(String id) {
-		UserPO userPO = new UserPO();
+	public UserPO findUserThroughID(String id,UserRole userRole) {
+		ArrayList<UserPO> userList = UserDatabase.getInstance().readFileByRole(userRole);
+		UserPO userPO = null;
+		for(int i=0;i<userList.size();i++){
+			if(userList.get(i).getUserID().equals(id)){
+				userPO = userList.get(i);
+			}
+		}
 		return userPO;
 	}
 	
-	public UserPO findUserThroughName(String name){
-		UserPO userPO = new UserPO();
+	public UserPO findUserThroughName(String name,UserRole userRole){
+		ArrayList<UserPO> userList = UserDatabase.getInstance().readFileByRole(userRole);
+		UserPO userPO = null;
+		for(int i=0;i<userList.size();i++){
+			if(userList.get(i).getUserName().equals(name)){
+				userPO = userList.get(i);
+			}
+		}
 		return userPO;
 	}
 	
