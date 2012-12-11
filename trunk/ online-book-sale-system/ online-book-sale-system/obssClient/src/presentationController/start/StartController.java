@@ -26,7 +26,7 @@ public class StartController implements StartBLService {
 	private RegistryBLService registryController;
 
 	// 构造函数应传入Model
-	public StartController() {
+	public StartController() { 
 		try {
 			initDatabase=(InitDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/InitDatabase");
 		} catch (Exception e) {
