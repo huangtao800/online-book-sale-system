@@ -102,7 +102,7 @@ public class MemberView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MemberView frame = new MemberView(null,new MemberPO(null, null, null));
+					MemberView frame = new MemberView(null,new MemberPO(null, null, null,null));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
