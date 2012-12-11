@@ -10,12 +10,13 @@ public class MemberPO extends UserPO{
 	private ArrayList<CouponPO> couponList;
 	private ArrayList<EquivalentPO> equivalentList;
 	private Cart cart;
+	private String address;
 	private int points;
 	private VIPRank rank;
 
-	public MemberPO(String id,String name,String password){
+	public MemberPO(String id,String name,String password,String address){
 		super(id, name, password, UserRole.Member);
-		
+		setAddress(address);
 		this.orderList=new ArrayList<OrderPO>();
 		favority=new FavorityPO();
 		couponList=new ArrayList<CouponPO>();
@@ -90,6 +91,16 @@ public class MemberPO extends UserPO{
 
 	public void setFavority(FavorityPO favority) {
 		this.favority = favority;
+	}
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
 	}	
 	
 }
