@@ -166,8 +166,8 @@ public class MemberView extends JFrame {
 		typeSearchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String type = (String) typeComboBox.getSelectedItem();
-
-				System.out.println(type);
+				memberViewController.searchType(type);
+//				System.out.println(type);
 			}
 		});
 		jPanel1 = new javax.swing.JPanel();
