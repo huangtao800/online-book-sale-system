@@ -7,6 +7,7 @@ import po.*;
 public interface MemberBLService {
 	public String getMemberName();//获得会员名称
 	public String getMemberID();//获得会员ID
+	public String getAddress();//获得地址
 	
 	public ResultMessage addFavorities(BookPO bookPO);//添加图书进入收藏夹
 	public ResultMessage removeFavorities(BookPO bookPO);//从收藏夹中移除
