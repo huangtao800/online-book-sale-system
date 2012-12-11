@@ -49,19 +49,44 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 	@Override
 	public ResultMessage insert(PO po){
 		// TODO Auto-generated method stub
-		  try {
-			  FileOutputStream fos = new FileOutputStream("book.ser");
-              ObjectOutputStream oos = new ObjectOutputStream(fos);                       
-              oos.writeObject(po);
-              oos.close();                        
-              return ResultMessage.SUCCEED;
-          } catch (Exception ex) { 
-        	  ex.printStackTrace();   
-        	  return ResultMessage.FAILED;
-          }
+		int index = BookDatabase.getInstance().isExist(po);
+		BookPO bookPO = (BookPO)po;
+		ArrayList<BookPO> bookList = BookDatabase.getInstance().readFile();
+		if(index!=-1){
+			for(int i=0;i<bookList.size();i++){
+	        	if(bookPO.getISBN().equals(bookList.get(i).getISBN())){
+	        		bookList.get(i).setNumOfBook(bookList.get(i).getNumOfBook()+bookPO.getNumOfBook());
+	        	}
+	        }
+			
+			return ResultMessage.SUCCEED;
+		}else{
+			   try {
+				  FileOutputStream fos = new FileOutputStream("book.ser");
+	              ObjectOutputStream oos = new ObjectOutputStream(fos);                       
+	              oos.writeObject(po);
+	              oos.close();                        
+	              return ResultMessage.SUCCEED;
+	           } catch (Exception ex) { 
+	        	  ex.printStackTrace();   
+	        	  return ResultMessage.FAILED;
+	           }
+		}
 
 	}
 
+	private int isExist(PO po){
+		BookPO bookPO = (BookPO)po;
+        ArrayList<BookPO> bookList = BookDatabase.getInstance().readFile();
+        int index = -1;
+        for(int i=0;i<bookList.size();i++){
+        	if(bookPO.getISBN().equals(bookList.get(i).getISBN())){
+        		index = i;
+        	}
+        }
+        
+        return index;
+	}
 
 	@Override
 	public ResultMessage delete(PO po) {
@@ -89,6 +114,7 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
         
         ResultMessage resultMessage = ResultMessage.FAILED;
         for(int i=0;i<bookList.size();i++){
+        	//bookISBN不可以修改
         	if(bookPO.getISBN().equals(bookList.get(i).getISBN())){
         		bookList.get(i).setAuthor(bookPO.getAuthor());
         		bookList.get(i).setBookName(bookPO.getBookName());
