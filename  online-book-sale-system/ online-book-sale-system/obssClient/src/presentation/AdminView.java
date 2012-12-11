@@ -14,6 +14,7 @@ import presentationController.Admin.AdminViewController;
 *
 * @author 尤佳琪
 */
+
 public class AdminView extends javax.swing.JFrame {
 
    /**
@@ -31,7 +32,7 @@ public class AdminView extends javax.swing.JFrame {
    @SuppressWarnings("unchecked")
    // <editor-fold defaultstate="collapsed" desc="Generated Code">
    private void initComponents() {
-       
+
        jTabbedPane1 = new javax.swing.JTabbedPane();
        jPanel1 = new javax.swing.JPanel();
        jLabel1 = new javax.swing.JLabel();
@@ -47,8 +48,6 @@ public class AdminView extends javax.swing.JFrame {
        jButton1 = new javax.swing.JButton();
        jButton2 = new javax.swing.JButton();
        jPanel2 = new javax.swing.JPanel();
-       jRadioButton1 = new javax.swing.JRadioButton();
-       jRadioButton2 = new javax.swing.JRadioButton();
        jTextField5 = new javax.swing.JTextField();
        jButton3 = new javax.swing.JButton();
        jLabel6 = new javax.swing.JLabel();
@@ -65,6 +64,10 @@ public class AdminView extends javax.swing.JFrame {
        jTextField10 = new javax.swing.JTextField();
        jButton4 = new javax.swing.JButton();
        jButton5 = new javax.swing.JButton();
+       jRadioButton5 = new javax.swing.JRadioButton();
+       jRadioButton6 = new javax.swing.JRadioButton();
+       jButton9 = new javax.swing.JButton();
+       jSeparator1 = new javax.swing.JSeparator();
        jPanel3 = new javax.swing.JPanel();
        jRadioButton4 = new javax.swing.JRadioButton();
        jRadioButton3 = new javax.swing.JRadioButton();
@@ -80,6 +83,8 @@ public class AdminView extends javax.swing.JFrame {
        jComboBox3 = new javax.swing.JComboBox();
        jButton7 = new javax.swing.JButton();
        jButton8 = new javax.swing.JButton();
+       jButton10 = new javax.swing.JButton();
+       jSeparator2 = new javax.swing.JSeparator();
 
        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,7 +98,7 @@ public class AdminView extends javax.swing.JFrame {
 
        jLabel5.setText("用户类型：");
 
-       jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new UserRole[] { UserRole.Member, UserRole.GeneralManager, UserRole.SalesManager, UserRole.Administrator }));
+       jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "顾客", "总经理", "销售经理", "系统管理员" }));
 
        jTextField3.setText("  ");
 
@@ -114,26 +119,26 @@ public class AdminView extends javax.swing.JFrame {
        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
        jPanel1.setLayout(jPanel1Layout);
        jPanel1Layout.setHorizontalGroup(
-               jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(jPanel1Layout.createSequentialGroup()
-                   .addGap(52, 52, 52)
-                   .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                       .addComponent(jLabel5)
-                       .addComponent(jLabel1)
-                       .addComponent(jLabel2)
-                       .addComponent(jLabel3)
-                       .addComponent(jLabel4)
-                       .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                   .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                       .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                       .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                       .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                       .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                       .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                       .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                   .addGap(143, 143, 143))
-           );
+           jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+           .addGroup(jPanel1Layout.createSequentialGroup()
+               .addGap(52, 52, 52)
+               .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                   .addComponent(jLabel5)
+                   .addComponent(jLabel1)
+                   .addComponent(jLabel2)
+                   .addComponent(jLabel3)
+                   .addComponent(jLabel4)
+                   .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+               .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                   .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                   .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                   .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                   .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                   .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                   .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addGap(0, 98, Short.MAX_VALUE))
+       );
        jPanel1Layout.setVerticalGroup(
            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
            .addGroup(jPanel1Layout.createSequentialGroup()
@@ -153,32 +158,33 @@ public class AdminView extends javax.swing.JFrame {
                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                    .addComponent(jLabel3)
                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGap(24, 24, 24)
-               .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addGap(21, 21, 21)
+               .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                    .addComponent(jLabel4)
                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGap(80, 80, 80)
+               .addGap(83, 83, 83)
                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                    .addComponent(jButton1)
                    .addComponent(jButton2))
-               .addContainerGap(150, Short.MAX_VALUE))
+               .addContainerGap(163, Short.MAX_VALUE))
        );
 
        jTabbedPane1.addTab("增加用户", jPanel1);
 
-       jRadioButton1.setText("用户ID");
-
-       jRadioButton2.setText("用户姓名");
-
        jTextField5.setText(" ");
 
-       jButton3.setText("修改");
+       jButton3.setText("查询原有信息");
+       jButton3.addActionListener(new java.awt.event.ActionListener() {
+           public void actionPerformed(java.awt.event.ActionEvent evt) {
+               jButton3ActionPerformed(evt);
+           }
+       });
 
-       jLabel6.setText("用户类型(不可修改)：");
+       jLabel6.setText("用户类型（不可修改）：");
 
-       jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new UserRole[] { UserRole.Member,UserRole.GeneralManager,UserRole.SalesManager,UserRole.Administrator}));
+       jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "顾客", "总经理", "销售经理", "系统管理员" }));
 
-       jLabel7.setText("用户ID(不可修改)：");
+       jLabel7.setText("用户ID：");
 
        jLabel8.setText("用户姓名：");
 
@@ -194,26 +200,29 @@ public class AdminView extends javax.swing.JFrame {
 
        jTextField8.setText("    ");
 
-       
-   
-       jButton3.setText("修改");
-       jButton3.addActionListener(new java.awt.event.ActionListener() {
+       jTextField9.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
-               jButton3ActionPerformed(evt);
+               jTextField9ActionPerformed(evt);
            }
        });
-       
+
        jButton4.setText("确认修改");
-       jButton4.addActionListener(new java.awt.event.ActionListener() {
-           public void actionPerformed(java.awt.event.ActionEvent evt) {
-               jButton4ActionPerformed(evt);
-           }
-       });
-       
+
        jButton5.setText("清空");
        jButton5.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
                jButton5ActionPerformed(evt);
+           }
+       });
+
+       jRadioButton5.setText("用户ID");
+
+       jRadioButton6.setText("用户姓名");
+
+       jButton9.setText("重新查找");
+       jButton9.addActionListener(new java.awt.event.ActionListener() {
+           public void actionPerformed(java.awt.event.ActionEvent evt) {
+               jButton9ActionPerformed(evt);
            }
        });
 
@@ -222,80 +231,90 @@ public class AdminView extends javax.swing.JFrame {
        jPanel2Layout.setHorizontalGroup(
            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
            .addGroup(jPanel2Layout.createSequentialGroup()
+               .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addGap(0, 0, Short.MAX_VALUE))
+           .addGroup(jPanel2Layout.createSequentialGroup()
                .addGap(59, 59, 59)
-               .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                   .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                       .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                       .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                       .addComponent(jRadioButton1)
-                       .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                       .addComponent(jRadioButton2)
-                       .addGap(56, 56, 56)
-                       .addComponent(jButton3))
+               .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                    .addGroup(jPanel2Layout.createSequentialGroup()
-                       .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                       .addComponent(jLabel8)
+                       .addGap(0, 0, Short.MAX_VALUE))
+                   .addGroup(jPanel2Layout.createSequentialGroup()
+                       .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addComponent(jLabel6)
+                           .addComponent(jLabel9)
+                           .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(jLabel10)
+                           .addComponent(jLabel11)
+                           .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(jLabel7))
+                       .addGap(66, 66, 66)
+                       .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                            .addGroup(jPanel2Layout.createSequentialGroup()
-                               .addGap(0, 0, Short.MAX_VALUE)
-                               .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                               .addGap(39, 39, 39))
-                           .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                               .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                   .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                                   .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                                   .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
-                                   .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
-                                   .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
-                                   .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING))
-                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                       .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                           .addComponent(jComboBox2, 0, 229, Short.MAX_VALUE)
-                           .addComponent(jTextField6)
-                           .addComponent(jTextField7)
-                           .addComponent(jTextField8)
-                           .addComponent(jTextField9)
-                           .addComponent(jTextField10)
-                           .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-               .addContainerGap(114, Short.MAX_VALUE))
+                               .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                               .addGap(0, 0, Short.MAX_VALUE))
+                           .addGroup(jPanel2Layout.createSequentialGroup()
+                               .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                   .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                   .addGroup(jPanel2Layout.createSequentialGroup()
+                                       .addComponent(jRadioButton5)
+                                       .addGap(57, 57, 57)
+                                       .addComponent(jRadioButton6))
+                                   .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                   .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                   .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                   .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                   .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                   .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                               .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
        );
        jPanel2Layout.setVerticalGroup(
            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
            .addGroup(jPanel2Layout.createSequentialGroup()
-               .addGap(30, 30, 30)
-               .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                   .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                       .addComponent(jRadioButton1)
-                       .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                       .addComponent(jRadioButton2))
-                   .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING))
-               .addGap(10, 10, 10)
+               .addContainerGap()
                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                   .addComponent(jRadioButton5)
+                   .addComponent(jRadioButton6)
+                   .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addGap(18, 18, 18)
+               .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                    .addComponent(jLabel6)
                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGap(27, 27, 27)
+               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                   .addComponent(jLabel7)
-                   .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGap(24, 24, 24)
+                   .addComponent(jButton3)
+                   .addComponent(jButton9))
+               .addGap(21, 21, 21)
+               .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                   .addGroup(jPanel2Layout.createSequentialGroup()
+                       .addGap(23, 23, 23)
+                       .addComponent(jLabel7))
+                   .addGroup(jPanel2Layout.createSequentialGroup()
+                       .addGap(20, 20, 20)
+                       .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+               .addGap(30, 30, 30)
                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                    .addComponent(jLabel8)
                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGap(24, 24, 24)
+               .addGap(30, 30, 30)
                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                    .addComponent(jLabel9)
                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGap(24, 24, 24)
+               .addGap(30, 30, 30)
                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                    .addComponent(jLabel10)
                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGap(24, 24, 24)
+               .addGap(30, 30, 30)
                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                    .addComponent(jLabel11)
                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGap(48, 48, 48)
+               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                    .addComponent(jButton4)
                    .addComponent(jButton5))
-               .addContainerGap(91, Short.MAX_VALUE))
+               .addGap(43, 43, 43))
        );
 
        jTabbedPane1.addTab("修改用户", jPanel2);
@@ -303,8 +322,18 @@ public class AdminView extends javax.swing.JFrame {
        jRadioButton4.setText("用户ID");
 
        jRadioButton3.setText("用户姓名");
+       jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+           public void actionPerformed(java.awt.event.ActionEvent evt) {
+               jRadioButton3ActionPerformed(evt);
+           }
+       });
 
-       jButton6.setText("删除");
+       jButton6.setText("查找原有信息");
+       jButton6.addActionListener(new java.awt.event.ActionListener() {
+           public void actionPerformed(java.awt.event.ActionEvent evt) {
+               jButton6ActionPerformed(evt);
+           }
+       });
 
        jLabel12.setText("用户类型：");
 
@@ -314,30 +343,26 @@ public class AdminView extends javax.swing.JFrame {
 
        jLabel15.setText("用户密码：");
 
-       jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new UserRole[] { UserRole.Member,UserRole.GeneralManager,UserRole.SalesManager,UserRole.Administrator}));
+       jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "顾客", "总经理", "销售经理", "系统管理员" }));
 
-       jButton7.setText("确认删除");
-
-       jButton8.setText("取消删除");
-       
-       jButton6.setText("删除");
-       jButton6.addActionListener(new java.awt.event.ActionListener() {
-           public void actionPerformed(java.awt.event.ActionEvent evt) {
-               jButton6ActionPerformed(evt);
-           }
-       });
-       
        jButton7.setText("确认删除");
        jButton7.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
                jButton7ActionPerformed(evt);
            }
        });
-       
+
        jButton8.setText("取消删除");
        jButton8.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
                jButton8ActionPerformed(evt);
+           }
+       });
+
+       jButton10.setText("重新查找");
+       jButton10.addActionListener(new java.awt.event.ActionListener() {
+           public void actionPerformed(java.awt.event.ActionEvent evt) {
+               jButton10ActionPerformed(evt);
            }
        });
 
@@ -349,64 +374,70 @@ public class AdminView extends javax.swing.JFrame {
                .addGap(49, 49, 49)
                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                    .addGroup(jPanel3Layout.createSequentialGroup()
-                       .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                       .addGap(24, 24, 24)
-                       .addComponent(jRadioButton4)
-                       .addGap(18, 18, 18)
-                       .addComponent(jRadioButton3)
-                       .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
-                       .addComponent(jButton6)
-                       .addGap(43, 43, 43))
-                   .addGroup(jPanel3Layout.createSequentialGroup()
-                       .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                           .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                               .addComponent(jLabel12)
-                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                               .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                           .addGroup(jPanel3Layout.createSequentialGroup()
-                               .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                   .addComponent(jLabel14)
-                                   .addComponent(jLabel15)
-                                   .addComponent(jLabel13)
-                                   .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                               .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                       .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(jLabel12)
+                           .addComponent(jLabel14)
+                           .addComponent(jLabel13)
+                           .addComponent(jLabel15)
+                           .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                       .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                       .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                   .addComponent(jRadioButton4)
+                                   .addGap(59, 59, 59)
+                                   .addComponent(jRadioButton3))
+                               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                   .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
                                    .addComponent(jTextField12)
                                    .addComponent(jTextField13)
-                                   .addComponent(jTextField14)
-                                   .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))))
-                       .addGap(180, 180, 180))))
+                                   .addComponent(jTextField14)))
+                           .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                       .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                   .addGroup(jPanel3Layout.createSequentialGroup()
+                       .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                       .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+           .addGroup(jPanel3Layout.createSequentialGroup()
+               .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addGap(0, 18, Short.MAX_VALUE))
        );
        jPanel3Layout.setVerticalGroup(
            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
            .addGroup(jPanel3Layout.createSequentialGroup()
                .addContainerGap()
                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                   .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                    .addComponent(jRadioButton4)
-                   .addComponent(jRadioButton3)
-                   .addComponent(jButton6)
-                   .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGap(40, 40, 40)
+                   .addComponent(jRadioButton3))
+               .addGap(18, 18, 18)
                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                    .addComponent(jLabel12)
                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGap(24, 24, 24)
+               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                   .addComponent(jLabel14)
-                   .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGap(24, 24, 24)
+                   .addComponent(jButton6)
+                   .addComponent(jButton10))
+               .addGap(14, 14, 14)
+               .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addGap(21, 21, 21)
                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                   .addComponent(jLabel13)
-                   .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGap(24, 24, 24)
+                   .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                   .addComponent(jLabel14))
+               .addGap(30, 30, 30)
                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                   .addComponent(jLabel15)
-                   .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGap(62, 62, 62)
+                   .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                   .addComponent(jLabel13))
+               .addGap(30, 30, 30)
+               .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                   .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                   .addComponent(jLabel15))
+               .addGap(35, 35, 35)
                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                    .addComponent(jButton7)
                    .addComponent(jButton8))
-               .addContainerGap(163, Short.MAX_VALUE))
+               .addContainerGap(153, Short.MAX_VALUE))
        );
 
        jTabbedPane1.addTab("删除用户", jPanel3);
@@ -425,102 +456,46 @@ public class AdminView extends javax.swing.JFrame {
        pack();
    }// </editor-fold>
 
-   //确认添加
-   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
        // TODO add your handling code here:
-	   UserRole userRole = (UserRole)jComboBox1.getSelectedItem();
-	   String userID = jTextField1.getText().trim();
-	   String userName = jTextField2.getText().trim();
-	   String password1 = jTextField3.getText().trim();
-	   String password2 = jTextField4.getText().trim();
-	   String userPassword = " ";
-	   if(password1.equals(password2)){
-		   userPassword = password1;
-	   }else{
-		   JOptionPane.showMessageDialog(null, "密码输入不一致，请重新输入!");
-	   }
-	   
-	   ResultMessage resultMessage = adminViewController.add(userName, userID, userPassword, userRole);
-	   if(resultMessage==ResultMessage.SUCCEED){
-		   JOptionPane.showMessageDialog(null, " ");
-	   }
-	   
-   }
- 
-   //清空
-   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+   }                                        
+
+   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
        // TODO add your handling code here:
-	   
-	   jTextField1.setText("");
-	   jTextField2.setText("");
-	   jTextField3.setText("");
-	   jTextField4.setText("");
+   }                                        
+
+   private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {
+       // TODO add your handling code here:
    }
-   
-   //修改，通过用户姓名或者ID查找用户，将相应的信息显示在相应的文本框中
+
+   private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+       // TODO add your handling code here:
+   }
+
    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
        // TODO add your handling code here:
-	   String id=" ",name=" ";
-	   
-	   if(jRadioButton1.isSelected()){
-		   id = jTextField5.getText().trim();
-	   }else if(jRadioButton2.isSelected()){
-		   name = jTextField5.getText().trim();
-	   }
-	   
-	   UserPO userPO = adminViewController.search(id, name);
-	   
-	   jTextField6.setText(userPO.getUserID());
-	   jTextField7.setText(userPO.getUserName());
-	   jTextField8.setText(userPO.getUserPassword());
-  
-	   
    }
 
-   //确认修改
-   private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
+   private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {
        // TODO add your handling code here:
-	   UserRole userRole = (UserRole)jComboBox2.getSelectedItem();
-	   String  userID = jTextField6.getText().trim();
-	   String userName = jTextField7.getText().trim();
-	   String a = jTextField9.getText().trim();
-	   String b = jTextField10.getText().trim();
-	   String userPassword = " ";
-	   if(a.equals(b)){
-	         userPassword = jTextField9.getText().trim();
-	   }else{
-		   JOptionPane.showMessageDialog(null, "密码输入不一致，请重新输入!");   
-	   }
-	   
-	   ResultMessage result = adminViewController.change(userName, userID, userPassword, userRole);
-	   if(result==ResultMessage.SUCCEED){
-		   JOptionPane.showMessageDialog(null,"修改成功!");
-	   }else{
-		   JOptionPane.showMessageDialog(null,"修改失败，请重试!");
-	   }
    }
-   
-   //清空
+
    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
        // TODO add your handling code here:
-	   jTextField6.setText("");
-	   jTextField7.setText("");
-	   jTextField8.setText("");
-	   jTextField9.setText("");
-	   jTextField10.setText("");
    }
 
-   //删除，通过用户姓名或者ID查找用户，将相应的信息显示在相应的文本框中
    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
        // TODO add your handling code here:
    }
-   
-   //确认删除
+
+   private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {
+       // TODO add your handling code here:
+   }
+
    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {
        // TODO add your handling code here:
    }
 
-   //取消删除
    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {
        // TODO add your handling code here:
    }
@@ -561,6 +536,7 @@ public class AdminView extends javax.swing.JFrame {
    }
    // Variables declaration - do not modify
    private javax.swing.JButton jButton1;
+   private javax.swing.JButton jButton10;
    private javax.swing.JButton jButton2;
    private javax.swing.JButton jButton3;
    private javax.swing.JButton jButton4;
@@ -568,6 +544,7 @@ public class AdminView extends javax.swing.JFrame {
    private javax.swing.JButton jButton6;
    private javax.swing.JButton jButton7;
    private javax.swing.JButton jButton8;
+   private javax.swing.JButton jButton9;
    private javax.swing.JComboBox jComboBox1;
    private javax.swing.JComboBox jComboBox2;
    private javax.swing.JComboBox jComboBox3;
@@ -589,10 +566,12 @@ public class AdminView extends javax.swing.JFrame {
    private javax.swing.JPanel jPanel1;
    private javax.swing.JPanel jPanel2;
    private javax.swing.JPanel jPanel3;
-   private javax.swing.JRadioButton jRadioButton1;
-   private javax.swing.JRadioButton jRadioButton2;
    private javax.swing.JRadioButton jRadioButton3;
    private javax.swing.JRadioButton jRadioButton4;
+   private javax.swing.JRadioButton jRadioButton5;
+   private javax.swing.JRadioButton jRadioButton6;
+   private javax.swing.JSeparator jSeparator1;
+   private javax.swing.JSeparator jSeparator2;
    private javax.swing.JTabbedPane jTabbedPane1;
    private javax.swing.JTextField jTextField1;
    private javax.swing.JTextField jTextField10;
@@ -609,5 +588,4 @@ public class AdminView extends javax.swing.JFrame {
    private javax.swing.JTextField jTextField8;
    private javax.swing.JTextField jTextField9;
    // End of variables declaration
-   private AdminViewController adminViewController;
 }
