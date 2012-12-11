@@ -13,4 +13,5 @@ public interface MemberViewService {
 	
 	public ResultMessage putInCart(BookPO bookPO);
 	public void enterCart();	//进入购物车
+	public ResultMessage changeAddress(String newAddress);
 }

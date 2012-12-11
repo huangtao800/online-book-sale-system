@@ -90,5 +90,11 @@ public class MemberViewController implements MemberViewService{
 		SalesViewController salesViewController=SalesViewController.getInstance();
 		salesViewController.initCartView();
 	}
+
+	@Override
+	public ResultMessage changeAddress(String newAddress) {
+		// TODO Auto-generated method stub
+		return memberController.changeAddress(newAddress);
+	}
 	
 }
