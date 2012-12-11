@@ -125,6 +125,12 @@ public class MemberController implements MemberBLService{
 		return member.getCartList();
 	}
 
+	@Override
+	public String getAddress() {
+		// TODO Auto-generated method stub
+		return member.getAddress();
+	}
+
 	
 
 }
