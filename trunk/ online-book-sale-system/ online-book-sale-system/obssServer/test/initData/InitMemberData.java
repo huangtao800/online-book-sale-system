@@ -17,12 +17,8 @@ public class InitMemberData {
 		// TODO Auto-generated method stub
 		MemberPO memberPO=new MemberPO("1", "huang", "111111","江苏南通");
 		
-		BookPO bookPO=new BookPO();
-		bookPO.setBookName("Java");
-		bookPO.setISBN("11111");
-		bookPO.setAuthor("hjuang");
-		bookPO.setPress("中国");
-		bookPO.setPublishDate("2011");
+		BookPO bookPO=new BookPO("11111", "Java", "hjuang", "中国", "2011", "计算机", 10, 5);
+
 		memberPO.getFavority().getFavorities().add(bookPO);
 		
 		MemberPO m2=new MemberPO("2", "hu", "000000","江苏南通");
