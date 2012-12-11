@@ -21,7 +21,7 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 
 	protected BookDatabase() throws RemoteException{
 		super();
-		bookDatabaseService=BookDatabase.getInstance();
+		
 	}
 
 	
