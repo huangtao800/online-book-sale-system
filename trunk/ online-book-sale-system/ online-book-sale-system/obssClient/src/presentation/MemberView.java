@@ -483,6 +483,28 @@ public class MemberView extends JFrame {
 			}
 		});
 		
+		JButton cancelButton = new JButton("\u6CE8\u9500");
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String password= JOptionPane.showInputDialog("请输入密码：");
+				if(password==null){
+					return;
+				}
+				ResultMessage resultMessage=memberViewController.cancel(password);
+				
+				if(resultMessage==ResultMessage.ERROR){
+					JOptionPane.showMessageDialog(null, "密码输入错误！");
+				}else if(resultMessage==ResultMessage.NOTPREPARED){
+					JOptionPane.showMessageDialog(null, "抱歉，您有尚未签收的订单，暂时无法注销！");
+				}else if(resultMessage==ResultMessage.SUCCEED){
+					JOptionPane.showMessageDialog(null, "注销成功！");
+					System.exit(0);
+				}else {
+					System.out.println(resultMessage);
+				}
+			}
+		});
+		
 		javax.swing.GroupLayout gl_jPanel2 = new javax.swing.GroupLayout(
 				jPanel2);
 		gl_jPanel2.setHorizontalGroup(
@@ -522,6 +544,10 @@ public class MemberView extends JFrame {
 					.addContainerGap(645, Short.MAX_VALUE)
 					.addComponent(changeAddressButton, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
 					.addGap(73))
+				.addGroup(Alignment.TRAILING, gl_jPanel2.createSequentialGroup()
+					.addContainerGap(436, Short.MAX_VALUE)
+					.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+					.addGap(296))
 		);
 		gl_jPanel2.setVerticalGroup(
 			gl_jPanel2.createParallelGroup(Alignment.LEADING)
@@ -549,7 +575,9 @@ public class MemberView extends JFrame {
 						.addComponent(addressLabel, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
 					.addGap(32)
 					.addComponent(changeAddressButton, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addGap(98))
+					.addGap(29)
+					.addComponent(cancelButton)
+					.addGap(46))
 		);
 		jPanel2.setLayout(gl_jPanel2);
 
