@@ -10,7 +10,7 @@ public interface BookBLService {
 	public BookPO findByISBN(String ISBN);//通过ISBN来查找图书
 	
 	//管理图书（增，删，改）
-	public void addBook(BookPO b);
+	public ResultMessage addBook(BookPO b);
 	public ResultMessage deleteBook(String isbn);
 	public ResultMessage modifyBook(BookPO b);
 	
