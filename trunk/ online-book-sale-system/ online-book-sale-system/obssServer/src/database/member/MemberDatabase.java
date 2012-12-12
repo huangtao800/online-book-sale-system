@@ -13,6 +13,7 @@ import po.MemberPO;
 import po.OrderPO;
 import po.OrderState;
 import po.PO;
+import po.PromotionPO;
 import po.ResultMessage;
 import po.UserRole;
 import po.VIPRank;
@@ -135,5 +136,31 @@ public class MemberDatabase extends UnicastRemoteObject implements
 		}
 		
 		return -1;
+	}
+
+	@Override
+	public MemberPO searchMemberPO(String memberID) throws RemoteException {
+		// TODO Auto-generated method stub
+		int index=searchMemberIndex(memberID);
+		if(index==-1)
+			return null;
+		return memberPOList.get(index);
+	}
+
+	@Override
+	public ResultMessage addPoint(String memberID, double sum)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		MemberPO memberPO=searchMemberPO(memberID);
+		if(memberPO==null){
+			return ResultMessage.NOTEXIST;
+		}
+		
+		PromotionPO po=InitDatabase.getPromotionPO();
+		int point=(int)(sum*(po.getExchangeOfScore())/100);
+		
+		memberPO.setPoints(memberPO.getPoints()+point);
+		
+		return update(memberPO);
 	}
 }
