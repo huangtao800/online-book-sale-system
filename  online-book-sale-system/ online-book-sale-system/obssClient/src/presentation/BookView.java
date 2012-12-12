@@ -1,25 +1,49 @@
 package presentation;
 //尤佳琪
+
+import java.awt.event.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Vector;
+
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import po.BookPO;
 import po.LineItemPO;
+import po.ResultMessage;
 import presentationController.Member.KeywordVO;
 import presentationController.book.BookViewController;
-import bussinessLogic.controller.BookBLService_Stub;
-import bussinessLogic.controller.MemberController;
-import bussinessLogicService.BookBLService;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import presentationController.book.BookViewService;
 
 /**
  *
  * @author YJQ
  */
-public class BookView extends javax.swing.JFrame {
+public class BookView extends javax.swing.JFrame implements ActionListener{
 
-    public BookView() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	public BookView() {
         initComponents();
     }
+	
+	public BookView (KeywordVO keywordVO,String type) {
+		
+		this.keywordVO = keywordVO;
+		this.type = type;
+		if(type==null){
+			this.index = 1;
+		}else if(keywordVO==null){
+			this.index = 0;
+		}
+		
+		initComponents();
+	}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,38 +88,28 @@ public class BookView extends javax.swing.JFrame {
 
         jLabel2.setText("出版社： ");
 
-        jTextField1.setText("                   ");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        jTextField1.setText("");
 
-        jTextField2.setText("              ");
+        jTextField2.setText("");
 
         jLabel3.setText("作者：");
 
         jLabel4.setText("出版年份：");
 
-        jTextField4.setText(" ");
+        jTextField4.setText("");
+        
+        jTextField5.setText("");
 
         jButton1.setText("查找");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jButton1.addActionListener(this);
 
         jButton2.setText("进入购物车");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jButton2.addActionListener(this);
 
         jLabel5.setText("查找结果：");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        
+       jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -199,7 +213,7 @@ public class BookView extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "图书标题", "图书ISBN", "图书类型", "出版社", "作者", "出版时间", "单价", "库存"
+                    "图书标题", "图书ISBN", "图书类型", "出版社", "作者", "出版时间", "单价", "库存"
             }
         ) {
             Class[] types = new Class [] {
@@ -209,22 +223,14 @@ public class BookView extends javax.swing.JFrame {
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-        });
+        });  
         jScrollPane1.setViewportView(jTable1);
 
         jButton5.setText("添加到收藏夹");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
+        jButton5.addActionListener(this);
 
         jButton6.setText("添加到购物车");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
+        jButton6.addActionListener(this);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -309,128 +315,121 @@ public class BookView extends javax.swing.JFrame {
 
         jLabel6.setText("图书类型：");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "计算机", "化学", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "计算机", "化学", "历史", "艺术" }));
+       
         jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
+        
 
         jButton3.setText("查找图书");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
+        jButton3.addActionListener(this);
+        
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "图书标题", "图书ISBN", "图书类型", "出版社", "作者", "出版时间", "单价", "库存"
-            }
-        ) {
+                new Object [][] {
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null}
+                    },
+                    new String [] {
+                        "图书标题", "图书ISBN", "图书类型", "出版社", "作者", "出版时间", "单价", "库存"
+                    }
+                ){
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Double.class, java.lang.Long.class
             };
@@ -439,25 +438,19 @@ public class BookView extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+      
         jScrollPane2.setViewportView(jTable2);
 
         jLabel7.setText("查找结果：");
 
         jButton4.setText("进入购物车");
+        jButton4.addActionListener(this);
 
         jButton7.setText("添加到收藏夹");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
+        jButton7.addActionListener(this);
 
         jButton8.setText("添加到购物车");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
+        jButton8.addActionListener(this);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -524,44 +517,91 @@ public class BookView extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
-    }                                          
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-    }                                           
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
-
+        
+        if(index==0){
+        	jTabbedPane1.setSelectedIndex(0);
+        }else if(index==1){
+        	jTabbedPane1.setSelectedIndex(1);
+        }
+    }
+    
+   
+    
+    public void actionPerformed(ActionEvent e) {
+    	ArrayList<BookPO> bookList = new ArrayList<BookPO>();
+    	LineItemPO lineItemPO;
+    	Object obj=e.getSource();
+    	String name = jTextField1.getText().trim();
+    	String press = jTextField2.getText().trim();
+    	String author = jTextField4.getText().trim();
+    	String publishDate = jTextField5.getText().trim();
+    	String type = jComboBox1.getSelectedItem().toString();
+    	int keywordSeleted = jTable1.getSelectedRow();
+    	int typeSeleted = jTable2.getSelectedRow();
+    	
+    	if(obj==jButton1){            //通过关键字查找
+    		bookList = bookViewController.findByKeyword(name, author, press, publishDate);
+    		
+    	}else if(obj==jButton3){        //通过图书类型查找图书
+    		bookList = bookViewController.fineByType(type);
+    		
+    		
+    	}else if(obj==jButton2){      //进入购物车
+    	    bookViewController = BookViewController.getInstance();
+    		bookViewController.enterCart();
+    	}else if(obj==jButton4){      //进入购物车
+    		bookViewController = BookViewController.getInstance();
+    		bookViewController.enterCart();
+    	}else if(obj==jButton5){      //添加到收藏夹
+    		if(keywordSeleted==-1){
+				JOptionPane.showMessageDialog(null, "请选择一本图书！");
+			}else{
+				BookPO bookPO = bookList.get(keywordSeleted);
+				ResultMessage result= bookViewController.putIntoFavorities(bookPO);
+				if(result==ResultMessage.SUCCEED){
+					JOptionPane.showMessageDialog(null, "添加成功！");
+				}
+			}
+    	}else if(obj==jButton7){      //添加到收藏夹
+    		if(typeSeleted==-1){
+				JOptionPane.showMessageDialog(null, "请选择一本图书！");
+			}else{
+				BookPO bookPO = bookList.get(typeSeleted);
+				ResultMessage result= bookViewController.putIntoFavorities(bookPO);
+				if(result==ResultMessage.SUCCEED){
+					JOptionPane.showMessageDialog(null, "添加成功！");
+				}
+			}
+    	}else if(obj==jButton6){      //添加到购物车
+    		if(keywordSeleted==-1){
+				JOptionPane.showMessageDialog(null, "请选择一本图书！");
+			}else{
+				BookPO bookPO = bookList.get(keywordSeleted);
+				int number = Integer.parseInt(JOptionPane.showInputDialog("购买本书："));
+	    		lineItemPO = new LineItemPO(bookPO, number);
+	    		
+				ResultMessage result= bookViewController.putIntoCart(lineItemPO);
+				if(result==ResultMessage.SUCCEED){
+					JOptionPane.showMessageDialog(null, "添加成功！");
+				}
+			}
+    		
+    	}else if(obj==jButton8){      //添加到购物车
+    		if(typeSeleted==-1){
+				JOptionPane.showMessageDialog(null, "请选择一本图书！");
+			}else{
+				BookPO bookPO = bookList.get(keywordSeleted);
+				int number = Integer.parseInt(JOptionPane.showInputDialog("购买本书："));
+	    		lineItemPO = new LineItemPO(bookPO, number);
+	    		
+				ResultMessage result= bookViewController.putIntoCart(lineItemPO);
+				if(result==ResultMessage.SUCCEED){
+					JOptionPane.showMessageDialog(null, "添加成功！");
+				}
+			}
+    	}
+    	
+    }
     /**
      * @param args the command line arguments
      */
@@ -592,7 +632,7 @@ public class BookView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BookView().setVisible(true);
+                new BookView(null,null).setVisible(true);
             }
         });
     }
@@ -624,6 +664,10 @@ public class BookView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private BookViewService bookViewController;
+    private KeywordVO keywordVO;
+    private String type;
+    private int index;//用于判断跳转到那个panel
     // End of variables declaration
 }
 
