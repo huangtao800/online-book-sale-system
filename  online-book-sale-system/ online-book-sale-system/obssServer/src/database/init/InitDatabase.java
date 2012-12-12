@@ -4,12 +4,14 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import po.MemberPO;
 import po.ResultMessage;
+import po.SalesManagerPO;
 import po.UserPO;
 import po.UserRole;
 
@@ -19,6 +21,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 		InitDatabaseService {
 
 	private static ArrayList<MemberPO> memberPOList;
+	private static ArrayList<SalesManagerPO> salesManagerPOList;
 	private static InitDatabase instance;
 
 	private InitDatabase() throws RemoteException {
@@ -30,11 +33,16 @@ public class InitDatabase extends UnicastRemoteObject implements
 	public static ArrayList<MemberPO> getMemberPOList(){
 		return memberPOList;
 	}
+	
+	public static ArrayList<SalesManagerPO> getSalesManagerPOs(){
+		return salesManagerPOList;
+	}
 
 	@Override
 	public void initAllUser() throws RemoteException {
 		// TODO Auto-generated method stub
 		readMember();
+		readSalesManager();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -45,6 +53,23 @@ public class InitDatabase extends UnicastRemoteObject implements
 					inputStream);
 
 			memberPOList = (ArrayList<MemberPO>) objectInputStream.readObject();
+			
+			inputStream.close();
+			objectInputStream.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void readSalesManager() {
+		try {
+			FileInputStream inputStream = new FileInputStream("saleManager.ser.ser");
+			ObjectInputStream objectInputStream = new ObjectInputStream(
+					inputStream);
+
+			salesManagerPOList = (ArrayList<SalesManagerPO>) objectInputStream.readObject();
 			
 			inputStream.close();
 			objectInputStream.close();
@@ -77,6 +102,10 @@ public class InitDatabase extends UnicastRemoteObject implements
 			result=searchMember(userName, password);
 		}
 		
+		if(userRole==UserRole.SalesManager){
+			result=searchSalesManager(userName, password);
+		}
+		
 		return result;
 	}
 
@@ -86,6 +115,18 @@ public class InitDatabase extends UnicastRemoteObject implements
 			if(name.equals(memberPOList.get(i).getUserName())
 					&&password.equals(memberPOList.get(i).getUserPassword())){
 				return memberPOList.get(i);
+			}
+		}
+		
+		return resultPo;
+	}
+	
+	private SalesManagerPO searchSalesManager(String name,String password){
+		SalesManagerPO resultPo=null;
+		for(int i=0;i<salesManagerPOList.size();i++){
+			if(name.equals(salesManagerPOList.get(i).getUserName())
+					&&password.equals(salesManagerPOList.get(i).getUserPassword())){
+				return salesManagerPOList.get(i);
 			}
 		}
 		
