@@ -82,7 +82,7 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Õº È±ÍÃ‚£∫");
 
@@ -517,9 +517,9 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
         pack();
         
         if(index==0){
-        	jTabbedPane1.setSelectedIndex(0);
-        }else if(index==1){
         	jTabbedPane1.setSelectedIndex(1);
+        }else if(index==1){
+        	jTabbedPane1.setSelectedIndex(0);
         }
     }
     
