@@ -51,6 +51,7 @@ public class RegistryController implements RegistryBLService {
 			} else {
 				JOptionPane.showMessageDialog(null, "¹§Ï²£¡×¢²á³É¹¦£¡");
 				
+				registryView.setVisible(false);
 				startController.setStartViewFalse();
 				enterMemberView(newMemberPO);
 			}
