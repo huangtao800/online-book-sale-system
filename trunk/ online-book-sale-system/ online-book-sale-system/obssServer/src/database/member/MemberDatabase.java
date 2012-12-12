@@ -1,5 +1,7 @@
 package database.member;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -55,7 +57,43 @@ public class MemberDatabase extends UnicastRemoteObject implements
 	@Override
 	public ResultMessage delete(PO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		MemberPO memberPO=(MemberPO) po;
+		int index=serachIndexOfMember(memberPO);
+		if(index==-1){
+			return ResultMessage.NOTEXIST;
+		}
+		else {
+			memberPOList.remove(index);
+			saveMember();
+			return ResultMessage.SUCCEED;
+		}
+	}
+	
+	private void saveMember(){
+		try {
+			FileOutputStream outputStream=new FileOutputStream("member.ser");
+			ObjectOutputStream objectOutputStream=new ObjectOutputStream(outputStream);
+			
+			objectOutputStream.writeObject(memberPOList);
+			
+			outputStream.close();
+			objectOutputStream.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	private int serachIndexOfMember(MemberPO memberPO){
+		String id=memberPO.getUserID();
+		
+		for(int i=0;i<memberPOList.size();i++){
+			if(id.equals(memberPOList.get(i).getUserID())){
+				return i;
+			}
+		}
+		
+		return -1;
 	}
 
 	@Override
