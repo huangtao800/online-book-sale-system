@@ -736,6 +736,8 @@ public class MainView extends JFrame implements ActionListener{
 	       
 //查看顾客信息
 	    	else if(event.getSource()== checkMemberInforButton){
+	    		memberInforTextArea.setText("");
+	    		memberOrderTextArea.setText("");
 	    		if(memberIDTextField.getText().equals("")){
 	    			JOptionPane.showMessageDialog(null, "请先输入顾客的ID！");
 	    		}else{
