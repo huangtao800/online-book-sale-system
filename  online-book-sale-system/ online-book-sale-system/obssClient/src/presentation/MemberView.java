@@ -80,7 +80,7 @@ public class MemberView extends JFrame {
 	private javax.swing.JTabbedPane jTabbedPane1;
 	private javax.swing.JTable favorityTable;
 	private javax.swing.JTable equivalentTable;
-	private javax.swing.JTable jTable3;
+	private javax.swing.JTable orderTable;
 	private javax.swing.JTextField bookNameField;
 	private javax.swing.JTextField authorField;
 	private javax.swing.JTextField publisherField;
@@ -203,6 +203,7 @@ public class MemberView extends JFrame {
 				
 				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "修改成功！");
+					addressLabel.setText(newAddress);
 				}
 			}
 		});
@@ -254,7 +255,7 @@ public class MemberView extends JFrame {
 				TitledBorder.TOP, null, null));
 		jPanel5 = new javax.swing.JPanel();
 		jScrollPane3 = new javax.swing.JScrollPane();
-		jTable3 = new javax.swing.JTable();
+		orderTable = new javax.swing.JTable();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("会员");
@@ -864,7 +865,7 @@ public class MemberView extends JFrame {
 		scrollPane_1.setViewportView(table_1);
 		panel.setLayout(gl_panel);
 
-		jTable3.setModel(new DefaultTableModel(
+		orderTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null},
 				{null, null, null, null},
@@ -882,7 +883,9 @@ public class MemberView extends JFrame {
 				return columnEditables[column];
 			}
 		});
-		jScrollPane3.setViewportView(jTable3);
+		
+		orderTable.setModel(new OrderTableModel());
+		jScrollPane3.setViewportView(orderTable);
 
 		javax.swing.GroupLayout gl_jPanel5 = new javax.swing.GroupLayout(
 				jPanel5);
