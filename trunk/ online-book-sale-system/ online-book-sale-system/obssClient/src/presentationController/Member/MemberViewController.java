@@ -96,5 +96,11 @@ public class MemberViewController implements MemberViewService{
 		// TODO Auto-generated method stub
 		return memberController.changeAddress(newAddress);
 	}
+
+	@Override
+	public ResultMessage cancel(String password) {
+		// TODO Auto-generated method stub
+		return memberController.cancel(password);
+	}
 	
 }
