@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import javax.tools.Diagnostic;
 
+
 public class PresentPO implements PO{
 	public static final int line=10;
 	public static final int column4=4;
@@ -41,7 +42,6 @@ public class PresentPO implements PO{
 		else 
 			return "VIP5";
 	}
-
 	
 	public String[][] getEquivalent(){
 		return equivalent;
