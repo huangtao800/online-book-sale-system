@@ -90,10 +90,10 @@ public class BookViewController implements BookViewService{
 	 
 	 public ArrayList<BookPO> findByKeyword(String name,String author,String press,String publishDate){
 		 return bookController.findByKey(name, author, press, publishDate);
+		
 	 }
 	   
 	 public ArrayList<BookPO> fineByType(String type){
 		 return bookController.findByType(type);
 	 }
-
 }
