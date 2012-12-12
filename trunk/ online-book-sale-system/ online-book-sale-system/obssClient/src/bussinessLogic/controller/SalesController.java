@@ -2,8 +2,8 @@ package bussinessLogic.controller;
 
 import java.util.ArrayList;
 
-import bussinessLogic.domain.Book;
 import bussinessLogic.domain.Sales;
+import bussinessLogicService.BookBLService;
 import bussinessLogicService.MemberBLService;
 import bussinessLogicService.SalesBLService;
 
@@ -18,7 +18,7 @@ import presentationController.Sales.OrderVO;
 
 public class SalesController implements SalesBLService{
 	private MemberBLService memberController = MemberController.getInstance();
-	Book book = new Book(); //改成单键
+	private BookBLService bookController = BookController.getInstance(); //改成单键
 	private Sales sales;
 	
 	private static SalesController uniqueInstance;
@@ -36,8 +36,8 @@ public class SalesController implements SalesBLService{
 	
 	@Override
 	public ResultMessage putInCart(String isbn, int number){
-		BookPO bookPO = book.findByISBN(isbn);
-		if(book == null)
+		BookPO bookPO = bookController.findByISBN(isbn);
+		if(bookPO == null)
 			return ResultMessage.FAILED;
 		LineItemPO lineItemPO = new LineItemPO(bookPO, number);
 		ResultMessage result = memberController.putInCart(lineItemPO);
@@ -140,7 +140,7 @@ public class SalesController implements SalesBLService{
 
 	public void endSale(){		
 		ArrayList<LineItemPO> salesList = getCartList();
-	    book.updateBook(salesList);
+	    bookController.updateBook(salesList);
 		sales.updateSale();	
 	}
 	
