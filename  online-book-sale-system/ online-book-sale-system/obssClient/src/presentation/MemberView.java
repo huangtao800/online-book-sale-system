@@ -140,12 +140,18 @@ public class MemberView extends JFrame {
 				String publisher = publisherField.getText();
 				String yearString = publisherYearField.getText();
 				
-				if(yearString!=null){
+				if(bookName.equals("")&&author.equals("")&&publisher.equals("")&&yearString.equals("")){
+					JOptionPane.showMessageDialog(null, "请至少输入一项查询内容！");
+					return;
+				}
+				
+				if(!yearString.equals("")){
 					try{
 						Integer.parseInt(yearString);
 					}catch (NumberFormatException e2) {
 						// TODO: handle exception
 						JOptionPane.showMessageDialog(null, "出版年份输入错误！");
+						return;
 					}
 				}
 				
