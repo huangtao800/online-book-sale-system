@@ -35,6 +35,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.JLabel;
 
@@ -88,6 +89,7 @@ public class MemberView extends JFrame {
 	private MemberViewService memberViewController;
 	private JTable couponTable;
 	private JButton enterCartButton;
+	private JButton freshOrderButton;
 
 	/**
 	 * Launch the application.
@@ -634,7 +636,7 @@ public class MemberView extends JFrame {
 		putInCartButton.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
 		putInCartButton.setText("\u653E\u5165\u8D2D\u7269\u8F66");
 		
-		JButton freshFavorityButton = new JButton("\u5237\u65B0");
+		JButton freshFavorityButton = new JButton("\u5237\u65B0\u5217\u8868");
 		freshFavorityButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				freshTableModel(favorityTable);
@@ -813,16 +815,33 @@ public class MemberView extends JFrame {
 		
 		orderTable.setModel(new OrderTableModel());
 		jScrollPane3.setViewportView(orderTable);
+		
+		freshOrderButton = new JButton("\u5237\u65B0\u5217\u8868");
+		freshOrderButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				freshOrderTable(orderTable);
+			}
+		});
+		freshOrderButton.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 
 		javax.swing.GroupLayout gl_jPanel5 = new javax.swing.GroupLayout(
 				jPanel5);
-		gl_jPanel5.setHorizontalGroup(gl_jPanel5.createParallelGroup(
-				Alignment.LEADING).addComponent(jScrollPane3,
-				Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 719,
-				Short.MAX_VALUE));
-		gl_jPanel5.setVerticalGroup(gl_jPanel5.createParallelGroup(
-				Alignment.TRAILING).addComponent(jScrollPane3,
-				GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE));
+		gl_jPanel5.setHorizontalGroup(
+			gl_jPanel5.createParallelGroup(Alignment.LEADING)
+				.addComponent(jScrollPane3, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
+				.addGroup(gl_jPanel5.createSequentialGroup()
+					.addGap(299)
+					.addComponent(freshOrderButton, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		gl_jPanel5.setVerticalGroup(
+			gl_jPanel5.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_jPanel5.createSequentialGroup()
+					.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(freshOrderButton, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(37, Short.MAX_VALUE))
+		);
 		jPanel5.setLayout(gl_jPanel5);
 
 		jTabbedPane1.addTab(" 我的购买记录 ", jPanel5);
@@ -843,6 +862,10 @@ public class MemberView extends JFrame {
 	//刷新收藏夹列表
 	private void freshTableModel(JTable table){
 		table.setModel(new FavorityTableModel());
+	}
+	
+	private void freshOrderTable(JTable table){
+		table.setModel(new OrderTableModel());
 	}
 
 	class FavorityTableModel extends AbstractTableModel {
@@ -1012,7 +1035,10 @@ public class MemberView extends JFrame {
 			case 2:
 				return orderList.get(rowIndex).getOrderState();
 			default:
-				return orderList.get(rowIndex).getDate().toString();//返回日期
+				Calendar calendar=orderList.get(rowIndex).getDate();
+				return calendar.get(Calendar.YEAR)+"年"
+						+calendar.get(Calendar.MONTH)+"月"
+						+calendar.get(Calendar.DAY_OF_MONTH)+"日";//返回日期
 			}
 		}
 		
