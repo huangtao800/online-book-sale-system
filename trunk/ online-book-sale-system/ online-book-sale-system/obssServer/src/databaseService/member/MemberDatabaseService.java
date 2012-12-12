@@ -18,5 +18,9 @@ public interface MemberDatabaseService extends DatabaseService {
 	public ResultMessage cancel(MemberPO memberPO) throws RemoteException;
 	public ResultMessage changeName(String newName,MemberPO memberPO) throws RemoteException;
 	public ResultMessage changePassword(String password,MemberPO memberPO) throws RemoteException;
-	public ResultMessage changeOrder(String memberID,long orderID,OrderState orderState) throws RemoteException; 
+	
+	//供销售经理使用
+	public ResultMessage changeOrder(String memberID,long orderID,OrderState orderState) throws RemoteException;
+	public MemberPO searchMemberPO(String memberID) throws RemoteException;
+	public ResultMessage addPoint(String memberID,double sum) throws RemoteException;
 }
