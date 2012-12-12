@@ -17,6 +17,9 @@ public class Customer {
 		if(isFavorityFull()){
 			return ResultMessage.FULL;
 		}else {
+			if(memberPO.getFavority().isExist(bookPO)){
+				return ResultMessage.SUCCEED;
+			}
 			memberPO.getFavority().addBook(bookPO);
 			return ResultMessage.SUCCEED;
 		}
