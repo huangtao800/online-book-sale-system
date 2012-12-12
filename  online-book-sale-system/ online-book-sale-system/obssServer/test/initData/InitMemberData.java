@@ -9,6 +9,8 @@ import po.AdministratorPO;
 import po.BookPO;
 import po.GeneralManagerPO;
 import po.MemberPO;
+import po.PresentPO;
+import po.PromotionPO;
 import po.SalesManagerPO;
 
 public class InitMemberData {
@@ -42,6 +44,11 @@ public class InitMemberData {
 		ArrayList<AdministratorPO> administratorList=new ArrayList<AdministratorPO>();
 		administratorList.add(administratorPO);
 		
+		
+		ArrayList<PresentPO> presentList=new ArrayList<PresentPO>();
+		
+		PromotionPO promotionPO =new PromotionPO();
+		
 		try {
 			FileOutputStream outputStream=new FileOutputStream("member.ser");
 			ObjectOutputStream objoutput=new ObjectOutputStream(outputStream);
@@ -66,6 +73,16 @@ public class InitMemberData {
 			objoutput=new ObjectOutputStream(outputStream);
 			
 			objoutput.writeObject(administratorList);
+			
+			outputStream=new FileOutputStream("promotionPO.ser");
+			objoutput=new ObjectOutputStream(outputStream);
+			
+			objoutput.writeObject(promotionPO);
+			
+			outputStream=new FileOutputStream("presentPO.ser");
+			objoutput=new ObjectOutputStream(outputStream);
+			
+			objoutput.writeObject(presentList);
 			
 			outputStream.close();
 			objoutput.close();
