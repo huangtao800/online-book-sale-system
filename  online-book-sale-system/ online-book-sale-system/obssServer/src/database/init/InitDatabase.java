@@ -9,9 +9,12 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import po.PresentPO;
+
 import po.AdministratorPO;
 import po.GeneralManagerPO;
 import po.MemberPO;
+import po.PromotionPO;
 import po.ResultMessage;
 import po.SalesManagerPO;
 import po.UserPO;
@@ -21,17 +24,22 @@ import databaseService.init.InitDatabaseService;
 
 public class InitDatabase extends UnicastRemoteObject implements
 		InitDatabaseService {
-
+	private static final String PromotionPO_Ser="promotionPO.ser";
+	private static final String PresentPOList_Ser="presentPO.ser";
+	
+	
 	private static ArrayList<MemberPO> memberPOList;
 	private static ArrayList<SalesManagerPO> salesManagerPOList;
 	private static ArrayList<GeneralManagerPO> generalManagerList;
 	private static ArrayList<AdministratorPO> adminstratorList;
+	private static PromotionPO promotionPO;
+	private static ArrayList<PresentPO> presentPOList=new ArrayList<PresentPO>();
 	
 	private static InitDatabase instance;
 
 	private InitDatabase() throws RemoteException {
 		super();
-		initAllUser();
+		initData();
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -50,13 +58,25 @@ public class InitDatabase extends UnicastRemoteObject implements
 	public static ArrayList<AdministratorPO> getAdministratorList(){
 		return adminstratorList;
 	}
+	
+	public static PromotionPO getPromotionPO(){
+		return promotionPO;
+	}
 
+	public static ArrayList<PresentPO> getPresentList(){
+		return presentPOList;
+	}
+	
 	@Override
-	public void initAllUser() throws RemoteException {
+	public void initData() throws RemoteException {
 		// TODO Auto-generated method stub
 		readMember();
 		readSalesManager();
 		readGeneralManager();
+		readAdministrator();
+		
+		promotionPORead();
+		readPresentPO();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -127,6 +147,19 @@ public class InitDatabase extends UnicastRemoteObject implements
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
+	private void readPresentPO() {
+		try {
+			ObjectInputStream inputStream=new ObjectInputStream(new FileInputStream(PresentPOList_Ser));
+			presentPOList=(ArrayList<PresentPO>)inputStream.readObject();
+			inputStream.close();
+			
+		} catch (Exception e) {
+//			JOptionPane.showMessageDialog(null, "未发现要被读取的presentPOList文件！");
+			e.printStackTrace();
+		}
+	}
+	
 	private void saveMember(){
 		try {
 			FileOutputStream outputStream=new FileOutputStream("member.ser");
@@ -186,6 +219,19 @@ public class InitDatabase extends UnicastRemoteObject implements
 			e.printStackTrace();
 		}
 	}
+	
+	//从数据层读取促销手段信息
+	 private PromotionPO promotionPORead(){
+		 //解序列化
+		 try {
+			 ObjectInputStream poInputStream=new ObjectInputStream(new FileInputStream(PromotionPO_Ser));
+			 promotionPO=(PromotionPO)poInputStream.readObject();
+			poInputStream.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		 return promotionPO;
+	 }
 
 	@Override
 	public UserPO logIn(String userName, String password, UserRole userRole) {
