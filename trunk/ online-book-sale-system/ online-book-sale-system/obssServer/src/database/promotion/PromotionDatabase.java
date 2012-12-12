@@ -22,7 +22,7 @@ public class PromotionDatabase extends UnicastRemoteObject implements PromotionD
 	
 	private PromotionPO promotionPO;
 	
-	public PromotionDatabase() throws RemoteException{
+	protected PromotionDatabase() throws RemoteException{
 		super();
 	}
 
@@ -39,7 +39,7 @@ public class PromotionDatabase extends UnicastRemoteObject implements PromotionD
 	}
 
 	//从数据层读取促销手段信息
-		 public PromotionPO promotionPORead(){
+		 public PromotionPO promotionPORead() throws RemoteException{
 			 //解序列化
 			 try {
 				 ObjectInputStream poInputStream=new ObjectInputStream(new FileInputStream(PromotionPO_Ser));
@@ -51,7 +51,7 @@ public class PromotionDatabase extends UnicastRemoteObject implements PromotionD
 			 return promotionPO;
 		 }
 	
-		public ResultMessage promotionPOWrite(PromotionPO proPO){
+		public ResultMessage promotionPOWrite(PromotionPO proPO) throws RemoteException{
 				//序列化
 				promotionPO=proPO;
 				try {
