@@ -1,7 +1,7 @@
 package Test;
 
-import presentController.mainView.MainViewController;
-import presentController.mainView.MainViewControllerInterface;
+import presentationController.mainView.MainViewController;
+import presentationController.mainView.MainViewControllerInterface;
 import Model.SalesManagerModel;
 import Model.SalesManagerModelInterface;
 

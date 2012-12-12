@@ -1,4 +1,4 @@
-package presentController.mainView;
+package presentationController.mainView;
 
 import java.util.ArrayList;
 
