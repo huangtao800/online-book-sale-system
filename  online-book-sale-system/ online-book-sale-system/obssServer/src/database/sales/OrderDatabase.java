@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import databaseService.sales.OrderDatabaseService;
 
 import po.OrderPO;
+import po.OrderState;
 import po.PO;
 import po.ResultMessage;
 
@@ -61,8 +62,11 @@ public class OrderDatabase extends UnicastRemoteObject implements OrderDatabaseS
 		if(orderpo instanceof OrderPO){
 			OrderPO order = (OrderPO)orderpo;
 			for(int i = 0;i < orderList.size(); i ++)
-				if(orderList.get(i).getOrderNum() == order.getOrderNum())
+				if(orderList.get(i).getOrderNum() == order.getOrderNum()){
 					orderList.set(i, order);
+					if(orderList.get(i).getOrderState() == OrderState.SIGNED)
+						orderList.remove(i);
+				}
 			save();
 			return ResultMessage.SUCCEED;
 		}
