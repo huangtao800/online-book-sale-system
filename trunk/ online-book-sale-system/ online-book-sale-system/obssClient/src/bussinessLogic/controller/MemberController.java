@@ -137,6 +137,12 @@ public class MemberController implements MemberBLService{
 		return member.changeAddress(newAddress);
 	}
 
+	@Override
+	public ResultMessage clearCart() {
+		// TODO Auto-generated method stub
+		return member.clearCart();
+	}
+
 	
 
 }

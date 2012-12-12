@@ -243,5 +243,17 @@ public class Member {
 		}
 	}
 
+	public ResultMessage clearCart() {
+		// TODO Auto-generated method stub
+		memberPO.getCart().clear();
+		try {
+			return memberDatabase.update(memberPO);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+	}
+
 
 }
