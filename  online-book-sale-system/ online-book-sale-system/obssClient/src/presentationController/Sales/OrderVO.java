@@ -13,18 +13,18 @@ public class OrderVO {
 	
 	public OrderVO(OrderPO orderPO){
 		this.productList = orderPO.getProductList();
-		this.setOrderNum(orderPO.getOrderNum()+ "");
-		this.setMemberID(orderPO.getMemberID());
+		this.setOrderNum("订单编号：" + orderPO.getOrderNum());
+		this.setMemberID("会员编号：" + orderPO.getMemberID());
 		//date
-		this.setTotalPrice(orderPO.getTotalPrice()+"");
+		this.setTotalPrice("商品总价" + orderPO.getTotalPrice()+"");
 		if(orderPO.getOrderState() == OrderState.ORDERDED)
-			this.setOrderState("已下单");
+			this.setOrderState("订单状态：已下单");
 		else if(orderPO.getOrderState() == OrderState.DISTRIBUTION)
-			this.setOrderState("仓库配货");
+			this.setOrderState("订单状态：仓库配货");
 		else if(orderPO.getOrderState() == OrderState.DISTRIBUTION)
-			this.setOrderState("物流配送");
+			this.setOrderState("订单状态：物流配送");
 		else 
-			this.setOrderState("已签收");	
+			this.setOrderState("订单状态：已签收");	
 	}
 	
 	public void setOrderNum(String orderNum) {
