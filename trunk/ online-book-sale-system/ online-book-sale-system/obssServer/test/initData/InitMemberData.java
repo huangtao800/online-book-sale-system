@@ -5,8 +5,11 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import po.AdministratorPO;
 import po.BookPO;
+import po.GeneralManagerPO;
 import po.MemberPO;
+import po.SalesManagerPO;
 
 public class InitMemberData {
 
@@ -26,11 +29,43 @@ public class InitMemberData {
 		list.add(memberPO);
 		list.add(m2);
 		
+		
+		SalesManagerPO salesManagerPO=new SalesManagerPO("1","zhang","111111");
+		ArrayList<SalesManagerPO> saleList=new ArrayList<SalesManagerPO>();
+		saleList.add(salesManagerPO);
+		
+		GeneralManagerPO generalManagerPO=new GeneralManagerPO("1", "dong", "111111");
+		ArrayList<GeneralManagerPO> generalManagerList=new ArrayList<GeneralManagerPO>();
+		generalManagerList.add(generalManagerPO);
+		
+		AdministratorPO administratorPO=new AdministratorPO("1", "you", "111111");
+		ArrayList<AdministratorPO> administratorList=new ArrayList<AdministratorPO>();
+		administratorList.add(administratorPO);
+		
 		try {
 			FileOutputStream outputStream=new FileOutputStream("member.ser");
 			ObjectOutputStream objoutput=new ObjectOutputStream(outputStream);
 			
 			objoutput.writeObject(list);
+			
+			outputStream.close();
+			objoutput.close();
+			
+			
+			outputStream=new FileOutputStream("salesManager.ser");
+			objoutput=new ObjectOutputStream(outputStream);
+			
+			objoutput.writeObject(saleList);
+			
+			outputStream=new FileOutputStream("generalManager.ser");
+			objoutput=new ObjectOutputStream(outputStream);
+			
+			objoutput.writeObject(generalManagerList);
+			
+			outputStream=new FileOutputStream("adminstrator.ser");
+			objoutput=new ObjectOutputStream(outputStream);
+			
+			objoutput.writeObject(administratorList);
 			
 			outputStream.close();
 			objoutput.close();
