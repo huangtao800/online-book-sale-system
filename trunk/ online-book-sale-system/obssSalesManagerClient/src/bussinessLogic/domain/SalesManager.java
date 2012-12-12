@@ -31,6 +31,7 @@ public class SalesManager {
 			return memberDatabase.searchMemberPO(MemID);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return null;
 		}	
 	}
@@ -40,6 +41,7 @@ public class SalesManager {
 			return orderDatabase.getUnfinishedOrder();
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return null;
 		}
 	}
