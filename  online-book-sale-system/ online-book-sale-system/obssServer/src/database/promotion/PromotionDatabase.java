@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 import po.PO;
 import po.PresentPO;
@@ -15,7 +16,7 @@ import po.ResultMessage;
 import database.present.PresentDatabase;
 import databaseService.promotion.PromotionDatabaseService;
 
-public class PromotionDatabase implements PromotionDatabaseService{
+public class PromotionDatabase extends UnicastRemoteObject implements PromotionDatabaseService{
 	private static final String PromotionPO_Ser="promotionPO.ser";
 	private static PromotionDatabase promotionDatabase;
 	
