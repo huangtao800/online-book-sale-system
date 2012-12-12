@@ -108,9 +108,7 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
 
         jLabel5.setText("查找结果：");
 
-        
-       jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        object1 = new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -211,11 +209,13 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                    "图书标题", "图书ISBN", "图书类型", "出版社", "作者", "出版时间", "单价", "库存"
-            }
-        ) {
+            };
+        columnNames = new String [] {
+                "图书标题", "图书ISBN", "图书类型", "出版社", "作者", "出版时间", "单价", "库存"
+        };
+        
+       jTable1.setModel(new javax.swing.table.DefaultTableModel(object1,columnNames)
+       {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Double.class, java.lang.Long.class
             };
@@ -323,113 +323,111 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
         jButton3.setText("查找图书");
         jButton3.addActionListener(this);
         
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null}
-                    },
-                    new String [] {
-                        "图书标题", "图书ISBN", "图书类型", "出版社", "作者", "出版时间", "单价", "库存"
-                    }
-                ){
+        object2 =new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            };
+        
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(object2, columnNames)
+        {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Double.class, java.lang.Long.class
             };
@@ -536,16 +534,121 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     	String author = jTextField4.getText().trim();
     	String publishDate = jTextField5.getText().trim();
     	String type = jComboBox1.getSelectedItem().toString();
-    	int keywordSeleted = jTable1.getSelectedRow();
-    	int typeSeleted = jTable2.getSelectedRow();
     	
     	if(obj==jButton1){            //通过关键字查找
-    		bookList = bookViewController.findByKeyword(name, author, press, publishDate);
+    		//bookList = bookViewController.findByKeyword(name, author, press, publishDate);
+    		 object1 = new Object [][] {
+    	                {"Java","1111", "计算机","人民出版社", "yjq",  "2012", 10.0, 21},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	                {null, null, null, null, null, null, null, null},
+    	            };
+    		
+    		jTable1.setModel(new javax.swing.table.DefaultTableModel(object1,columnNames)
+    	    {
+    	            Class[] types = new Class [] {
+    	                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Double.class, java.lang.Long.class
+    	            };
+
+    	            public Class getColumnClass(int columnIndex) {
+    	                return types [columnIndex];
+    	            }
+    	     });  
+    	     jScrollPane1.setViewportView(jTable1);
     		
     	}else if(obj==jButton3){        //通过图书类型查找图书
-    		bookList = bookViewController.fineByType(type);
-    		
-    		
+    		//bookList = bookViewController.fineByType(type);
+    		 object2 = new Object [][] {
+ 	                {"Java","1111", "计算机","人民出版社", "yjq",  "2012", 10.0, 21},
+ 	                {"JavaCode","1112", "计算机","人民出版社", "yjq11",  "2012", 5.0, 10},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	                {null, null, null, null, null, null, null, null},
+ 	            };
+ 		
+    		  jTable2.setModel(new javax.swing.table.DefaultTableModel(object2, columnNames)
+    	        {
+    	            Class[] types = new Class [] {
+    	                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Double.class, java.lang.Long.class
+    	            };
+
+    	            public Class getColumnClass(int columnIndex) {
+    	                return types [columnIndex];
+    	            }
+    	        });
+    		  
+    		  jScrollPane2.setViewportView(jTable2);
+    		  
     	}else if(obj==jButton2){      //进入购物车
     	    bookViewController = BookViewController.getInstance();
     		bookViewController.enterCart();
@@ -553,51 +656,51 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     		bookViewController = BookViewController.getInstance();
     		bookViewController.enterCart();
     	}else if(obj==jButton5){      //添加到收藏夹
-    		if(keywordSeleted==-1){
+    		if(jTable1.getSelectedRow()==-1){
 				JOptionPane.showMessageDialog(null, "请选择一本图书！");
 			}else{
-				BookPO bookPO = bookList.get(keywordSeleted);
-				ResultMessage result= bookViewController.putIntoFavorities(bookPO);
-				if(result==ResultMessage.SUCCEED){
+				//BookPO bookPO = bookList.get(jTable1.getSelectedRow());
+				//ResultMessage result= bookViewController.putIntoFavorities(bookPO);
+				//if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
-				}
+				//}
 			}
     	}else if(obj==jButton7){      //添加到收藏夹
-    		if(typeSeleted==-1){
+    		if(jTable2.getSelectedRow()==-1){
 				JOptionPane.showMessageDialog(null, "请选择一本图书！");
 			}else{
-				BookPO bookPO = bookList.get(typeSeleted);
-				ResultMessage result= bookViewController.putIntoFavorities(bookPO);
-				if(result==ResultMessage.SUCCEED){
+				//BookPO bookPO = bookList.get(jTable2.getSelectedRow());
+				//ResultMessage result= bookViewController.putIntoFavorities(bookPO);
+				//if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
-				}
+				//}
 			}
     	}else if(obj==jButton6){      //添加到购物车
-    		if(keywordSeleted==-1){
+    		if(jTable1.getSelectedRow()==-1){
 				JOptionPane.showMessageDialog(null, "请选择一本图书！");
 			}else{
-				BookPO bookPO = bookList.get(keywordSeleted);
+				//BookPO bookPO = bookList.get(jTable1.getSelectedRow());
 				int number = Integer.parseInt(JOptionPane.showInputDialog("购买本书："));
-	    		lineItemPO = new LineItemPO(bookPO, number);
+	    		//lineItemPO = new LineItemPO(bookPO, number);
 	    		
-				ResultMessage result= bookViewController.putIntoCart(lineItemPO);
-				if(result==ResultMessage.SUCCEED){
+				//ResultMessage result= bookViewController.putIntoCart(lineItemPO);
+				//if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
-				}
+				//}
 			}
     		
     	}else if(obj==jButton8){      //添加到购物车
-    		if(typeSeleted==-1){
+    		if(jTable2.getSelectedRow()==-1){
 				JOptionPane.showMessageDialog(null, "请选择一本图书！");
 			}else{
-				BookPO bookPO = bookList.get(keywordSeleted);
+				//BookPO bookPO = bookList.get(jTable2.getSelectedRow());
 				int number = Integer.parseInt(JOptionPane.showInputDialog("购买本书："));
-	    		lineItemPO = new LineItemPO(bookPO, number);
+	    		//lineItemPO = new LineItemPO(bookPO, number);
 	    		
-				ResultMessage result= bookViewController.putIntoCart(lineItemPO);
-				if(result==ResultMessage.SUCCEED){
+				//ResultMessage result= bookViewController.putIntoCart(lineItemPO);
+				//if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
-				}
+				//}
 			}
     	}
     	
@@ -664,6 +767,8 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private String[] columnNames ;
+    private Object[][] object1,object2;
     private BookViewService bookViewController;
     private KeywordVO keywordVO;
     private String type;
