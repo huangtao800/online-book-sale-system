@@ -1,7 +1,6 @@
 package bussinessObject;
 
 import po.BookPO;
-import po.FavorityPO;
 import po.MemberPO;
 import po.OrderPO;
 import po.OrderState;
