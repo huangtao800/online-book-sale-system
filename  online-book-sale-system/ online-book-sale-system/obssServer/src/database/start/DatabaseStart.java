@@ -6,11 +6,13 @@ import java.rmi.registry.LocateRegistry;
 import database.book.BookDatabase;
 import database.init.InitDatabase;
 import database.member.MemberDatabase;
+import database.present.PresentDatabase;
 import database.sales.OrderDatabase;
 import database.user.UserDatabase;
 import databaseService.book.BookDatabaseService;
 import databaseService.init.InitDatabaseService;
 import databaseService.member.MemberDatabaseService;
+import databaseService.present.PresentDatabaseService;
 import databaseService.sales.OrderDatabaseService;
 import databaseService.user.UserDatabaseService;
 
@@ -37,6 +39,11 @@ public class DatabaseStart {
 			
 			UserDatabaseService userDatabase = UserDatabase.getInstance();
 			Naming.rebind("rmi://127.0.0.1:5000/UserDatabase", userDatabase);
+			
+			PresentDatabaseService presentDatabase=PresentDatabase.getInstance();
+			Naming.rebind("rmi://127.0.0.1:5000/PresentDatabase",presentDatabase);
+			
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
