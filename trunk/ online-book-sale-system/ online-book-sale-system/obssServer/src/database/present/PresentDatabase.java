@@ -34,11 +34,11 @@ public class PresentDatabase extends UnicastRemoteObject implements  PresentData
 	}
 	
 	
-	public ArrayList<PresentPO> getPresentPOList(){
+	public ArrayList<PresentPO> getPresentPOList() throws RemoteException{
 		return InitDatabase.getPresentList();
 	}
 	
-	public ResultMessage sendPresent(){
+	public ResultMessage sendPresent() throws RemoteException{
 		try {
 			return initDatabase.sendPresent();
 		} catch (RemoteException e) {
