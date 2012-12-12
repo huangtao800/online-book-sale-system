@@ -2,23 +2,31 @@ package database.init;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import po.PresentPO;
 
 import po.AdministratorPO;
+import po.CouponPO;
+import po.EquivalentPO;
 import po.GeneralManagerPO;
+import po.IdPO;
 import po.MemberPO;
 import po.PromotionPO;
 import po.ResultMessage;
 import po.SalesManagerPO;
 import po.UserPO;
 import po.UserRole;
+import po.VIPRank;
 
 import databaseService.init.InitDatabaseService;
 
@@ -26,6 +34,8 @@ public class InitDatabase extends UnicastRemoteObject implements
 		InitDatabaseService {
 	private static final String PromotionPO_Ser="promotionPO.ser";
 	private static final String PresentPOList_Ser="presentPO.ser";
+	private static final String IdPO_ser="idPO.ser";
+	private static final String PresentPOList_ser="presentPO.ser";
 	
 	
 	private static ArrayList<MemberPO> memberPOList;
@@ -34,6 +44,9 @@ public class InitDatabase extends UnicastRemoteObject implements
 	private static ArrayList<AdministratorPO> adminstratorList;
 	private static PromotionPO promotionPO;
 	private static ArrayList<PresentPO> presentPOList=new ArrayList<PresentPO>();
+	private IdPO idPO;
+	private  long presentID;
+
 	
 	private static InitDatabase instance;
 
@@ -173,6 +186,18 @@ public class InitDatabase extends UnicastRemoteObject implements
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+	}
+	
+	private void savePresent(){
+		try {
+			ObjectOutputStream outPutStream=new ObjectOutputStream(new FileOutputStream(PresentPOList_ser));
+			outPutStream.writeObject(presentPOList);
+			outPutStream.close();
+			
+		} catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+	   }
 	}
 	
 	private void saveGeneralManager(){
@@ -387,5 +412,159 @@ public class InitDatabase extends UnicastRemoteObject implements
 		
 		return true;
 	}
+	
+	 //赠送礼券
+    public ResultMessage sendPresent(){
+    	getPresentList();
+
+		boolean hasOverdue=false;//有过期礼券	    		
+		
+		   if(presentPOList ==null || presentPOList.size() == 0){
+	    	        return ResultMessage.NOTEXIST;
+	       }
+	       else{
+	        	   readIdPO();
+	        	   presentID=idPO.getID();
+	        	
+	        	   PresentPO presentPO;
+	        	   String equivalent[][];       //10*4，每组分别表示:等价券额度，张数，有效截止日期，最低消费  
+	        	   
+	        	   for(int i=0;i<presentPOList.size();i++){
+	        		   presentPO=presentPOList.get(i);
+	        		   equivalent=presentPO.getEquivalent();
+	        		  //等价券
+	        		   for(int j=0;j<equivalent.length;j++){
+	        			   if( (Double.parseDouble(equivalent[j][0]) -0.0) <=0.000001){
+	        				  
+	        			   }
+	        			   else{
+	        				   if(! isOverdue(equivalent[j][2])){
+	        					   for(int t=0;t<Double.parseDouble(equivalent[j][1]); t++){
+	        						   EquivalentPO equivalentPO=new EquivalentPO(getNextId(), Double.parseDouble(equivalent[j][0]), 
+	        								                                          Double.parseDouble( equivalent[j][3]), stringToCalendar(equivalent[j][2]));
+	        						   addEquivalent(presentPO.getVipLevel(), equivalentPO);
+	        					   }
+	        					   
+	        				   }else{
+	        					     hasOverdue=true;
+	        				   } 
+	        			   }
+	        		   }//for(j)
+	        		  //打折券
+	        		   if( (presentPO.getDiscount() - 0.0) <= 0.000001  ){//不存在
+	        			  
+	        		   }else{
+	        		           if( ! isOverdue(presentPO.getEndDateOfCoupon()) ){//
+	        		        	   for(int k=0;k<presentPO.getAmountOfCoupon(); k++){
+	        		        	         CouponPO couponPO=new CouponPO(getNextId(), presentPO.getDiscount(),
+	        		        			                                                   stringToCalendar(presentPO.getEndDateOfCoupon()) );
+	        			                  addCoupon(presentPO.getVipLevel(),couponPO);
+	        		        	   }//for(k)
+	        		            }//if
+	        		           else{  
+	        		        	 hasOverdue=true;//过期
+	        		           }
+	        		   }
+	        	   }//for(i)
+	        	  
+	        	idPO.setID(presentID);
+	    		presentPOList.clear();
+	    		savePresent();
+	    		saveMember();
+	    		writeIdPO();     	 
+	    		
+	    	     if(hasOverdue){
+        		   return ResultMessage.OVORTIME;
+	    	     }else {
+					return ResultMessage.SUCCEED;
+				}
+	           }//else
+    }
+  
+    //
+  private void readIdPO(){
+	try{
+	ObjectInputStream inputStream=new ObjectInputStream(new FileInputStream(IdPO_ser));
+	idPO=(IdPO)inputStream.readObject();
+	inputStream.close();
+	}catch(Exception e){
+		idPO=new IdPO(0);
+		e.printStackTrace();
+	}
+}
+
+//
+private void writeIdPO(){
+	try{
+		ObjectOutputStream outputStream=new ObjectOutputStream(new FileOutputStream(IdPO_ser));
+		outputStream.writeObject(idPO);
+		outputStream.close();
+	}catch(IOException e){ 
+		e.printStackTrace();
+	}
+//	idPO=null;
+}
+
+//辅助方法,判断礼券是否过期		
+private boolean isOverdue(String s){
+   	Calendar calNow=Calendar.getInstance();
+   	Calendar   calSet=Calendar.getInstance();
+   	SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy/MM/dd");
+   	try{
+   		Date date=dateFormat.parse(s);
+   		calSet.setTime(date);
+		        int compare;
+		        compare=calNow.compareTo(calSet);
+		        if(compare>0){//过期
+		        	return true;
+		        }
+		        else{//未过期
+		        	return false;
+		        }
+		       
+   	}catch(Exception e){
+   		e.printStackTrace();
+   		return true;
+   	}   	
+   }
+
+//把Calendar日期型转换成String
+private Calendar stringToCalendar(String s){
+	SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy/MM/dd");
+	Calendar calendar=Calendar.getInstance();
+	try {
+		Date date=dateFormat.parse(s);
+		calendar.setTime(date);
+		return calendar;
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+		return null;
+	}
+}
+
+//产生独一无二的优惠券id
+private long getNextId(){
+	return (presentID+1);
+}
+
+//为顾客添加打折券
+private void addCoupon(VIPRank vip,CouponPO couponPO){
+	 for(int i=0;i<memberPOList.size();i++){
+		 if(memberPOList.get(i).getRank() ==vip){
+			 memberPOList.get(i).getCouponList().add(couponPO);
+		 }
+	 }	//for	 
+}
+
+//为顾客添加等价券
+private void addEquivalent(VIPRank vip,EquivalentPO equivalentPO){
+	 for(int i=0;i<memberPOList.size(); i++){
+		 if(memberPOList.get(i).getRank() == vip){
+			 memberPOList.get(i).getEquivalentList().add(equivalentPO);
+		 }
+	 }
+}
 
 }
