@@ -20,6 +20,7 @@ import po.OrderPO;
 import po.OrderState;
 import po.PresentPO;
 import po.ResultMessage;
+import presentationController.mainView.MainViewController;
 import presentationController.mainView.MainViewControllerInterface;
 
 import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
@@ -684,37 +685,44 @@ public class MainView extends JFrame implements ActionListener{
 //删除图书		
 	    	else if(event.getSource()==deleteBookButton ){
 	    		String isbn2=JOptionPane.showInputDialog(null,"请输入您要删除的图书的ISBN：");
+	    		if(isbn2==null){
+	    			
+	    		}else{
 	    		if(mainViewController.deleteBook(isbn2) ==ResultMessage.SUCCEED)
 	    			JOptionPane.showMessageDialog(null, "删除成功！");
 	    		else  	
 	    			JOptionPane.showMessageDialog(null, "您要删除的图书不存在！");
+	    		}
 	    	}
 	       
 //修改图书
 	    	else if(event.getSource()==changeBookButton){
 	    		isbn=JOptionPane.showInputDialog(null,"请输入您要修改的图书的ISBN：");
-	    		int index=mainViewController.indexOfBook(isbn);
-	    		if(index<0){
-	    			JOptionPane.showMessageDialog(null, "您要修改的图书不存在!");
+	    		if(isbn==null){
+	    			
 	    		}else{
-	    			BookPO bookPO=mainViewController.getBookPO(isbn);
-	    			bookAutherTextField.setText(bookPO.getAuthor());
-	    			bookCategoryTextField.setText(bookPO.getType());
-	    			bookIDTextField.setText(bookPO.getISBN());
-	    			bookNameTextField.setText(bookPO.getBookName());
-	    			bookPriceTextField.setText(""+bookPO.getPrice());
-	    			bookPublishHouseTextField.setText(bookPO.getPress());
-	    			bookPublishYearField.setText(bookPO.getPublishDate());
-	    			JOptionPane.showMessageDialog(null, "系统已显示您要修改的图书信息,请在界面上修改！\n" 
-	    					                                                   +"修改完成后请点击‘确认修改按钮’。");
-	    			bookIDTextField.setEditable(false);
-	    			confirmChangeBookButton.setEnabled(true);
+	    			if(mainViewController.getBookPO(isbn)==null){
+	    				JOptionPane.showMessageDialog(null, "您要修改的图书不存在！");
+	    			}else{
+	    				BookPO bookPO=mainViewController.getBookPO(isbn);
+		    			bookAutherTextField.setText(bookPO.getAuthor());
+		    			bookCategoryTextField.setText(bookPO.getType());
+		    			bookIDTextField.setText(bookPO.getISBN());
+		    			bookNameTextField.setText(bookPO.getBookName());
+		    			bookPriceTextField.setText(""+bookPO.getPrice());
+		    			bookPublishHouseTextField.setText(bookPO.getPress());
+		    			bookPublishYearField.setText(bookPO.getPublishDate());
+		    			JOptionPane.showMessageDialog(null, "系统已显示您要修改的图书信息,请在界面上修改！\n" 
+		    					                                                   +"修改完成后请点击‘确认修改按钮’。");
+		    			bookIDTextField.setEditable(false);
+		    			confirmChangeBookButton.setEnabled(true);
+	    			}  			
 	    		}
 	    	}
 	       
 //确认修改图书
 	    	else if(event.getSource()== confirmChangeBookButton){
-	    		mainViewController.deleteBook(isbn);
+	    		 mainViewController.deleteBook(isbn);
 	    		  BookPO bookPO=new BookPO(bookIDTextField.getText(), bookNameTextField.getText(), 
                           bookAutherTextField.getText(),bookPublishHouseTextField.getText(),
                           bookPublishYearField.getText(), bookCategoryTextField.getText(),
@@ -772,21 +780,21 @@ public class MainView extends JFrame implements ActionListener{
 	    			}else if(distributionRadioButton.isSelected()){
 	    				    if(orderPO.getOrderState() ==OrderState.ORDERDED){
 	    				    	uncompletedOrderList.get(selectedRow).setOrderState(OrderState.DISTRIBUTION);
-	    				    	mainViewController.writeUncompletedOrderPOList();
+	    				    	mainViewController.writeUncompletedOrderPOList(orderPO);
 	    				    	mainViewController.updateMember_Order(
 	    				    			    orderPO.getMemberID(),orderPO.getOrderState(),orderPO.getOrderNum());
 	    				    }else  JOptionPane.showMessageDialog(null, "您修改的订单状态不合理！");		
 	    			}else if(transportRadioButton.isSelected()){
 	    				   if(orderPO.getOrderState() ==OrderState.DISTRIBUTION){
 	    					   uncompletedOrderList.get(selectedRow).setOrderState(OrderState.TRASPORTATION);
-	    					   mainViewController.writeUncompletedOrderPOList();
+	    					   mainViewController.writeUncompletedOrderPOList(orderPO);
 	    					   mainViewController.updateMember_Order(
    				    			    orderPO.getMemberID(),orderPO.getOrderState(),orderPO.getOrderNum());
 	    				    }else  JOptionPane.showMessageDialog(null, "您修改的订单状态不合理！");
 	    			}else if(signedRadioButton.isSelected()){
 	    				   if(orderPO.getOrderState() ==OrderState.TRASPORTATION){
 	    					   uncompletedOrderList.get(selectedRow).setOrderState(OrderState.SIGNED);
-	    					   mainViewController.writeUncompletedOrderPOList();
+	    					   mainViewController.writeUncompletedOrderPOList(orderPO);
 	    					   mainViewController.updateMember_Order(
    				    			    orderPO.getMemberID(),orderPO.getOrderState(),orderPO.getOrderNum());
 	    				    }else  JOptionPane.showMessageDialog(null, "您修改的订单状态不合理！");

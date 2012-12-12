@@ -16,10 +16,10 @@ public interface MainViewControllerInterface {
     public ResultMessage sendPresent();
     public ResultMessage addBook(BookPO bookPO);
     public ResultMessage deleteBook(String s);
-    public int indexOfBook(String s); 
     public BookPO getBookPO(String s);
+    public ResultMessage changeBookPO(BookPO bookPO);
     public MemberPO getMemberPO(String s);
     public ArrayList<OrderPO> getUncompletedOrderPOList();
-    public void writeUncompletedOrderPOList();
-    public void updateMember_Order(String memberID,OrderState state,long orderNum);
+    public ResultMessage writeUncompletedOrderPOList(OrderPO orderPO);
+    public ResultMessage updateMember_Order(String memberID,OrderState state,long orderNum);
 }

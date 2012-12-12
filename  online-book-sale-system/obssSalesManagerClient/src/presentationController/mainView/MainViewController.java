@@ -5,9 +5,13 @@ import java.util.ArrayList;
 import bussinessLogic.controller.BookController;
 import bussinessLogic.controller.MemberController;
 import bussinessLogic.controller.PresentController;
+import bussinessLogic.controller.SalesController;
+import bussinessLogic.controller.SalesManagerController;
 import bussinessLogicService.BookBLService;
 import bussinessLogicService.MemberBLService;
 import bussinessLogicService.PresentBLService;
+import bussinessLogicService.SalesBLService;
+import bussinessLogicService.SalesManagerService;
 
 import po.BookPO;
 import po.MemberPO;
@@ -15,11 +19,10 @@ import po.OrderPO;
 import po.OrderState;
 import po.PresentPO;
 import po.ResultMessage;
+import po.SalesManagerPO;
 import po.UserPO;
 import presentation.MainView;
 
-
-import Model.SalesManagerModelInterface;
 
 public class MainViewController implements MainViewControllerInterface{
 //    SalesManagerModelInterface model;
@@ -28,10 +31,13 @@ public class MainViewController implements MainViewControllerInterface{
     private PresentBLService presenController=PresentController.getInstance();
     private BookBLService bookController=BookController.getInstance();
     private MemberBLService memberController=MemberController.getInstance();
-    private UserPO userPO;
+    private SalesBLService orderController= SalesController.getInstance();
+    private SalesManagerService salesManagerController=SalesManagerController.getInstance();
+
+    private SalesManagerPO userPO;
     
     
-    public MainViewController(UserPO userPO){
+    public MainViewController(SalesManagerPO userPO){
     	this.userPO=userPO;
     	mainView=new MainView(this);
     	mainView.createMainView();
@@ -58,33 +64,40 @@ public class MainViewController implements MainViewControllerInterface{
     	return bookController.deleteBook(s);
     }
 
-    //修改图书时，先检查是否存在此书
-    public int indexOfBook(String s){
-    	return bookController.indexOfBook(s);
-    }
+//    //修改图书时，先检查是否存在此书
+//    public int indexOfBook(String s){
+//    	return bookController.indexOfBook(s);
+//    }
     
   //修改图书时，返回原图书信息
     public BookPO getBookPO(String s){
-    	return bookController.getBookPO(s);
+    	return bookController.findByISBN(s);
+    }
+    
+    //
+    public ResultMessage changeBookPO(BookPO bookPO){
+    	return bookController.modifyBook(bookPO);
     }
 
     // //传入顾客ID，获取此顾客对象
     public MemberPO getMemberPO(String s){
-    	return memberController.getMemberPO(s);
+    	return salesManagerController.getMemberPO(s);
     }
     
     ////取得未完成的订单列表
     public ArrayList<OrderPO> getUncompletedOrderPOList(){
-    	return model.getUncompletedOrderPOList();
+    	return salesManagerController.getOrderPOList();      //getUncompletedOrderPOList();
     }
     
     //修改某订单后，修该UncompletedOrderPOList
-    public void writeUncompletedOrderPOList(){
-    	model.writeUncompletedOrderPOList();
+    public ResultMessage writeUncompletedOrderPOList(OrderPO orderPO){
+    	return salesManagerController.updateOrder(orderPO);   //.writeUncompletedOrderPOList();
+    	
     }
     
     //修改某订单后，相应修改其顾客的订单信息
-    public void updateMember_Order(String memberID,OrderState state,long orderNum){
-    	model.updateMember_Order(memberID, state, orderNum);
+    public ResultMessage updateMember_Order(String memberID,OrderState state,long orderNum){
+    	return salesManagerController.updateMember_Order(memberID, state, orderNum);   //.updateMember_Order(memberID, state, orderNum);
     }
+
 }
