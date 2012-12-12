@@ -1,7 +1,10 @@
 package bussinessLogic.domain;
 
 import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+
+import com.sun.org.apache.regexp.internal.recompile;
 
 import bussinessLogicService.PresentBLService;
 
@@ -27,10 +30,22 @@ public class Present {
 	}
 
     public ArrayList<PresentPO> getPresentPOList(){
-    	return presentDatabase.getPresentPOList();
+    	try {
+			return presentDatabase.getPresentPOList();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
     
 	public ResultMessage sendPresent(){
-		return presentDatabase.sendPresent();
+		try {
+			return presentDatabase.sendPresent();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
 	}
 }
