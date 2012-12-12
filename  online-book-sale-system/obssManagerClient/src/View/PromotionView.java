@@ -22,10 +22,10 @@ public class PromotionView extends JFrame implements ActionListener{
 	   private static final int column2=3;//第三列为等价券有效截止日期
 	   
 	    private PromotionControllerInterface proController ;//控制器
-	    
-        private JTable checkEqualityTable;
-	    private DefaultTableModel tableModel;
-	    
+	    private DefaultTableModel tableModel;  
+        private JTable checkEqualityTable;  
+        
+        
 	    private javax.swing.JTextField checkExchangeRateTextField;
 	    private javax.swing.JTextField checkRateOfCouponTextField;
 	    private javax.swing.JButton checkUpdateButton;
@@ -144,18 +144,7 @@ public class PromotionView extends JFrame implements ActionListener{
 	         jLabel14 = new javax.swing.JLabel();
 	    
 	         
-	         String [] columnNames={"等价券额度/元","最低消费/元"};
-	         String [][] tableValue=new String[line][column];
-	         tableModel=new DefaultTableModel(tableValue,columnNames); 
-	         checkEqualityTable = new JTable(tableModel);
-	         
-	         
-	         //监听
-	         checkUpdateButton.addActionListener(this);
-	          setYesButton.addActionListener(this);
-	          setNoButton.addActionListener(this);
-	          presentNoButton.addActionListener(this);
-	          presentYesButton.addActionListener(this);
+	       
 
 	         jLabel6.setText("jLabel6");
 
@@ -610,7 +599,25 @@ public class PromotionView extends JFrame implements ActionListener{
 	         endTimeOfCouponTextField.setText("");
 	         
 	         pack();
-	        this.setVisible(true);
+	         //
+	      
+	        checkExchangeRateTextField.setEditable(false);
+	        checkRateOfCouponTextField.setEditable(false);
+	        
+	         String [] columnNames={"等价券额度/元","最低消费/元"};
+	         String [][] tableValue=new String[line][column];
+	         tableModel=new DefaultTableModel(tableValue,columnNames); 
+	         checkEqualityTable = new JTable(tableModel);
+	             
+	         //监听
+	         checkUpdateButton.addActionListener(this);
+	          setYesButton.addActionListener(this);
+	          setNoButton.addActionListener(this);
+	          presentNoButton.addActionListener(this);
+	          presentYesButton.addActionListener(this);
+	          
+	          this.setVisible(true);
+	        
 	    }// </editor-fold>
 	    
 
