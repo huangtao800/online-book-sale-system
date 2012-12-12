@@ -351,11 +351,16 @@ public class InitDatabase extends UnicastRemoteObject implements
 			MemberPO memberPO=(MemberPO) userPO;
 			return updateMemberPO(memberPO);
 		}else if (role==UserRole.GeneralManager) {
-			
+			GeneralManagerPO generalManagerPO=(GeneralManagerPO) userPO;
+			return updateGeneralManagerPO(generalManagerPO);
+		}else if(role==UserRole.Administrator){
+			AdministratorPO administratorPO=(AdministratorPO) userPO;
+			return updateAdminstratorPO(administratorPO);
+		}else{
+			SalesManagerPO salesManagerPO=(SalesManagerPO) userPO;
+			return updateSalesManagerPO(salesManagerPO);
 		}
-		
-		
-		return null;
+
 	} 
 	
 	private ResultMessage updateMemberPO(MemberPO memberPO){
@@ -367,6 +372,75 @@ public class InitDatabase extends UnicastRemoteObject implements
 		
 		memberPOList.set(index, memberPO);
 		return ResultMessage.SUCCEED;
+	}
+	
+	private ResultMessage updateGeneralManagerPO(GeneralManagerPO generalManagerPO){
+		int index=serachIndexOfGeneralManager(generalManagerPO);
+		
+		if(index==-1){
+			return ResultMessage.NOTEXIST;
+		}
+		
+		generalManagerList.set(index, generalManagerPO);
+		return ResultMessage.SUCCEED;
+	}
+	
+	private ResultMessage updateAdminstratorPO(AdministratorPO administratorPO){
+		int index=searchIndexOfAdminstrator(administratorPO);
+		
+		if(index==-1){
+			return ResultMessage.NOTEXIST;
+		}
+		
+		adminstratorList.set(index, administratorPO);
+		return ResultMessage.SUCCEED;
+	}
+	
+	private ResultMessage updateSalesManagerPO(SalesManagerPO salesManagerPO){
+		int index=searchIndexOfSalesManager(salesManagerPO);
+		
+		if(index==-1){
+			return ResultMessage.NOTEXIST;
+		}
+		
+		salesManagerPOList.set(index, salesManagerPO);
+		return ResultMessage.SUCCEED;
+	}
+	
+	private int searchIndexOfAdminstrator(AdministratorPO administratorPO){
+		String id=administratorPO.getUserID();
+		
+		for(int i=0;i<adminstratorList.size();i++){
+			if(id.equals(adminstratorList.get(i).getUserID())){
+				return i;
+			}
+		}
+		
+		return -1;
+	}
+	
+	private int searchIndexOfSalesManager(SalesManagerPO salesManagerPO){
+		String id=salesManagerPO.getUserID();
+		
+		for(int i=0;i<salesManagerPOList.size();i++){
+			if(id.equals(salesManagerPOList.get(i).getUserID())){
+				return i;
+			}
+		}
+		
+		return -1;
+	}
+	
+	private int serachIndexOfGeneralManager(GeneralManagerPO generalManagerPO){
+		String id=generalManagerPO.getUserID();
+		
+		for(int i=0;i<generalManagerList.size();i++){
+			if(id.equals(generalManagerList.get(i).getUserID())){
+				return i;
+			}
+		}
+		
+		return -1;
 	}
 	
 	private int serachIndexOfMember(MemberPO memberPO){
