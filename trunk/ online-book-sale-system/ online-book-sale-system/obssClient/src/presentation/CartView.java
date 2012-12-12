@@ -189,13 +189,14 @@ public class CartView extends javax.swing.JFrame {
 		jButton2.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int i = getSeclectedLine();
+				System.out.println(i);
 				if(salesViewController.removeFromCart(i) == ResultMessage.SUCCEED)
 					freshTableModel(jTable1);
 				else
 					JOptionPane.showMessageDialog(null, "请选中要删除的商品");
 			}
 		});
-		jButton1.addMouseListener(new MouseAdapter() {
+		jButton3.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				setVisible(false);
 				salesViewController.initPayFrame();
@@ -214,6 +215,7 @@ public class CartView extends javax.swing.JFrame {
     }
     
 	public int getSeclectedLine(){
+		index = -1;
 		jTable1.getSelectionModel().addListSelectionListener(
 				new ListSelectionListener() {
 					public void valueChanged(ListSelectionEvent e) {
@@ -241,7 +243,7 @@ public class CartView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private SalesViewService salesViewController;
-    private int index;
+    private int index = -1;
     // End of variables declaration
 
 }
