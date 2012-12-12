@@ -1,6 +1,5 @@
 package bussinessLogicService;
 
-import po.ResultMessage;
 import po.UserPO;
 import po.UserRole;
 
