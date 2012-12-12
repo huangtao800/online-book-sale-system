@@ -2,8 +2,6 @@ package presentationController.Sales;
 
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-
 import po.LineItemPO;
 import po.ResultMessage;
 import presentation.CartView;
@@ -33,11 +31,9 @@ public class SalesViewController implements SalesViewService{
 	public void initCartView(){
 		cartView = new CartView(this);
 		cartView.refreshCartList();
-		cartView.refreshTotalPrice(salesController.getTotalPrice());
-		
+		cartView.refreshTotalPrice(salesController.getTotalPrice());	
 		cartView.setTitle("Cart");
 		cartView.setLocation(400, 100);
-		cartView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		cartView.setSize(680, 500);
 		cartView.setVisible(true);
 	}
@@ -50,15 +46,18 @@ public class SalesViewController implements SalesViewService{
 		payView.showSpecial(specialList);
 		payView.setTitle("Pay");
 		payView.setLocation(400, 100);
-		payView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		payView.setSize(500, 450);
 		payView.setVisible(true);
 	}
 //初始化订单
 	public void initOrderView(OrderVO orderVO){
 		orderView = new OrderView(orderVO.getProductList());	
-		orderView.initText(orderVO.getOrderNum(),orderVO.getMemberID(),"暂无",
+		orderView.initText(orderVO.getOrderNum(),orderVO.getMemberID(),"日期:暂无",
 				orderVO.getOrderState(),orderVO.getTotalPrice());
+		orderView.setTitle("订单详情");
+		orderView.setLocation(400, 100);
+		orderView.setSize(500, 450);
+		orderView.setVisible(true);
 	}
 	
 	public ResultMessage putInCart(String isbn, int number){
