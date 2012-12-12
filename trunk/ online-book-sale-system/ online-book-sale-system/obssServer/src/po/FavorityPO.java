@@ -65,4 +65,13 @@ public class FavorityPO implements PO{
 	public int getSize(){
 		return favorities.size();
 	}
+	
+	public boolean isExist(BookPO po){
+		for(int i=0;i<favorities.size();i++){
+			if(po.getISBN().equals(favorities.get(i).getISBN())){
+				return true;
+			}
+		}
+		return false;
+	}
 }
