@@ -39,7 +39,13 @@ public class PresentDatabase extends UnicastRemoteObject implements  PresentData
 	}
 	
 	public ResultMessage sendPresent(){
-		return initDatabase.sendPresent();
+		try {
+			return initDatabase.sendPresent();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
 	}
 	
 	
