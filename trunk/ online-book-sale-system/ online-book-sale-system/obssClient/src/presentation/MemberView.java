@@ -88,11 +88,6 @@ public class MemberView extends JFrame {
 
 	private MemberViewService memberViewController;
 	private JTable couponTable;
-	private JPanel panel;
-	private JScrollPane scrollPane_1;
-	private JButton removeButton;
-	private JButton calcButton;
-	private JTable table_1;
 	private JButton enterCartButton;
 
 	/**
@@ -184,6 +179,9 @@ public class MemberView extends JFrame {
 		changeNameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String newName=JOptionPane.showInputDialog("请输入新的用户名:");
+				if(newName==null){
+					return;
+				}
 				ResultMessage message=memberViewController.changeName(newName);
 				if(message==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "修改成功！");
@@ -199,6 +197,9 @@ public class MemberView extends JFrame {
 		changeAddressButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String newAddress=JOptionPane.showInputDialog("请输入新的地址:");
+				if(newAddress==null){
+					return;
+				}
 				ResultMessage result=memberViewController.changeAddress(newAddress);
 				
 				if(result==ResultMessage.SUCCEED){
@@ -446,11 +447,22 @@ public class MemberView extends JFrame {
 		changePasswordButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String oldPassword=JOptionPane.showInputDialog("请输入原始密码：");
+				if(oldPassword==null){
+					return;
+				}
+				
 				if(!memberViewController.checkPassword(oldPassword)){
 					JOptionPane.showMessageDialog(null, "抱歉！密码输入错误！");
 				}else{
 					String password1=JOptionPane.showInputDialog("请输入新密码：");
+					if(password1==null){
+						return;
+					}
+					
 					String password2=JOptionPane.showInputDialog("请再次输入新密码：");
+					if(password2==null){
+						return;
+					}
 					
 					if(password1.equals(password2)){
 						ResultMessage message=memberViewController.changePassword(password1);
@@ -757,113 +769,6 @@ public class MemberView extends JFrame {
 												Short.MAX_VALUE)));
 
 		jTabbedPane1.addTab("  我的礼券  ", jPanel4);
-
-		panel = new JPanel();
-		jTabbedPane1
-				.addTab("\u6211\u7684\u8D2D\u7269\u8F66", null, panel, null);
-
-		scrollPane_1 = new JScrollPane();
-
-		removeButton = new JButton();
-		removeButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		removeButton.setText("\u79FB\u9664");
-		removeButton.setFont(new Font("微软雅黑", Font.PLAIN, 14));
-
-		calcButton = new JButton();
-		calcButton.setText("\u7ED3\u7B97");
-		calcButton.setFont(new Font("微软雅黑", Font.PLAIN, 14));
-
-		JLabel label = new JLabel("\u5546\u54C1\u603B\u4EF7\uFF1A");
-		label.setFont(new Font("微软雅黑", Font.PLAIN, 14));
-
-		JLabel lblXxx = new JLabel("XXX");
-		lblXxx.setFont(new Font("微软雅黑", Font.PLAIN, 14));
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel
-				.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 719,
-						Short.MAX_VALUE)
-				.addGroup(
-						Alignment.TRAILING,
-						gl_panel.createSequentialGroup()
-								.addContainerGap(236, Short.MAX_VALUE)
-								.addComponent(removeButton,
-										GroupLayout.PREFERRED_SIZE, 125,
-										GroupLayout.PREFERRED_SIZE)
-								.addGap(33)
-								.addComponent(calcButton,
-										GroupLayout.PREFERRED_SIZE, 130,
-										GroupLayout.PREFERRED_SIZE).addGap(195))
-				.addGroup(
-						Alignment.TRAILING,
-						gl_panel.createSequentialGroup()
-								.addContainerGap(533, Short.MAX_VALUE)
-								.addComponent(label,
-										GroupLayout.PREFERRED_SIZE, 71,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addComponent(lblXxx,
-										GroupLayout.PREFERRED_SIZE, 54,
-										GroupLayout.PREFERRED_SIZE).addGap(30)));
-		gl_panel.setVerticalGroup(gl_panel
-				.createParallelGroup(Alignment.LEADING)
-				.addGroup(
-						gl_panel.createSequentialGroup()
-								.addComponent(scrollPane_1,
-										GroupLayout.PREFERRED_SIZE, 249,
-										GroupLayout.PREFERRED_SIZE)
-								.addGap(31)
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.BASELINE)
-												.addComponent(
-														label,
-														GroupLayout.PREFERRED_SIZE,
-														28,
-														GroupLayout.PREFERRED_SIZE)
-												.addComponent(lblXxx))
-								.addGap(24)
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.BASELINE)
-												.addComponent(
-														calcButton,
-														GroupLayout.DEFAULT_SIZE,
-														37, Short.MAX_VALUE)
-												.addComponent(
-														removeButton,
-														GroupLayout.PREFERRED_SIZE,
-														37,
-														GroupLayout.PREFERRED_SIZE))
-								.addGap(67)));
-
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(new Object[][] {
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null }, }, new String[] {
-				"\u56FE\u4E66\u540D\u79F0", "ISBN", "\u4F5C\u8005",
-				"\u51FA\u7248\u793E", "\u51FA\u7248\u5E74\u4EFD",
-				"\u4EF7\u683C" }) {
-			boolean[] columnEditables = new boolean[] { false, false, false,
-					false, false, false };
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		scrollPane_1.setViewportView(table_1);
-		panel.setLayout(gl_panel);
 
 		orderTable.setModel(new DefaultTableModel(
 			new Object[][] {
