@@ -1,4 +1,4 @@
-package presentController.mainView;
+package presentationController.mainView;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ import po.OrderState;
 import po.PresentPO;
 import po.ResultMessage;
 import po.UserPO;
-import present.MainView;
+import presentation.MainView;
 
 
 import Model.SalesManagerModelInterface;
