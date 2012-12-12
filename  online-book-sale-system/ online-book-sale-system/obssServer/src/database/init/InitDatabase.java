@@ -9,6 +9,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import po.AdministratorPO;
+import po.GeneralManagerPO;
 import po.MemberPO;
 import po.ResultMessage;
 import po.SalesManagerPO;
@@ -22,6 +24,9 @@ public class InitDatabase extends UnicastRemoteObject implements
 
 	private static ArrayList<MemberPO> memberPOList;
 	private static ArrayList<SalesManagerPO> salesManagerPOList;
+	private static ArrayList<GeneralManagerPO> generalManagerList;
+	private static ArrayList<AdministratorPO> adminstratorList;
+	
 	private static InitDatabase instance;
 
 	private InitDatabase() throws RemoteException {
@@ -34,8 +39,16 @@ public class InitDatabase extends UnicastRemoteObject implements
 		return memberPOList;
 	}
 	
-	public static ArrayList<SalesManagerPO> getSalesManagerPOs(){
+	public static ArrayList<SalesManagerPO> getSalesManagerList(){
 		return salesManagerPOList;
+	}
+	
+	public static ArrayList<GeneralManagerPO> getGeneralManagerList(){
+		return generalManagerList;
+	}
+	
+	public static ArrayList<AdministratorPO> getAdministratorList(){
+		return adminstratorList;
 	}
 
 	@Override
@@ -43,6 +56,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 		// TODO Auto-generated method stub
 		readMember();
 		readSalesManager();
+		readGeneralManager();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -65,11 +79,45 @@ public class InitDatabase extends UnicastRemoteObject implements
 	@SuppressWarnings("unchecked")
 	private void readSalesManager() {
 		try {
-			FileInputStream inputStream = new FileInputStream("saleManager.ser.ser");
+			FileInputStream inputStream = new FileInputStream("salesManager.ser");
 			ObjectInputStream objectInputStream = new ObjectInputStream(
 					inputStream);
 
 			salesManagerPOList = (ArrayList<SalesManagerPO>) objectInputStream.readObject();
+			
+			inputStream.close();
+			objectInputStream.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void readGeneralManager() {
+		try {
+			FileInputStream inputStream = new FileInputStream("generalManager.ser");
+			ObjectInputStream objectInputStream = new ObjectInputStream(
+					inputStream);
+
+			generalManagerList = (ArrayList<GeneralManagerPO>) objectInputStream.readObject();
+			
+			inputStream.close();
+			objectInputStream.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void readAdministrator() {
+		try {
+			FileInputStream inputStream = new FileInputStream("adminstrator.ser");
+			ObjectInputStream objectInputStream = new ObjectInputStream(
+					inputStream);
+
+			adminstratorList = (ArrayList<AdministratorPO>) objectInputStream.readObject();
 			
 			inputStream.close();
 			objectInputStream.close();
@@ -93,6 +141,51 @@ public class InitDatabase extends UnicastRemoteObject implements
 			e.printStackTrace();
 		}
 	}
+	
+	private void saveGeneralManager(){
+		try {
+			FileOutputStream outputStream=new FileOutputStream("generalManager.ser");
+			ObjectOutputStream objectOutputStream=new ObjectOutputStream(outputStream);
+			
+			objectOutputStream.writeObject(generalManagerList);
+			
+			outputStream.close();
+			objectOutputStream.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	private void saveSalesManager(){
+		try {
+			FileOutputStream outputStream=new FileOutputStream("salesManager.ser");
+			ObjectOutputStream objectOutputStream=new ObjectOutputStream(outputStream);
+			
+			objectOutputStream.writeObject(salesManagerPOList);
+			
+			outputStream.close();
+			objectOutputStream.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	private void saveAdminstrator(){
+		try {
+			FileOutputStream outputStream=new FileOutputStream("adminstrator.ser");
+			ObjectOutputStream objectOutputStream=new ObjectOutputStream(outputStream);
+			
+			objectOutputStream.writeObject(adminstratorList);
+			
+			outputStream.close();
+			objectOutputStream.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public UserPO logIn(String userName, String password, UserRole userRole) {
@@ -106,7 +199,16 @@ public class InitDatabase extends UnicastRemoteObject implements
 			result=searchSalesManager(userName, password);
 		}
 		
+		if(userRole==UserRole.GeneralManager){
+			result=searchGeneralManager(userName,password);
+		}
+
+		if(userRole==UserRole.Administrator){
+			result=searchAdministrator(userName, password);
+		}
+		
 		return result;
+		
 	}
 
 	private MemberPO searchMember(String name,String password){
@@ -127,6 +229,30 @@ public class InitDatabase extends UnicastRemoteObject implements
 			if(name.equals(salesManagerPOList.get(i).getUserName())
 					&&password.equals(salesManagerPOList.get(i).getUserPassword())){
 				return salesManagerPOList.get(i);
+			}
+		}
+		
+		return resultPo;
+	}
+	
+	private GeneralManagerPO searchGeneralManager(String name,String password){
+		GeneralManagerPO resultPo=null;
+		for(int i=0;i<generalManagerList.size();i++){
+			if(name.equals(generalManagerList.get(i).getUserName())
+					&&password.equals(generalManagerList.get(i).getUserPassword())){
+				return generalManagerList.get(i);
+			}
+		}
+		
+		return resultPo;
+	}
+	
+	private AdministratorPO searchAdministrator(String name,String password){
+		AdministratorPO resultPo=null;
+		for(int i=0;i<adminstratorList.size();i++){
+			if(name.equals(adminstratorList.get(i).getUserName())
+					&&password.equals(adminstratorList.get(i).getUserPassword())){
+				return adminstratorList.get(i);
 			}
 		}
 		
