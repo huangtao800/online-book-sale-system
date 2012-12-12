@@ -19,7 +19,6 @@ import presentationController.Member.MemberViewService;
 
 import bussinessLogicService.MemberManagerBLService;
 import bussinessLogic.controller.*;
-import bussinessLogic.domain.MemberManager;
 import javax.swing.JTabbedPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
