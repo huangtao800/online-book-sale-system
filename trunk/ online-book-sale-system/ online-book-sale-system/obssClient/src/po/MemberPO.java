@@ -13,6 +13,7 @@ public class MemberPO extends UserPO{
 	private String address;
 	private int points;
 	private VIPRank rank;
+	private int[] pointBorder={1000,2000,3000,4000,5000};
 
 	public MemberPO(String id,String name,String password,String address){
 		super(id, name, password, UserRole.Member);
@@ -34,6 +35,7 @@ public class MemberPO extends UserPO{
 
 	public void setPoints(int points) {
 		this.points = points;
+		setRank();
 	}
 
 
@@ -42,8 +44,18 @@ public class MemberPO extends UserPO{
 	}
 
 
-	public void setRank(VIPRank rank) {
-		this.rank = rank;
+	private void setRank() {
+		if(points<=pointBorder[0]){
+			this.rank=VIPRank.VIP1;
+		}else if(points<=pointBorder[1]){
+			this.rank=VIPRank.VIP2;
+		}else if(points<=pointBorder[2]){
+			this.rank=VIPRank.VIP3;
+		}else if(points<=pointBorder[3]){
+			this.rank=VIPRank.VIP4;
+		}else {
+			this.rank=VIPRank.VIP5;
+		}
 	}
 
 
