@@ -9,12 +9,13 @@ import databaseService.init.InitDatabaseService;
 
 import po.MemberPO;
 import po.ResultMessage;
+import po.SalesManagerPO;
 import po.UserPO;
 import po.UserRole;
 import presentation.StartView;
-import presentationController.Member.MemberViewController;
-import presentationController.Member.MemberViewService;
-import bussinessLogic.controller.UserController;
+import presentationController.mainView.MainViewController;
+import presentationController.mainView.MainViewControllerInterface;
+
 import bussinessLogicService.RegistryBLService;
 import bussinessLogicService.StartBLService;
 import bussinessLogicService.UserBLService;
@@ -52,7 +53,7 @@ public class StartController implements StartBLService {
 			startView.dispose();
 			
 			enterMainView(role,userPO);
-			System.out.println("success!");
+//			System.out.println("success!");
 		} else {
 			JOptionPane.showMessageDialog(null, "对不起！用户名或密码错误！");
 		}
@@ -60,20 +61,12 @@ public class StartController implements StartBLService {
 
 
 	@Override
-	public void startRegistry() {
-		// TODO Auto-generated method stub
-		registryController = new RegistryController(this);
-	}
-
-	@Override
 	public void enterMainView(UserRole role,UserPO userPO) {
 		// TODO Auto-generated method stub
-		if (role == UserRole.Member) {
-			MemberPO memberPO=(MemberPO) userPO;
-			MemberViewService memberViewController=MemberViewController.getInstance(memberPO);
-		} else if (role == UserRole.SalesManager) {
-
-		}
+		SalesManagerPO salesManagerPO=(SalesManagerPO) userPO;
+		
+		MainViewControllerInterface mainViewController=new MainViewController(salesManagerPO);
+		
 	}
 
 	@Override
