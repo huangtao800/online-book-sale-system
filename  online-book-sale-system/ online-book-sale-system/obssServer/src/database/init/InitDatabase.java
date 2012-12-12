@@ -33,7 +33,6 @@ import databaseService.init.InitDatabaseService;
 public class InitDatabase extends UnicastRemoteObject implements
 		InitDatabaseService {
 	private static final String PromotionPO_Ser="promotionPO.ser";
-	private static final String PresentPOList_Ser="presentPO.ser";
 	private static final String IdPO_ser="idPO.ser";
 	private static final String PresentPOList_ser="presentPO.ser";
 	
@@ -163,7 +162,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 	@SuppressWarnings("unchecked")
 	private void readPresentPO() {
 		try {
-			ObjectInputStream inputStream=new ObjectInputStream(new FileInputStream(PresentPOList_Ser));
+			ObjectInputStream inputStream=new ObjectInputStream(new FileInputStream(PresentPOList_ser));
 			presentPOList=(ArrayList<PresentPO>)inputStream.readObject();
 			inputStream.close();
 			
