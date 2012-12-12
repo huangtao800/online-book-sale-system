@@ -13,7 +13,7 @@ import po.UserRole;
 import databaseService.DatabaseService;
 
 public interface InitDatabaseService extends Remote {
-	public void initAllUser() throws RemoteException;
+	public void initData() throws RemoteException;
 
 	public UserPO logIn(String userName, String password, UserRole userRole)
 			throws RemoteException;
