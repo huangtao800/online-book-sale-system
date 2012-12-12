@@ -33,17 +33,17 @@ public class UserController implements UserBLService, Serializable {
 		
 	}
 
-	public ResultMessage deleteUser(String id) {
-		return user.deleteUser(id);
+	public ResultMessage deleteUser(String id,UserRole userRole) {
+		return user.deleteUser(id,userRole);
 	}
 	
 	//查找用户通过id 或者name
 	public UserPO findUser(String id,String name){
 		
 		if(id.equals(" ")){
-			return user.findUserThroughName(name);
+			return user.findUserThroughName(name,UserRole.Member);
 		}else{
-			return user.findUserThroughID(id);
+			return user.findUserThroughID(id,UserRole.Member);
 		}
 	}
 	
@@ -55,7 +55,7 @@ public class UserController implements UserBLService, Serializable {
 	}
 
 	public ResultMessage findChangingUser(String id) {
-		
+		return ResultMessage.SUCCEED;
 	}
 
 	
