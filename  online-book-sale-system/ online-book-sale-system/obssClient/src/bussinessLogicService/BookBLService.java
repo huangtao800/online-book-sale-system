@@ -5,7 +5,7 @@ import po.*;
 
 public interface BookBLService {
 	//销售界面查询图书和图书的促销信息
-	public ArrayList<BookPO> findByKey(String name);//根据关键字返回相应的图书列表
+	public ArrayList<BookPO> findByKey(String name,String author,String press,String publishDate);//根据关键字返回相应的图书列表
 	public ArrayList<BookPO> findByType(String type);//选择图书类别，返回相应的图书列表
 	public BookPO findByISBN(String ISBN);//通过ISBN来查找图书
 	
