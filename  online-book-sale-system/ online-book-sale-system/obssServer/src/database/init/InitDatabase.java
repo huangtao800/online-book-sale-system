@@ -414,7 +414,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 	}
 	
 	 //ÔùËÍÀñÈ¯
-    public ResultMessage sendPresent(){
+    public ResultMessage sendPresent() throws RemoteException{
     	getPresentList();
 
 		boolean hasOverdue=false;//ÓĞ¹ıÆÚÀñÈ¯	    		
