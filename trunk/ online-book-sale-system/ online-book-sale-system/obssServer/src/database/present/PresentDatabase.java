@@ -35,7 +35,7 @@ public class PresentDatabase extends UnicastRemoteObject implements  PresentData
 	
 	
 	public ArrayList<PresentPO> getPresentPOList(){
-		return initDatabase.getPresentPOList();
+		return InitDatabase.getPresentList();
 	}
 	
 	public ResultMessage sendPresent(){
