@@ -10,7 +10,7 @@ public class AdministratorPO extends UserPO{
     }
     
     public AdministratorPO(String id,String name,String password){
-    	super(id, name, password, UserRole.Administrator, true);
+    	super(id, name, password, UserRole.Administrator);
     }
     
 }
