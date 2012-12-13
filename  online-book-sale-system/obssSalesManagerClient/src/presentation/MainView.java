@@ -1113,14 +1113,14 @@ public class MainView extends JFrame implements ActionListener{
 		    		  
 		    		  for(int j=0;j<equivalent.length;j++){
 		    			  if( (Double.parseDouble(equivalent[j][0]) - 0.0)>0.000001  ){//是否判断一下是否有过期的?。。
-		    				  showPresentTextArea.append ("\t"+"等价券"+"\t"+"额度/元:"+"\t"+equivalent[j][0]+"\t"+"数量/张:"+"\t"+equivalent[j][1]
-		    				  +"\t"+"最低消费:"+"\t"+equivalent[j][3]+"\t"+"有效截止日期:"+"\t"+equivalent[j][2]+"\n");
+		    				  showPresentTextArea.append ("  等价券"+"    "+"额度:"+equivalent[j][0]+"元  "+"数量:"+equivalent[j][1]
+		    				  +"张  "+"最低消费:"+equivalent[j][3]+"元  "+"有效截止日期:"+equivalent[j][2]+"\n");
 		    			  } 
 		    		  }//for(j)
 		    		   		    		  
 		    		  if( (presentPO.getDiscount() - 0.0) > 0.000001 ){//存在//是否判断一下是否有过期的。。
-		    		         showPresentTextArea.append("\t"+"打折券"+"\t"+"打折率:"+"\t"+presentPO.getDiscount()+"\t"+"数量/张:"+"\t"+
-		    		                  presentPO.getAmountOfCoupon()+"\t"+"有效截止日期"+"\t"+presentPO.getEndDateOfCoupon()+"\n");
+		    		         showPresentTextArea.append("  打折券"+"    "+"打折率:"+presentPO.getDiscount()*100+"%  "+"数量:"+
+		    		                  presentPO.getAmountOfCoupon()+"张  "+"有效截止日期"+presentPO.getEndDateOfCoupon()+"\n");
 		    		  }
 		    		  
 		    		  showPresentTextArea.append("\n");
