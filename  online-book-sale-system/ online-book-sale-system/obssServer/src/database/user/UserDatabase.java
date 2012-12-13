@@ -151,18 +151,7 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		return resultMessage;
 	}
 	
-	public UserPO findUserThroughID(String id,UserRole userRole) {
-		ArrayList<UserPO> userList = UserDatabase.getInstance().readFileByRole(userRole);
-		UserPO userPO = null;
-		for(int i=0;i<userList.size();i++){
-			if(userList.get(i).getUserID().equals(id)){
-				userPO = userList.get(i);
-			}
-		}
-		return userPO;
-	}
-	
-	public UserPO findUserThroughName(String name,UserRole userRole){
+	public UserPO findUserThroughName(String name,UserRole userRole) {
 		ArrayList<UserPO> userList = UserDatabase.getInstance().readFileByRole(userRole);
 		UserPO userPO = null;
 		for(int i=0;i<userList.size();i++){
@@ -172,5 +161,6 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		}
 		return userPO;
 	}
+	
 	
 }
