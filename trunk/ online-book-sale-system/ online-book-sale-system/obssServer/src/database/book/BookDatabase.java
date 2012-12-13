@@ -167,13 +167,18 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 	//
 	private ArrayList<BookPO> readFile(){
 		FileInputStream inputStream;
-		ArrayList<BookPO> bookList=null;
+		ArrayList<BookPO> bookList = new ArrayList<BookPO>();
 		
 		try {
-			
 		    inputStream=new FileInputStream("book.ser");
-			ObjectInputStream objInput=new ObjectInputStream(inputStream);	
-			bookList=(ArrayList<BookPO>)objInput.readObject();
+			ObjectInputStream objInput=new ObjectInputStream(inputStream);
+			BookPO b = new BookPO();
+			b = (BookPO)objInput.readObject();
+			while(b!=null){
+				bookList.add(b);
+				b = (BookPO)objInput.readObject();
+			}
+			
 			inputStream.close();
 			objInput.close();
 		} catch (Exception e) {
