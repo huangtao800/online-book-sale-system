@@ -78,9 +78,9 @@ public class MemberViewController implements MemberViewService{
 	}
 
 	@Override
-	public ResultMessage putInCart(BookPO bookPO) {
+	public ResultMessage putInCart(BookPO bookPO,int number) {
 		// TODO Auto-generated method stub
-		LineItemPO lineItemPO=new LineItemPO(bookPO, 1);
+		LineItemPO lineItemPO=new LineItemPO(bookPO, number);
 		return memberController.putInCart(lineItemPO);
 	}
 

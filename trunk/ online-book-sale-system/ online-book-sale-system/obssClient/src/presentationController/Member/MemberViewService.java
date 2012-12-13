@@ -12,7 +12,7 @@ public interface MemberViewService {
 	public boolean checkPassword(String password);
 	public ResultMessage changePassword(String password);
 	
-	public ResultMessage putInCart(BookPO bookPO);
+	public ResultMessage putInCart(BookPO bookPO, int number);
 	public void enterCart();	//进入购物车
 	public ResultMessage changeAddress(String newAddress);
 	public ResultMessage cancel(String password);
