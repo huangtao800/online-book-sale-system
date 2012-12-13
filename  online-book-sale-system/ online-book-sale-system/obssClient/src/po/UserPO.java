@@ -6,16 +6,18 @@ import java.io.*;
 public class UserPO implements PO{
     private String userID,userName,userPassword;
     private UserRole userRole;
+    private boolean userState;
     
     public UserPO(){
     	
     }
     
-    public UserPO(String id,String name,String password,UserRole role){
+    public UserPO(String id,String name,String password,UserRole role,boolean state){
     	userID = id;
     	userName = name;
     	userPassword = password;
     	userRole = role;
+    	userState = state;
     }
  
     public void setUserName(String name){
@@ -50,6 +52,14 @@ public class UserPO implements PO{
     	return userRole;
     }
     
+    public void setUserState(boolean state) {
+		userState = state;
+	}
+    
+    public boolean getUserState(){
+    	return userState;
+    }
    
+    
     
 }
