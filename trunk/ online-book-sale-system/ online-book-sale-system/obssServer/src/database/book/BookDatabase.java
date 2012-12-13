@@ -53,13 +53,8 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		BookPO bookPO = (BookPO)po;
 		ArrayList<BookPO> bookList = BookDatabase.getInstance().readFile();
 		if(index!=-1){
-			for(int i=0;i<bookList.size();i++){
-	        	if(bookPO.getISBN().equals(bookList.get(i).getISBN())){
-	        		bookList.get(i).setNumOfBook(bookList.get(i).getNumOfBook()+bookPO.getNumOfBook());
-	        	}
-	        }
-			
-			return ResultMessage.SUCCEED;
+			bookList.get(index).setNumOfBook(bookList.get(index).getNumOfBook()+bookPO.getNumOfBook());
+	        return ResultMessage.SUCCEED;
 		}else{
 			   try {
 				  FileOutputStream fos = new FileOutputStream("book.ser");
@@ -91,44 +86,40 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 	@Override
 	public ResultMessage delete(PO po) {
 		// TODO Auto-generated method stub
+		int index = BookDatabase.getInstance().isExist(po);
 		BookPO bookPO = (BookPO)po;
         ArrayList<BookPO> bookList = BookDatabase.getInstance().readFile();
-        ResultMessage resultMessage = ResultMessage.FAILED;
-        for(int i=0;i<bookList.size();i++){
-        	if(bookPO.getISBN().equals(bookList.get(i).getISBN())){
-        		bookList.get(i).setNumOfBook(0);
-        		resultMessage = ResultMessage.SUCCEED;
-        	}
-        }
         
-        return resultMessage;
+        if(index!=-1){
+			bookList.get(index).setNumOfBook(0);
+	        return ResultMessage.SUCCEED;
+		}else{
+	   	    return ResultMessage.NOTEXIST;
+	    }
+ 
 	}
 
 
 	@Override
 	//用于修改
 	public ResultMessage update(PO po) {
-		// TODO Auto-generated method stub
+		int index = BookDatabase.getInstance().isExist(po);
 		BookPO bookPO = (BookPO)po;
-        ArrayList<BookPO> bookList = BookDatabase.getInstance().readFile();
-        
-        ResultMessage resultMessage = ResultMessage.FAILED;
-        for(int i=0;i<bookList.size();i++){
-        	//bookISBN不可以修改
-        	if(bookPO.getISBN().equals(bookList.get(i).getISBN())){
-        		bookList.get(i).setAuthor(bookPO.getAuthor());
-        		bookList.get(i).setBookName(bookPO.getBookName());
-        		bookList.get(i).setNumOfBook(bookPO.getNumOfBook());
-        		bookList.get(i).setPress(bookPO.getPress());
-        		bookList.get(i).setPrice(bookPO.getPrice());
-        		bookList.get(i).setPublishDate(bookPO.getPublishDate());
-        		bookList.get(i).setType(bookPO.getType());
-        		
-        		resultMessage = ResultMessage.SUCCEED;
-        	}
-        }
-        
-        return resultMessage;
+		ArrayList<BookPO> bookList = BookDatabase.getInstance().readFile();
+		
+		if(index!=-1){
+			bookList.get(index).setAuthor(bookPO.getAuthor());
+    		bookList.get(index).setBookName(bookPO.getBookName());
+    		bookList.get(index).setNumOfBook(bookPO.getNumOfBook());
+    		bookList.get(index).setPress(bookPO.getPress());
+    		bookList.get(index).setPrice(bookPO.getPrice());
+    		bookList.get(index).setPublishDate(bookPO.getPublishDate());
+    		bookList.get(index).setType(bookPO.getType());
+	        return ResultMessage.SUCCEED;
+		}else{
+			return ResultMessage.NOTEXIST;
+		}
+       
 	}
 	
 	public BookPO findThroughISBN(String isbn) {
@@ -167,7 +158,7 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		for(int i=0;i<arrayList.size();i++){
 			if(arrayList.get(i).getType().equals(type)){
 				   bookList.add(arrayList.get(i));
-			   }
+			}
 		}
 		
 		return bookList;
