@@ -10,8 +10,8 @@ import po.UserRole;
 import presentation.AdminView;
 import presentationController.book.BookViewController;
 
-public class AdminViewController {
-	 private static AdminViewController uniqueInstance;
+public class AdminViewController implements AdminViewService{
+	 private static AdminViewService uniqueInstance;
 	 private static UserBLService userController;
 	 private AdminView adminView;
 
@@ -19,7 +19,7 @@ public class AdminViewController {
 		 userController = UserController.getInstance();
 	 }
 	 
-	 public static AdminViewController getInstance(){
+	 public static AdminViewService getInstance(){
 		 if(userController==null){
 			 uniqueInstance = new AdminViewController();
 		 }
