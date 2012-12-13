@@ -23,7 +23,6 @@ import bussinessLogicService.UserBLService;
 public class StartController implements StartBLService {
 	private StartView startView;
 	private InitDatabaseService initDatabase;
-	private RegistryBLService registryController;
 
 	// 构造函数应传入Model
 	public StartController() { 
