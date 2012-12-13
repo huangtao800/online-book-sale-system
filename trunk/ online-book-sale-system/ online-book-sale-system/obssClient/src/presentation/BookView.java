@@ -88,17 +88,17 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
 
         jLabel2.setText("出版社： ");
 
-        jTextField1.setText("");
+        jTextField1.setText(keywordVO.bookName);
 
-        jTextField2.setText("");
+        jTextField2.setText(keywordVO.publisher);
 
         jLabel3.setText("作者：");
 
         jLabel4.setText("出版年份：");
 
-        jTextField4.setText("");
+        jTextField4.setText(keywordVO.author);
         
-        jTextField5.setText("");
+        jTextField5.setText(keywordVO.publishYear);
 
         jButton1.setText("查找");
         jButton1.addActionListener(this);
