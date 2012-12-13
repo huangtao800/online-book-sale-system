@@ -20,7 +20,7 @@ public class PresentPO implements PO {
 	public PresentPO() {
 		for (int i = 0; i < line; i++)
 			for (int j = 0; j < column4; j++)
-				equivalent[i][j] = null;
+				equivalent[i][j] = "0.0";
 	}
 
 	public VIPRank getVipLevel() {
