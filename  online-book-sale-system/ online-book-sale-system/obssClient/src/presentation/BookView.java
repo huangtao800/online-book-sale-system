@@ -33,7 +33,6 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     }
 	
 	public BookView (KeywordVO keywordVO,String type) {
-		
 		this.keywordVO = keywordVO;
 		this.type = type;
 		if(type==null){
