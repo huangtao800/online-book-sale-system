@@ -143,6 +143,13 @@ public class MemberController implements MemberBLService{
 		return member.clearCart();
 	}
 
+	@Override
+	public MemberPO freshMemberPO(String memberID) {
+		// TODO Auto-generated method stub
+		MemberPO newMemberPO= member.freshMemberPO(memberID);
+		return newMemberPO;
+	}
+
 	
 
 }
