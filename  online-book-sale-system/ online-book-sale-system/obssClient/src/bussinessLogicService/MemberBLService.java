@@ -33,4 +33,6 @@ public interface MemberBLService {
 	public ResultMessage changeAddress(String newAddress);//ÐÞ¸ÄµØÖ·
 	
 	public ResultMessage clearCart();
+	
+	public MemberPO freshMemberPO(String memberID);
 }
