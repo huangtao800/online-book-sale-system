@@ -370,11 +370,8 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     		if(jTable1.getSelectedRow()==-1){
 				JOptionPane.showMessageDialog(null, "请选择一本图书！");
 			}else{
-				//bookList = bookViewController.findByKeyword(name, author, press, publishDate);
-				BookPO bookPO1=new BookPO("Java","11111",  "计算机","中国", "hjuang",  "2011", 10, 5);
-	    		
-	    	    bookList.add(bookPO1);
-	    	    
+				bookList = bookViewController.findByKeyword(name, author, press, publishDate);
+			
 				BookPO bookPO = bookList.get(jTable1.getSelectedRow());
 				
 				ResultMessage result= bookViewController.putIntoFavorities(bookPO);
@@ -387,10 +384,7 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     		if(jTable1.getSelectedRow()==-1){
 				JOptionPane.showMessageDialog(null, "请选择一本图书！");
 			}else{
-				//bookList = bookViewController.findByKeyword(name, author, press, publishDate);
-				BookPO bookPO1=new BookPO("Java","11111",  "计算机","中国", "hjuang",  "2011", 10, 5);
-	    		
-	    	    bookList.add(bookPO1);
+				bookList = bookViewController.findByKeyword(name, author, press, publishDate);
 	    	    
 				BookPO bookPO = bookList.get(jTable1.getSelectedRow());
 				int number = Integer.parseInt(JOptionPane.showInputDialog("购买本书："));
