@@ -22,7 +22,7 @@ import presentationController.Sales.SalesViewService;
 public class BookViewController implements BookViewService{
 	 private BookView bookView;
 	 private static BookViewService uniqueInstance;
-	 private  BookBLService bookController;
+	 private BookBLService bookController;
 	 private KeywordVO keywordVO;
 	 private String type;
 	 private MemberBLService memberController;
@@ -41,17 +41,7 @@ public class BookViewController implements BookViewService{
 		 
 		
 	 }
-	 
-//	 public static BookViewService getInstance(KeywordVO keywordVO,String type){
-//		 if(uniqueInstance==null){
-//			 uniqueInstance = new BookViewController(keywordVO, type) ;
-//		 }
-//		 
-//		 
-//		 return uniqueInstance;
-//	 }
-	
-	 
+
 	//添加到购物车
 	 public ResultMessage putIntoCart(LineItemPO lineItemPO){
 		 return memberController.putInCart(lineItemPO);
