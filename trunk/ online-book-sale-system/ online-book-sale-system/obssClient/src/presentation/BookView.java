@@ -85,21 +85,23 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
         //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("图书标题：");
-
         jLabel2.setText("出版社： ");
-
-        jTextField1.setText(keywordVO.bookName);
-
-        jTextField2.setText(keywordVO.publisher);
-
         jLabel3.setText("作者：");
-
         jLabel4.setText("出版年份：");
-
-        jTextField4.setText(keywordVO.author);
         
-        jTextField5.setText(keywordVO.publishYear);
+        if(keywordVO!=null){
+        	jTextField1.setText(keywordVO.bookName);
+            jTextField2.setText(keywordVO.publisher);
+            jTextField4.setText(keywordVO.author);
+            jTextField5.setText(keywordVO.publishYear);
+        }else{
+        	jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+        }
 
+        
         jButton1.setText("查找");
         jButton1.addActionListener(this);
 
@@ -312,9 +314,12 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     	String type = jComboBox1.getSelectedItem().toString();
     	
     	if(obj==jButton1){            //通过关键字查找
-    		bookList = bookViewController.findByKeyword(name, author, press, publishDate);
+    		//bookList = bookViewController.findByKeyword(name, author, press, publishDate);
+    		BookPO bookPO1=new BookPO("Java","11111",  "计算机","中国", "hjuang",  "2011", 10, 5);
+    		
+    	    bookList.add(bookPO1);
     	
-    		Vector<String> row = new Vector<String>();
+    	    Vector<String> row = new Vector<String>();
            	for(int i = 0; i < bookList.size(); i++){
                     row.add(bookList.get(i).getBookName());
                     row.add(bookList.get(i).getISBN());
@@ -329,6 +334,8 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
 
      		DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
             jTable1.setModel(dtm);
+            
+            
     		
     	}else if(obj==jButton3){        //通过图书类型查找图书
     		bookList = bookViewController.fineByType(type);
@@ -348,6 +355,9 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
 
      		DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
             jTable2.setModel(dtm);
+            
+            
+           
     		  
     	}else if(obj==jButton2){      //进入购物车
     	    bookViewController = BookViewController.getInstance(keywordVO,type);
@@ -361,12 +371,36 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     		if(jTable1.getSelectedRow()==-1){
 				JOptionPane.showMessageDialog(null, "请选择一本图书！");
 			}else{
-				bookList = bookViewController.findByKeyword(name, author, press, publishDate); 
+				//bookList = bookViewController.findByKeyword(name, author, press, publishDate);
+				BookPO bookPO1=new BookPO("Java","11111",  "计算机","中国", "hjuang",  "2011", 10, 5);
+	    		
+	    	    bookList.add(bookPO1);
+	    	    
 				BookPO bookPO = bookList.get(jTable1.getSelectedRow());
+				
 				ResultMessage result= bookViewController.putIntoFavorities(bookPO);
 				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
 				}
+			}
+    		
+    	}else if(obj==jButton6){      //添加到购物车
+    		if(jTable1.getSelectedRow()==-1){
+				JOptionPane.showMessageDialog(null, "请选择一本图书！");
+			}else{
+				//bookList = bookViewController.findByKeyword(name, author, press, publishDate);
+				BookPO bookPO1=new BookPO("Java","11111",  "计算机","中国", "hjuang",  "2011", 10, 5);
+	    		
+	    	    bookList.add(bookPO1);
+	    	    
+				BookPO bookPO = bookList.get(jTable1.getSelectedRow());
+				int number = Integer.parseInt(JOptionPane.showInputDialog("购买本书："));
+	    		lineItemPO = new LineItemPO(bookPO, number);
+	    		
+				ResultMessage result= bookViewController.putIntoCart(lineItemPO);
+				if(result==ResultMessage.SUCCEED){
+					JOptionPane.showMessageDialog(null, "添加成功！");
+			    }
 			}
     		
     	}else if(obj==jButton7){      //添加到收藏夹
@@ -379,21 +413,6 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
 				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
 				}
-			}
-    		
-    	}else if(obj==jButton6){      //添加到购物车
-    		if(jTable1.getSelectedRow()==-1){
-				JOptionPane.showMessageDialog(null, "请选择一本图书！");
-			}else{
-				bookList = bookViewController.findByKeyword(name, author, press, publishDate);
-				BookPO bookPO = bookList.get(jTable1.getSelectedRow());
-				int number = Integer.parseInt(JOptionPane.showInputDialog("购买本书："));
-	    		lineItemPO = new LineItemPO(bookPO, number);
-	    		
-				ResultMessage result= bookViewController.putIntoCart(lineItemPO);
-				if(result==ResultMessage.SUCCEED){
-					JOptionPane.showMessageDialog(null, "添加成功！");
-			    }
 			}
     		
     	}else if(obj==jButton8){      //添加到购物车
