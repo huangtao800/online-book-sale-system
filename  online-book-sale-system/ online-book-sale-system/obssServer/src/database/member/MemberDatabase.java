@@ -104,11 +104,6 @@ public class MemberDatabase extends UnicastRemoteObject implements
 		return initDatabase.updateUserPO(memberPO, UserRole.Member);
 	}
 
-	@Override
-	public ResultMessage cancel(MemberPO memberPO) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public ResultMessage changeName(String newName, MemberPO memberPO)
@@ -122,7 +117,7 @@ public class MemberDatabase extends UnicastRemoteObject implements
 		}
 
 		memberPO.setUserName(newName);
-		return initDatabase.updateUserPO(memberPO, UserRole.Member);
+		return update(memberPO);
 
 	}
 
@@ -133,7 +128,7 @@ public class MemberDatabase extends UnicastRemoteObject implements
 
 		memberPO.setUserPassword(password);
 
-		return initDatabase.updateUserPO(memberPO, UserRole.Member);
+		return update(memberPO);
 
 	}
 
@@ -153,7 +148,7 @@ public class MemberDatabase extends UnicastRemoteObject implements
 		OrderPO orderPO=memberPO.getOrderList().get(orderIndex);
 		orderPO.setOrderState(orderState);
 		
-		return initDatabase.updateUserPO(memberPO, UserRole.Member);
+		return update(memberPO);
 	}
 	
 	private int searchMemberIndex(String memberID){
@@ -200,5 +195,17 @@ public class MemberDatabase extends UnicastRemoteObject implements
 		memberPO.setPoints(memberPO.getPoints()+point);
 		
 		return update(memberPO);
+	}
+
+	@Override
+	public MemberPO freshMemberPO(String memberID) throws RemoteException {
+		// TODO Auto-generated method stub
+		memberPOList=InitDatabase.getMemberPOList();
+		int index=searchMemberIndex(memberID);
+		if(index==-1){
+			return null;
+		}else {
+			return memberPOList.get(index);
+		}
 	}
 }
