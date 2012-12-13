@@ -25,6 +25,9 @@ public class InitMemberData {
 		
 		BookPO bookPO=new BookPO("Java","11111",  "计算机","中国", "hjuang",  "2011", 10, 5);
 		BookPO bookPO2=new BookPO("JavaCode","11112",  "计算机","中国", "gr",  "2012", 10, 5);
+		ArrayList<BookPO> bookList = new ArrayList<BookPO>();
+		bookList.add(bookPO);
+		bookList.add(bookPO2);
 		
 		memberPO.getFavority().getFavorities().add(bookPO);
 		
@@ -89,8 +92,8 @@ public class InitMemberData {
 			outputStream=new FileOutputStream("book.ser");
 			objoutput=new ObjectOutputStream(outputStream);
 			
-			objoutput.writeObject(bookPO);
-			objoutput.writeObject(bookPO2);
+			objoutput.writeObject(bookList);
+			
 			
 			outputStream.close();
 			objoutput.close();
