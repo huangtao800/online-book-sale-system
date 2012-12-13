@@ -1,0 +1,14 @@
+//youjiaqi
+package databaseService.user;
+
+import java.rmi.RemoteException;
+
+import po.UserPO;
+import po.UserRole;
+import databaseService.DatabaseService;
+
+public interface UserDatabaseService extends DatabaseService{
+	public UserPO isExisit(String userName,String password,UserRole userRole) throws RemoteException;
+	public UserPO findUserThroughID(String id,UserRole userRole)throws RemoteException;
+	public UserPO findUserThroughName(String name,UserRole userRole)throws RemoteException;
+}
