@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import po.PO;
 import po.PresentPO;
 import po.ResultMessage;
+import po.UserPO;
+import po.UserRole;
 import database.init.InitDatabase;
 import database.member.MemberDatabase;
 import databaseService.DatabaseService;
@@ -81,9 +83,9 @@ public class PresentDatabase extends UnicastRemoteObject implements  PresentData
 				e.printStackTrace();
 				return ResultMessage.FAILED;
 			}
-
 	}
 	
+  
 	public ResultMessage insert(PO po) throws RemoteException{
 		return null;
 	}
