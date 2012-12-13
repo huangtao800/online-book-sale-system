@@ -23,13 +23,9 @@ public class InitMemberData {
 		// TODO Auto-generated method stub
 		MemberPO memberPO=new MemberPO("1", "huang", "111111","江苏南通");
 		
-		BookPO bookPO=new BookPO("11111", "Java", "hjuang", "中国", "2011", "计算机", 10, 5);
-		BookPO bookPO2=new BookPO("11122", "Java", "gt", "中国", "2012", "计算机", 10, 5);
+		BookPO bookPO=new BookPO("Java","11111",  "计算机","中国", "hjuang",  "2011", 10, 5);
+		BookPO bookPO2=new BookPO("JavaCode","11112",  "计算机","中国", "gr",  "2012", 10, 5);
 		
-		ArrayList<BookPO> bookList = new ArrayList<BookPO>();
-		bookList.add(bookPO);
-		bookList.add(bookPO2);
-
 		memberPO.getFavority().getFavorities().add(bookPO);
 		
 		MemberPO m2=new MemberPO("2", "hu", "000000","江苏南通");
@@ -93,7 +89,8 @@ public class InitMemberData {
 			outputStream=new FileOutputStream("book.ser");
 			objoutput=new ObjectOutputStream(outputStream);
 			
-			objoutput.writeObject(bookList);
+			objoutput.writeObject(bookPO);
+			objoutput.writeObject(bookPO2);
 			
 			outputStream.close();
 			objoutput.close();
