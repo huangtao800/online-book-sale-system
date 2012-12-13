@@ -47,4 +47,8 @@ public class AdminViewController implements AdminViewService{
     	return userController.changeUser(userName, userID, userPassword, userRole);
      }
      
+     public ResultMessage delete(String id,UserRole userRole){
+    	 return userController.deleteUser(id, userRole);
+     }
+     
 }
