@@ -4,11 +4,14 @@ import po.*;
 
 public interface UserBLService {
 	
-	//对用户的调整
+	//管理员增加用户
 	public ResultMessage addUser(String userName,String id,String password,UserRole userRole);
-	public ResultMessage deleteUser(String id);
-	public ResultMessage findChangingUser(String id);
+	//管理员删除用户
+	public ResultMessage deleteUser(String id,UserRole userRole);
+	//管理员修改用户信息，其他用可以修改密码
 	public ResultMessage changeUser(String userName, String id,String password,UserRole userRole);
-	public UserPO findUser(String id,String name);
+	
+	public UserPO findUser(String name);
+	public ResultMessage findChangingUser(String id);
 
 }
