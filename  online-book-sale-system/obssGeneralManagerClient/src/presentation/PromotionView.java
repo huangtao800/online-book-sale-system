@@ -1107,10 +1107,10 @@ public class PromotionView extends JFrame implements ActionListener{
 				if( proController.changeUser(generalManagerPO.getUserName(),generalManagerPO.getUserID(),
 						                                generalManagerPO.getUserPassword(),generalManagerPO.getUserRole())
 						                                ==ResultMessage.SUCCEED){
-				originalUserNameTextField.setText(generalManagerPO.getUserName());
-				confirmChangeUserNameButton.setEnabled(false);
-				jLabel22.setEnabled(false);
-				newUserNameTextField.setEnabled(false);
+				    originalUserNameTextField.setText(generalManagerPO.getUserName());
+				    confirmChangeUserNameButton.setEnabled(false);
+				    jLabel22.setEnabled(false);
+				    newUserNameTextField.setEnabled(false);
 				JOptionPane.showMessageDialog(null, "修改用户名成功！");
 				}else {
 					JOptionPane.showMessageDialog(null, " 修改用户名失败！");
@@ -1445,15 +1445,15 @@ public class PromotionView extends JFrame implements ActionListener{
 	    		  checkPresentTextArea.append(presentPO.getVipLevel_String()+"\n");
 	    		  
 	    		  for(int j=0;j<equivalent.length;j++){
-	    			  if( (Double.parseDouble(equivalent[j][0]) - 0.0)>0.000001  ){//是否判断一下是否有过期的?。。
-	    				  checkPresentTextArea.append ("\t"+"等价券"+"\t"+"额度/元:"+"\t"+equivalent[j][0]+"\t"+"数量/张:"+"\t"+equivalent[j][1]
-	    				  +"\t"+"最低消费:"+"\t"+equivalent[j][3]+"\t"+"有效截止日期:"+"\t"+equivalent[j][2]+"\n");
+	    			  if( (Double.parseDouble(equivalent[j][0]) - 0.0)>0.000001  ){//
+	    				  checkPresentTextArea.append ("  等价券"+"    "+"额度:"+equivalent[j][0]+"元  "+"数量:"+equivalent[j][1]+"张  "
+	    				  +"最低消费:"+equivalent[j][3]+"元"+"  有效截止日期:"+equivalent[j][2]+"\n");
 	    			  } 
 	    		  }//for(j)
 	    		   		    		  
-	    		  if( (presentPO.getDiscount() - 0.0) > 0.000001 ){//存在//是否判断一下是否有过期的。。
-	    			  checkPresentTextArea.append("\t"+"打折券"+"\t"+"打折率:"+"\t"+presentPO.getDiscount()+"\t"+"数量/张:"+"\t"+
-	    		                  presentPO.getAmountOfCoupon()+"\t"+"有效截止日期"+"\t"+presentPO.getEndDateOfCoupon()+"\n");
+	    		  if( (presentPO.getDiscount() - 0.0) > 0.000001 ){//存在
+	    			  checkPresentTextArea.append("  打折券"+"    "+"打折率:"+presentPO.getDiscount()*100+"%  "+"数量:"+
+	    		                  presentPO.getAmountOfCoupon()+"张  "+"有效截止日期:"+presentPO.getEndDateOfCoupon()+"\n");
 	    		  }
 	    		  
 	    		  checkPresentTextArea.append("\n");
