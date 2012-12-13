@@ -7,7 +7,7 @@ import bussinessLogicService.*;
 
 public class BookController implements BookBLService{
 	private static BookController uniqueInstance;
-    private Book book;
+    private Book book = new Book();
     
     private BookController(){
     	
