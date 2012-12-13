@@ -107,123 +107,11 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
         jButton2.addActionListener(this);
 
         jLabel5.setText("查找结果：");
-
-        object1 = new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            };
-        columnNames = new String [] {
-                "图书标题", "图书ISBN", "图书类型", "出版社", "作者", "出版时间", "单价", "库存"
-        };
         
-       jTable1.setModel(new javax.swing.table.DefaultTableModel(object1,columnNames)
-       {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Double.class, java.lang.Long.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });  
+        columnNames = setColumnNames();
+        rowData = new Vector<Vector>();
+        jTable1 = new JTable(rowData, columnNames);
+        jTable1.setRowHeight(30);
         jScrollPane1.setViewportView(jTable1);
 
         jButton5.setText("添加到收藏夹");
@@ -323,120 +211,8 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
         jButton3.setText("查找图书");
         jButton3.addActionListener(this);
         
-        object2 =new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            };
-        
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(object2, columnNames)
-        {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Double.class, java.lang.Long.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-      
+        jTable2 = new JTable(rowData, columnNames);
+        jTable2.setRowHeight(30);
         jScrollPane2.setViewportView(jTable2);
 
         jLabel7.setText("查找结果：");
@@ -536,184 +312,123 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     	String type = jComboBox1.getSelectedItem().toString();
     	
     	if(obj==jButton1){            //通过关键字查找
-    		//bookList = bookViewController.findByKeyword(name, author, press, publishDate);
-    		 object1 = new Object [][] {
-    	                {"Java","1111", "计算机","人民出版社", "yjq",  "2012", 10.0, 21},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	                {null, null, null, null, null, null, null, null},
-    	            };
-    		
-    		jTable1.setModel(new javax.swing.table.DefaultTableModel(object1,columnNames)
-    	    {
-    	            Class[] types = new Class [] {
-    	                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Double.class, java.lang.Long.class
-    	            };
+    		bookList = bookViewController.findByKeyword(name, author, press, publishDate);
+    	
+    		Vector<String> row = new Vector<String>();
+           	for(int i = 0; i < bookList.size(); i++){
+                    row.add(bookList.get(i).getBookName());
+                    row.add(bookList.get(i).getISBN());
+                    row.add(bookList.get(i).getType());
+                    row.add(bookList.get(i).getPress());
+                    row.add(bookList.get(i).getAuthor());
+                    row.add(bookList.get(i).getPublishDate());
+                    row.add(String.valueOf(bookList.get(i).getPrice()));
+                    row.add(String.valueOf(bookList.get(i).getNumOfBook()));
+                    rowData.add(row);
+        	}
 
-    	            public Class getColumnClass(int columnIndex) {
-    	                return types [columnIndex];
-    	            }
-    	     });  
-    	     jScrollPane1.setViewportView(jTable1);
+     		DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
+            jTable1.setModel(dtm);
     		
     	}else if(obj==jButton3){        //通过图书类型查找图书
-    		//bookList = bookViewController.fineByType(type);
-    		 object2 = new Object [][] {
- 	                {"Java","1111", "计算机","人民出版社", "yjq",  "2012", 10.0, 21},
- 	                {"JavaCode","1112", "计算机","人民出版社", "yjq11",  "2012", 5.0, 10},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	                {null, null, null, null, null, null, null, null},
- 	            };
- 		
-    		  jTable2.setModel(new javax.swing.table.DefaultTableModel(object2, columnNames)
-    	        {
-    	            Class[] types = new Class [] {
-    	                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Double.class, java.lang.Long.class
-    	            };
+    		bookList = bookViewController.fineByType(type);
+    		
+    		Vector<String> row = new Vector<String>();
+           	for(int i = 0; i < bookList.size(); i++){
+                    row.add(bookList.get(i).getBookName());
+                    row.add(bookList.get(i).getISBN());
+                    row.add(bookList.get(i).getType());
+                    row.add(bookList.get(i).getPress());
+                    row.add(bookList.get(i).getAuthor());
+                    row.add(bookList.get(i).getPublishDate());
+                    row.add(String.valueOf(bookList.get(i).getPrice()));
+                    row.add(String.valueOf(bookList.get(i).getNumOfBook()));
+                    rowData.add(row);
+        	}
 
-    	            public Class getColumnClass(int columnIndex) {
-    	                return types [columnIndex];
-    	            }
-    	        });
-    		  
-    		  jScrollPane2.setViewportView(jTable2);
+     		DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
+            jTable2.setModel(dtm);
     		  
     	}else if(obj==jButton2){      //进入购物车
     	    bookViewController = BookViewController.getInstance();
     		bookViewController.enterCart();
+    		
     	}else if(obj==jButton4){      //进入购物车
     		bookViewController = BookViewController.getInstance();
     		bookViewController.enterCart();
+    		
     	}else if(obj==jButton5){      //添加到收藏夹
     		if(jTable1.getSelectedRow()==-1){
 				JOptionPane.showMessageDialog(null, "请选择一本图书！");
 			}else{
-				//BookPO bookPO = bookList.get(jTable1.getSelectedRow());
-				//ResultMessage result= bookViewController.putIntoFavorities(bookPO);
-				//if(result==ResultMessage.SUCCEED){
+				bookList = bookViewController.findByKeyword(name, author, press, publishDate); 
+				BookPO bookPO = bookList.get(jTable1.getSelectedRow());
+				ResultMessage result= bookViewController.putIntoFavorities(bookPO);
+				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
-				//}
+				}
 			}
+    		
     	}else if(obj==jButton7){      //添加到收藏夹
     		if(jTable2.getSelectedRow()==-1){
 				JOptionPane.showMessageDialog(null, "请选择一本图书！");
 			}else{
-				//BookPO bookPO = bookList.get(jTable2.getSelectedRow());
-				//ResultMessage result= bookViewController.putIntoFavorities(bookPO);
-				//if(result==ResultMessage.SUCCEED){
+				bookList = bookViewController.fineByType(type);
+				BookPO bookPO = bookList.get(jTable2.getSelectedRow());
+				ResultMessage result= bookViewController.putIntoFavorities(bookPO);
+				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
-				//}
+				}
 			}
+    		
     	}else if(obj==jButton6){      //添加到购物车
     		if(jTable1.getSelectedRow()==-1){
 				JOptionPane.showMessageDialog(null, "请选择一本图书！");
 			}else{
-				//BookPO bookPO = bookList.get(jTable1.getSelectedRow());
+				bookList = bookViewController.findByKeyword(name, author, press, publishDate);
+				BookPO bookPO = bookList.get(jTable1.getSelectedRow());
 				int number = Integer.parseInt(JOptionPane.showInputDialog("购买本书："));
-	    		//lineItemPO = new LineItemPO(bookPO, number);
+	    		lineItemPO = new LineItemPO(bookPO, number);
 	    		
-				//ResultMessage result= bookViewController.putIntoCart(lineItemPO);
-				//if(result==ResultMessage.SUCCEED){
+				ResultMessage result= bookViewController.putIntoCart(lineItemPO);
+				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
-				//}
+			    }
 			}
     		
     	}else if(obj==jButton8){      //添加到购物车
     		if(jTable2.getSelectedRow()==-1){
 				JOptionPane.showMessageDialog(null, "请选择一本图书！");
 			}else{
-				//BookPO bookPO = bookList.get(jTable2.getSelectedRow());
+				bookList = bookViewController.fineByType(type);
+				BookPO bookPO = bookList.get(jTable2.getSelectedRow());
 				int number = Integer.parseInt(JOptionPane.showInputDialog("购买本书："));
-	    		//lineItemPO = new LineItemPO(bookPO, number);
+	    		lineItemPO = new LineItemPO(bookPO, number);
 	    		
-				//ResultMessage result= bookViewController.putIntoCart(lineItemPO);
-				//if(result==ResultMessage.SUCCEED){
+				ResultMessage result= bookViewController.putIntoCart(lineItemPO);
+				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
-				//}
+				}
 			}
     	}
     	
     }
-    /**
-     * @param args the command line arguments
-     */
+   
+    private Vector<String> setColumnNames(){
+    	Vector<String> column = new Vector<String>();
+    	column.addElement("图书标题");
+    	column.addElement("图书ISBN");
+    	column.addElement("图书类别");
+    	column.addElement("出版社");
+    	column.addElement("作者");
+    	column.addElement("出版时间");
+    	column.addElement("单价");
+    	column.addElement("库存");
+    	
+    	return column;
+    }
+    
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -735,7 +450,7 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BookView(null,null).setVisible(true);
+                new BookView(keywordVO,type).setVisible(true);
             }
         });
     }
@@ -767,11 +482,11 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private String[] columnNames ;
-    private Object[][] object1,object2;
+    private Vector<String> columnNames ;
+    private Vector<Vector> rowData;
     private BookViewService bookViewController;
-    private KeywordVO keywordVO;
-    private String type;
+    private static KeywordVO keywordVO;
+    private static String type;
     private int index;//用于判断跳转到那个panel
     // End of variables declaration
 }
