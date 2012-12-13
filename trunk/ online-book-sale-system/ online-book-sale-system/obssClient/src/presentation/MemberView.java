@@ -722,17 +722,16 @@ public class MemberView extends JFrame {
 
 		javax.swing.GroupLayout gl_jPanel10 = new javax.swing.GroupLayout(
 				jPanel10);
-		gl_jPanel10.setHorizontalGroup(gl_jPanel10.createParallelGroup(
-				Alignment.LEADING).addComponent(scrollPane, Alignment.TRAILING,
-				GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE));
-		gl_jPanel10.setVerticalGroup(gl_jPanel10.createParallelGroup(
-				Alignment.LEADING).addGroup(
-				Alignment.TRAILING,
-				gl_jPanel10
-						.createSequentialGroup()
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE,
-								194, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(23, Short.MAX_VALUE)));
+		gl_jPanel10.setHorizontalGroup(
+			gl_jPanel10.createParallelGroup(Alignment.LEADING)
+				.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 815, Short.MAX_VALUE)
+		);
+		gl_jPanel10.setVerticalGroup(
+			gl_jPanel10.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_jPanel10.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(48, Short.MAX_VALUE))
+		);
 
 		couponTable = new JTable();
 		couponTable.setModel(new DefaultTableModel(
@@ -758,39 +757,39 @@ public class MemberView extends JFrame {
 		
 		scrollPane.setViewportView(couponTable);
 		jPanel10.setLayout(gl_jPanel10);
+		
+		JButton freshButton = new JButton("\u5237\u65B0\u5217\u8868");
+		freshButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				freshMemberPO(memberPO.getUserID());
+				couponTable.setModel(new CouponTableModel());
+				equivalentTable.setModel(new EquivalentTableModel());
+			}
+		});
+		freshButton.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 14));
 
 		javax.swing.GroupLayout gl_jPanel4 = new javax.swing.GroupLayout(
 				jPanel4);
+		gl_jPanel4.setHorizontalGroup(
+			gl_jPanel4.createParallelGroup(Alignment.LEADING)
+				.addComponent(jPanel9, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
+				.addComponent(jPanel10, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
+				.addGroup(gl_jPanel4.createSequentialGroup()
+					.addGap(306)
+					.addComponent(freshButton, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(383, Short.MAX_VALUE))
+		);
+		gl_jPanel4.setVerticalGroup(
+			gl_jPanel4.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_jPanel4.createSequentialGroup()
+					.addComponent(jPanel9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(jPanel10, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(freshButton, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(25, Short.MAX_VALUE))
+		);
 		jPanel4.setLayout(gl_jPanel4);
-		gl_jPanel4.setHorizontalGroup(gl_jPanel4
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addComponent(jPanel9,
-						javax.swing.GroupLayout.Alignment.TRAILING,
-						javax.swing.GroupLayout.DEFAULT_SIZE,
-						javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				.addComponent(jPanel10,
-						javax.swing.GroupLayout.Alignment.TRAILING,
-						javax.swing.GroupLayout.DEFAULT_SIZE,
-						javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-		gl_jPanel4
-				.setVerticalGroup(gl_jPanel4
-						.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(
-								gl_jPanel4
-										.createSequentialGroup()
-										.addComponent(
-												jPanel9,
-												javax.swing.GroupLayout.PREFERRED_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(
-												jPanel10,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)));
 
 		jTabbedPane1.addTab("  Œ“µƒ¿Ò»Ø  ", jPanel4);
 
@@ -866,6 +865,11 @@ public class MemberView extends JFrame {
 	
 	private void freshOrderTable(JTable table){
 		table.setModel(new OrderTableModel());
+	}
+	
+	private void freshMemberPO(String memberID){
+		MemberPO newMemberPO=memberViewController.freshMemberPO(memberID);
+		this.memberPO=newMemberPO;
 	}
 
 	class FavorityTableModel extends AbstractTableModel {
