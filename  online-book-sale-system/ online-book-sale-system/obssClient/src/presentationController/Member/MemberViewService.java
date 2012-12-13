@@ -1,6 +1,7 @@
 package presentationController.Member;
 
 import po.BookPO;
+import po.MemberPO;
 import po.ResultMessage;
 
 public interface MemberViewService {
@@ -15,4 +16,5 @@ public interface MemberViewService {
 	public void enterCart();	//进入购物车
 	public ResultMessage changeAddress(String newAddress);
 	public ResultMessage cancel(String password);
+	public MemberPO freshMemberPO(String memberID);
 }

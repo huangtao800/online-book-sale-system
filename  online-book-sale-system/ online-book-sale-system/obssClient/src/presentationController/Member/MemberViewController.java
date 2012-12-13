@@ -102,5 +102,11 @@ public class MemberViewController implements MemberViewService{
 		// TODO Auto-generated method stub
 		return memberController.cancel(password);
 	}
+
+	@Override
+	public MemberPO freshMemberPO(String memberID) {
+		// TODO Auto-generated method stub
+		return memberController.freshMemberPO(memberID);
+	}
 	
 }
