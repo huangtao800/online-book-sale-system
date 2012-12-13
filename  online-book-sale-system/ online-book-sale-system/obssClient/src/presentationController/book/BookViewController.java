@@ -26,22 +26,7 @@ public class BookViewController implements BookViewService{
 	 private KeywordVO keywordVO;
 	 private String type;
 	 private MemberBLService memberController;
-	 
-	 private BookViewController (){
-		 bookController = BookController.getInstance();
-		 memberController = MemberController.getInstance();
-		 
-		
-	 }
-	 
-	 public static BookViewService getInstance(){
-		 if(uniqueInstance==null){
-			 uniqueInstance = new BookViewController() ;
-		 }
-		 
-		 return uniqueInstance;
-	 }
-	 
+	
 	 private BookViewController (KeywordVO keywordVO,String type){
 		 if(keywordVO==null){
 			 bookView = new BookView(null,type);
