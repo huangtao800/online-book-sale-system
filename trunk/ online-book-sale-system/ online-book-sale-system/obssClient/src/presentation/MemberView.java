@@ -244,7 +244,22 @@ public class MemberView extends JFrame {
 					JOptionPane.showMessageDialog(null, "请选择一本图书！");
 				}else{
 					BookPO bookPO=memberPO.getFavority().getFavorities().get(favorityTable.getSelectedRow());
-					ResultMessage result=memberViewController.putInCart(bookPO);
+					
+					String numberString=JOptionPane.showInputDialog("请输入购买数量：");
+					if(numberString==null){
+						return;
+					}
+					
+					int number=0;
+					try{
+						number=Integer.parseInt(numberString);
+					}catch (Exception ex) {
+						// TODO: handle exception
+						JOptionPane.showMessageDialog(null, "输入错误！");
+						return;
+					}
+					
+					ResultMessage result=memberViewController.putInCart(bookPO,number);
 					
 					if(result==ResultMessage.SUCCEED){
 						JOptionPane.showMessageDialog(null, "添加成功！");
@@ -252,6 +267,7 @@ public class MemberView extends JFrame {
 				}
 			}
 		});
+		
 		jPanel4 = new javax.swing.JPanel();
 		jPanel9 = new javax.swing.JPanel();
 		jScrollPane2 = new javax.swing.JScrollPane();
