@@ -32,7 +32,7 @@ public class MemberViewController implements MemberViewService{
 	@Override
 	public void searchKeyword(KeywordVO keywordVO) {
 		// TODO Auto-generated method stub
-		BookViewService bookViewController=BookViewController.getInstance(keywordVO, null);
+		BookViewService bookViewController=new BookViewController(keywordVO, null);
 	}
 
 	public static MemberViewService getInstance(MemberPO memberPO){
@@ -46,7 +46,7 @@ public class MemberViewController implements MemberViewService{
 	@Override
 	public void searchType(String type) {
 		// TODO Auto-generated method stub
-		 BookViewService bookViewController=BookViewController.getInstance(null, type);
+		 BookViewService bookViewController=new BookViewController(null, type);
 	}
 	
 	public void setViewVisible(){

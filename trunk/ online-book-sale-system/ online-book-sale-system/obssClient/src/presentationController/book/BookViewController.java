@@ -22,17 +22,17 @@ import presentationController.Sales.SalesViewService;
 public class BookViewController implements BookViewService{
 	 private BookView bookView;
 	 private static BookViewService uniqueInstance;
-	 private static BookBLService bookController;
+	 private  BookBLService bookController;
 	 private KeywordVO keywordVO;
 	 private String type;
 	 private MemberBLService memberController;
 	
-	 private BookViewController (KeywordVO keywordVO,String type){
+	 public BookViewController (KeywordVO keywordVO,String type){
 		 if(keywordVO==null){
-			 bookView = new BookView(null,type);
+			 bookView = new BookView(null,type,this);
 			 bookView.setVisible(true);
-		 }else if(type==null){
-			 bookView = new BookView(keywordVO,null);
+		 }else{
+			 bookView = new BookView(keywordVO,null,this);
 			 bookView.setVisible(true);
 		 }
 		 
@@ -42,13 +42,14 @@ public class BookViewController implements BookViewService{
 		
 	 }
 	 
-	 public static BookViewService getInstance(KeywordVO keywordVO,String type){
-		 if(uniqueInstance==null){
-			 uniqueInstance = new BookViewController(keywordVO, type) ;
-		 }
-		 
-		 return uniqueInstance;
-	 }
+//	 public static BookViewService getInstance(KeywordVO keywordVO,String type){
+//		 if(uniqueInstance==null){
+//			 uniqueInstance = new BookViewController(keywordVO, type) ;
+//		 }
+//		 
+//		 
+//		 return uniqueInstance;
+//	 }
 	
 	 
 	//添加到购物车
