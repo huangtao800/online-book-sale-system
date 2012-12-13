@@ -350,11 +350,11 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
             jTable2.setModel(dtm);
     		  
     	}else if(obj==jButton2){      //进入购物车
-    	    bookViewController = BookViewController.getInstance();
+    	    bookViewController = BookViewController.getInstance(keywordVO,type);
     		bookViewController.enterCart();
     		
     	}else if(obj==jButton4){      //进入购物车
-    		bookViewController = BookViewController.getInstance();
+    		bookViewController = BookViewController.getInstance(keywordVO,type);
     		bookViewController.enterCart();
     		
     	}else if(obj==jButton5){      //添加到收藏夹
