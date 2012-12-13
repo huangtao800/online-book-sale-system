@@ -32,9 +32,9 @@ public class User {
 		
 	}
 	
-	//删除用户
-	public ResultMessage deleteUser(String id) {
-		UserPO userPO = user.findUserThroughID(id);
+	//系统管理员删除用户
+	public ResultMessage deleteUser(String name,UserRole userRole) {
+		UserPO userPO = user.findUserThroughName(name,userRole);
 		try{
 			return userDatabase.delete(userPO);
 		}catch (RemoteException e) {
@@ -44,9 +44,9 @@ public class User {
 		
 	}
 	
-	//修改用户信息
-	public ResultMessage changeUser(UserPO u,String id){
-        UserPO userPO = user.findUserThroughID(id);
+	//系统管理员 修改用户信息
+	public ResultMessage changeUser(UserPO u,String name){
+        UserPO userPO = user.findUserThroughName(name,u.getUserRole());
         try{
 			return userDatabase.update(userPO);
 		}catch (RemoteException e) {
@@ -57,22 +57,11 @@ public class User {
 		
 	}
 	
-	public UserPO findUserThroughName(String name){
-		UserPO userPO = null;
-		try{
-		     userPO = userDatabase.findUserThroughName(name);
-		     return userPO;
-		}catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		
-		return userPO;
-	}
 	
-	public UserPO findUserThroughID(String id){
+	public  UserPO findUserThroughName(String name,UserRole userRole){
 		UserPO userPO = null;
 		try{
-		     userPO = userDatabase.findUserThroughID(id);
+		     userPO = userDatabase.findUserThroughName(name,userRole);
 		     return userPO;
 		}catch (RemoteException e) {
 			e.printStackTrace();
