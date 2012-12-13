@@ -50,13 +50,6 @@ public class BookViewController implements BookViewService{
 		 return uniqueInstance;
 	 }
 	
-	 public KeywordVO getKeywordVO(){
-		 return keywordVO;
-	 }
-	 
-	 public String getBookType(){
-		 return type;
-	 }
 	 
 	//添加到购物车
 	 public ResultMessage putIntoCart(LineItemPO lineItemPO){
