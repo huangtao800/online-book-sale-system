@@ -38,8 +38,8 @@ public class AdminViewController {
            return result;
      }
     
-     public UserPO search(String id,String name){
-    	UserPO userPO =  userController.findUser(id, name);
+     public UserPO search(String name){
+    	UserPO userPO =  userController.findUser(name);
         return userPO;
      }
     
