@@ -1,5 +1,5 @@
 package presentationController.Admin;
 
-public class AdminViewService {
+public interface AdminViewService {
 
 }
