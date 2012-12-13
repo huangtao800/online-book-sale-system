@@ -1,10 +1,5 @@
 package po;
 
-import java.util.Date;
-
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.util.Date;
 
 public class BookPO implements PO{
     private String ISBN,bookName,author,press,publishDate;
@@ -16,8 +11,8 @@ public class BookPO implements PO{
     	
     }
     
-    public BookPO(String ISBN,String bookName,String author,String press,
-    		String publishDate,String type,double price,int numOfBook){
+    public BookPO(String bookName,String ISBN,String type,String press,
+    		String author,String publishDate,double price,int numOfBook){
     	this.ISBN = ISBN;
     	this.bookName = bookName;
     	this.author = author;
