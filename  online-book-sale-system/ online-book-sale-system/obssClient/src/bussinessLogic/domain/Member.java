@@ -255,5 +255,18 @@ public class Member {
 		}
 	}
 
+	public MemberPO freshMemberPO(String memberID) {
+		// TODO Auto-generated method stub
+		try {
+			MemberPO newMemberPO= memberDatabase.freshMemberPO(memberID);
+			this.memberPO=newMemberPO;
+			return newMemberPO;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 
 }
