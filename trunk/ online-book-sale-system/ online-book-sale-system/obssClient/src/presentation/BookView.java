@@ -314,7 +314,7 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     	String press = jTextField2.getText().trim();
     	String author = jTextField4.getText().trim();
     	String publishDate = jTextField5.getText().trim();
-    	String type = jComboBox1.getSelectedItem().toString();
+    	
     	
     	if(obj==jButton1){            //通过关键字查找
     		bookList = bookViewController.findByKeyword(name, author, press, publishDate);
@@ -340,7 +340,8 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     		}
     	
     	}else if(obj==jButton3){        //通过图书类型查找图书
-    		bookList = bookViewController.fineByType(type);
+    		String t = jComboBox1.getSelectedItem().toString();
+    		bookList = bookViewController.fineByType(t);
     		if(bookList.size()==0){
     			JOptionPane.showMessageDialog(null, "未找到相应图书！");
     		}else{
@@ -392,7 +393,7 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
 				bookList = bookViewController.findByKeyword(name, author, press, publishDate);
 	    	    
 				BookPO bookPO = bookList.get(jTable1.getSelectedRow());
-				int number = Integer.parseInt(JOptionPane.showInputDialog("购买本书："));
+				int number = Integer.parseInt(JOptionPane.showInputDialog("请输入购买本数："));
 	    		lineItemPO = new LineItemPO(bookPO, number);
 	    		
 				ResultMessage result= bookViewController.putIntoCart(lineItemPO);
@@ -405,7 +406,8 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     		if(jTable2.getSelectedRow()==-1){
 				JOptionPane.showMessageDialog(null, "请选择一本图书！");
 			}else{
-				bookList = bookViewController.fineByType(type);
+				String t = jComboBox1.getSelectedItem().toString();
+				bookList = bookViewController.fineByType(t);
 				BookPO bookPO = bookList.get(jTable2.getSelectedRow());
 				ResultMessage result= bookViewController.putIntoFavorities(bookPO);
 				if(result==ResultMessage.SUCCEED){
@@ -417,7 +419,8 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     		if(jTable2.getSelectedRow()==-1){
 				JOptionPane.showMessageDialog(null, "请选择一本图书！");
 			}else{
-				bookList = bookViewController.fineByType(type);
+				String t = jComboBox1.getSelectedItem().toString();
+				bookList = bookViewController.fineByType(t);
 				BookPO bookPO = bookList.get(jTable2.getSelectedRow());
 				int number = Integer.parseInt(JOptionPane.showInputDialog("购买本书："));
 	    		lineItemPO = new LineItemPO(bookPO, number);
