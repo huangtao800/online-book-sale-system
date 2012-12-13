@@ -30,8 +30,6 @@ public class MainViewController implements MainViewControllerInterface{
     ArrayList<PresentPO> presentPOList;
     private PresentBLService presenController=PresentController.getInstance();
     private BookBLService bookController=BookController.getInstance();
-    private MemberBLService memberController=MemberController.getInstance();
-    private SalesBLService orderController= SalesController.getInstance();
     private SalesManagerService salesManagerController=SalesManagerController.getInstance();
 
     private SalesManagerPO userPO;

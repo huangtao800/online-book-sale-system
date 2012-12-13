@@ -7,19 +7,24 @@ import po.MemberPO;
 import po.OrderPO;
 import po.OrderState;
 import po.ResultMessage;
+import po.UserPO;
+import po.UserRole;
 import sun.org.mozilla.javascript.internal.ast.TryStatement;
 
+import databaseService.init.InitDatabaseService;
 import databaseService.member.MemberDatabaseService;
 import databaseService.sales.OrderDatabaseService;
 
 public class SalesManager {
 	private MemberDatabaseService memberDatabase;
 	private OrderDatabaseService orderDatabase;
+	private InitDatabaseService initDatabase;
 
 	public SalesManager(){
 		try {
 			memberDatabase=(MemberDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/MemberDatabase");
 			orderDatabase=(OrderDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/OrderDatabase");
+			initDatabase=(InitDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/InitDatabase");
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -62,5 +67,15 @@ public class SalesManager {
 	    	  e.printStackTrace();
 	    	  return ResultMessage.FAILED;
 	      }
-}
+      }
+	
+ 	public ResultMessage updateUserPO(UserPO userPO, UserRole role){
+   		try{
+   		       return initDatabase.updateUserPO(userPO, role);
+   		}catch(Exception e){
+   			return ResultMessage.FAILED;
+   		}
+   	}
+ 	
+ 	
 }
