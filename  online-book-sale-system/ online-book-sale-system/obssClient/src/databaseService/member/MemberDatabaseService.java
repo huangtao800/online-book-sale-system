@@ -12,7 +12,6 @@ import po.ResultMessage;
 import databaseService.DatabaseService;
 
 public interface MemberDatabaseService extends DatabaseService{
-	public ResultMessage cancel(MemberPO memberPO) throws RemoteException;
 	public ResultMessage changeName(String newName,MemberPO memberPO) throws RemoteException;
 	public ResultMessage changePassword(String password,MemberPO memberPO) throws RemoteException;
 	
