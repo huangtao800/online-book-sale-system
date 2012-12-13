@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import bussinessLogicService.BookBLService;
+
 import po.BookPO;
 import po.LineItemPO;
 import po.ResultMessage;
@@ -32,7 +34,7 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
         initComponents();
     }
 	
-	public BookView (KeywordVO keywordVO,String type) {
+	public BookView (KeywordVO keywordVO,String type,BookViewService bookViewController) {
 		this.keywordVO = keywordVO;
 		this.type = type;
 		if(type==null){
@@ -40,6 +42,8 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
 		}else if(keywordVO==null){
 			this.index = 0;
 		}
+		
+		this.bookViewController=bookViewController;
 		
 		initComponents();
 	}
@@ -313,10 +317,10 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     	String type = jComboBox1.getSelectedItem().toString();
     	
     	if(obj==jButton1){            //通过关键字查找
-    		//bookList = bookViewController.findByKeyword(name, author, press, publishDate);
-    		BookPO bookPO1=new BookPO("Java","11111",  "计算机","中国", "hjuang",  "2011", 10, 5);
+    		bookList = bookViewController.findByKeyword(name, author, press, publishDate);
+//    		BookPO bookPO1=new BookPO("Java","11111",  "计算机","中国", "hjuang",  "2011", 10, 5);
     		
-    	    bookList.add(bookPO1);
+//    	    bookList.add(bookPO1);
     	
     	    Vector<String> row = new Vector<String>();
            	for(int i = 0; i < bookList.size(); i++){
@@ -359,11 +363,11 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
            
     		  
     	}else if(obj==jButton2){      //进入购物车
-    	    bookViewController = BookViewController.getInstance(keywordVO,type);
+//    	    bookViewController = BookViewController.getInstance(keywordVO,type);
     		bookViewController.enterCart();
     		
     	}else if(obj==jButton4){      //进入购物车
-    		bookViewController = BookViewController.getInstance(keywordVO,type);
+//    		bookViewController = BookViewController.getInstance(keywordVO,type);
     		bookViewController.enterCart();
     		
     	}else if(obj==jButton5){      //添加到收藏夹
@@ -440,32 +444,32 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     	return column;
     }
     
-    public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BookView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BookView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BookView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BookView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BookView(keywordVO,type).setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(BookView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(BookView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(BookView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(BookView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new BookView(keywordVO,type).setVisible(true);
+//            }
+//        });
+//    }
     // Variables declaration - do not modify
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -497,8 +501,8 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     private Vector<String> columnNames ;
     private Vector<Vector> rowData;
     private BookViewService bookViewController;
-    private static KeywordVO keywordVO;
-    private static String type;
+    private KeywordVO keywordVO;
+    private String type;
     private int index;//用于判断跳转到那个panel
     // End of variables declaration
 }
