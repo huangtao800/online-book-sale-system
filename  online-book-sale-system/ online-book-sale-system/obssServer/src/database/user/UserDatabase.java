@@ -138,7 +138,7 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		ArrayList<UserPO> userList = UserDatabase.getInstance().readFileByRole(userRole);
 		ResultMessage resultMessage = ResultMessage.FAILED;
 		
-		for(int i=0;i<userList.size();i++){
+		for(int i=0;i<userList.size();i++){ 
 			//用户ID和用户类型不可修改，只有用户密码和用户名可以修改
 			if(userList.get(i).getUserID().equals(userPO.getUserID())){
 				userList.get(i).setUserName(userPO.getUserName());

@@ -13,17 +13,23 @@ import po.PO;
 import po.PresentPO;
 import po.PromotionPO;
 import po.ResultMessage;
+import po.UserPO;
+import po.UserRole;
+import database.init.InitDatabase;
 import database.present.PresentDatabase;
+import databaseService.init.InitDatabaseService;
 import databaseService.promotion.PromotionDatabaseService;
 
 public class PromotionDatabase extends UnicastRemoteObject implements PromotionDatabaseService{
 	private static final String PromotionPO_Ser="promotionPO.ser";
 	private static PromotionDatabase promotionDatabase;
+	private static InitDatabaseService initController;
 	
 	private PromotionPO promotionPO;
 	
 	protected PromotionDatabase() throws RemoteException{
 		super();
+		initController=InitDatabase.getInstance();
 	}
 
 	public static PromotionDatabase getInstance(){
@@ -64,7 +70,7 @@ public class PromotionDatabase extends UnicastRemoteObject implements PromotionD
 					return ResultMessage.FAILED;
 				}
 			}
-
+		
 	    
 		public ResultMessage insert(PO po) throws RemoteException{
 			return null;
