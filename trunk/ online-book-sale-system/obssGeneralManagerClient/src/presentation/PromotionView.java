@@ -961,7 +961,7 @@ public class PromotionView extends JFrame implements ActionListener{
 	          }
 	          
 	    }// </editor-fold>
-	    
+//界面完*************************************************************************************************************	    
 
 	
 //事件响应
