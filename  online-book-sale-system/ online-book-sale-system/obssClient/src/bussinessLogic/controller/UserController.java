@@ -28,7 +28,7 @@ public class UserController implements UserBLService, Serializable {
 	// 对用户的调整(增加，删除，修改)
 	public ResultMessage addUser(String userName, String id, String password,
 			UserRole userRole) {
-		UserPO userPO = new UserPO(userName,id,password,userRole,true);
+		UserPO userPO = new UserPO(userName,id,password,userRole);
 		return user.addUser(userPO,userRole);
 		
 	}
