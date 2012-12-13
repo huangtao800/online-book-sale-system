@@ -140,10 +140,10 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		ArrayList<BookPO> arrayList = BookDatabase.getInstance().readFile();
 		ArrayList<BookPO> bookList = new ArrayList<BookPO>();
 		for(int i=0;i<arrayList.size();i++){
-			if((arrayList.get(i).getBookName().equals(name)||name==null)&&
-			   (arrayList.get(i).getAuthor().equals(author)||author==null)&&
-			   (arrayList.get(i).getPress().equals(press)||press==null)&&
-			   (arrayList.get(i).getPublishDate().equals(publishDate)||publishDate==null)){
+			if((arrayList.get(i).getBookName().equals(name)||name.equals(""))&&
+			   (arrayList.get(i).getAuthor().equals(author)||author.equals(""))&&
+			   (arrayList.get(i).getPress().equals(press)||press.equals(""))&&
+			   (arrayList.get(i).getPublishDate().equals(publishDate)||publishDate.equals(""))){
 				   bookList.add(arrayList.get(i));
 			   }
 		}
@@ -172,12 +172,12 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		try {
 		    inputStream=new FileInputStream("book.ser");
 			ObjectInputStream objInput=new ObjectInputStream(inputStream);
-			BookPO b = new BookPO();
-			b = (BookPO)objInput.readObject();
-			while(b!=null){
-				bookList.add(b);
-				b = (BookPO)objInput.readObject();
-			}
+			
+			bookList = (ArrayList<BookPO>)objInput.readObject();
+//			while(b!=null){
+//				bookList.add(b);
+//				b = (BookPO)objInput.readObject();
+//			}
 			
 			inputStream.close();
 			objInput.close();
