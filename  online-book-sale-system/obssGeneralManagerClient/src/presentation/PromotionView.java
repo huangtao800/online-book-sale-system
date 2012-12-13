@@ -909,9 +909,21 @@ public class PromotionView extends JFrame implements ActionListener{
 	        );
 
 	        pack();
-	         //
+	         //**********************************************************************************************************
 		      
 	         this.setVisible(true);
+	         
+	         //监听
+	         checkUpdateButton.addActionListener(this);
+	          setYesButton.addActionListener(this);
+	          setNoButton.addActionListener(this);
+	          presentNoButton.addActionListener(this);
+	          presentYesButton.addActionListener(this);
+	          checkPresentButton.addActionListener(this);
+	          changeUserNameButton.addActionListener(this);
+	          changeUserPasswordButton.addActionListener(this);
+	          confirmChangePasswordButton.addActionListener(this);
+	          confirmChangeUserNameButton.addActionListener(this);
 	         
 	         numOfCouponTextField.setText(""); //numOfCouponTextField endTimeOfCouponTextField  有用
 	         endTimeOfCouponTextField.setText("");
@@ -924,19 +936,7 @@ public class PromotionView extends JFrame implements ActionListener{
 	         tableModel=new DefaultTableModel(tableValue,columnNames); 
 	         checkEqualityTable.setModel(tableModel);
 //	         checkEqualityTable = new JTable(tableModel);
-	             
-	         //监听
-	         checkUpdateButton.addActionListener(this);
-	          setYesButton.addActionListener(this);
-	          setNoButton.addActionListener(this);
-	          presentNoButton.addActionListener(this);
-	          presentYesButton.addActionListener(this);
-	          checkPresentButton.addActionListener(this);
-	          changeUserNameButton.addActionListener(this);
-	          changeUserPasswordButton.addActionListener(this);
-	          confirmChangePasswordButton.addActionListener(this);
-	          confirmChangeUserNameButton.addActionListener(this);
-	          
+   
              //个人中心
 	          generalManagerPO=proController.getUserPO();
 	          userIDTextField.setText(generalManagerPO.getUserID());
@@ -957,7 +957,7 @@ public class PromotionView extends JFrame implements ActionListener{
 	          if(news.equals("No News!")){
 	        	  
 	          }else{
-	        	  JOptionPane.showMessageDialog(null, "节日");
+	        	  JOptionPane.showMessageDialog(null, news);
 	          }
 	          
 	    }// </editor-fold>
@@ -1229,19 +1229,44 @@ public class PromotionView extends JFrame implements ActionListener{
 		}
 	}
 	
-//判断string是否可以转换成Calendar类型
+//判断string是否可以转换成Calendar类型；且制定的日期不能小于当天；且不能出现诸如"2月30日"这样不合理的错误
 	private boolean stringToCalendar(String s){
 		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
 		try{
-			@SuppressWarnings("unused")
 			Date date=format.parse(s);
-			
+			Calendar nowCalendar=Calendar.getInstance();
 			Calendar cal=Calendar.getInstance();
 			cal.setTime(date);
 			int year=cal.get(Calendar.YEAR);
+			int month=cal.get(Calendar.MONTH) +1;
+			int day=cal.get(Calendar.DATE);
+			if(month<1 || month>12)   
+				return false;			
 			
+			if(day<1 || day>31)       
+				return false;			 
+			if(cal.compareTo(nowCalendar) <0)  
+				return false;
+			if (year % 4 == 0 && !(year % 100 == 0) || year % 400 == 0){             //闰年，2.29
+				if(month==2 && day>29)  
+					return false;
+			}else {//平年,2.28
+				if(month==2 && day >28)  
+					return false;
+			}
 			
-			
+			if(month==1 && day>31) return false;
+			else if (month==3 && day>31)  return false;
+			else if(month==4 && day>30)   return false;
+			else if (month==5 && day>31)  return false;
+			else if(month==6 && day>30)   return false;
+			else if (month==7 && day>31)  return false;
+			else if(month==8 && day>31)   return false;
+			else if (month==9 && day>30)  return false;
+			else if(month==10 && day>31)   return false;
+			else if (month==11 && day>30)  return false;
+			else if(month==12 && day>31)   return false;
+
 			return true;	
 		}catch(Exception e){
 			return false;
