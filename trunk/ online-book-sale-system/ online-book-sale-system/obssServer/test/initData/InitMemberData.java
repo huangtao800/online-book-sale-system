@@ -1,5 +1,6 @@
 package initData;
 
+import java.awt.print.Book;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -23,6 +24,11 @@ public class InitMemberData {
 		MemberPO memberPO=new MemberPO("1", "huang", "111111","江苏南通");
 		
 		BookPO bookPO=new BookPO("11111", "Java", "hjuang", "中国", "2011", "计算机", 10, 5);
+		BookPO bookPO2=new BookPO("11122", "Java", "gt", "中国", "2012", "计算机", 10, 5);
+		
+		ArrayList<BookPO> bookList = new ArrayList<BookPO>();
+		bookList.add(bookPO);
+		bookList.add(bookPO2);
 
 		memberPO.getFavority().getFavorities().add(bookPO);
 		
@@ -83,6 +89,11 @@ public class InitMemberData {
 			objoutput=new ObjectOutputStream(outputStream);
 			
 			objoutput.writeObject(presentList);
+			
+			outputStream=new FileOutputStream("book.ser");
+			objoutput=new ObjectOutputStream(outputStream);
+			
+			objoutput.writeObject(bookList);
 			
 			outputStream.close();
 			objoutput.close();
