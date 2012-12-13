@@ -20,6 +20,7 @@ import po.OrderPO;
 import po.OrderState;
 import po.PresentPO;
 import po.ResultMessage;
+import po.SalesManagerPO;
 import presentationController.mainView.MainViewController;
 import presentationController.mainView.MainViewControllerInterface;
 
@@ -31,6 +32,7 @@ public class MainView extends JFrame implements ActionListener{
 	   private int lineOfUncompletedOrder=11;//初始为11
 //	   private JTable orderTable;
 	   private DefaultTableModel tableModel;
+	   private SalesManagerPO userpo;
 //	   SalesManagerModelInterface model;
 	
 	    private javax.swing.JButton addBookButton;
@@ -830,6 +832,9 @@ public class MainView extends JFrame implements ActionListener{
 	        memberOrderTextArea.setEditable(false);
 	        
 	       //个人中心panel
+	        mainViewController.getUserPO();
+	        userIDTextField.setText(userpo.getUserID());
+	        originalUserNameTextField.setText(userpo.getUserName());
 	        changeUserNameButton.addActionListener(this);
 	        changeUserPasswordButton.addActionListener(this);
 	        confirmChangeUserNameButton.addActionListener(this);
@@ -1012,6 +1017,74 @@ public class MainView extends JFrame implements ActionListener{
 	    			JOptionPane.showMessageDialog(null, "请首先在表格中选择某一项未完成的订单！");
 	    		}
 	    	}
+	     //修改用户名
+			else if(event.getSource()== changeUserNameButton){
+				jLabel12.setEnabled(true);
+				newUserNameTextField.setEnabled(true);
+				JOptionPane.showMessageDialog(null, "请在'新用户名'栏里输入新用户名！输入完毕后请单击'确认修改' !");
+				confirmChangeUserNameButton.setEnabled(true);
+			}
+	//确认修改用户名
+			else if(event.getSource()== confirmChangeUserNameButton){
+				if(newUserNameTextField.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "新用户名不能为空！");
+				}else {
+					userpo.setUserName(newUserNameTextField.getText());
+					
+					if( mainViewController.changeUser(userpo.getUserName(),userpo.getUserID(),
+							userpo.getUserPassword(),userpo.getUserRole())
+							                                ==ResultMessage.SUCCEED){ 
+					confirmChangeUserNameButton.setEnabled(false);
+					jLabel12.setEnabled(false);
+					newUserNameTextField.setEnabled(false);
+					JOptionPane.showMessageDialog(null, "修改用户名成功！");
+					}else {
+						JOptionPane.showMessageDialog(null, " 修改用户名失败！");
+					}
+				}
+			}
+	//修改用户密码
+			else if(event.getSource()== changeUserPasswordButton){
+				jLabel16.setEnabled(true);  originalPWTextField.setEnabled(true);
+				jLabel17.setEnabled(true);  newPWTextField.setEnabled(true);
+				jLabel18.setEnabled(true);  newPWAgainTextField.setEnabled(true);
+				JOptionPane.showMessageDialog(null, "请依次输入原密码，新密码！");
+				confirmChangePasswordButton.setEnabled(true);
+			}
+	//确认修改密码
+			else if (event.getSource()== confirmChangePasswordButton){
+				if(! originalPWTextField.getText().equals(userpo.getUserPassword())){
+					JOptionPane.showMessageDialog(null, "原密码正确！");
+				}else{
+					      if(newPWTextField.getText().equals("")){
+					    	  JOptionPane.showMessageDialog(null, "新密码不能为空！");
+					      }else{
+					    	   if(newPWAgainTextField.getText().equals("")){
+					    		   JOptionPane.showMessageDialog(null, "请再次输入新密码！");
+					    	   }else{
+					    	  
+					    	  if(  ! newPWTextField.getText().equals(newPWAgainTextField.getText())){
+					    		  JOptionPane.showMessageDialog(null, "您输入的新密码前后不一致，请检查！");
+					    	  }else{
+					    		  userpo.setUserPassword(newPWTextField.getText());
+					    		  if(  mainViewController.changeUser(userpo.getUserName(),userpo.getUserID(),
+					    				  userpo.getUserPassword(),userpo.getUserRole()) ==
+			                                ResultMessage.SUCCEED){
+					    			  jLabel16.setEnabled(false);  originalPWTextField.setEnabled(false);
+										jLabel17.setEnabled(false);  newPWTextField.setEnabled(false);
+										jLabel18.setEnabled(false);  newPWAgainTextField.setEnabled(false);
+										confirmChangePasswordButton.setEnabled(false);
+										JOptionPane.showMessageDialog(null, "修改密码成功！");
+					    		  }else{
+					    			  JOptionPane.showMessageDialog(null, "对不起，修改密码失败！");
+					    		  }	
+					    	  }
+					      }
+					      }
+				}		
+			}      
+	       
+	       
 	    	
 	    }//事件结束
 	    
