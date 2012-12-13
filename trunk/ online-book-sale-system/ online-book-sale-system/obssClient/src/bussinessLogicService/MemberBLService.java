@@ -32,7 +32,7 @@ public interface MemberBLService {
 	public ArrayList<LineItemPO> getCartList();	//返回购物车
 	public ResultMessage changeAddress(String newAddress);//修改地址
 	
-	public ResultMessage clearCart();
+	public ResultMessage clearCart();//清空购物车
 	
 	public MemberPO freshMemberPO(String memberID);
 }
