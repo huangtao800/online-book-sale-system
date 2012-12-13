@@ -16,6 +16,7 @@ import festival.News;
 import po.GeneralManagerPO;
 import po.PresentPO;
 import po.PromotionPO;
+import po.ResultMessage;
 import po.UserRole;
 import po.VIPRank;
 import presentationController.PromotionView.PromotionViewController;
@@ -1012,8 +1013,11 @@ public class PromotionView extends JFrame implements ActionListener{
 			    		  proPO.setEquivalent(i,  1,  0.0);
 			    	  }  
 			      }//for
-			      proController.setPromotion_YES(proPO);
-				  JOptionPane.showMessageDialog(null,"促销手段设置成功！");
+			           if(  proController.setPromotion_YES(proPO) == ResultMessage.SUCCEED){
+				             JOptionPane.showMessageDialog(null,"促销手段设置成功！");
+			            }else {
+			            	 JOptionPane.showMessageDialog(null,"对不起，促销手段设置失败！");
+			            }
 			      }
 			      else   JOptionPane.showMessageDialog(null,"您输入的数据有误！请重新输入！");
 			}//if
@@ -1100,12 +1104,17 @@ public class PromotionView extends JFrame implements ActionListener{
 			}else {
 				generalManagerPO.setUserName(newUserNameTextField.getText());
 				
-				proController.changeUser(generalManagerPO.getUserName(),generalManagerPO.getUserID(),
-						                                generalManagerPO.getUserPassword(),generalManagerPO.getUserRole()); 
+				if( proController.changeUser(generalManagerPO.getUserName(),generalManagerPO.getUserID(),
+						                                generalManagerPO.getUserPassword(),generalManagerPO.getUserRole())
+						                                ==ResultMessage.SUCCEED){
+				originalUserNameTextField.setText(generalManagerPO.getUserName());
 				confirmChangeUserNameButton.setEnabled(false);
 				jLabel22.setEnabled(false);
 				newUserNameTextField.setEnabled(false);
 				JOptionPane.showMessageDialog(null, "修改用户名成功！");
+				}else {
+					JOptionPane.showMessageDialog(null, " 修改用户名失败！");
+				}
 			}
 		}
 //修改用户密码
@@ -1132,14 +1141,19 @@ public class PromotionView extends JFrame implements ActionListener{
 				    		  JOptionPane.showMessageDialog(null, "您输入的新密码前后不一致，请检查！");
 				    	  }else{
 				    		  generalManagerPO.setUserPassword(newPWTextField.getText());
-				    		  proController.changeUser(generalManagerPO.getUserName(),generalManagerPO.getUserID(),
-		                                generalManagerPO.getUserPassword(),generalManagerPO.getUserRole()); 
+				    		  if(  proController.changeUser(generalManagerPO.getUserName(),generalManagerPO.getUserID(),
+		                             generalManagerPO.getUserPassword(),generalManagerPO.getUserRole()) ==
+		                                ResultMessage.SUCCEED){
+				    			  jLabel23.setEnabled(false);  originalPWTextField.setEnabled(false);
+									jLabel24.setEnabled(false);  newPWTextField.setEnabled(false);
+									jLabel25.setEnabled(false);  newPWAgainTextField.setEnabled(false);
+									confirmChangePasswordButton.setEnabled(false);
+									JOptionPane.showMessageDialog(null, "修改密码成功！");
+				    		  }else{
+				    			  JOptionPane.showMessageDialog(null, "对不起，修改密码失败！");
+				    		  }
 				    		  
-				  			jLabel23.setEnabled(false);  originalPWTextField.setEnabled(false);
-							jLabel24.setEnabled(false);  newPWTextField.setEnabled(false);
-							jLabel25.setEnabled(false);  newPWAgainTextField.setEnabled(false);
-							confirmChangePasswordButton.setEnabled(false);
-							JOptionPane.showMessageDialog(null, "修改密码成功！");
+				  			
 				    	  }
 				      }
 				      }
@@ -1401,7 +1415,11 @@ public class PromotionView extends JFrame implements ActionListener{
 			    }//for(j)
 		   }//else	
 	}//for(i)
-		proController.present_YES(presentPO);  //promotionPO消亡了？
+		if( proController.present_YES(presentPO) ==ResultMessage.SUCCEED){   //promotionPO消亡了？
+			JOptionPane.showMessageDialog(null, "大范围促销设置成功！");
+		}else{
+			JOptionPane.showMessageDialog(null, "对不起，大范围促销设置失败！");
+		}
 }
 //
 //    查看总经理制定的大范围促销规则
