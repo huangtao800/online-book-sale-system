@@ -650,6 +650,7 @@ public class MainView extends JFrame implements ActionListener{
 	    	String isbn="";
 //查看总经理制定的大范围促销规则    	
 	       if(event.getSource()==checkPresentButton){     
+	    	      showPresentTextArea.setText("");
                    checkPresent();
 	    	}
 	    	
