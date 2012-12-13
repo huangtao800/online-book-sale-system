@@ -208,8 +208,8 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
 
         jLabel6.setText("图书类型：");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "计算机", "化学", "历史", "艺术" }));
-       
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "文学", "计算机", "历史", "经济" }));
+        jComboBox1.setSelectedItem(type);
         jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         
 
@@ -318,56 +318,57 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     	
     	if(obj==jButton1){            //通过关键字查找
     		bookList = bookViewController.findByKeyword(name, author, press, publishDate);
-//    		BookPO bookPO1=new BookPO("Java","11111",  "计算机","中国", "hjuang",  "2011", 10, 5);
-    		
-//    	    bookList.add(bookPO1);
+    		if(bookList.size()==0){
+    			JOptionPane.showMessageDialog(null, "未找到相应图书！");
+    		}else{
+    			rowData = new Vector<Vector>();
+               	for(int i = 0; i < bookList.size(); i++){
+               	        Vector<String> row = new Vector<String>();
+                        row.add(bookList.get(i).getBookName());
+                        row.add(bookList.get(i).getISBN());
+                        row.add(bookList.get(i).getType());
+                        row.add(bookList.get(i).getPress());
+                        row.add(bookList.get(i).getAuthor());
+                        row.add(bookList.get(i).getPublishDate());
+                        row.add(String.valueOf(bookList.get(i).getPrice()));
+                        row.add(String.valueOf(bookList.get(i).getNumOfBook()));
+                        rowData.add(row);
+            	}
+               	
+               	DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
+                jTable1.setModel(dtm);
+    		}
     	
-    	    Vector<String> row = new Vector<String>();
-           	for(int i = 0; i < bookList.size(); i++){
-                    row.add(bookList.get(i).getBookName());
-                    row.add(bookList.get(i).getISBN());
-                    row.add(bookList.get(i).getType());
-                    row.add(bookList.get(i).getPress());
-                    row.add(bookList.get(i).getAuthor());
-                    row.add(bookList.get(i).getPublishDate());
-                    row.add(String.valueOf(bookList.get(i).getPrice()));
-                    row.add(String.valueOf(bookList.get(i).getNumOfBook()));
-                    rowData.add(row);
-        	}
-
-     		DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
-            jTable1.setModel(dtm);
-            
-            
-    		
     	}else if(obj==jButton3){        //通过图书类型查找图书
     		bookList = bookViewController.fineByType(type);
-    		
-    		Vector<String> row = new Vector<String>();
-           	for(int i = 0; i < bookList.size(); i++){
-                    row.add(bookList.get(i).getBookName());
-                    row.add(bookList.get(i).getISBN());
-                    row.add(bookList.get(i).getType());
-                    row.add(bookList.get(i).getPress());
-                    row.add(bookList.get(i).getAuthor());
-                    row.add(bookList.get(i).getPublishDate());
-                    row.add(String.valueOf(bookList.get(i).getPrice()));
-                    row.add(String.valueOf(bookList.get(i).getNumOfBook()));
-                    rowData.add(row);
-        	}
+    		if(bookList.size()==0){
+    			JOptionPane.showMessageDialog(null, "未找到相应图书！");
+    		}else{
+    			rowData = new Vector<Vector>();
+        		for(int i = 0; i < bookList.size(); i++){
+               		    Vector<String> row = new Vector<String>();
+                        row.add(bookList.get(i).getBookName());
+                        row.add(bookList.get(i).getISBN());
+                        row.add(bookList.get(i).getType());
+                        row.add(bookList.get(i).getPress());
+                        row.add(bookList.get(i).getAuthor());
+                        row.add(bookList.get(i).getPublishDate());
+                        row.add(String.valueOf(bookList.get(i).getPrice()));
+                        row.add(String.valueOf(bookList.get(i).getNumOfBook()));
+                        rowData.add(row);
+            	}
 
-     		DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
-            jTable2.setModel(dtm);
-            
-            
-           
+         		DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
+                jTable2.setModel(dtm);
+                
+    		}
     		  
     	}else if(obj==jButton2){      //进入购物车
-//    	    bookViewController = BookViewController.getInstance(keywordVO,type);
+
     		bookViewController.enterCart();
     		
     	}else if(obj==jButton4){      //进入购物车
-//    		bookViewController = BookViewController.getInstance(keywordVO,type);
+
     		bookViewController.enterCart();
     		
     	}else if(obj==jButton5){      //添加到收藏夹
@@ -444,32 +445,6 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     	return column;
     }
     
-//    public static void main(String args[]) {
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(BookView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(BookView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(BookView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(BookView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new BookView(keywordVO,type).setVisible(true);
-//            }
-//        });
-//    }
     // Variables declaration - do not modify
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
