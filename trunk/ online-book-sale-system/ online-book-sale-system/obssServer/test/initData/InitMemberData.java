@@ -10,8 +10,9 @@ import po.AdministratorPO;
 import po.BookPO;
 import po.GeneralManagerPO;
 import po.MemberPO;
+import po.Present_Coupon;
+import po.Present_Equivalent;
 import po.OrderPO;
-import po.PresentPO;
 import po.PromotionPO;
 import po.SalesManagerPO;
 
@@ -57,7 +58,8 @@ public class InitMemberData {
 		administratorList.add(administratorPO);
 		
 		
-		ArrayList<PresentPO> presentList=new ArrayList<PresentPO>();
+		ArrayList<Present_Equivalent> present_equivalentList=new ArrayList<Present_Equivalent>();
+		ArrayList<Present_Coupon> present_couponList=new ArrayList<Present_Coupon>();
 		
 		PromotionPO promotionPO =new PromotionPO();
 		
@@ -91,10 +93,16 @@ public class InitMemberData {
 			
 			objoutput.writeObject(promotionPO);
 			
-			outputStream=new FileOutputStream("presentPO.ser");
+			outputStream=new FileOutputStream("present_equivalent.ser");
 			objoutput=new ObjectOutputStream(outputStream);
 			
-			objoutput.writeObject(presentList);
+			objoutput.writeObject(present_equivalentList);
+			
+			outputStream=new FileOutputStream("present_coupon.ser");
+			objoutput=new ObjectOutputStream(outputStream);
+			
+			objoutput.writeObject(present_couponList);
+			
 			
 			outputStream=new FileOutputStream("book.ser");
 			objoutput=new ObjectOutputStream(outputStream);
