@@ -69,7 +69,7 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 			}else if(userRole==UserRole.SalesManager){
 				inputStream=new FileInputStream("salesManager.ser");
 			}else{
-				inputStream=new FileInputStream("admin.ser");
+				inputStream=new FileInputStream("administrator.ser");
 			}
 			
 			ObjectInputStream objInput=new ObjectInputStream(inputStream);	
@@ -101,27 +101,16 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 	public ResultMessage insert(PO po) throws RemoteException {
 		UserPO userPO = (UserPO)po;
 		UserRole userRole = userPO.getUserRole();
+		ArrayList<UserPO> userList=readFileByRole(userRole);
 		
-		try {
-			FileOutputStream fos;
-			if(userRole==UserRole.Member){
-				fos=new FileOutputStream("member.ser");
-			}else if(userRole==UserRole.GeneralManager){
-				fos=new FileOutputStream("generalManager.ser");
-			}else if(userRole==UserRole.SalesManager){
-				fos=new FileOutputStream("salesManager.ser");
-			}else{
-				fos=new FileOutputStream("admin.ser");
-			}
-			
-            ObjectOutputStream oos = new ObjectOutputStream(fos);                       
-            oos.writeObject(po);
-            oos.close();                        
-            return ResultMessage.SUCCEED;
-        } catch (Exception ex) { 
-      	    ex.printStackTrace();   
-      	    return ResultMessage.FAILED;
-        }
+		UserPO tempPO = isExisit(userPO.getUserName(), userPO.getUserPassword(), userRole);
+		if(tempPO!=null){
+			userList.add(userPO);
+			writeFileByRole(userList, userRole);
+			return ResultMessage.SUCCEED;
+		}else{
+			return ResultMessage.EXIST;
+		}
 		
 	}
 	
@@ -131,7 +120,18 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 
 	
 	public ResultMessage delete(PO po) throws RemoteException {
-		return null;
+		UserPO userPO = (UserPO)po;
+		UserRole userRole = userPO.getUserRole();
+		ArrayList<UserPO> userList=readFileByRole(userRole);
+		
+		UserPO tempPO = searchUser(userPO.getUserName(), userPO.getUserPassword(), userList);
+		if(tempPO!=null){
+			userList.remove(userPO);
+			writeFileByRole(userList, userRole);
+			return ResultMessage.SUCCEED;
+		}else{
+			return ResultMessage.FAILED;
+		}
 	}
 
 	@Override
@@ -139,24 +139,23 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 	public ResultMessage update(PO po) throws RemoteException {
 		UserPO userPO = (UserPO)po;
 		UserRole userRole = userPO.getUserRole();
-		ArrayList<UserPO> userList = UserDatabase.getInstance().readFileByRole(userRole);
-		ResultMessage resultMessage = ResultMessage.FAILED;
+		ArrayList<UserPO> userList = readFileByRole(userRole);
 		
-		for(int i=0;i<userList.size();i++){ 
+		UserPO tempPO = searchUser(userPO.getUserName(), userPO.getUserPassword(), userList);
+		if(tempPO!=null){
 			//用户ID和用户类型不可修改，只有用户密码和用户名可以修改
-			if(userList.get(i).getUserID().equals(userPO.getUserID())){
-				userList.get(i).setUserName(userPO.getUserName());
-				userList.get(i).setUserPassword(userPO.getUserPassword());
-				
-				resultMessage = ResultMessage.SUCCEED;
-			}
+			userList.remove(tempPO);
+			userList.add(userPO);
+			writeFileByRole(userList, userRole);
+			return ResultMessage.SUCCEED;
+		}else{
+			return ResultMessage.FAILED;
 		}
-		
-		return resultMessage;
+	
 	}
 	
 	public UserPO findUserThroughName(String name,UserRole userRole) {
-		ArrayList<UserPO> userList = UserDatabase.getInstance().readFileByRole(userRole);
+		ArrayList<UserPO> userList = readFileByRole(userRole);
 		UserPO userPO = null;
 		for(int i=0;i<userList.size();i++){
 			if(userList.get(i).getUserName().equals(name)){
@@ -166,10 +165,65 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		return userPO;
 	}
 	
-	public ArrayList<UserPO> getAllUser()throws RemoteException{
-		ArrayList<UserPO> arrayList = new ArrayList<>();
-		return arrayList;
+	public ArrayList<UserPO> getAllUser() throws RemoteException{
+		ArrayList<UserPO> userList=null;
+		FileInputStream	inputStream;
+		ObjectInputStream objInput;
+		
+		try {
+		    inputStream=new FileInputStream("member.ser");
+		    objInput=new ObjectInputStream(inputStream);	
+		    ArrayList<UserPO> member=(ArrayList<UserPO>)objInput.readObject();
+		   
+		    inputStream=new FileInputStream("administrator.ser");
+		    objInput=new ObjectInputStream(inputStream);	
+		    ArrayList<UserPO> administrator=(ArrayList<UserPO>)objInput.readObject();
+		    
+		    inputStream=new FileInputStream("generalManager.ser");
+		    objInput=new ObjectInputStream(inputStream);	
+		    ArrayList<UserPO> generalManager=(ArrayList<UserPO>)objInput.readObject();
+		    
+		    inputStream=new FileInputStream("salesManager.ser");
+		    objInput=new ObjectInputStream(inputStream);	
+		    ArrayList<UserPO> salesManager=(ArrayList<UserPO>)objInput.readObject();
+		    
+		    userList.addAll(member);
+		    userList.addAll(administrator);
+		    userList.addAll(generalManager);
+		    userList.addAll(salesManager);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return userList;
 	}
 	
+	private void writeFileByRole(ArrayList<UserPO> arrayList,UserRole userRole){
+		FileOutputStream fileOutputStream;
+		ArrayList<UserPO> userList=null;
+		
+		try {
+			if(userRole==UserRole.Member){
+				fileOutputStream=new FileOutputStream("member.ser");
+			}else if(userRole==UserRole.GeneralManager){
+				fileOutputStream=new FileOutputStream("generalManager.ser");
+			}else if(userRole==UserRole.SalesManager){
+				fileOutputStream=new FileOutputStream("salesManager.ser");
+			}else{
+				fileOutputStream=new FileOutputStream("administrator.ser");
+			}
+			
+			ObjectOutputStream objectOutputStream=new ObjectOutputStream(fileOutputStream);	
+			objectOutputStream.writeObject(arrayList);
+			
+			fileOutputStream.close();
+			objectOutputStream.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+	}
 	
 }
