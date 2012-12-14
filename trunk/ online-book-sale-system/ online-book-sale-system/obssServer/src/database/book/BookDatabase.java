@@ -190,5 +190,31 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		return bookList;
 	}
 	
+	//对图书类别的处理
+	public ArrayList<String> getBookType() throws RemoteException{
+		FileInputStream inputStream;
+		ArrayList<String> bookTypeList = new ArrayList<String>();
+		
+		try {
+		    inputStream=new FileInputStream("bookType.ser");
+			ObjectInputStream objInput=new ObjectInputStream(inputStream);
+			bookTypeList= (ArrayList<String>)objInput.readObject();
+			inputStream.close();
+			objInput.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return bookTypeList;
+	}
+	
+	public ResultMessage addBookType(String type) throws RemoteException{
+		return ResultMessage.SUCCEED;
+	}
+		
+	public ResultMessage changeBookType(String beforeType,String afterType)throws RemoteException{
+		return ResultMessage.SUCCEED;
+	}
+	
 }
 
