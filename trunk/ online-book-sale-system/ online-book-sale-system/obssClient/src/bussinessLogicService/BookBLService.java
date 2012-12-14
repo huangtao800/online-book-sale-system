@@ -16,5 +16,10 @@ public interface BookBLService {
 	
 	//刷新图书信息
 	public ResultMessage updateBook(ArrayList<LineItemPO> salesList);
+	
+	//图书类别读取，增删改
+	public ArrayList<String> getBookType();
+	public ResultMessage addBookType(String type);
+	public ResultMessage changeBookType(String beforeType,String afterType);
 
 }
