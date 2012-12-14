@@ -299,7 +299,6 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     }
     
    
-    
     public void actionPerformed(ActionEvent e) {
     	ArrayList<BookPO> bookList = new ArrayList<BookPO>();
     	LineItemPO lineItemPO;
