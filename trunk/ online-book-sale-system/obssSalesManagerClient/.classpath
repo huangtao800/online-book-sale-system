@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/eclipse中的插件，包等/JTattoo.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse中的插件，包等/substance.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse中的插件，包等/trident.jar"/>
+	<classpathentry kind="lib" path="JTattoo.jar"/>
+	<classpathentry kind="lib" path="substance.jar"/>
+	<classpathentry kind="lib" path="trident.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
