@@ -23,13 +23,12 @@ import databaseService.promotion.PromotionDatabaseService;
 public class PromotionDatabase extends UnicastRemoteObject implements PromotionDatabaseService{
 	private static final String PromotionPO_Ser="promotionPO.ser";
 	private static PromotionDatabase promotionDatabase;
-	private static InitDatabaseService initController;
 	
 	private PromotionPO promotionPO;
 	
 	protected PromotionDatabase() throws RemoteException{
 		super();
-		initController=InitDatabase.getInstance();
+		promotionPORead();
 	}
 
 	public static PromotionDatabase getInstance(){
