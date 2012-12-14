@@ -31,7 +31,7 @@ public class Cart implements  PO{
 		return commonPrice;
 	}
 	public void clear(){
-		cartList.clear();
+		cartList=new ArrayList<LineItemPO>();
 	}
 
 }
