@@ -1,21 +1,29 @@
 package presentation;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
+import po.UserPO;
 import po.UserRole;
+import presentationController.Admin.AdminOverviewController;
+import presentationController.Admin.AdminOverviewService;
+import presentationController.Admin.AdminViewService;
 
 //youjiaqi
 public class AdminOverview extends javax.swing.JFrame {
 
-   public AdminOverview() {
+   public AdminOverview(AdminOverviewService adminOverviewController) {
+	   this.adminOverviewController = adminOverviewController;
        initComponents();
    }
 
    
    private void initComponents() {
-
+       
        jPanel1 = new javax.swing.JPanel();
        jLabel1 = new javax.swing.JLabel();
        jLabel2 = new javax.swing.JLabel();
@@ -42,14 +50,41 @@ public class AdminOverview extends javax.swing.JFrame {
        jButton1.setText("查找用户");
        jButton1.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
-               jButton1ActionPerformed(evt);
+              String name = jTextField1.getText().trim();
+              UserRole userRole = (UserRole)jComboBox1.getSelectedItem();
+              UserPO userPO = adminOverviewController.findUser(name, userRole);
+              rowData = new Vector<Vector>();
+              Vector<String> row = new Vector<String>();
+              row.add(userPO.getUserName());
+              row.add(userPO.getUserID());
+              row.add(userPO.getUserPassword());
+              row.add(userPO.getUserRole().toString());
+              rowData.add(row);
+              DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
+              jTable1.setModel(dtm);
            }
        });
 
        jButton2.setText("查看所有用户");
        jButton2.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
-               jButton2ActionPerformed(evt);
+        	    ArrayList<UserPO> userList = adminOverviewController.overviewUser();
+        	   if(userList.size()!=0){
+        	        rowData = new Vector<Vector>();
+              	    for(int i = 0; i < userList.size(); i++){
+              	       Vector<String> row = new Vector<String>();
+                       row.add(userList.get(i).getUserName());
+                       row.add(userList.get(i).getUserID());
+                       row.add(userList.get(i).getUserPassword());
+                       row.add(userList.get(i).getUserRole().toString());
+                       rowData.add(row);
+           	        }
+              	
+              	    DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
+                    jTable1.setModel(dtm);
+               }else{
+            	   JOptionPane.showMessageDialog(null, "该系统不存在用户！");
+               }
            }
        });
 
@@ -64,21 +99,21 @@ public class AdminOverview extends javax.swing.JFrame {
        jButton3.setText("新增用户");
        jButton3.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
-               jButton3ActionPerformed(evt);
+              adminOverviewController.initAdminView(1);
            }
        });
 
        jButton4.setText("修改用户信息");
        jButton4.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
-               jButton3ActionPerformed(evt);
+                adminOverviewController.initAdminView(0);
            }
        });
        
        jButton5.setText("删除用户");
        jButton5.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
-               jButton3ActionPerformed(evt);
+        	   adminOverviewController.initAdminView(2);
            }
        });
 
@@ -159,39 +194,7 @@ public class AdminOverview extends javax.swing.JFrame {
        pack();
    }// </editor-fold>
 
-   
-   public static void main(String args[]) {
-       /* Set the Nimbus look and feel */
-       //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-       /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-        * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-        */
-       try {
-           for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-               if ("Nimbus".equals(info.getName())) {
-                   javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                   break;
-               }
-           }
-       } catch (ClassNotFoundException ex) {
-           java.util.logging.Logger.getLogger(AdminOverview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-       } catch (InstantiationException ex) {
-           java.util.logging.Logger.getLogger(AdminOverview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-       } catch (IllegalAccessException ex) {
-           java.util.logging.Logger.getLogger(AdminOverview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-       } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-           java.util.logging.Logger.getLogger(AdminOverview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-       }
-       //</editor-fold>
 
-       /* Create and display the form */
-       java.awt.EventQueue.invokeLater(new Runnable() {
-           public void run() {
-               new AdminOverview().setVisible(true);
-           }
-       });
-   }
-   
    private Vector<String> setColumnNames(){
    	Vector<String> column = new Vector<String>();
    	column.addElement("用户姓名");
@@ -202,7 +205,7 @@ public class AdminOverview extends javax.swing.JFrame {
    	return column;
    }
    
-   // Variables declaration - do not modify
+  
    private javax.swing.JButton jButton1;
    private javax.swing.JButton jButton2;
    private javax.swing.JButton jButton3;
@@ -219,5 +222,6 @@ public class AdminOverview extends javax.swing.JFrame {
    private javax.swing.JTextField jTextField1;
    private Vector<String> columnNames ;
    private Vector<Vector> rowData;
+   private AdminOverviewService adminOverviewController;;
    // End of variables declaration
 }
