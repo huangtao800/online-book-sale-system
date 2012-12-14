@@ -19,15 +19,16 @@ public class OrderPO implements PO{
 	private OrderState state;
 	private String memberID;
 	private Calendar date;
+	private String address;
 	
-	public OrderPO(ArrayList<LineItemPO> productList, String memberID, double totalPrice){
+	public OrderPO(ArrayList<LineItemPO> productList, String memberID, double totalPrice, String address){
 		this.orderNum = count ++;
 		this.state = OrderState.ORDERDED;
 		this.productList = productList;
 		this.memberID = memberID;
 		this.totalPrice = totalPrice;
-		
 		this.date=new GregorianCalendar();
+		this.address = address;
 	}
 	public Calendar getDate() {
 		return date;
@@ -61,6 +62,9 @@ public class OrderPO implements PO{
 		return "订单编号:"+orderNum+"\n商品列表:"+product+"\n下单日期:"+
 		            sdf.format(date.getTime())+"\n总价:"+totalPrice+"\n订单状态:"+state ;
 	
+	}
+	public String getAddress(){
+		return address;
 	}
 
 
