@@ -150,6 +150,12 @@ public class MemberController implements MemberBLService{
 		return newMemberPO;
 	}
 
+	@Override
+	public ArrayList<String> getBookType() {
+		// TODO Auto-generated method stub
+		return BookController.getInstance().getBookType();
+	}
+
 	
 
 }
