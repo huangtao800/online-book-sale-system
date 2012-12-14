@@ -1,5 +1,7 @@
 package bussinessLogicService;
 //ÓÈ¼Ñç÷
+import java.util.ArrayList;
+
 import po.*;
 
 public interface UserBLService {
@@ -13,5 +15,7 @@ public interface UserBLService {
 	
 	public UserPO findUser(String name);
 	public ResultMessage findChangingUser(String id);
+	
+	public ArrayList<UserPO> getAllUser();
 
 }
