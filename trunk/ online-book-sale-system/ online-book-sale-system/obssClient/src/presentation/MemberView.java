@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class MemberView extends JFrame {
 
@@ -90,6 +91,7 @@ public class MemberView extends JFrame {
 	private JTable couponTable;
 	private JButton enterCartButton;
 	private JButton freshOrderButton;
+	private JButton orderDetailButton;
 
 	/**
 	 * Launch the application.
@@ -858,6 +860,20 @@ public class MemberView extends JFrame {
 			}
 		});
 		freshOrderButton.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		
+		orderDetailButton = new JButton("\u67E5\u770B\u8BE6\u60C5");
+		orderDetailButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int index=orderTable.getSelectedRow();
+				if(index==-1){
+					JOptionPane.showMessageDialog(null, "请选择一条订单！");
+					return ;
+				}
+				OrderDetailView orderDetailView=new OrderDetailView(memberPO.getOrderList().get(index));
+				orderDetailView.setVisible(true);
+			}
+		});
+		orderDetailButton.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 
 		javax.swing.GroupLayout gl_jPanel5 = new javax.swing.GroupLayout(
 				jPanel5);
@@ -865,16 +881,20 @@ public class MemberView extends JFrame {
 			gl_jPanel5.createParallelGroup(Alignment.LEADING)
 				.addComponent(jScrollPane3, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
 				.addGroup(gl_jPanel5.createSequentialGroup()
-					.addGap(299)
+					.addGap(246)
 					.addComponent(freshOrderButton, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addGap(65)
+					.addComponent(orderDetailButton, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(297, Short.MAX_VALUE))
 		);
 		gl_jPanel5.setVerticalGroup(
-			gl_jPanel5.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_jPanel5.createSequentialGroup()
+			gl_jPanel5.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_jPanel5.createSequentialGroup()
 					.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(freshOrderButton, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_jPanel5.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(orderDetailButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(freshOrderButton, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
 					.addContainerGap(37, Short.MAX_VALUE))
 		);
 		jPanel5.setLayout(gl_jPanel5);
@@ -1080,7 +1100,7 @@ public class MemberView extends JFrame {
 						+calendar.get(Calendar.MONTH)+"月"
 						+calendar.get(Calendar.DAY_OF_MONTH)+"日";//返回日期
 			default:
-				return orderList.get(columnIndex).getAddress();
+				return orderList.get(rowIndex).getAddress();
 			}
 		}
 		
@@ -1093,8 +1113,10 @@ public class MemberView extends JFrame {
 				return "订单总价";
 			case 2:
 				return "订单状态";
-			default:
+			case 3:
 				return "下单日期";
+			default:
+				return "送货地址";
 			}
 		}
 	}
