@@ -38,7 +38,7 @@ public class BookViewController implements BookViewService{
 		 
 		 bookController = BookController.getInstance();
 		 memberController = MemberController.getInstance();
-		 
+		
 		
 	 }
 
@@ -66,4 +66,11 @@ public class BookViewController implements BookViewService{
 	 public ArrayList<BookPO> fineByType(String type){
 		 return bookController.findByType(type);
 	 }
+	 
+	 //获取图书类别
+	 public ArrayList<String> getBookType(){
+		 return bookController.getBookType();
+	 }
+	 
+
 }
