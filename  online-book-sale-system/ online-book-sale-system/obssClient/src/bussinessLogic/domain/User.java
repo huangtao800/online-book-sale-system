@@ -69,5 +69,17 @@ public class User {
 		
 		return userPO;
 	}
+	
+	public ArrayList<UserPO> getAllUser(){
+		ArrayList<UserPO> userList = new ArrayList<>();
+		try{
+		     userList = userDatabase.getAllUser();
+		     
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return userList;
+		
+	}
 
 }
