@@ -109,17 +109,18 @@ public class InitDatabase extends UnicastRemoteObject implements
 		}
 	}
 	
+	
 	@SuppressWarnings("unchecked")
 	private void readAdministrator() {
 		try {
-			FileInputStream inputStream = new FileInputStream("adminstrator.ser");
-			ObjectInputStream objectInputStream = new ObjectInputStream(
-					inputStream);
+			FileInputStream inputStream = new FileInputStream("administrator.ser");
+			ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 
 			adminstratorList = (ArrayList<AdministratorPO>) objectInputStream.readObject();
-			
+		
 			inputStream.close();
 			objectInputStream.close();
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -176,7 +177,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 	@SuppressWarnings("unused")
 	private void saveAdminstrator(){
 		try {
-			FileOutputStream outputStream=new FileOutputStream("adminstrator.ser");
+			FileOutputStream outputStream=new FileOutputStream("administrator.ser");
 			ObjectOutputStream objectOutputStream=new ObjectOutputStream(outputStream);
 			
 			objectOutputStream.writeObject(adminstratorList);
@@ -191,6 +192,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 	
 	@Override
 	public UserPO logIn(String userName, String password, UserRole userRole) {
+		
 		UserPO result=null;
 		
 		if(userRole==UserRole.Member){
