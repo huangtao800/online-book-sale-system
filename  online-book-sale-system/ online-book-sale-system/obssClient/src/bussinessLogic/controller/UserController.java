@@ -2,6 +2,7 @@ package bussinessLogic.controller;
 //ÓÈ¼Ñç÷
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import po.*;
 import bussinessLogic.domain.User;
@@ -51,6 +52,10 @@ public class UserController implements UserBLService, Serializable {
 
 	public ResultMessage findChangingUser(String id) {
 		return ResultMessage.SUCCEED;
+	}
+	
+	public ArrayList<UserPO> getAllUser(){
+		return user.getAllUser();
 	}
 
 	
