@@ -3,6 +3,7 @@ package initData;
 import java.awt.print.Book;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
@@ -83,7 +84,7 @@ public class InitMemberData {
 			
 			objoutput.writeObject(generalManagerList);
 			
-			outputStream=new FileOutputStream("adminstrator.ser");
+			outputStream=new FileOutputStream("administrator.ser");
 			objoutput=new ObjectOutputStream(outputStream);
 			
 			objoutput.writeObject(administratorList);
