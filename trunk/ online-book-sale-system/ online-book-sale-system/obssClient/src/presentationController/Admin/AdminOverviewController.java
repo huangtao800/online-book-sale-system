@@ -2,6 +2,9 @@ package presentationController.Admin;
 
 import java.util.ArrayList;
 
+import bussinessLogic.controller.UserController;
+import bussinessLogicService.UserBLService;
+
 import po.ResultMessage;
 import po.UserPO;
 import po.UserRole;
@@ -12,38 +15,25 @@ public class AdminOverviewController implements AdminOverviewService {
 	private AdminOverview adminOverview;
 	private AdminViewService adminViewController;
 	
-	private AdminOverviewController(){
-		adminOverview = new AdminOverview();
+	public AdminOverviewController(){
+		adminViewController = AdminViewController.getInstance();
+		
+		adminOverview = new AdminOverview(this);
 		adminOverview.setVisible(true);
 	}
 	
-	public static AdminOverviewService getInstance(){
-		 if(uniqueInstance==null){
-			 uniqueInstance = new AdminOverviewController() ;
-		 }
-		 
-		 return uniqueInstance;
-	}
+	
 	
 	 public ArrayList<UserPO> overviewUser(){
-		 
+		 return adminViewController.getAllUser();
 	 }
 	    
 	 public UserPO findUser(String name,UserRole userRole){
-		 
-		 
+		 return adminViewController.findUser(name, userRole);
 	 }
 	 
-	 public ResultMessage add(String userName,String userID,String userPassword,UserRole userRole){
-		 
-	 }
-		
-	 public ResultMessage change(String userName,String userID,String userPassword,UserRole userRole){
-		 
-	 }
-		
-	 public ResultMessage delete(String id,UserRole userRole){
-		 
+	 public void initAdminView(int index){
+		 adminViewController.init(index);
 	 }
 
 }
