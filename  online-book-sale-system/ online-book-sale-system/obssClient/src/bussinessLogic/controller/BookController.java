@@ -36,8 +36,8 @@ public class BookController implements BookBLService{
 
 	
 	//管理图书（增，删，改）
-	public void addBook(BookPO b){
-		book.addBook(b);
+	public ResultMessage addBook(BookPO b){
+		return book.addBook(b);
 	}
 	
 	public ResultMessage deleteBook(String isbn){
