@@ -52,5 +52,18 @@ public class BookController implements BookBLService{
 	public ResultMessage updateBook(ArrayList<LineItemPO> salesList){
 		return book.updateBook(salesList);
 	}
+	
+	// 对图书类别的处理
+	public ArrayList<String> getBookType(){
+		return book.getBookType();
+	}
+	
+	public ResultMessage addBookType(String type){
+		return book.addBookType(type);
+	}
+	
+	public ResultMessage changeBookType(String beforeType,String afterType){
+		return book.changeBookType(beforeType, afterType);
+	}
 
 }
