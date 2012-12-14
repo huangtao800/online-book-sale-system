@@ -51,6 +51,12 @@ public class SalesController implements SalesBLService{
 	}
 	
 	@Override
+	public ResultMessage addFavorities(LineItemPO lineItemPO) {
+		BookPO bookPO = lineItemPO.getBook();
+		return memberController.addFavorities(bookPO);
+	}
+	
+	@Override
 	public double getTotalPrice() {
 		ArrayList<LineItemPO> cartList = getCartList();
 		double totalPrice = 0;
@@ -94,9 +100,9 @@ public class SalesController implements SalesBLService{
 		return specialPrice;
 	}
 	
-	public OrderVO pay(double price){
+	public OrderVO pay(double price,String address){
 		ArrayList<LineItemPO> cartList = getCartList();
-		OrderPO orderPO = new OrderPO(cartList, memberController.getMemberID(), price);
+		OrderPO orderPO = new OrderPO(cartList, memberController.getMemberID(), price, address);
 		memberController.addOrder(orderPO);
 		sales.addOrder(orderPO);
 		OrderVO orderVO = new OrderVO(orderPO);
@@ -144,5 +150,12 @@ public class SalesController implements SalesBLService{
 		sales.updateSale();	
 		memberController.clearCart();
 	}
+
+	@Override
+	public String getAddress() {
+		return memberController.getAddress();
+	}
+
+
 	
 }
