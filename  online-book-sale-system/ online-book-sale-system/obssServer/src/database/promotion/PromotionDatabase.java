@@ -1,6 +1,5 @@
 package database.promotion;
 
-import java.awt.TrayIcon.MessageType;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,16 +7,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-
 import po.PO;
-import po.PresentPO;
 import po.PromotionPO;
 import po.ResultMessage;
-import po.UserPO;
-import po.UserRole;
-import database.init.InitDatabase;
-import database.present.PresentDatabase;
-import databaseService.init.InitDatabaseService;
 import databaseService.promotion.PromotionDatabaseService;
 
 public class PromotionDatabase extends UnicastRemoteObject implements PromotionDatabaseService{
