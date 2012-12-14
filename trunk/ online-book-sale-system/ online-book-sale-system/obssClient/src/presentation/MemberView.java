@@ -469,34 +469,36 @@ public class MemberView extends JFrame {
 		JButton changePasswordButton = new JButton("\u4FEE\u6539\u5BC6\u7801");
 		changePasswordButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String oldPassword=JOptionPane.showInputDialog("请输入原始密码：");
-				if(oldPassword==null){
-					return;
-				}
+				new ChangePasswordFrame(memberViewController).setVisible(true);
 				
-				if(!memberViewController.checkPassword(oldPassword)){
-					JOptionPane.showMessageDialog(null, "抱歉！密码输入错误！");
-				}else{
-					String password1=JOptionPane.showInputDialog("请输入新密码：");
-					if(password1==null){
-						return;
-					}
-					
-					String password2=JOptionPane.showInputDialog("请再次输入新密码：");
-					if(password2==null){
-						return;
-					}
-					
-					if(password1.equals(password2)){
-						ResultMessage message=memberViewController.changePassword(password1);
-						if(message==ResultMessage.SUCCEED){
-							JOptionPane.showMessageDialog(null, "修改成功！");
-						}
-					}else{
-						JOptionPane.showMessageDialog(null, "密码输入不一致！");
-					}
-					
-				}
+//				String oldPassword=JOptionPane.showInputDialog("请输入原始密码：");
+//				if(oldPassword==null){
+//					return;
+//				}
+//				
+//				if(!memberViewController.checkPassword(oldPassword)){
+//					JOptionPane.showMessageDialog(null, "抱歉！密码输入错误！");
+//				}else{
+//					String password1=JOptionPane.showInputDialog("请输入新密码：");
+//					if(password1==null){
+//						return;
+//					}
+//					
+//					String password2=JOptionPane.showInputDialog("请再次输入新密码：");
+//					if(password2==null){
+//						return;
+//					}
+//					
+//					if(password1.equals(password2)){
+//						ResultMessage message=memberViewController.changePassword(password1);
+//						if(message==ResultMessage.SUCCEED){
+//							JOptionPane.showMessageDialog(null, "修改成功！");
+//						}
+//					}else{
+//						JOptionPane.showMessageDialog(null, "密码输入不一致！");
+//					}
+//					
+//				}
 			}
 		});
 		
