@@ -33,11 +33,8 @@ public class CartView extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-
-    //    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         
         jTable1.setModel(new CartTableModel());
-
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
@@ -189,7 +186,6 @@ public class CartView extends javax.swing.JFrame {
 		jButton2.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int i = getSeclectedLine();
-				System.out.println(i);
 				if(salesViewController.removeFromCart(i) == ResultMessage.SUCCEED)
 					freshTableModel(jTable1);
 				else
@@ -215,7 +211,6 @@ public class CartView extends javax.swing.JFrame {
     }
     
 	public int getSeclectedLine(){
-		index = -1;
 		jTable1.getSelectionModel().addListSelectionListener(
 				new ListSelectionListener() {
 					public void valueChanged(ListSelectionEvent e) {
@@ -243,7 +238,7 @@ public class CartView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private SalesViewService salesViewController;
-    private int index = -1;
+    private int index;
     // End of variables declaration
 
 }
