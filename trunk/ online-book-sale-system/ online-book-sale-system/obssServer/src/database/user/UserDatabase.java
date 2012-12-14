@@ -124,6 +124,10 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
         }
 		
 	}
+	
+	public ResultMessage changePassword(String name,String password,UserRole userRole)throws RemoteException{
+		return ResultMessage.SUCCEED;
+	}
 
 	
 	public ResultMessage delete(PO po) throws RemoteException {
