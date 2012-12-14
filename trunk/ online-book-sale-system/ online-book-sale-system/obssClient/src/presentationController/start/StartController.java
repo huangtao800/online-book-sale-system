@@ -42,6 +42,7 @@ public class StartController implements StartBLService {
 	@Override
 	public void logIn(String name, String password, UserRole role) {
 		// TODO Auto-generated method stub
+		
 		UserPO userPO=null;
 		try {
 			userPO = initDatabase.logIn(name, password, role);
@@ -50,6 +51,7 @@ public class StartController implements StartBLService {
 			e.printStackTrace();
 		}
 
+		
 		if (userPO != null) {
 			startView.setVisible(false);
 			startView.dispose();
@@ -75,9 +77,9 @@ public class StartController implements StartBLService {
 			MemberPO memberPO=(MemberPO) userPO;
 			MemberViewService memberViewController=MemberViewController.getInstance(memberPO);
 		} else if (role == UserRole.SalesManager) {
-
+			
 		}else if(role==UserRole.Administrator){
-			AdminOverviewService adminOverviewController = AdminOverviewController.getInstance();
+			AdminOverviewService adminOverviewController = new AdminOverviewController();
 		}
 	}
 
