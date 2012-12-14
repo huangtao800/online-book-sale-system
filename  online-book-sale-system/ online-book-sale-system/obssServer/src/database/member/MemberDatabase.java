@@ -5,12 +5,6 @@ import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-
-import javax.management.InstanceAlreadyExistsException;
-
-import po.BookPO;
-import po.CouponPO;
-import po.EquivalentPO;
 import po.MemberPO;
 import po.OrderPO;
 import po.OrderState;
@@ -18,20 +12,24 @@ import po.PO;
 import po.PromotionPO;
 import po.ResultMessage;
 import po.UserRole;
-import po.VIPRank;
 import database.init.InitDatabase;
+import database.promotion.PromotionDatabase;
 import databaseService.init.InitDatabaseService;
 import databaseService.member.MemberDatabaseService;
+import databaseService.promotion.PromotionDatabaseService;
 
+@SuppressWarnings("serial")
 public class MemberDatabase extends UnicastRemoteObject implements
 		MemberDatabaseService {
 	private InitDatabaseService initDatabase;
 	private ArrayList<MemberPO> memberPOList;
 	private static MemberDatabase instance = null;
+	private static PromotionDatabaseService promotionDatabase;
 
 	protected MemberDatabase() throws RemoteException {
 		super();
 		initDatabase = InitDatabase.getInstance();
+		promotionDatabase =PromotionDatabase.getInstance();
 		memberPOList = InitDatabase.getMemberPOList();
 	}
 
@@ -189,7 +187,7 @@ public class MemberDatabase extends UnicastRemoteObject implements
 			return ResultMessage.NOTEXIST;
 		}
 		
-		PromotionPO po=InitDatabase.getPromotionPO();
+		PromotionPO po=promotionDatabase.promotionPORead();
 		int point=(int)(sum*(po.getExchangeOfScore())/100);
 		
 		memberPO.setPoints(memberPO.getPoints()+point);
