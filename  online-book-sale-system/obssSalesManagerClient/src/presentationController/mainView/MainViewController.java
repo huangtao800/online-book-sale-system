@@ -8,12 +8,12 @@ import bussinessLogic.controller.SalesManagerController;
 import bussinessLogicService.BookBLService;
 import bussinessLogicService.PresentBLService;
 import bussinessLogicService.SalesManagerService;
-
 import po.BookPO;
 import po.MemberPO;
 import po.OrderPO;
 import po.OrderState;
-import po.PresentPO;
+import po.Present_Coupon;
+import po.Present_Equivalent;
 import po.ResultMessage;
 import po.SalesManagerPO;
 import presentation.MainView;
@@ -22,7 +22,9 @@ import presentation.MainView;
 public class MainViewController implements MainViewControllerInterface{
 //    SalesManagerModelInterface model;
     MainView mainView;
-    ArrayList<PresentPO> presentPOList;
+    ArrayList<Present_Equivalent> present_EquivalentList;
+    ArrayList<Present_Coupon> present_CouponList;
+    
     private PresentBLService presenController=PresentController.getInstance();
     private BookBLService bookController=BookController.getInstance();
     private SalesManagerService salesManagerController=SalesManagerController.getInstance();
@@ -38,9 +40,13 @@ public class MainViewController implements MainViewControllerInterface{
     }
     
 //从数据层获取礼券赠送信息列表
-    public ArrayList<PresentPO> getPresentPOList(){
-    	this.presentPOList=presenController.getPresentPOList();
-    	return presentPOList;
+    public ArrayList<Present_Equivalent> getPresent_EquivalentList(){
+    	this.present_EquivalentList=presenController.getPresent_EquivalentList();
+    	return present_EquivalentList;
+    }
+    public ArrayList<Present_Coupon> getPresent_CouponList(){
+    	this.present_CouponList=presenController.getPresent_CouponList();
+    	return present_CouponList;
     }
 
 //礼券总送命令

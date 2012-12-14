@@ -8,19 +8,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 import po.BookPO;
 import po.MemberPO;
 import po.OrderPO;
 import po.OrderState;
-import po.PresentPO;
+import po.Present_Coupon;
+import po.Present_Equivalent;
 import po.ResultMessage;
 import po.SalesManagerPO;
 import po.UserRole;
@@ -1075,41 +1074,43 @@ public class MainView extends JFrame implements ActionListener{
 //其他方法
 //	    查看总经理制定的大范围促销规则
 	   private void checkPresent(){
-		   ArrayList<PresentPO> presentPOList=mainViewController.getPresentPOList();
-		      
-		      if(  presentPOList== null ){
-		    	  showPresentTextArea.append("总经理尚未制定礼券!");
-		      }
-		      else if( presentPOList.size() == 0){
-		    	  showPresentTextArea.append("总经理未制定礼券 或 礼券已经赠送完毕！");
+		   showPresentTextArea.setText("");
+		    ArrayList<Present_Equivalent> present_EquivalentList=mainViewController.getPresent_EquivalentList();
+		    ArrayList<Present_Coupon> present_CouponList=mainViewController.getPresent_CouponList();  
+		     
+		    if(  (present_EquivalentList== null  && present_CouponList==null) || 
+		    		  (present_EquivalentList.size()==0 &&  present_CouponList.size()==0 ) ||
+		    		  (present_EquivalentList== null  && present_CouponList.size()==0)   ||
+		    		  ( present_EquivalentList.size()==0 && present_CouponList==null)  )
+    		  {
+		    	  showPresentTextArea.setText("总经理尚未制定礼券,或礼券已经赠送完毕!");
 		      }
 		      else{
-		    	  PresentPO presentPO;
-		    	  String equivalent[][];
+		    	  Present_Equivalent present_Equivalent;
+		    	  Present_Coupon present_Coupon;
+//		    	  String equivalent[][];
 		    	  //private String equivalent[][]=new String [line][column4];
 		    	  //10组,每组分别表示:等价券额度，张数，有效截止日期，最低消费 
-		    	 
-		    	  for(int i=0;i<presentPOList.size(); i++){
-		    		  presentPO=presentPOList.get(i);
-		    		  equivalent=presentPO.getEquivalent();
-		    		  
-		    		  showPresentTextArea.append(presentPO.getVipLevel_String()+"\n");
-		    		  
-		    		  for(int j=0;j<equivalent.length;j++){
-		    			  if( (Double.parseDouble(equivalent[j][0]) - 0.0)>0.000001  ){//是否判断一下是否有过期的?。。
-		    				  showPresentTextArea.append ("  等价券"+"    "+"额度:"+equivalent[j][0]+"元  "+"数量:"+equivalent[j][1]
-		    				  +"张  "+"最低消费:"+equivalent[j][3]+"元  "+"有效截止日期:"+equivalent[j][2]+"\n");
-		    			  } 
-		    		  }//for(j)
-		    		   		    		  
-		    		  if( (presentPO.getDiscount() - 0.0) > 0.000001 ){//存在//是否判断一下是否有过期的。。
-		    		         showPresentTextArea.append("  打折券"+"    "+"打折率:"+presentPO.getDiscount()*100+"%  "+"数量:"+
-		    		                  presentPO.getAmountOfCoupon()+"张  "+"有效截止日期"+presentPO.getEndDateOfCoupon()+"\n");
-		    		  }
-		    		  
-		    		  showPresentTextArea.append("\n");
-		    	  }//for(i)
-		    	  
+		    	  if( present_EquivalentList!= null && present_EquivalentList.size()!=0 ){
+		    		  showPresentTextArea.append("**********等价券**********\n");
+		    		  for(int i=0;i<present_EquivalentList.size(); i++){
+		    			  present_Equivalent=present_EquivalentList.get(i);
+		    			  showPresentTextArea.append("会员等级:"+present_Equivalent.getVIPRank_String() 
+		    			  +"  面额:"+present_Equivalent.getDeno()+"元  "+"最低消费:"+
+		    			  present_Equivalent.getMin()+"元  "+"数量:"+present_Equivalent.getAmount()
+		    			  +"张  "+"有效截止日期:"+CalToStr(present_Equivalent.getEndDate()) +"\n"
+		    			  );			  
+		    		  }	  
+		    	  }
+		    	  if( present_CouponList!= null && present_CouponList.size()!=0 ){
+		    		  showPresentTextArea.append("**********打折券**********\n");
+		    		  for(int j=0;j<present_CouponList.size(); j++){
+		    			  present_Coupon=present_CouponList.get(j);
+		    			  showPresentTextArea.append("会员等级:"+present_Coupon.getVIPRank_String()
+		    			    +"  打折率:"+present_Coupon.getRate()*10+"折  "+"数量:"+present_Coupon.getAmount()
+		    			    +"张  "+"有效截止日期:"+CalToStr(present_Coupon.getEndDate())+"\n"		    					  );
+		    		  }   		  
+		    	  }   	  
 		      }//else	
 	   }
 
@@ -1149,7 +1150,7 @@ public class MainView extends JFrame implements ActionListener{
 	   }
 	   
 //Calendar 转换成String
-	   private String CalendarToString(Calendar cal){
+	   private String CalToStr(Calendar cal){
 		   SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy/MM/dd");
 		   try{
 			   return dateFormat.format(cal.getTime());
@@ -1191,7 +1192,7 @@ public class MainView extends JFrame implements ActionListener{
     	    	for(int i=0;i<lineOfUncompletedOrder;i++){
     	    		OrderPO orderPO=uncompletedOrderList.get(i);
     	    		tableModel.setValueAt(""+orderPO.getOrderNum(), i, 0);
-    	    		tableModel.setValueAt(CalendarToString(orderPO.getDate()), i, 1);
+    	    		tableModel.setValueAt(CalToStr(orderPO.getDate()), i, 1);
     	    		tableModel.setValueAt(""+orderPO.getTotalPrice(), i, 2);
     	    		tableModel.setValueAt(orderPO.getMemberID(), i, 3);
     	    		tableModel.setValueAt(orderStateToString(orderPO.getOrderState()), i, 4);

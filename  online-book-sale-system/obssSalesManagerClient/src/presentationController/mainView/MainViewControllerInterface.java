@@ -7,7 +7,8 @@ import po.BookPO;
 import po.MemberPO;
 import po.OrderPO;
 import po.OrderState;
-import po.PresentPO;
+import po.Present_Coupon;
+import po.Present_Equivalent;
 import po.ResultMessage;
 import po.SalesManagerPO;
 import po.UserRole;
@@ -15,7 +16,8 @@ import po.UserRole;
 
 
 public interface MainViewControllerInterface {
-    public ArrayList<PresentPO> getPresentPOList();
+    public ArrayList<Present_Equivalent> getPresent_EquivalentList();
+    public ArrayList<Present_Coupon> getPresent_CouponList();
     public ResultMessage sendPresent();
     public ResultMessage addBook(BookPO bookPO);
     public ResultMessage deleteBook(String s);
