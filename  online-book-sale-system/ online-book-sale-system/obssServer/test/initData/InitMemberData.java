@@ -10,6 +10,7 @@ import po.AdministratorPO;
 import po.BookPO;
 import po.GeneralManagerPO;
 import po.MemberPO;
+import po.OrderPO;
 import po.PresentPO;
 import po.PromotionPO;
 import po.SalesManagerPO;
@@ -104,6 +105,11 @@ public class InitMemberData {
 			objoutput=new ObjectOutputStream(outputStream);
 			
 			objoutput.writeObject(bookTypeList);
+			
+			outputStream=new FileOutputStream("OrderList.ser");
+			objoutput=new ObjectOutputStream(outputStream);
+			
+			objoutput.writeObject(new ArrayList<OrderPO>());
 			
 			
 			outputStream.close();
