@@ -9,7 +9,14 @@ import po.UserRole;
 import databaseService.DatabaseService;
 
 public interface InitDatabaseService extends DatabaseService{
-	public void initAllUser() throws RemoteException;
-	public UserPO logIn(String userName, String password, UserRole userRole) throws RemoteException;
+	public void initData() throws RemoteException;
+
+	public UserPO logIn(String userName, String password, UserRole userRole)
+			throws RemoteException;
+
+	public ResultMessage updateUserPO(UserPO userPO, UserRole role)
+			throws RemoteException; // 更新UserPO的信息
+	
 	public MemberPO registry(String name,String password,String address) throws RemoteException;
+	public void saveMember() throws RemoteException;
 }
