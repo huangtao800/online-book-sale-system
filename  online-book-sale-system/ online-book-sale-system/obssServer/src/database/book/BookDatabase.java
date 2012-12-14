@@ -212,12 +212,39 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		return bookTypeList;
 	}
 	
+	private ResultMessage writeBookType(ArrayList<String> arrayList) throws RemoteException{
+		FileOutputStream fileOutputStream;
+		
+		try {
+			fileOutputStream = new FileOutputStream("bookType.ser");
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+			objectOutputStream.writeObject(arrayList);
+			objectOutputStream.close();
+			fileOutputStream.close();
+			return ResultMessage.SUCCEED;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+	}
+	
 	public ResultMessage addBookType(String type) throws RemoteException{
-		return ResultMessage.SUCCEED;
+		ArrayList<String> arrayList = getBookType();
+		arrayList.add(type);
+		return writeBookType(arrayList);
 	}
 		
+	//未判断原类型是否存在
 	public ResultMessage changeBookType(String beforeType,String afterType)throws RemoteException{
-		return ResultMessage.SUCCEED;
+		ArrayList<String> arrayList = getBookType();
+		for(int i=0;i<arrayList.size();i++){
+			if(arrayList.get(i).equals(beforeType)){
+				arrayList.remove(i);
+				arrayList.add(afterType);
+			}
+		}
+		
+		return writeBookType(arrayList);
 	}
 	
 }
