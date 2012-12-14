@@ -319,6 +319,9 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     	if(obj==jButton1){            //通过关键字查找
     		bookList = bookViewController.findByKeyword(name, author, press, publishDate);
     		if(bookList.size()==0){
+    			rowData = new Vector<Vector>();
+    			DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
+                jTable1.setModel(dtm);
     			JOptionPane.showMessageDialog(null, "未找到相应图书！");
     		}else{
     			rowData = new Vector<Vector>();
@@ -343,6 +346,9 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     		String t = jComboBox1.getSelectedItem().toString();
     		bookList = bookViewController.fineByType(t);
     		if(bookList.size()==0){
+    			rowData = new Vector<Vector>();
+    			DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
+                jTable1.setModel(dtm);
     			JOptionPane.showMessageDialog(null, "未找到相应图书！");
     		}else{
     			rowData = new Vector<Vector>();
