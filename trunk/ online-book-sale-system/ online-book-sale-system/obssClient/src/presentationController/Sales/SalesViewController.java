@@ -56,7 +56,7 @@ public class SalesViewController implements SalesViewService{
 				orderVO.getOrderState(),orderVO.getTotalPrice());
 		orderView.setTitle("∂©µ•œÍ«È");
 		orderView.setLocation(400, 100);
-		orderView.setSize(500, 450);
+		orderView.setSize(600, 500);
 		orderView.setVisible(true);
 	}
 	
