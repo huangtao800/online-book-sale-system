@@ -13,4 +13,6 @@ public interface BookViewService {
     //查找图书
     public ArrayList<BookPO> findByKeyword(String name,String author,String press,String publishDate);
     public ArrayList<BookPO> fineByType(String type);
+    //获取图书类别
+    public ArrayList<String> getBookType();
 }
