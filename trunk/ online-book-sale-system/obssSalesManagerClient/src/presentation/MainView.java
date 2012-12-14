@@ -832,7 +832,7 @@ public class MainView extends JFrame implements ActionListener{
 	        memberOrderTextArea.setEditable(false);
 	        
 	       //个人中心panel
-	        mainViewController.getUserPO();
+	        userpo=mainViewController.getUserPO();
 	        userIDTextField.setText(userpo.getUserID());
 	        originalUserNameTextField.setText(userpo.getUserName());
 	        changeUserNameButton.addActionListener(this);
