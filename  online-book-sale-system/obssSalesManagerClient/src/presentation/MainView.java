@@ -814,6 +814,10 @@ public class MainView extends JFrame implements ActionListener{
 	        changeUserPasswordButton.addActionListener(this);
 	        exitButton.addActionListener(this);
 	        
+	        jButton1.addActionListener(this);
+	        jButton2.addActionListener(this);
+	        jButton3.addActionListener(this);
+	        
 	        bookTypeList.setModel(new TypeListModel());
 	        this.setVisible(true);
 	      
