@@ -17,6 +17,8 @@ public class AdminViewController implements AdminViewService{
 
 	 private AdminViewController (){
 		 userController = UserController.getInstance();
+		 adminView = new AdminView();
+		 adminView.setVisible(true);
 	 }
 	 
 	 public static AdminViewService getInstance(){
@@ -28,11 +30,6 @@ public class AdminViewController implements AdminViewService{
 	 }
 
 	
-	 public void initAdminView(){
-		 adminView = new AdminView();
-		 adminView.setVisible(true);
-	 }
-	 
      public ResultMessage add(String userName,String userID,String userPassword,UserRole userRole){
            ResultMessage result = userController.addUser(userName, userID, userPassword, userRole);	
            return result;
