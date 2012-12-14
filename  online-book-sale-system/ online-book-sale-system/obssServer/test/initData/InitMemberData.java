@@ -29,6 +29,12 @@ public class InitMemberData {
 		bookList.add(bookPO);
 		bookList.add(bookPO2);
 		
+		ArrayList<String> bookTypeList = new ArrayList<String>();
+		bookTypeList.add("文学");
+		bookTypeList.add("计算机");
+		bookTypeList.add("历史");
+		bookTypeList.add("经济");
+		
 		memberPO.getFavority().getFavorities().add(bookPO);
 		
 		MemberPO m2=new MemberPO("2", "hu", "000000","江苏南通");
@@ -37,15 +43,15 @@ public class InitMemberData {
 		list.add(m2);
 		
 		
-		SalesManagerPO salesManagerPO=new SalesManagerPO("1","zhang","111111");
+		SalesManagerPO salesManagerPO=new SalesManagerPO("s1","zhang","111111");
 		ArrayList<SalesManagerPO> saleList=new ArrayList<SalesManagerPO>();
 		saleList.add(salesManagerPO);
 		
-		GeneralManagerPO generalManagerPO=new GeneralManagerPO("1", "dong", "111111");
+		GeneralManagerPO generalManagerPO=new GeneralManagerPO("g1", "dong", "111111");
 		ArrayList<GeneralManagerPO> generalManagerList=new ArrayList<GeneralManagerPO>();
 		generalManagerList.add(generalManagerPO);
 		
-		AdministratorPO administratorPO=new AdministratorPO("1", "you", "111111");
+		AdministratorPO administratorPO=new AdministratorPO("a1", "you", "111111");
 		ArrayList<AdministratorPO> administratorList=new ArrayList<AdministratorPO>();
 		administratorList.add(administratorPO);
 		
@@ -93,6 +99,11 @@ public class InitMemberData {
 			objoutput=new ObjectOutputStream(outputStream);
 			
 			objoutput.writeObject(bookList);
+			
+			outputStream=new FileOutputStream("bookType.ser");
+			objoutput=new ObjectOutputStream(outputStream);
+			
+			objoutput.writeObject(bookTypeList);
 			
 			
 			outputStream.close();
