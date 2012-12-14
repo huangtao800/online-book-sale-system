@@ -562,9 +562,9 @@ public class MemberView extends JFrame {
 					.addComponent(changeAddressButton, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
 					.addGap(73))
 				.addGroup(gl_jPanel2.createSequentialGroup()
-					.addContainerGap(414, Short.MAX_VALUE)
+					.addContainerGap(385, Short.MAX_VALUE)
 					.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
-					.addGap(298))
+					.addGap(327))
 		);
 		gl_jPanel2.setVerticalGroup(
 			gl_jPanel2.createParallelGroup(Alignment.LEADING)
@@ -592,9 +592,9 @@ public class MemberView extends JFrame {
 						.addComponent(addressLabel, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
 					.addGap(32)
 					.addComponent(changeAddressButton, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addGap(33)
+					.addGap(32)
 					.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-					.addGap(31))
+					.addGap(37))
 		);
 		jPanel2.setLayout(gl_jPanel2);
 
@@ -659,6 +659,14 @@ public class MemberView extends JFrame {
 			}
 		});
 		freshFavorityButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+		
+		JButton enterCartNewButton = new JButton("\u8FDB\u5165\u8D2D\u7269\u8F66");
+		enterCartNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				memberViewController.enterCart();
+			}
+		});
+		enterCartNewButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 
 		javax.swing.GroupLayout gl_jPanel3 = new javax.swing.GroupLayout(
 				jPanel3);
@@ -666,13 +674,15 @@ public class MemberView extends JFrame {
 			gl_jPanel3.createParallelGroup(Alignment.LEADING)
 				.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
 				.addGroup(gl_jPanel3.createSequentialGroup()
-					.addGap(150)
+					.addGap(112)
 					.addComponent(removeFavorityButton, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-					.addGap(42)
+					.addGap(31)
 					.addComponent(putInCartButton, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
-					.addGap(34)
+					.addGap(18)
+					.addComponent(enterCartNewButton, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
 					.addComponent(freshFavorityButton, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(234, Short.MAX_VALUE))
+					.addGap(155))
 		);
 		gl_jPanel3.setVerticalGroup(
 			gl_jPanel3.createParallelGroup(Alignment.LEADING)
@@ -682,8 +692,9 @@ public class MemberView extends JFrame {
 					.addGroup(gl_jPanel3.createParallelGroup(Alignment.BASELINE)
 						.addComponent(removeFavorityButton, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 						.addComponent(putInCartButton, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-						.addComponent(freshFavorityButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(48, Short.MAX_VALUE))
+						.addComponent(freshFavorityButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+						.addComponent(enterCartNewButton, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(52, Short.MAX_VALUE))
 		);
 		jPanel3.setLayout(gl_jPanel3);
 
