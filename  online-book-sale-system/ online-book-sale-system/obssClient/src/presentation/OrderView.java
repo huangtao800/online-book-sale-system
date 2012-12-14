@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 import po.LineItemPO;
+import presentationController.Sales.SalesViewController;
+import presentationController.Sales.SalesViewService;
 
 public class OrderView extends javax.swing.JFrame {
 	
@@ -14,7 +16,6 @@ public class OrderView extends javax.swing.JFrame {
 	public OrderView(ArrayList<LineItemPO> productList) {
         initComponents(productList);
         addListener();
-        setVisible(true);
     }
 
     private void initComponents(ArrayList<LineItemPO> productList) {
@@ -62,11 +63,19 @@ public class OrderView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(69, 69, 69))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(209, 209, 209))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -81,14 +90,6 @@ public class OrderView extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(24, Short.MAX_VALUE))))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(69, 69, 69))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,10 +181,12 @@ public class OrderView extends javax.swing.JFrame {
 			}
 		}
 	}
+	
 	private void addListener(){
 		jButton1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				setVisible(false);
+				salesViewController.endSale();
 			}
 		});
 	}
@@ -193,12 +196,13 @@ public class OrderView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
     public void initText(String orderNum, String memberID, String date, 
-    		String orderState, String totalPrice){
+    		String orderState, String totalPrice, String address){
     	jLabel1.setText(orderNum);
     	jLabel2.setText(date);
     	jLabel3.setText(memberID);
     	jLabel4.setText(orderState);
     	jLabel5.setText(totalPrice);
+    	jLabel6.setText(address);
     }
 
     // Variables declaration - do not modify
@@ -208,8 +212,9 @@ public class OrderView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;//会员编号
     private javax.swing.JLabel jLabel4;//订单状态
     private javax.swing.JLabel jLabel5;//总价格
-    private javax.swing.JLabel jLabel6;//订单详情
+    private javax.swing.JLabel jLabel6;//收货地址
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private SalesViewService salesViewController = SalesViewController.getInstance();
     // End of variables declaration
 }
