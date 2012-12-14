@@ -19,7 +19,9 @@ import presentationController.Admin.AdminViewService;
 public class AdminView extends javax.swing.JFrame {
 
    
-   public AdminView() {
+   public AdminView(int index) {
+	   this.index = index;
+	   adminViewController = AdminViewController.getInstance();
        initComponents();
    }
 
@@ -79,7 +81,7 @@ public class AdminView extends javax.swing.JFrame {
        jSeparator2 = new javax.swing.JSeparator();
        jLabel17 = new javax.swing.JLabel();
 
-       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+//       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
        jLabel1.setText("用户ID：");
 
@@ -105,16 +107,15 @@ public class AdminView extends javax.swing.JFrame {
               String id = jTextField2.getText().trim();
               String password1 = jTextField3.getText().trim();
               String password2 = jTextField4.getText().trim();
-              String password = null;
-              if(!password1.equals(null)&&password1.equals(password2)){
+              String password = "";
+              if(!password1.equals("")&&password1.equals(password2)){
             	  password = jTextField3.getText().trim();
               }else{
             	  JOptionPane.showMessageDialog(null," 两次密码输入不一致，请重新输入！");
               }
               UserRole role = (UserRole) jComboBox1.getSelectedItem();
-              
-              adminViewController = AdminViewController.getInstance();
-              ResultMessage resultMessage = adminViewController.add(name, id,password ,role);
+            
+              ResultMessage resultMessage = adminViewController.add(name,id,password,role);
               if(resultMessage==ResultMessage.SUCCEED){
             	  JOptionPane.showMessageDialog(null, "添加成功！");
               }else if(resultMessage==ResultMessage.EXIST){
@@ -194,16 +195,16 @@ public class AdminView extends javax.swing.JFrame {
        jButton3.setText("查询原有信息");
        jButton3.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
-        	   adminViewController = AdminViewController.getInstance();
         	   String name = jTextField5.getText().trim();
-               UserPO userPO = adminViewController.search(name);
-               if(userPO.getUserState()){
-            	   jTextField6.setText(userPO.getUserID());
-            	   jTextField7.setText(userPO.getUserName());
-            	   jTextField8.setText(userPO.getUserPassword());
-               }else{
-            	   JOptionPane.showMessageDialog(null, "该用户不存在，请核实后重新查找！");
-               }
+        	   UserRole userRole = (UserRole)jComboBox2.getSelectedItem();
+        	   UserPO userPO = adminViewController.findUser(name, userRole);
+        	   if(userPO==null){
+        		   JOptionPane.showMessageDialog(null, "该用户不存在，请重新输入！");
+        	   }else{
+        		   jTextField6.setText(userPO.getUserID());
+        		   jTextField7.setText(userPO.getUserName());
+        		   jTextField8.setText(userPO.getUserPassword());
+        	   }
            }
        });
 
@@ -221,21 +222,25 @@ public class AdminView extends javax.swing.JFrame {
 
        jLabel11.setText("新密码确认：");
 
-       jTextField9.addActionListener(new java.awt.event.ActionListener() {
+       
+
+       jButton4.setText("确认修改");
+
+       jButton4.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
                String id = jTextField6.getText().trim();
                String name = jTextField7.getText().trim();
                String password1 = jTextField9.getText().trim();
                String password2 = jTextField10.getText().trim();
-               String password = null;
-               if(!password1.equals(null)&&password1.equals(password2)){
+               String password = "";
+               if(!password1.equals("")&&password1.equals(password2)){
             	   password = password1;
                }else{
             	   JOptionPane.showMessageDialog(null, "两次密码输入不一致，请重新输入！");
                }
                 
                UserRole role = (UserRole) jComboBox2.getSelectedItem();
-               adminViewController = AdminViewController.getInstance();
+              
                ResultMessage resultMessage = adminViewController.change(name, id, password, role);
                if(resultMessage==ResultMessage.SUCCEED){
             	   JOptionPane.showMessageDialog(null, "修改成功！");
@@ -244,9 +249,7 @@ public class AdminView extends javax.swing.JFrame {
                }
            }
        });
-
-       jButton4.setText("确认修改");
-
+       
        jButton5.setText("清空");
        jButton5.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,7 +262,7 @@ public class AdminView extends javax.swing.JFrame {
            }
        });
 
-       jButton9.setText("重新查找");
+       jButton9.setText("重新填写");
        jButton9.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
         	   jTextField5.setText("");
@@ -360,16 +363,16 @@ public class AdminView extends javax.swing.JFrame {
        jButton6.setText("查找原有信息");
        jButton6.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
-        	   adminViewController = AdminViewController.getInstance();
         	   String name = jTextField11.getText().trim();
-               UserPO userPO = adminViewController.search(name);
-               if(userPO.getUserState()){
-            	   jTextField12.setText(userPO.getUserID());
-            	   jTextField13.setText(userPO.getUserName());
-            	   jTextField14.setText(userPO.getUserPassword());
-               }else{
-            	   JOptionPane.showMessageDialog(null, "该用户不存在，请核实后重新查找！");
-               }
+        	   UserRole userRole = (UserRole)jComboBox3.getSelectedItem();
+        	   UserPO userPO = adminViewController.findUser(name, userRole);
+        	   if(userPO==null){
+        		   JOptionPane.showMessageDialog(null, "该用户不存在，请重新输入！");
+        	   }else{
+        		   jTextField12.setText(userPO.getUserID());
+        		   jTextField13.setText(userPO.getUserName());
+        		   jTextField14.setText(userPO.getUserPassword());
+        	   }
            }
        });
 
@@ -386,21 +389,33 @@ public class AdminView extends javax.swing.JFrame {
        jButton7.setText("确认删除");
        jButton7.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
-               jButton7ActionPerformed(evt);
+                 String id = jTextField12.getText().trim();
+                 String name = jTextField13.getText().trim();
+                 String password = jTextField14.getText().trim();
+                 UserRole userRole = (UserRole)jComboBox3.getSelectedItem();
+                 ResultMessage resultMessage = adminViewController.delete(id, userRole);
+                 if(resultMessage==ResultMessage.SUCCEED){
+                	 JOptionPane.showMessageDialog(null, "删除成功！");
+                 }else{
+                	 JOptionPane.showMessageDialog(null, "系统异常，请重试！");
+                 }
+             
            }
        });
 
        jButton8.setText("取消删除");
        jButton8.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
-               jButton8ActionPerformed(evt);
+             jTextField12.setText("");
+             jTextField13.setText("");
+             jTextField14.setText("");
            }
        });
 
-       jButton10.setText("重新查找");
+       jButton10.setText("重新填写");
        jButton10.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
-               jButton10ActionPerformed(evt);
+        	   jTextField11.setText("");
            }
        });
 
@@ -491,42 +506,17 @@ public class AdminView extends javax.swing.JFrame {
        );
 
        pack();
+       
+       if(index==0){
+       	  jTabbedPane1.setSelectedIndex(1);
+       }else if(index==1){
+          jTabbedPane1.setSelectedIndex(0);
+       }else if(index==2){
+    	  jTabbedPane1.setSelectedIndex(2);
+       }
    }// </editor-fold>
 
-   /**
-    * @param args the command line arguments
-    */
-   public static void main(String args[]) {
-       /* Set the Nimbus look and feel */
-       //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-       /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-        * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-        */
-       try {
-           for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-               if ("Nimbus".equals(info.getName())) {
-                   javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                   break;
-               }
-           }
-       } catch (ClassNotFoundException ex) {
-           java.util.logging.Logger.getLogger(AdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-       } catch (InstantiationException ex) {
-           java.util.logging.Logger.getLogger(AdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-       } catch (IllegalAccessException ex) {
-           java.util.logging.Logger.getLogger(AdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-       } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-           java.util.logging.Logger.getLogger(AdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-       }
-       //</editor-fold>
-
-       /* Create and display the form */
-       java.awt.EventQueue.invokeLater(new Runnable() {
-           public void run() {
-               new AdminView().setVisible(true);
-           }
-       });
-   }
+ 
    // Variables declaration - do not modify
    private javax.swing.JButton jButton1;
    private javax.swing.JButton jButton10;
@@ -579,5 +569,6 @@ public class AdminView extends javax.swing.JFrame {
    private javax.swing.JTextField jTextField8;
    private javax.swing.JTextField jTextField9;
    private AdminViewService adminViewController;
+   private int index;
    // End of variables declaration
 }
