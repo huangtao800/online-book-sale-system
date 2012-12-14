@@ -1,8 +1,10 @@
 package bussinessLogic.controller;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import po.PresentPO;
+import po.Present_Coupon;
+import po.Present_Equivalent;
 import po.ResultMessage;
 import bussinessLogic.domain.Present;
 
@@ -24,9 +26,14 @@ public class PresentController implements PresentBLService{
 		return controller;
 	}
 
-	public ArrayList<PresentPO> getPresentPOList(){
-		return present.getPresentPOList();
+	public ArrayList<Present_Equivalent> getPresent_EquivalentList() {
+		return present.getPresent_EquivalentList();
 	}
+	
+	public ArrayList<Present_Coupon>     getPresent_CouponList() {
+		return present.getPresent_CouponList();
+	}
+	
 	public ResultMessage sendPresent(){
 		return present.sendPresent();	
 	}
