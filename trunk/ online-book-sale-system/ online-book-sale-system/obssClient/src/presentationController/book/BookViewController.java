@@ -21,13 +21,15 @@ import presentationController.Sales.SalesViewService;
 
 public class BookViewController implements BookViewService{
 	 private BookView bookView;
-	 private static BookViewService uniqueInstance;
 	 private BookBLService bookController;
 	 private KeywordVO keywordVO;
 	 private String type;
 	 private MemberBLService memberController;
 	
 	 public BookViewController (KeywordVO keywordVO,String type){
+		 bookController = BookController.getInstance();
+		 memberController = MemberController.getInstance();
+		
 		 if(keywordVO==null){
 			 bookView = new BookView(null,type,this);
 			 bookView.setVisible(true);
@@ -36,8 +38,6 @@ public class BookViewController implements BookViewService{
 			 bookView.setVisible(true);
 		 }
 		 
-		 bookController = BookController.getInstance();
-		 memberController = MemberController.getInstance();
 		
 		
 	 }
