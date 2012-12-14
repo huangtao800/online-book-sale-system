@@ -53,14 +53,14 @@ public class OrderDetailView extends JFrame {
 	 */
 	public void initComponent() {
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 546, 300);
+		setBounds(100, 100, 659, 301);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 0, 530, 191);
+		scrollPane.setBounds(0, 0, 643, 191);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -106,7 +106,7 @@ public class OrderDetailView extends JFrame {
 			}
 		});
 		button.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
-		button.setBounds(320, 207, 113, 30);
+		button.setBounds(449, 208, 113, 30);
 		contentPane.add(button);
 	}
 	
