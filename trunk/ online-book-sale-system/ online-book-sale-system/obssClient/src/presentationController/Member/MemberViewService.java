@@ -1,5 +1,7 @@
 package presentationController.Member;
 
+import java.util.ArrayList;
+
 import po.BookPO;
 import po.MemberPO;
 import po.ResultMessage;
@@ -17,4 +19,6 @@ public interface MemberViewService {
 	public ResultMessage changeAddress(String newAddress);
 	public ResultMessage cancel(String password);
 	public MemberPO freshMemberPO(String memberID);
+	
+	public ArrayList<String> getBookType();
 }

@@ -1,6 +1,8 @@
 package presentationController.Member;
 
 
+import java.util.ArrayList;
+
 import bussinessLogic.controller.MemberController;
 import bussinessLogicService.MemberBLService;
 import po.BookPO;
@@ -21,12 +23,13 @@ public class MemberViewController implements MemberViewService{
 	private MemberBLService memberController;
 	
 	private MemberViewController(MemberPO memberPO){
-		memberView=new MemberView(this,memberPO);
-		memberView.setVisible(true);
+
 		this.memberPO=memberPO;
 		
 		MemberController.setMember(memberPO);
 		this.memberController=MemberController.getInstance();
+		memberView=new MemberView(this,memberPO);
+		memberView.setVisible(true);
 	}
 
 	@Override
@@ -107,6 +110,12 @@ public class MemberViewController implements MemberViewService{
 	public MemberPO freshMemberPO(String memberID) {
 		// TODO Auto-generated method stub
 		return memberController.freshMemberPO(memberID);
+	}
+
+	@Override
+	public ArrayList<String> getBookType() {
+		// TODO Auto-generated method stub
+		return memberController.getBookType();
 	}
 	
 }

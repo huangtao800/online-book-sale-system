@@ -348,8 +348,15 @@ public class MemberView extends JFrame {
 		jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(
 				javax.swing.BorderFactory.createEtchedBorder(), "分类查询"));
 
+		
+		ArrayList<String> typeList=memberViewController.getBookType();
+		String[] typeString=new String[typeList.size()];
+		for(int i=0;i<typeList.size();i++){
+			typeString[i]=typeList.get(i);
+		}
+		
 		typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(
-				new String[] { "文学", "历史", "计算机", "经济" }));
+				typeString));
 
 		typeSearchButton.setText("查询");
 
@@ -1054,7 +1061,7 @@ public class MemberView extends JFrame {
 		@Override
 		public int getColumnCount() {
 			// TODO Auto-generated method stub
-			return 4;
+			return 5;
 		}
 
 		@Override
@@ -1067,11 +1074,13 @@ public class MemberView extends JFrame {
 				return orderList.get(rowIndex).getTotalPrice();
 			case 2:
 				return orderList.get(rowIndex).getOrderState();
-			default:
+			case 3:
 				Calendar calendar=orderList.get(rowIndex).getDate();
 				return calendar.get(Calendar.YEAR)+"年"
 						+calendar.get(Calendar.MONTH)+"月"
 						+calendar.get(Calendar.DAY_OF_MONTH)+"日";//返回日期
+			default:
+				return orderList.get(columnIndex).getAddress();
 			}
 		}
 		

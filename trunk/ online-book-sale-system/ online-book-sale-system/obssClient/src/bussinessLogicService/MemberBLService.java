@@ -34,5 +34,7 @@ public interface MemberBLService {
 	
 	public ResultMessage clearCart();//清空购物车
 	
+	public ArrayList<String> getBookType();//获得所有图书分类
+	
 	public MemberPO freshMemberPO(String memberID);
 }
