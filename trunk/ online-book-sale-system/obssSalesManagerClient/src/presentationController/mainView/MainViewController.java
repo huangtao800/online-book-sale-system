@@ -34,7 +34,7 @@ public class MainViewController implements MainViewControllerInterface{
     private PresentBLService presenController=PresentController.getInstance();
     private BookBLService bookController=BookController.getInstance();
     private SalesManagerService salesManagerController=SalesManagerController.getInstance();
-    private UserBLService userController=UserController.getInstance();
+   
 
     private SalesManagerPO userPO;
     
@@ -100,10 +100,6 @@ public class MainViewController implements MainViewControllerInterface{
     //修改某订单后，相应修改其顾客的订单信息
     public ResultMessage updateMember_Order(String memberID,OrderState state,long orderNum){
     	return salesManagerController.updateMember_Order(memberID, state, orderNum);   //.updateMember_Order(memberID, state, orderNum);
-    }
-    
-    public ResultMessage  changeUser(String userName, String id,String password,UserRole userRole){
-    	return userController.changeUser(userName, id, password, userRole);
     }
     
 	public SalesManagerPO getUserPO(){
