@@ -52,24 +52,32 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		int index = BookDatabase.getInstance().isExist(po);
 		BookPO bookPO = (BookPO)po;
 		ArrayList<BookPO> bookList = BookDatabase.getInstance().readFile();
+		
 		if(index!=-1){
 			bookList.get(index).setNumOfBook(bookList.get(index).getNumOfBook()+bookPO.getNumOfBook());
-	        return ResultMessage.SUCCEED;
 		}else{
-			   try {
-				  FileOutputStream fos = new FileOutputStream("book.ser");
-	              ObjectOutputStream oos = new ObjectOutputStream(fos);                       
-	              oos.writeObject(po);
-	              oos.close();                        
-	              return ResultMessage.SUCCEED;
-	           } catch (Exception ex) { 
-	        	  ex.printStackTrace();   
-	        	  return ResultMessage.FAILED;
-	           }
+		    bookList.add(bookPO);
 		}
+		
+		
+		return writeFile(bookList);
 
 	}
 
+	private ResultMessage writeFile(ArrayList<BookPO> arrayList){
+		try {
+			FileOutputStream outputStream=new FileOutputStream("book.ser");
+			ObjectOutputStream objectOutputStream=new ObjectOutputStream(outputStream);
+			objectOutputStream.writeObject(arrayList);
+		    outputStream.close();
+			objectOutputStream.close();
+			return ResultMessage.SUCCEED;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+		
+	}
 	private int isExist(PO po){
 		BookPO bookPO = (BookPO)po;
         ArrayList<BookPO> bookList = BookDatabase.getInstance().readFile();
@@ -172,17 +180,10 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		try {
 		    inputStream=new FileInputStream("book.ser");
 			ObjectInputStream objInput=new ObjectInputStream(inputStream);
-			
 			bookList = (ArrayList<BookPO>)objInput.readObject();
-//			while(b!=null){
-//				bookList.add(b);
-//				b = (BookPO)objInput.readObject();
-//			}
-			
 			inputStream.close();
 			objInput.close();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 		
