@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.AbstractListModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -813,6 +814,12 @@ public class MainView extends JFrame implements ActionListener{
 	        bookTypeList.setModel(new TypeListModel());
 	        this.setVisible(true);
 	      
+	        ArrayList<String> bookTypeList=mainViewController.getTypeList();
+	        String[] typeStrings=new String[bookTypeList.size()];
+	        for(int i=0;i<bookTypeList.size();i++){
+	        	typeStrings[i]=bookTypeList.get(i);
+	        }
+	        typeComboBox.setModel(new DefaultComboBoxModel(typeStrings));
 	    }
 //界面完*************************************************************************************************************
 
@@ -844,7 +851,7 @@ public class MainView extends JFrame implements ActionListener{
 	    		if(bookInforTrue()){
 	    		     BookPO bookPO=new BookPO(bookIDTextField.getText(), bookNameTextField.getText(), 
 	    		    		                                         bookAutherTextField.getText(),bookPublishHouseTextField.getText(),
-	    		    		                                         bookPublishYearField.getText(), bookCategoryTextField.getText(),
+	    		    		                                         bookPublishYearField.getText(), (String) (typeComboBox.getSelectedItem()),
 	    		    		                                         Double.parseDouble(bookPriceTextField.getText()),
 	    		    		                                         Integer.parseInt(bookNumberTextField.getText())
 	    		    		                                      );
@@ -880,7 +887,12 @@ public class MainView extends JFrame implements ActionListener{
 	    			}else{
 	    				BookPO bookPO=mainViewController.getBookPO(isbn);
 		    			bookAutherTextField.setText(bookPO.getAuthor());
-		    			bookCategoryTextField.setText(bookPO.getType());
+		    			
+		    			int typeIndex=findTypeIndex(bookPO.getType());
+		    			if(typeIndex!=-1){
+		    				typeComboBox.setSelectedIndex(typeIndex);
+		    			}
+//		    			bookCategoryTextField.setText(bookPO.getType());
 		    			bookIDTextField.setText(bookPO.getISBN());
 		    			bookNameTextField.setText(bookPO.getBookName());
 		    			bookPriceTextField.setText(""+bookPO.getPrice());
@@ -899,7 +911,7 @@ public class MainView extends JFrame implements ActionListener{
 	    		 mainViewController.deleteBook(isbn);
 	    		  BookPO bookPO=new BookPO(bookIDTextField.getText(), bookNameTextField.getText(), 
                           bookAutherTextField.getText(),bookPublishHouseTextField.getText(),
-                          bookPublishYearField.getText(), bookCategoryTextField.getText(),
+                          bookPublishYearField.getText(), (String)typeComboBox.getSelectedItem(),
                           Double.parseDouble(bookPriceTextField.getText()), Integer.parseInt(bookNumberTextField.getText())
                        );
 	    	   mainViewController.addBook(bookPO);		
@@ -1004,7 +1016,47 @@ public class MainView extends JFrame implements ActionListener{
 				if(newType==null){
 					return;
 				}
+				ResultMessage result=mainViewController.addBookType(newType);
+				if(result==ResultMessage.SUCCEED){
+					JOptionPane.showMessageDialog(null, "添加成功！");
+					bookTypeList.setModel(new TypeListModel());
+				}
+			}
+	       
+	//删除图书类别
+			else if(event.getSource()==jButton2){
+				int index=bookTypeList.getSelectedIndex();
+				if(index==-1){
+					JOptionPane.showMessageDialog(null, "请选择一个图书类别！");
+					return;
+				}
 				
+				String deleteType=(String) bookTypeList.getSelectedValue();
+				ResultMessage result=mainViewController.changeBookType(deleteType, "其他");
+				if(result==ResultMessage.SUCCEED){
+					JOptionPane.showMessageDialog(null, "删除成功！");
+					bookTypeList.setModel(new TypeListModel());
+				}
+			}
+	       
+	//修改图书类别
+			else if(event.getSource()==jButton3){
+				int index=bookTypeList.getSelectedIndex();
+				if(index==-1){
+					JOptionPane.showMessageDialog(null, "请选择一个图书类别！");
+					return;
+				}
+				String oldType=(String)bookTypeList.getSelectedValue();
+				String newType=JOptionPane.showInputDialog("请输入修改后的图书类别");
+				if(newType==null){
+					return;
+				}
+				
+				ResultMessage result=mainViewController.changeBookType(oldType, newType);
+				if(result==ResultMessage.SUCCEED){
+					JOptionPane.showMessageDialog(null,"修改成功！");
+					bookTypeList.setModel(new TypeListModel());
+				}
 			}
 
 	    }//事件结束
@@ -1055,7 +1107,7 @@ public class MainView extends JFrame implements ActionListener{
 	   private boolean bookInforTrue(){
 		   if(
 				   bookIDTextField.getText().equals("") || bookAutherTextField.getText().equals("") || 
-			  bookCategoryTextField.getText().equals("") || bookPublishYearField.getText().equals("") ||
+			   bookPublishYearField.getText().equals("") ||
 			  bookNameTextField.getText().equals("") || bookPublishHouseTextField.getText().equals("") || 
 			  ! stringToDouble(bookPriceTextField.getText()) || ! StringToInt(bookNumberTextField.getText())
 			  )
@@ -1136,8 +1188,19 @@ public class MainView extends JFrame implements ActionListener{
     	    }//else 	
 	   }
 	   
+	   private int findTypeIndex(String type){
+		   ArrayList<String> typeList=mainViewController.getTypeList();
+		   for(int i=0;i<typeList.size();i++){
+			   if(typeList.get(i).equals(type)){
+				   return i;
+			   }
+		   }
+		   return -1;
+	   }
+	   
 	   class TypeListModel extends AbstractListModel{
 		   ArrayList<String> typeLsit=mainViewController.getTypeList();
+		   
 		@Override
 		public int getSize() {
 			// TODO Auto-generated method stub
@@ -1151,5 +1214,6 @@ public class MainView extends JFrame implements ActionListener{
 		}
 		   
 	   }
+	   
 	   
 }
