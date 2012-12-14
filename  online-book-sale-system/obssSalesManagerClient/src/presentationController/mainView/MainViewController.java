@@ -115,7 +115,19 @@ public class MainViewController implements MainViewControllerInterface{
 	@Override
 	public ResultMessage addBookType(String newType) {
 		// TODO Auto-generated method stub
-		return ;
+		return bookController.addBookType(newType);
+	}
+
+	@Override
+	public ResultMessage changeBookType(String oldType, String newType) {
+		// TODO Auto-generated method stub
+		return bookController.changeBookType(oldType, newType);
+	}
+
+	@Override
+	public ResultMessage deleteBookType(String type) {
+		// TODO Auto-generated method stub
+		return bookController.changeBookType(type, "ÆäËû");
 	}
 
 }
