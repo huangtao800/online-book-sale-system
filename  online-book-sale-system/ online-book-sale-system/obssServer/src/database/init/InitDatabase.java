@@ -126,7 +126,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 		}
 	}
 	
-	public void saveMember(){
+	public void saveMember() throws RemoteException{
 		try {
 			FileOutputStream outputStream=new FileOutputStream("member.ser");
 			ObjectOutputStream objectOutputStream=new ObjectOutputStream(outputStream);
