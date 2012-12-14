@@ -44,6 +44,8 @@ public class SalesViewController implements SalesViewService{
 		payView.setCommonPrice(commonPrice);
 		ArrayList<String> specialList = salesController.showSpecial(commonPrice);	
 		payView.showSpecial(specialList);
+		String address = salesController.getAddress();
+		payView.setAddress(address);
 		payView.setTitle("Pay");
 		payView.setLocation(400, 100);
 		payView.setSize(500, 450);
@@ -52,8 +54,8 @@ public class SalesViewController implements SalesViewService{
 //初始化订单
 	public void initOrderView(OrderVO orderVO){
 		orderView = new OrderView(orderVO.getProductList());	
-		orderView.initText(orderVO.getOrderNum(),orderVO.getMemberID(),"日期:暂无",
-				orderVO.getOrderState(),orderVO.getTotalPrice());
+		orderView.initText(orderVO.getOrderNum(),orderVO.getMemberID(),orderVO.getDate(),
+				orderVO.getOrderState(),orderVO.getTotalPrice(),orderVO.getAddres());
 		orderView.setTitle("订单详情");
 		orderView.setLocation(400, 100);
 		orderView.setSize(600, 500);
@@ -86,6 +88,22 @@ public class SalesViewController implements SalesViewService{
 		return resultMessage;
 	}
 	
+	public ResultMessage addFavorities(int index) {
+		ResultMessage resultMessage = ResultMessage.FAILED;
+		if(index == -1)
+			return resultMessage;
+		LineItemPO lineItemPO = salesController.getCartList().get(index);
+		if(lineItemPO == null)
+			return resultMessage;
+		else{
+			resultMessage = salesController.addFavorities(lineItemPO);
+			cartView.refreshCartList();
+			cartView.refreshTotalPrice(salesController.getTotalPrice());
+		}
+		return resultMessage;
+	}
+	
+	
 	public double getSpecialPrice(int i){
 		if(i == -1)
 			priceBuffer = salesController.getTotalPrice();
@@ -94,11 +112,12 @@ public class SalesViewController implements SalesViewService{
 		return priceBuffer;
 	}
 	
-	public void pay(){
-		OrderVO orderVO = salesController.pay(priceBuffer);
+	public void pay(String address){
+		OrderVO orderVO = salesController.pay(priceBuffer,address);
 		initOrderView(orderVO);
+	}
+	public void endSale(){
 		salesController.endSale();
-		
 	}
 
 	public ArrayList<LineItemPO> getCartList() {
