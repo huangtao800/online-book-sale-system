@@ -100,10 +100,13 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
         
         if(index!=-1){
 			bookList.get(index).setNumOfBook(0);
+			writeFile(bookList);
 	        return ResultMessage.SUCCEED;
 		}else{
 	   	    return ResultMessage.NOTEXIST;
 	    }
+        
+        
  
 	}
 
@@ -123,6 +126,7 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
     		bookList.get(index).setPrice(bookPO.getPrice());
     		bookList.get(index).setPublishDate(bookPO.getPublishDate());
     		bookList.get(index).setType(bookPO.getType());
+    		writeFile(bookList);
 	        return ResultMessage.SUCCEED;
 		}else{
 			return ResultMessage.NOTEXIST;
@@ -172,7 +176,7 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		return bookList;
 	}
 	
-	//
+	
 	private ArrayList<BookPO> readFile(){
 		FileInputStream inputStream;
 		ArrayList<BookPO> bookList = new ArrayList<BookPO>();
