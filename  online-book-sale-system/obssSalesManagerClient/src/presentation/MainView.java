@@ -21,6 +21,11 @@ import po.OrderState;
 import po.PresentPO;
 import po.ResultMessage;
 import po.SalesManagerPO;
+import po.UserRole;
+import presentationController.changePasswordView.changePasswordController;
+import presentationController.changePasswordView.changePasswordControllerInterface;
+import presentationController.changeUserNameView.changeUserNameController;
+import presentationController.changeUserNameView.changeUserNameControllerInterface;
 import presentationController.mainView.MainViewController;
 import presentationController.mainView.MainViewControllerInterface;
 
@@ -37,7 +42,6 @@ public class MainView extends JFrame implements ActionListener{
 	
 	    private javax.swing.JButton addBookButton;
 	    private javax.swing.JTextField bookAutherTextField;
-	    private javax.swing.JTextField bookCategoryTextField;
 	    private javax.swing.JTextField bookIDTextField;
 	    private javax.swing.JTextField bookNameTextField;
 	    private javax.swing.JTextField bookNumberTextField;
@@ -45,29 +49,29 @@ public class MainView extends JFrame implements ActionListener{
 	    private javax.swing.JTextField bookPriceTextField;
 	    private javax.swing.JTextField bookPublishHouseTextField;
 	    private javax.swing.JTextField bookPublishYearField;
+	    private javax.swing.JList bookTypeList;
+	    private javax.swing.JPanel bookTypejPanel;
 	    private javax.swing.ButtonGroup buttonGroup1;
 	    private javax.swing.JButton changeBookButton;
 	    private javax.swing.JButton changeOrderButton;
-	    private javax.swing.JButton changeUserNameButton;
-	    private javax.swing.JButton changeUserPasswordButton;
 	    private javax.swing.JButton checkMemberInforButton;
 	    private javax.swing.JButton checkPresentButton;
 	    private javax.swing.JButton confirmChangeBookButton;
-	    private javax.swing.JButton confirmChangePasswordButton;
-	    private javax.swing.JButton confirmChangeUserNameButton;
 	    private javax.swing.JButton deleteBookButton;
 	    private javax.swing.JRadioButton distributionRadioButton;
 	    private javax.swing.JPanel homePagePanel;
+	    private javax.swing.JButton jButton1;
+	    private javax.swing.JButton jButton2;
+	    private javax.swing.JButton jButton3;
+	    private javax.swing.JButton changeUserNameButton;
+	    private javax.swing.JButton changeUserPasswordButton;
+	    private javax.swing.JButton exitButton;
 	    private javax.swing.JLabel jLabel1;
 	    private javax.swing.JLabel jLabel10;
 	    private javax.swing.JLabel jLabel11;
-	    private javax.swing.JLabel jLabel12;
 	    private javax.swing.JLabel jLabel13;
 	    private javax.swing.JLabel jLabel14;
 	    private javax.swing.JLabel jLabel15;
-	    private javax.swing.JLabel jLabel16;
-	    private javax.swing.JLabel jLabel17;
-	    private javax.swing.JLabel jLabel18;
 	    private javax.swing.JLabel jLabel19;
 	    private javax.swing.JLabel jLabel2;
 	    private javax.swing.JLabel jLabel20;
@@ -75,7 +79,6 @@ public class MainView extends JFrame implements ActionListener{
 	    private javax.swing.JLabel jLabel22;
 	    private javax.swing.JLabel jLabel23;
 	    private javax.swing.JLabel jLabel24;
-	    private javax.swing.JLabel jLabel26;
 	    private javax.swing.JLabel jLabel3;
 	    private javax.swing.JLabel jLabel4;
 	    private javax.swing.JLabel jLabel5;
@@ -83,32 +86,29 @@ public class MainView extends JFrame implements ActionListener{
 	    private javax.swing.JLabel jLabel7;
 	    private javax.swing.JLabel jLabel8;
 	    private javax.swing.JLabel jLabel9;
+	    private javax.swing.JPanel jPanel1;
+	    private javax.swing.JScrollPane jScrollPane1;
 	    private javax.swing.JScrollPane jScrollPane2;
 	    private javax.swing.JScrollPane jScrollPane3;
 	    private javax.swing.JScrollPane jScrollPane4;
 	    private javax.swing.JScrollPane jScrollPane5;
-	    private javax.swing.JSeparator jSeparator1;
+	    private javax.swing.JScrollPane jScrollPane6;
 	    private javax.swing.JTabbedPane mainViewTabbedPane;
 	    private javax.swing.JTextField memberIDTextField;
 	    private javax.swing.JTextArea memberInforTextArea;
 	    private javax.swing.JTextArea memberOrderTextArea;
 	    private javax.swing.JPanel memberPanel;
-	    private javax.swing.JTextField newPWAgainTextField;
-	    private javax.swing.JTextField newPWTextField;
-	    private javax.swing.JTextField newUserNameTextField;
 	    private javax.swing.JPanel orderPanel;
 	    private javax.swing.JTable orderTable;
 	    private javax.swing.JRadioButton orderedRadioButton;
-	    private javax.swing.JTextField originalPWTextField;
-	    private javax.swing.JTextField originalUserNameTextField;
 	    private javax.swing.JPanel presentPanel;
-	    private javax.swing.JPanel salesManagerPanel;
 	    private javax.swing.JButton sendPresentButton;
 	    private javax.swing.JTextArea showPresentTextArea;
 	    private javax.swing.JRadioButton signedRadioButton;
 	    private javax.swing.JRadioButton transportRadioButton;
+	    private javax.swing.JComboBox typeComboBox;
 	    private javax.swing.JButton updateOrderButton;
-	    private javax.swing.JTextField userIDTextField;
+	    private javax.swing.JLabel userNameLabel;
 	    // End of variables declaration
 	    
 	    public MainView(MainViewControllerInterface mainViewController){
@@ -167,31 +167,26 @@ public class MainView extends JFrame implements ActionListener{
 	        bookAutherTextField = new javax.swing.JTextField();
 	        bookPublishYearField = new javax.swing.JTextField();
 	        bookPublishHouseTextField = new javax.swing.JTextField();
-	        bookCategoryTextField = new javax.swing.JTextField();
 	        bookNameTextField = new javax.swing.JTextField();
 	        confirmChangeBookButton = new javax.swing.JButton();
 	        jLabel13 = new javax.swing.JLabel();
 	        bookPriceTextField = new javax.swing.JTextField();
 	        jLabel14 = new javax.swing.JLabel();
 	        bookNumberTextField = new javax.swing.JTextField();
-	        salesManagerPanel = new javax.swing.JPanel();
+	        typeComboBox = new javax.swing.JComboBox();
+	        bookTypejPanel = new javax.swing.JPanel();
+	        jScrollPane6 = new javax.swing.JScrollPane();
+	        jScrollPane1 = new javax.swing.JScrollPane();
+	        bookTypeList = new javax.swing.JList();
+	        jButton1 = new javax.swing.JButton();
+	        jButton2 = new javax.swing.JButton();
+	        jButton3 = new javax.swing.JButton();
+	        jPanel1 = new javax.swing.JPanel();
+	        jLabel11 = new javax.swing.JLabel();
+	        userNameLabel = new javax.swing.JLabel();
 	        changeUserNameButton = new javax.swing.JButton();
 	        changeUserPasswordButton = new javax.swing.JButton();
-	        jLabel11 = new javax.swing.JLabel();
-	        jLabel12 = new javax.swing.JLabel();
-	        confirmChangeUserNameButton = new javax.swing.JButton();
-	        confirmChangePasswordButton = new javax.swing.JButton();
-	        originalUserNameTextField = new javax.swing.JTextField();
-	        newUserNameTextField = new javax.swing.JTextField();
-	        jLabel16 = new javax.swing.JLabel();
-	        jLabel17 = new javax.swing.JLabel();
-	        jLabel18 = new javax.swing.JLabel();
-	        jSeparator1 = new javax.swing.JSeparator();
-	        originalPWTextField = new javax.swing.JTextField();
-	        newPWTextField = new javax.swing.JTextField();
-	        newPWAgainTextField = new javax.swing.JTextField();
-	        jLabel26 = new javax.swing.JLabel();
-	        userIDTextField = new javax.swing.JTextField();
+	        exitButton = new javax.swing.JButton();
 
 	        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -237,7 +232,7 @@ public class MainView extends JFrame implements ActionListener{
 	                    .addGroup(homePagePanelLayout.createSequentialGroup()
 	                        .addGap(313, 313, 313)
 	                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-	                .addContainerGap(192, Short.MAX_VALUE))
+	                .addContainerGap(204, Short.MAX_VALUE))
 	            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePagePanelLayout.createSequentialGroup()
 	                .addGap(0, 0, Short.MAX_VALUE)
 	                .addGroup(homePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +258,7 @@ public class MainView extends JFrame implements ActionListener{
 	                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
 	                        .addGap(42, 42, 42)
 	                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
 	                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
 	                        .addGap(30, 30, 30))
 	                    .addGroup(homePagePanelLayout.createSequentialGroup()
@@ -274,17 +269,18 @@ public class MainView extends JFrame implements ActionListener{
 
 	        mainViewTabbedPane.addTab("       首页       ", homePagePanel);
 
-	        checkMemberInforButton.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+	        checkMemberInforButton.setBackground(new java.awt.Color(0, 255, 255));
+	        checkMemberInforButton.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
 	        checkMemberInforButton.setForeground(new java.awt.Color(0, 51, 102));
 	        checkMemberInforButton.setText("查看顾客信息");
 
 	        jLabel8.setFont(new java.awt.Font("幼圆", 2, 14)); // NOI18N
 	        jLabel8.setText("顾客编号：");
 
-	        jLabel9.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
+	        jLabel9.setFont(new java.awt.Font("幼圆", 0, 18)); // NOI18N
 	        jLabel9.setText("个人信息");
 
-	        jLabel10.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
+	        jLabel10.setFont(new java.awt.Font("幼圆", 0, 18)); // NOI18N
 	        jLabel10.setText("购买记录");
 
 	        memberInforTextArea.setColumns(20);
@@ -302,63 +298,63 @@ public class MainView extends JFrame implements ActionListener{
 	            .addGroup(memberPanelLayout.createSequentialGroup()
 	                .addGroup(memberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	                    .addGroup(memberPanelLayout.createSequentialGroup()
-	                        .addGap(26, 26, 26)
-	                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                    .addGroup(memberPanelLayout.createSequentialGroup()
-	                        .addGap(275, 275, 275)
-	                        .addComponent(checkMemberInforButton, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                    .addGroup(memberPanelLayout.createSequentialGroup()
-	                        .addGap(74, 74, 74)
-	                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(160, 160, 160)
-	                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-	                .addContainerGap(101, Short.MAX_VALUE))
-	            .addGroup(memberPanelLayout.createSequentialGroup()
-	                .addGroup(memberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-	                    .addGroup(memberPanelLayout.createSequentialGroup()
-	                        .addContainerGap()
+	                        .addGap(102, 102, 102)
 	                        .addComponent(memberIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, memberPanelLayout.createSequentialGroup()
-	                        .addGap(151, 151, 151)
-	                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                .addGap(186, 186, 186))
+	                    .addGroup(memberPanelLayout.createSequentialGroup()
+	                        .addGap(26, 26, 26)
+	                        .addGroup(memberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                            .addComponent(checkMemberInforButton)
+	                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
+	                .addContainerGap())
+	            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, memberPanelLayout.createSequentialGroup()
+	                .addContainerGap(259, Short.MAX_VALUE)
+	                .addGroup(memberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, memberPanelLayout.createSequentialGroup()
+	                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addGap(47, 47, 47)
+	                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addGap(41, 41, 41))
+	                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, memberPanelLayout.createSequentialGroup()
+	                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addGap(178, 178, 178)
+	                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addGap(113, 113, 113))))
 	        );
 	        memberPanelLayout.setVerticalGroup(
 	            memberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	            .addGroup(memberPanelLayout.createSequentialGroup()
-	                .addGap(16, 16, 16)
-	                .addGroup(memberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-	                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                    .addComponent(memberIDTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
 	                .addGroup(memberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	                    .addGroup(memberPanelLayout.createSequentialGroup()
-	                        .addGap(32, 32, 32)
-	                        .addComponent(checkMemberInforButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(41, 41, 41))
-	                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, memberPanelLayout.createSequentialGroup()
-	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 	                        .addGroup(memberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 	                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
 	                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                        .addGap(7, 7, 7)))
+	                        .addGap(24, 24, 24))
+	                    .addGroup(memberPanelLayout.createSequentialGroup()
+	                        .addGap(16, 16, 16)
+	                        .addGroup(memberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+	                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	                            .addComponent(memberIDTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+	                        .addGap(74, 74, 74)))
 	                .addGroup(memberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-	                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-	                    .addComponent(jScrollPane5))
-	                .addContainerGap(24, Short.MAX_VALUE))
+	                    .addComponent(checkMemberInforButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                .addGap(35, 35, 35))
 	        );
 
-	        mainViewTabbedPane.addTab("    顾客信息查询    ", memberPanel);
+	        mainViewTabbedPane.addTab("    顾客信息查询     ", memberPanel);
 
-	        checkPresentButton.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+	        checkPresentButton.setBackground(new java.awt.Color(0, 153, 153));
+	        checkPresentButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        checkPresentButton.setForeground(new java.awt.Color(255, 102, 102));
 	        checkPresentButton.setText("查看礼券赠送信息");
 
+	        sendPresentButton.setBackground(new java.awt.Color(0, 204, 204));
 	        sendPresentButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        sendPresentButton.setForeground(new java.awt.Color(255, 0, 0));
 	        sendPresentButton.setText("确认赠送");
-	   
+	
 	        showPresentTextArea.setColumns(20);
 	        showPresentTextArea.setRows(5);
 	        jScrollPane2.setViewportView(showPresentTextArea);
@@ -378,7 +374,7 @@ public class MainView extends JFrame implements ActionListener{
 	                    .addGroup(presentPanelLayout.createSequentialGroup()
 	                        .addGap(307, 307, 307)
 	                        .addComponent(sendPresentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-	                .addContainerGap(148, Short.MAX_VALUE))
+	                .addContainerGap(160, Short.MAX_VALUE))
 	        );
 	        presentPanelLayout.setVerticalGroup(
 	            presentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -388,11 +384,11 @@ public class MainView extends JFrame implements ActionListener{
 	                .addGap(18, 18, 18)
 	                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
 	                .addGap(32, 32, 32)
-	                .addComponent(sendPresentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+	                .addComponent(sendPresentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
 	                .addGap(25, 25, 25))
 	        );
 
-	        mainViewTabbedPane.addTab("      礼券赠送      ", presentPanel);
+	        mainViewTabbedPane.addTab("      礼券赠送       ", presentPanel);
 
 	        orderTable.setModel(new javax.swing.table.DefaultTableModel(
 	            new Object [][] {
@@ -429,6 +425,7 @@ public class MainView extends JFrame implements ActionListener{
 	        });
 	        jScrollPane3.setViewportView(orderTable);
 
+	        updateOrderButton.setBackground(new java.awt.Color(0, 204, 204));
 	        updateOrderButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        updateOrderButton.setForeground(new java.awt.Color(102, 102, 102));
 	        updateOrderButton.setText("更新未完成的订单");
@@ -448,10 +445,11 @@ public class MainView extends JFrame implements ActionListener{
 	        buttonGroup1.add(signedRadioButton);
 	        signedRadioButton.setFont(new java.awt.Font("宋体", 2, 14)); // NOI18N
 	        signedRadioButton.setText("已签收");
-	  
+	
 	        jLabel7.setFont(new java.awt.Font("宋体", 2, 14)); // NOI18N
 	        jLabel7.setText("订单状态：");
 
+	        changeOrderButton.setBackground(new java.awt.Color(255, 102, 102));
 	        changeOrderButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        changeOrderButton.setForeground(new java.awt.Color(0, 102, 102));
 	        changeOrderButton.setText("修改订单状态");
@@ -482,7 +480,7 @@ public class MainView extends JFrame implements ActionListener{
 	                    .addGroup(orderPanelLayout.createSequentialGroup()
 	                        .addGap(293, 293, 293)
 	                        .addComponent(changeOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-	                .addContainerGap(173, Short.MAX_VALUE))
+	                .addContainerGap(185, Short.MAX_VALUE))
 	        );
 	        orderPanelLayout.setVerticalGroup(
 	            orderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -498,19 +496,22 @@ public class MainView extends JFrame implements ActionListener{
 	                    .addComponent(distributionRadioButton)
 	                    .addComponent(transportRadioButton)
 	                    .addComponent(signedRadioButton))
-	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
 	                .addComponent(changeOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
 	                .addGap(36, 36, 36))
 	        );
 
 	        mainViewTabbedPane.addTab("      订单管理      ", orderPanel);
 
+	        addBookButton.setBackground(new java.awt.Color(0, 204, 204));
 	        addBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        addBookButton.setText("添加图书");
 
+	        deleteBookButton.setBackground(new java.awt.Color(0, 204, 204));
 	        deleteBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        deleteBookButton.setText("删除图书");
 
+	        changeBookButton.setBackground(new java.awt.Color(0, 204, 204));
 	        changeBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        changeBookButton.setText("修改图书");
 
@@ -532,6 +533,7 @@ public class MainView extends JFrame implements ActionListener{
 	        jLabel6.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
 	        jLabel6.setText("图书类别：");
 
+	        confirmChangeBookButton.setBackground(new java.awt.Color(0, 204, 204));
 	        confirmChangeBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        confirmChangeBookButton.setForeground(new java.awt.Color(255, 0, 0));
 	        confirmChangeBookButton.setText("确认修改");
@@ -542,12 +544,14 @@ public class MainView extends JFrame implements ActionListener{
 	        jLabel14.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
 	        jLabel14.setText("数量/册：");
 
+	        typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
 	        javax.swing.GroupLayout bookPanelLayout = new javax.swing.GroupLayout(bookPanel);
 	        bookPanel.setLayout(bookPanelLayout);
 	        bookPanelLayout.setHorizontalGroup(
 	            bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
-	                .addContainerGap(281, Short.MAX_VALUE)
+	                .addContainerGap(293, Short.MAX_VALUE)
 	                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
 	                        .addComponent(addBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -571,13 +575,11 @@ public class MainView extends JFrame implements ActionListener{
 	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
 	                            .addComponent(bookPublishYearField, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
 	                            .addComponent(bookNumberTextField))
+	                        .addGap(18, 18, 18)
 	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
-	                                .addGap(31, 31, 31)
-	                                .addComponent(jLabel4))
-	                            .addGroup(bookPanelLayout.createSequentialGroup()
-	                                .addGap(45, 45, 45)
-	                                .addComponent(jLabel3))))
+	                            .addComponent(jLabel3)
+	                            .addComponent(jLabel4))
+	                        .addGap(13, 13, 13))
 	                    .addGroup(bookPanelLayout.createSequentialGroup()
 	                        .addComponent(jLabel2)
 	                        .addGap(10, 10, 10)
@@ -588,22 +590,18 @@ public class MainView extends JFrame implements ActionListener{
 	                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	                    .addGroup(bookPanelLayout.createSequentialGroup()
 	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-	                            .addGroup(bookPanelLayout.createSequentialGroup()
-	                                .addComponent(bookAutherTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                                .addGap(25, 25, 25))
-	                            .addGroup(bookPanelLayout.createSequentialGroup()
-	                                .addComponent(bookPublishHouseTextField)
-	                                .addGap(23, 23, 23)))
-	                        .addGap(23, 23, 23)
+	                            .addComponent(bookPublishHouseTextField)
+	                            .addComponent(bookAutherTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
+	                        .addGap(36, 36, 36)
 	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
 	                            .addComponent(jLabel13)
-	                            .addComponent(jLabel6))
-	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-	                            .addComponent(bookCategoryTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-	                            .addComponent(bookPriceTextField)))
+	                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                        .addGap(18, 18, 18)
+	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+	                            .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                            .addComponent(bookPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
 	                    .addComponent(bookNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                .addContainerGap())
+	                .addContainerGap(72, Short.MAX_VALUE))
 	        );
 	        bookPanelLayout.setVerticalGroup(
 	            bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -616,194 +614,167 @@ public class MainView extends JFrame implements ActionListener{
 	                    .addComponent(bookNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
 	                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	                    .addGroup(bookPanelLayout.createSequentialGroup()
+	                        .addGap(25, 25, 25)
+	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+	                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                            .addComponent(bookNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                        .addGap(16, 16, 16))
+	                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+	                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                            .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                                .addComponent(bookAutherTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                                .addComponent(bookPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+	                        .addGap(17, 17, 17)))
+	                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                    .addGroup(bookPanelLayout.createSequentialGroup()
 	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                            .addGroup(bookPanelLayout.createSequentialGroup()
-	                                .addGap(25, 25, 25)
-	                                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-	                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                                    .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                                        .addComponent(bookNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                                        .addComponent(bookPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-	                                .addGap(16, 16, 16))
-	                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
-	                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-	                                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
-	                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-	                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
-	                                        .addComponent(bookAutherTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                                        .addGap(17, 17, 17)))))
-	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
 	                            .addGroup(bookPanelLayout.createSequentialGroup()
 	                                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 	                                    .addComponent(bookPublishYearField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                                    .addComponent(bookPublishHouseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                                    .addComponent(bookCategoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                                    .addComponent(bookPublishHouseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
 	                                .addGap(42, 42, 42)
-	                                .addComponent(addBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                                .addComponent(addBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                                .addGap(43, 43, 43))
 	                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
 	                                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                                .addGap(73, 73, 73))))
-	                    .addGroup(bookPanelLayout.createSequentialGroup()
-	                        .addGap(41, 41, 41)
-	                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(34, 34, 34)
-	                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-	                .addGap(43, 43, 43)
-	                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                    .addComponent(changeBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                    .addComponent(confirmChangeBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                .addGap(42, 42, 42)
-	                .addComponent(deleteBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                                .addGap(116, 116, 116)))
+	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                            .addComponent(changeBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                            .addComponent(confirmChangeBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                        .addGap(42, 42, 42)
+	                        .addComponent(deleteBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                    .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                        .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
 	                .addGap(62, 62, 62))
 	        );
 
 	        mainViewTabbedPane.addTab("     图书管理      ", bookPanel);
 
-	        changeUserNameButton.setFont(new java.awt.Font("宋体", 1, 18)); // NOI18N
-	        changeUserNameButton.setForeground(new java.awt.Color(102, 102, 102));
-	        changeUserNameButton.setText("修改用户名");
+	        bookTypeList.setModel(new javax.swing.AbstractListModel() {
+	            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+	            public int getSize() { return strings.length; }
+	            public Object getElementAt(int i) { return strings[i]; }
+	        });
+	        jScrollPane1.setViewportView(bookTypeList);
 
-	        changeUserPasswordButton.setFont(new java.awt.Font("宋体", 1, 18)); // NOI18N
-	        changeUserPasswordButton.setForeground(new java.awt.Color(102, 102, 102));
-	        changeUserPasswordButton.setText("修改密码");
-	
-	        jLabel11.setFont(new java.awt.Font("宋体", 2, 14)); // NOI18N
+	        jScrollPane6.setViewportView(jScrollPane1);
+
+	        jButton1.setBackground(new java.awt.Color(153, 255, 0));
+	        jButton1.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
+	        jButton1.setText("增加图书类别");
+
+	        jButton2.setBackground(new java.awt.Color(153, 255, 0));
+	        jButton2.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
+	        jButton2.setText("删除图书类别");
+
+	        jButton3.setBackground(new java.awt.Color(153, 255, 0));
+	        jButton3.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
+	        jButton3.setText("修改图书类别");
+
+	        javax.swing.GroupLayout bookTypejPanelLayout = new javax.swing.GroupLayout(bookTypejPanel);
+	        bookTypejPanel.setLayout(bookTypejPanelLayout);
+	        bookTypejPanelLayout.setHorizontalGroup(
+	            bookTypejPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addGroup(bookTypejPanelLayout.createSequentialGroup()
+	                .addGap(125, 125, 125)
+	                .addGroup(bookTypejPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+	                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
+	                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                .addGap(116, 116, 116))
+	        );
+	        bookTypejPanelLayout.setVerticalGroup(
+	            bookTypejPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addGroup(bookTypejPanelLayout.createSequentialGroup()
+	                .addGroup(bookTypejPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                    .addGroup(bookTypejPanelLayout.createSequentialGroup()
+	                        .addGap(79, 79, 79)
+	                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addGap(53, 53, 53)
+	                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addGap(53, 53, 53)
+	                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                    .addGroup(bookTypejPanelLayout.createSequentialGroup()
+	                        .addGap(56, 56, 56)
+	                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
+	                .addGap(0, 45, Short.MAX_VALUE))
+	        );
+
+	        mainViewTabbedPane.addTab("   设置图书类别   ", bookTypejPanel);
+
+	        jLabel11.setFont(new java.awt.Font("方正舒体", 0, 18)); // NOI18N
 	        jLabel11.setText("用户名：");
 
-	        jLabel12.setFont(new java.awt.Font("宋体", 2, 14)); // NOI18N
-	        jLabel12.setText("新用户名：");
+	        changeUserNameButton.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
+	        changeUserNameButton.setText("修改用户名");
 
-	        confirmChangeUserNameButton.setFont(new java.awt.Font("宋体", 1, 18)); // NOI18N
-	        confirmChangeUserNameButton.setForeground(new java.awt.Color(255, 0, 0));
-	        confirmChangeUserNameButton.setText("确认修改");
+	        changeUserPasswordButton.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
+	        changeUserPasswordButton.setText("修改密码");
 
-	        confirmChangePasswordButton.setFont(new java.awt.Font("宋体", 1, 18)); // NOI18N
-	        confirmChangePasswordButton.setForeground(new java.awt.Color(255, 0, 0));
-	        confirmChangePasswordButton.setText("确认修改");
+	        exitButton.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
+	        exitButton.setText("退出");
 
-	        jLabel16.setFont(new java.awt.Font("宋体", 2, 14)); // NOI18N
-	        jLabel16.setText("请输入原密码：");
-
-	        jLabel17.setFont(new java.awt.Font("宋体", 2, 14)); // NOI18N
-	        jLabel17.setText("请输入新密码：");
-
-	        jLabel18.setFont(new java.awt.Font("宋体", 2, 14)); // NOI18N
-	        jLabel18.setText("请再次输入新密码：");
-
-	        jLabel26.setFont(new java.awt.Font("宋体", 2, 14)); // NOI18N
-	        jLabel26.setText("用户编号：");
-
-	        javax.swing.GroupLayout salesManagerPanelLayout = new javax.swing.GroupLayout(salesManagerPanel);
-	        salesManagerPanel.setLayout(salesManagerPanelLayout);
-	        salesManagerPanelLayout.setHorizontalGroup(
-	            salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(salesManagerPanelLayout.createSequentialGroup()
-	                .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addGroup(salesManagerPanelLayout.createSequentialGroup()
-	                        .addContainerGap()
-	                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                    .addGroup(salesManagerPanelLayout.createSequentialGroup()
-	                        .addGap(70, 70, 70)
-	                        .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-	                            .addComponent(jLabel18)
-	                            .addGroup(salesManagerPanelLayout.createSequentialGroup()
-	                                .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                                    .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-	                                        .addComponent(changeUserNameButton, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-	                                        .addComponent(confirmChangeUserNameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-	                                    .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-	                                        .addComponent(confirmChangePasswordButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                                        .addComponent(changeUserPasswordButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)))
-	                                .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                                    .addGroup(salesManagerPanelLayout.createSequentialGroup()
-	                                        .addGap(113, 113, 113)
-	                                        .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-	                                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-	                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, salesManagerPanelLayout.createSequentialGroup()
-	                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-	                                        .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-	                                            .addComponent(jLabel26)
-	                                            .addComponent(jLabel12)
-	                                            .addComponent(jLabel11))
-	                                        .addGap(15, 15, 15)))))
-	                        .addGap(18, 18, 18)
-	                        .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-	                            .addComponent(originalPWTextField)
-	                            .addComponent(newPWTextField)
-	                            .addComponent(newPWAgainTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-	                            .addComponent(newUserNameTextField)
-	                            .addComponent(originalUserNameTextField)
-	                            .addComponent(userIDTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))))
-	                .addGap(0, 31, Short.MAX_VALUE))
+	        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+	        jPanel1.setLayout(jPanel1Layout);
+	        jPanel1Layout.setHorizontalGroup(
+	            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addGroup(jPanel1Layout.createSequentialGroup()
+	                .addContainerGap()
+	                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                .addGap(265, 265, 265)
+	                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                    .addGroup(jPanel1Layout.createSequentialGroup()
+	                        .addComponent(changeUserPasswordButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	                        .addGap(46, 46, 46)
+	                        .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addGap(23, 23, 23))
+	                    .addGroup(jPanel1Layout.createSequentialGroup()
+	                        .addComponent(changeUserNameButton)
+	                        .addContainerGap())))
 	        );
-	        salesManagerPanelLayout.setVerticalGroup(
-	            salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(salesManagerPanelLayout.createSequentialGroup()
-	                .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-	                    .addGroup(salesManagerPanelLayout.createSequentialGroup()
-	                        .addGap(39, 39, 39)
-	                        .addComponent(changeUserNameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(0, 0, Short.MAX_VALUE))
-	                    .addGroup(salesManagerPanelLayout.createSequentialGroup()
-	                        .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                            .addGroup(salesManagerPanelLayout.createSequentialGroup()
-	                                .addGap(20, 20, 20)
-	                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                                .addGap(0, 0, Short.MAX_VALUE))
-	                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, salesManagerPanelLayout.createSequentialGroup()
-	                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                                .addComponent(userIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-	                        .addGap(18, 18, 18)
-	                        .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-	                            .addComponent(originalUserNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                        .addGap(15, 15, 15)))
-	                .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addGroup(salesManagerPanelLayout.createSequentialGroup()
-	                        .addComponent(confirmChangeUserNameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(0, 7, Short.MAX_VALUE))
-	                    .addComponent(newUserNameTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                .addGap(18, 18, 18)
-	                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                .addGap(26, 26, 26)
-	                .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                    .addComponent(changeUserPasswordButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                    .addComponent(originalPWTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addGroup(salesManagerPanelLayout.createSequentialGroup()
-	                        .addGap(37, 37, 37)
-	                        .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                            .addComponent(newPWTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                        .addGap(37, 37, 37)
-	                        .addGroup(salesManagerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                            .addComponent(newPWAgainTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                        .addContainerGap(20, Short.MAX_VALUE))
-	                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, salesManagerPanelLayout.createSequentialGroup()
-	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                        .addComponent(confirmChangePasswordButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(77, 77, 77))))
+	        jPanel1Layout.setVerticalGroup(
+	            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addGroup(jPanel1Layout.createSequentialGroup()
+	                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                    .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                .addGap(0, 0, Short.MAX_VALUE))
+	            .addGroup(jPanel1Layout.createSequentialGroup()
+	                .addContainerGap()
+	                .addComponent(changeUserNameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                    .addComponent(changeUserPasswordButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                    .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                .addContainerGap(12, Short.MAX_VALUE))
 	        );
-
-	        mainViewTabbedPane.addTab("      个人中心      ", salesManagerPanel);
 
 	        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 	        getContentPane().setLayout(layout);
 	        layout.setHorizontalGroup(
 	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addComponent(mainViewTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
+	            .addGroup(layout.createSequentialGroup()
+	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+	                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	                    .addComponent(mainViewTabbedPane, javax.swing.GroupLayout.Alignment.LEADING))
+	                .addGap(0, 0, Short.MAX_VALUE))
 	        );
 	        layout.setVerticalGroup(
 	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addComponent(mainViewTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
+	            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+	                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	                .addGap(18, 18, 18)
+	                .addComponent(mainViewTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE))
 	        );
 
 	        pack();
@@ -833,16 +804,7 @@ public class MainView extends JFrame implements ActionListener{
 	        
 	       //个人中心panel
 	        userpo=mainViewController.getUserPO();
-	        userIDTextField.setText(userpo.getUserID());
-	        originalUserNameTextField.setText(userpo.getUserName());
-	        changeUserNameButton.addActionListener(this);
-	        changeUserPasswordButton.addActionListener(this);
-	        confirmChangeUserNameButton.addActionListener(this);
-	        confirmChangePasswordButton.addActionListener(this);
-			jLabel12.setEnabled(false); newUserNameTextField.setEnabled(false);
-			jLabel16.setEnabled(false);  originalPWTextField.setEnabled(false);
-			jLabel17.setEnabled(false);  newPWTextField.setEnabled(false);
-			jLabel18.setEnabled(false);  newPWAgainTextField.setEnabled(false);
+	        userNameLabel.setText(userpo.getUserID());
 	         
 	        
 	        this.setVisible(true);
@@ -1017,75 +979,22 @@ public class MainView extends JFrame implements ActionListener{
 	    			JOptionPane.showMessageDialog(null, "请首先在表格中选择某一项未完成的订单！");
 	    		}
 	    	}
+	      
 	     //修改用户名
 			else if(event.getSource()== changeUserNameButton){
-				jLabel12.setEnabled(true);
-				newUserNameTextField.setEnabled(true);
-				JOptionPane.showMessageDialog(null, "请在'新用户名'栏里输入新用户名！输入完毕后请单击'确认修改' !");
-				confirmChangeUserNameButton.setEnabled(true);
+				changeUserNameControllerInterface controller=new changeUserNameController(userpo) ;
+                 userNameLabel.setText(userpo.getUserName());
 			}
-	//确认修改用户名
-			else if(event.getSource()== confirmChangeUserNameButton){
-				if(newUserNameTextField.getText().equals("")){
-					JOptionPane.showMessageDialog(null, "新用户名不能为空！");
-				}else {
-					userpo.setUserName(newUserNameTextField.getText());
-					
-					if( mainViewController.changeUser(userpo.getUserName(),userpo.getUserID(),
-							userpo.getUserPassword(),userpo.getUserRole())
-							                                ==ResultMessage.SUCCEED){ 
-					confirmChangeUserNameButton.setEnabled(false);
-					jLabel12.setEnabled(false);
-					newUserNameTextField.setEnabled(false);
-					JOptionPane.showMessageDialog(null, "修改用户名成功！");
-					}else {
-						JOptionPane.showMessageDialog(null, " 修改用户名失败！");
-					}
-				}
-			}
+	
 	//修改用户密码
 			else if(event.getSource()== changeUserPasswordButton){
-				jLabel16.setEnabled(true);  originalPWTextField.setEnabled(true);
-				jLabel17.setEnabled(true);  newPWTextField.setEnabled(true);
-				jLabel18.setEnabled(true);  newPWAgainTextField.setEnabled(true);
-				JOptionPane.showMessageDialog(null, "请依次输入原密码，新密码！");
-				confirmChangePasswordButton.setEnabled(true);
+                 changePasswordControllerInterface controller=new changePasswordController(userpo);
 			}
-	//确认修改密码
-			else if (event.getSource()== confirmChangePasswordButton){
-				if(! originalPWTextField.getText().equals(userpo.getUserPassword())){
-					JOptionPane.showMessageDialog(null, "原密码正确！");
-				}else{
-					      if(newPWTextField.getText().equals("")){
-					    	  JOptionPane.showMessageDialog(null, "新密码不能为空！");
-					      }else{
-					    	   if(newPWAgainTextField.getText().equals("")){
-					    		   JOptionPane.showMessageDialog(null, "请再次输入新密码！");
-					    	   }else{
-					    	  
-					    	  if(  ! newPWTextField.getText().equals(newPWAgainTextField.getText())){
-					    		  JOptionPane.showMessageDialog(null, "您输入的新密码前后不一致，请检查！");
-					    	  }else{
-					    		  userpo.setUserPassword(newPWTextField.getText());
-					    		  if(  mainViewController.changeUser(userpo.getUserName(),userpo.getUserID(),
-					    				  userpo.getUserPassword(),userpo.getUserRole()) ==
-			                                ResultMessage.SUCCEED){
-					    			  jLabel16.setEnabled(false);  originalPWTextField.setEnabled(false);
-										jLabel17.setEnabled(false);  newPWTextField.setEnabled(false);
-										jLabel18.setEnabled(false);  newPWAgainTextField.setEnabled(false);
-										confirmChangePasswordButton.setEnabled(false);
-										JOptionPane.showMessageDialog(null, "修改密码成功！");
-					    		  }else{
-					    			  JOptionPane.showMessageDialog(null, "对不起，修改密码失败！");
-					    		  }	
-					    	  }
-					      }
-					      }
-				}		
-			}      
-	       
-	       
-	    	
+	//退出
+			else if(event.getSource()== exitButton){
+				System.exit(1);			
+			}
+
 	    }//事件结束
 	    
 //其他方法
