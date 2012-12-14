@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import po.BookPO;
 import po.PO;
+import po.ResultMessage;
 import databaseService.DatabaseService;
 
 //定义可以被远程调用的方法
@@ -16,4 +17,8 @@ public interface BookDatabaseService extends DatabaseService{
 			     String publishDate) throws RemoteException; 	 
 	//通过图书类型查找返回相应的图书列表
 	public ArrayList<BookPO> findByType(String type)  throws RemoteException;
+	//对图书类别的处理
+	public ArrayList<String> getBookType() throws RemoteException;
+	public ResultMessage addBookType(String type) throws RemoteException;
+	public ResultMessage changeBookType(String beforeType,String afterType)throws RemoteException;
 }
