@@ -13,6 +13,8 @@ import po.UserPO;
 import po.UserRole;
 import presentation.RegistryView;
 import presentation.StartView;
+import presentationController.Admin.AdminOverviewController;
+import presentationController.Admin.AdminOverviewService;
 import presentationController.Member.MemberViewController;
 import presentationController.Member.MemberViewService;
 import bussinessLogic.controller.UserController;
@@ -74,6 +76,8 @@ public class StartController implements StartBLService {
 			MemberViewService memberViewController=MemberViewController.getInstance(memberPO);
 		} else if (role == UserRole.SalesManager) {
 
+		}else if(role==UserRole.Administrator){
+			AdminOverviewService adminOverviewController = AdminOverviewController.getInstance();
 		}
 	}
 
