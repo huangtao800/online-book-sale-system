@@ -166,5 +166,10 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		return userPO;
 	}
 	
+	public ArrayList<UserPO> getAllUser()throws RemoteException{
+		ArrayList<UserPO> arrayList = new ArrayList<>();
+		return arrayList;
+	}
+	
 	
 }
