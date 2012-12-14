@@ -855,6 +855,7 @@ public class MainView extends JFrame implements ActionListener{
 	    	
 //添加图书
 	    	else if(event.getSource() == addBookButton){
+	    		bookIDTextField.setEditable(true);
 	    		if(bookInforTrue()){
 	    		     BookPO bookPO=new BookPO(bookIDTextField.getText(), bookNameTextField.getText(), 
 	    		    		                                         bookAutherTextField.getText(),bookPublishHouseTextField.getText(),
@@ -872,6 +873,7 @@ public class MainView extends JFrame implements ActionListener{
 	    	
 //删除图书		
 	    	else if(event.getSource()==deleteBookButton ){
+	    		bookIDTextField.setEditable(true);
 	    		String isbn2=JOptionPane.showInputDialog(null,"请输入您要删除的图书的ISBN：");
 	    		if(isbn2==null){
 	    			
@@ -885,7 +887,7 @@ public class MainView extends JFrame implements ActionListener{
 	       
 //修改图书
 	    	else if(event.getSource()==changeBookButton){
-	    		bookIDTextField.setEditable(false);
+//	    		bookIDTextField.setEditable(false);
 	    		isbn=JOptionPane.showInputDialog(null,"请输入您要修改的图书的ISBN：");
 	    		if(isbn==null){
 	    			
@@ -893,6 +895,7 @@ public class MainView extends JFrame implements ActionListener{
 	    			if(mainViewController.getBookPO(isbn)==null){
 	    				JOptionPane.showMessageDialog(null, "您要修改的图书不存在！");
 	    			}else{
+	    				
 	    				BookPO bookPO=mainViewController.getBookPO(isbn);
 		    			bookAutherTextField.setText(bookPO.getAuthor());
 		    			
@@ -908,7 +911,7 @@ public class MainView extends JFrame implements ActionListener{
 		    			bookPublishYearField.setText(bookPO.getPublishDate());
 		    			JOptionPane.showMessageDialog(null, "系统已显示您要修改的图书信息,请在界面上修改！\n" 
 		    					                                                   +"修改完成后请点击‘确认修改按钮’。");
-//		    			bookIDTextField.setEditable(false);
+      	    			bookIDTextField.setEditable(false);
 		    			confirmChangeBookButton.setEnabled(true);
 	    			}  			
 	    		}
@@ -924,7 +927,6 @@ public class MainView extends JFrame implements ActionListener{
                        );
 	    	   mainViewController.addBook(bookPO);		
 	    		
-	    		bookIDTextField.setEditable(true);
     			confirmChangeBookButton.setEnabled(false);
     			bookIDTextField.setEditable(true);
 	    	}
