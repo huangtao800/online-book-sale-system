@@ -44,7 +44,7 @@ public class Book{
 	}
 	
 	public BookPO findByISBN(String isbn){      //输入图书ISBN，返回相应的图书列表
-		   BookPO bookPO = null;//drg
+		   BookPO bookPO = new BookPO();
 		   try {
 			    bookPO = bookDatabase.findThroughISBN(isbn);
 		   } catch (RemoteException e) {
@@ -125,5 +125,24 @@ public class Book{
 		   
 		
 	}
+	
+	//对图书类别的处理
+	public ArrayList<String> getBookType(){
+		ArrayList<String> bookTypeList = new ArrayList<String>();
+		try{
+			bookTypeList = bookDatabase.getBookType();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return bookTypeList;
+	}
 
+	public ResultMessage addBookType(String type){
+		return ResultMessage.SUCCEED;
+	}
+	
+	public ResultMessage changeBookType(String beforeType,String afterType){
+		return ResultMessage.SUCCEED;
+	}
 }

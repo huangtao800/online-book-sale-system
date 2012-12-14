@@ -7,7 +7,7 @@ import bussinessLogicService.*;
 
 public class BookController implements BookBLService{
 	private static BookController uniqueInstance;
-    private Book book=new Book();
+    private Book book = new Book();
     
     private BookController(){
     	
@@ -22,19 +22,16 @@ public class BookController implements BookBLService{
 	}
 
     //通过关键词或者图书类型来查找图书
-	public ArrayList<BookPO>  findByKey(String name){      //根据关键字返回相应的图书列表
-		   ArrayList<BookPO> bookArray = new ArrayList<BookPO>();
-		   return bookArray;
+	public ArrayList<BookPO>  findByKey(String name,String author,String press,String publishDate){      //根据关键字返回相应的图书列表
+		   return book.findByKey(name, author, press, publishDate);
 	}
 	
 	public ArrayList<BookPO> findByType(String type){      //选择图书类别，返回相应的图书列表
-		   ArrayList<BookPO> bookArray = new ArrayList<BookPO>();
-		   return bookArray;
+		   return book.findByType(type);
 	}
 	
- 	public BookPO findByISBN(String ISBN){      //输入图书ISBN，返回相应的图书列表
-		   BookPO bookPO = book.findByISBN(ISBN);
-		   return bookPO;
+ 	public BookPO findByISBN(String isbn){      //输入图书ISBN，返回相应的图书列表
+		   return book.findByISBN(isbn);
 	}
 
 	
@@ -53,15 +50,20 @@ public class BookController implements BookBLService{
 	}
 	
 	public ResultMessage updateBook(ArrayList<LineItemPO> salesList){
-		BookPO bookPO = new BookPO();
-		LineItemPO list = salesList.get(0);
-		bookPO = list.getBook();
-		String isbn = bookPO.getISBN();
-		if(isbn=="11111"){
-			return ResultMessage.SUCCEED ;
-		}else{
-			return ResultMessage.FAILED ;
-		}
+		return book.updateBook(salesList);
+	}
+	
+	// 对图书类别的处理
+	public ArrayList<String> getBookType(){
+		return book.getBookType();
+	}
+	
+	public ResultMessage addBookType(String type){
+		return book.addBookType(type);
+	}
+	
+	public ResultMessage changeBookType(String beforeType,String afterType){
+		return book.changeBookType(beforeType, afterType);
 	}
 
 }
