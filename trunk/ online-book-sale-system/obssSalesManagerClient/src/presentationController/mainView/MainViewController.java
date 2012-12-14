@@ -106,4 +106,16 @@ public class MainViewController implements MainViewControllerInterface{
 		return this.userPO;
 	}
 
+	@Override
+	public ArrayList<String> getTypeList() {
+		// TODO Auto-generated method stub
+		return bookController.getBookType();
+	}
+
+	@Override
+	public ResultMessage addBookType(String newType) {
+		// TODO Auto-generated method stub
+		return ;
+	}
+
 }

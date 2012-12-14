@@ -25,6 +25,8 @@ public interface MainViewControllerInterface {
     public ArrayList<OrderPO> getUncompletedOrderPOList();
     public ResultMessage writeUncompletedOrderPOList(OrderPO orderPO);
     public ResultMessage updateMember_Order(String memberID,OrderState state,long orderNum);
+    public ArrayList<String> getTypeList();
+    public ResultMessage addBookType(String newType);
   
 	public SalesManagerPO getUserPO();
 }

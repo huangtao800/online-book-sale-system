@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.AbstractListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -545,7 +546,8 @@ public class MainView extends JFrame implements ActionListener{
 	        jLabel14.setText("数量/册：");
 
 	        typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
+	        
+	        
 	        javax.swing.GroupLayout bookPanelLayout = new javax.swing.GroupLayout(bookPanel);
 	        bookPanel.setLayout(bookPanelLayout);
 	        bookPanelLayout.setHorizontalGroup(
@@ -661,6 +663,8 @@ public class MainView extends JFrame implements ActionListener{
 	            public int getSize() { return strings.length; }
 	            public Object getElementAt(int i) { return strings[i]; }
 	        });
+	        
+	        
 	        jScrollPane1.setViewportView(bookTypeList);
 
 	        jScrollPane6.setViewportView(jScrollPane1);
@@ -805,8 +809,8 @@ public class MainView extends JFrame implements ActionListener{
 	       //个人中心panel
 	        userpo=mainViewController.getUserPO();
 	        userNameLabel.setText(userpo.getUserID());
-	         
 	        
+	        bookTypeList.setModel(new TypeListModel());
 	        this.setVisible(true);
 	      
 	    }
@@ -994,6 +998,14 @@ public class MainView extends JFrame implements ActionListener{
 			else if(event.getSource()== exitButton){
 				System.exit(1);			
 			}
+	//增加图书类别
+			else if(event.getSource()==jButton1){
+				String newType=JOptionPane.showInputDialog("请输入新的图书类别：");
+				if(newType==null){
+					return;
+				}
+				
+			}
 
 	    }//事件结束
 	    
@@ -1122,6 +1134,22 @@ public class MainView extends JFrame implements ActionListener{
     	    		tableModel.setValueAt(orderStateToString(orderPO.getOrderState()), i, 4);
     	    	}//for(i)	    	
     	    }//else 	
+	   }
+	   
+	   class TypeListModel extends AbstractListModel{
+		   ArrayList<String> typeLsit=mainViewController.getTypeList();
+		@Override
+		public int getSize() {
+			// TODO Auto-generated method stub
+			return typeLsit.size();
+		}
+
+		@Override
+		public Object getElementAt(int index) {
+			// TODO Auto-generated method stub
+			return typeLsit.get(index);
+		}
+		   
 	   }
 	   
 }
