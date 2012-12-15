@@ -1,6 +1,8 @@
 package bussinessLogic.domain;
 
 import java.rmi.Naming;
+import java.rmi.RemoteException;
+
 import po.PromotionPO;
 import po.ResultMessage;
 
@@ -20,11 +22,23 @@ public class Promotion {
 	}
 	
     public PromotionPO promotionPORead(){
-    	return promotionDatabase.promotionPORead();
+    	try {
+			return promotionDatabase.promotionPORead();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
     }
     
     public ResultMessage promotionPOWrite(PromotionPO proPO){
-    	return promotionDatabase.promotionPOWrite(proPO);
+    	try {
+			return promotionDatabase.promotionPOWrite(proPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
     }
     
   

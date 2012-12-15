@@ -9,7 +9,7 @@ import databaseService.DatabaseService;
 
 public interface PromotionDatabaseService extends DatabaseService{
 
-    public PromotionPO promotionPORead();  
-    public ResultMessage promotionPOWrite(PromotionPO proPO);
+    public PromotionPO promotionPORead() throws RemoteException;  
+    public ResultMessage promotionPOWrite(PromotionPO proPO) throws RemoteException;
  
 }
