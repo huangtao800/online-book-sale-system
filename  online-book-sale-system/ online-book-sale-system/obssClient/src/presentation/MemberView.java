@@ -1009,7 +1009,9 @@ public class MemberView extends JFrame {
 			case 1:
 				return equivalentList.get(rowIndex).getDeno();
 			case 2:
-				return equivalentList.get(rowIndex).getEndDate();
+				Calendar endDate=equivalentList.get(rowIndex).getEndDate();
+				return endDate.get(Calendar.YEAR)+"年"+endDate.get(Calendar.MONTH)+"月"+
+						endDate.get(Calendar.DATE)+"日";
 			default:
 				return equivalentList.get(rowIndex).getMin();
 			}
@@ -1053,7 +1055,9 @@ public class MemberView extends JFrame {
 			case 1:
 				return couponList.get(rowIndex).getRate();
 			default:
-				return couponList.get(rowIndex).getEndDate();
+				Calendar endDate=couponList.get(rowIndex).getEndDate();
+				return endDate.get(Calendar.YEAR)+"年"+endDate.get(Calendar.MONTH)+"月"+
+						endDate.get(Calendar.DATE)+"日";
 			}
 		}
 		
