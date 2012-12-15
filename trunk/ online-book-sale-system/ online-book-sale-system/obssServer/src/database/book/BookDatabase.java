@@ -100,8 +100,8 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
         
         if(index!=-1){
 			bookList.get(index).setNumOfBook(0);
-			writeFile(bookList);
-	        return ResultMessage.SUCCEED;
+			return writeFile(bookList);
+	      
 		}else{
 	   	    return ResultMessage.NOTEXIST;
 	    }
