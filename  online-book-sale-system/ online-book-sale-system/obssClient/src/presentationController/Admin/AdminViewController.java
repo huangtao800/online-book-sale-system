@@ -16,14 +16,10 @@ public class AdminViewController implements AdminViewService{
 	 private static AdminViewService uniqueInstance;
 	 private static UserBLService userController;
 	 private AdminView adminView;
-	 private int index;
-	 private static AdminOverviewController adminOverviewController;
-
+	 
 	 private AdminViewController (){
 		 userController = UserController.getInstance();
-		 adminOverviewController = new AdminOverviewController();
-		 
-		 
+	
 	 }
 	 
 	
@@ -46,12 +42,12 @@ public class AdminViewController implements AdminViewService{
      }
     
     
-     public ResultMessage change(String userName,String userID,String userPassword,UserRole userRole){
-    	return userController.changeUser(userName, userID, userPassword, userRole);
+     public ResultMessage change(UserPO beforeUserPO,UserPO afterUserPO){
+    	return userController.changeUser(beforeUserPO,afterUserPO);
      }
      
-     public ResultMessage delete(String id,UserRole userRole){
-    	 return userController.deleteUser(id, userRole);
+     public ResultMessage delete(UserPO userPO,UserRole userRole){
+    	 return userController.deleteUser(userPO, userRole);
      }
      
      
