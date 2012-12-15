@@ -39,6 +39,7 @@ public class MainView extends JFrame implements ActionListener{
 //	   private JTable orderTable;
 	   private DefaultTableModel tableModel;
 	   private SalesManagerPO userpo;
+	   private ArrayList<OrderPO> uncompletedOrderList;
 //	   SalesManagerModelInterface model;
 	
 	    private javax.swing.JButton addBookButton;
@@ -117,7 +118,8 @@ public class MainView extends JFrame implements ActionListener{
 	    	this.mainViewController=mainViewController;
 	    }
 	    
-	    public void createMainView(){
+	    @SuppressWarnings("unchecked")
+		public void createMainView(){
 
 	        buttonGroup1 = new javax.swing.ButtonGroup();
 	        mainViewTabbedPane = new javax.swing.JTabbedPane();
@@ -818,7 +820,18 @@ public class MainView extends JFrame implements ActionListener{
 	        jButton3.addActionListener(this);
 	        
 	        bookTypeList.setModel(new TypeListModel());
+	        
 	        this.setVisible(true);
+	        
+	        ArrayList<Present_Equivalent> present_EquivalentList=mainViewController.getPresent_EquivalentList();
+		    ArrayList<Present_Coupon> present_CouponList=mainViewController.getPresent_CouponList();  
+	        
+		    if(   (present_EquivalentList!=null && present_EquivalentList.size() !=0)  ||
+		    		(present_CouponList !=null && present_CouponList.size() !=0)     )
+		    {
+		    	JOptionPane.showMessageDialog(null, "总经理已制定了大范围促销规则,您可以为您的顾客赠送礼券！");
+		    }
+	        
 	      
 //	        ArrayList<String> bookTypeList=mainViewController.getTypeList();
 //	        String[] typeStrings=new String[bookTypeList.size()];
@@ -831,7 +844,7 @@ public class MainView extends JFrame implements ActionListener{
 //界面完*************************************************************************************************************
 
                    //	    private boolean checkPresentFirst=false;
-	    private ArrayList<OrderPO> uncompletedOrderList;
+	    
  //事件响应    
 	    public void actionPerformed(ActionEvent event){
 	    	String isbn="";
