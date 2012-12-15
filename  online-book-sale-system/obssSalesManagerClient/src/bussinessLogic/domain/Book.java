@@ -139,10 +139,21 @@ public class Book{
 	}
 
 	public ResultMessage addBookType(String type){
-		return ResultMessage.SUCCEED;
+		try{
+			return bookDatabase.addBookType(type);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+		
 	}
 	
 	public ResultMessage changeBookType(String beforeType,String afterType){
-		return ResultMessage.SUCCEED;
+		try{
+			return bookDatabase.changeBookType(beforeType, afterType);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
 	}
 }

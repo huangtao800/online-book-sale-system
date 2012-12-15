@@ -820,12 +820,13 @@ public class MainView extends JFrame implements ActionListener{
 	        bookTypeList.setModel(new TypeListModel());
 	        this.setVisible(true);
 	      
-	        ArrayList<String> bookTypeList=mainViewController.getTypeList();
-	        String[] typeStrings=new String[bookTypeList.size()];
-	        for(int i=0;i<bookTypeList.size();i++){
-	        	typeStrings[i]=bookTypeList.get(i);
-	        }
-	        typeComboBox.setModel(new DefaultComboBoxModel(typeStrings));
+//	        ArrayList<String> bookTypeList=mainViewController.getTypeList();
+//	        String[] typeStrings=new String[bookTypeList.size()];
+//	        for(int i=0;i<bookTypeList.size();i++){
+//	        	typeStrings[i]=bookTypeList.get(i);
+//	        }
+//	        typeComboBox.setModel(new DefaultComboBoxModel(typeStrings));
+	        setTypeComboxModel();
 	    }
 //界面完*************************************************************************************************************
 
@@ -1029,7 +1030,8 @@ public class MainView extends JFrame implements ActionListener{
 				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
 					bookTypeList.setModel(new TypeListModel());
-					***
+					setTypeComboxModel();
+//					***
 				}else {
 					JOptionPane.showMessageDialog(null, "添加失败！");
 				}
@@ -1048,7 +1050,8 @@ public class MainView extends JFrame implements ActionListener{
 				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "删除成功！");
 					bookTypeList.setModel(new TypeListModel());
-					***
+					setTypeComboxModel();
+//					***
 				}else{
 					JOptionPane.showMessageDialog(null, "删除失败！");
 				}
@@ -1071,7 +1074,8 @@ public class MainView extends JFrame implements ActionListener{
 				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null,"修改成功！");
 					bookTypeList.setModel(new TypeListModel());
-					***
+					setTypeComboxModel();
+//					***
 				}else{
 					JOptionPane.showMessageDialog(null,"修改失败！");
 				}
@@ -1217,6 +1221,15 @@ public class MainView extends JFrame implements ActionListener{
 		   }
 		   return -1;
 	   }
+	   
+	  private void setTypeComboxModel(){
+	        ArrayList<String> bookTypeList=mainViewController.getTypeList();
+	        String[] typeStrings=new String[bookTypeList.size()];
+	        for(int i=0;i<bookTypeList.size();i++){
+	        	typeStrings[i]=bookTypeList.get(i);
+	        }
+	        typeComboBox.setModel(new DefaultComboBoxModel(typeStrings));
+	  }
 	   
 	   class TypeListModel extends AbstractListModel{
 		   ArrayList<String> typeLsit=mainViewController.getTypeList();
