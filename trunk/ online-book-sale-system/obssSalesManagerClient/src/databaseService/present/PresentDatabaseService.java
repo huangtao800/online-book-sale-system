@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import po.Present_Coupon;
 import po.Present_Equivalent;
 import po.ResultMessage;
-
 import databaseService.DatabaseService;
 
 public interface PresentDatabaseService extends DatabaseService{

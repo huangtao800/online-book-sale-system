@@ -836,7 +836,6 @@ public class MainView extends JFrame implements ActionListener{
 	    	String isbn="";
 //查看总经理制定的大范围促销规则    	
 	       if(event.getSource()==checkPresentButton){     
-	    	      showPresentTextArea.setText("");
                    checkPresent();
 	    	}
 	    	
@@ -1030,6 +1029,9 @@ public class MainView extends JFrame implements ActionListener{
 				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
 					bookTypeList.setModel(new TypeListModel());
+					***
+				}else {
+					JOptionPane.showMessageDialog(null, "添加失败！");
 				}
 			}
 	       
@@ -1046,6 +1048,9 @@ public class MainView extends JFrame implements ActionListener{
 				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "删除成功！");
 					bookTypeList.setModel(new TypeListModel());
+					***
+				}else{
+					JOptionPane.showMessageDialog(null, "删除失败！");
 				}
 			}
 	       
@@ -1066,6 +1071,9 @@ public class MainView extends JFrame implements ActionListener{
 				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null,"修改成功！");
 					bookTypeList.setModel(new TypeListModel());
+					***
+				}else{
+					JOptionPane.showMessageDialog(null,"修改失败！");
 				}
 			}
 
