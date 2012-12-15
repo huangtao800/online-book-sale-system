@@ -42,10 +42,10 @@ public class PromotionDatabase extends UnicastRemoteObject implements PromotionD
 				 ObjectInputStream poInputStream=new ObjectInputStream(new FileInputStream(PromotionPO_Ser));
 				 promotionPO=(PromotionPO)poInputStream.readObject();
 				poInputStream.close();
+				 return promotionPO;
 			} catch (Exception e) {
-				e.printStackTrace();
+				return null;
 			}
-			 return promotionPO;
 		 }
 	
 		public ResultMessage promotionPOWrite(PromotionPO proPO) throws RemoteException{
