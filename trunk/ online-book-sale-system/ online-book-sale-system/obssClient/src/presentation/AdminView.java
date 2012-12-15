@@ -103,8 +103,8 @@ public class AdminView extends javax.swing.JFrame {
        jButton1.setText("确认添加");
        jButton1.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
-              String name = jTextField1.getText().trim();
-              String id = jTextField2.getText().trim();
+              String id = jTextField1.getText().trim();
+              String name = jTextField2.getText().trim();
               String password1 = jTextField3.getText().trim();
               String password2 = jTextField4.getText().trim();
               String password = "";
@@ -116,9 +116,10 @@ public class AdminView extends javax.swing.JFrame {
               UserRole role = (UserRole) jComboBox1.getSelectedItem();
             
               ResultMessage resultMessage = adminViewController.add(name,id,password,role);
+              
               if(resultMessage==ResultMessage.SUCCEED){
             	  JOptionPane.showMessageDialog(null, "添加成功！");
-              }else if(resultMessage==ResultMessage.EXIST){
+              }else {
             	  JOptionPane.showMessageDialog(null, "该用户名已存在，请重新输入用户名");
               }
 
@@ -228,20 +229,24 @@ public class AdminView extends javax.swing.JFrame {
 
        jButton4.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
-               String id = jTextField6.getText().trim();
-               String name = jTextField7.getText().trim();
+        	   String beforeName = jTextField5.getText().trim();
+        	   UserRole userRole = (UserRole)jComboBox2.getSelectedItem();
+        	
+        	   String id = jTextField6.getText().trim();
+        	   String afterName = jTextField7.getText().trim();
+        	   String beforePassword = jTextField8.getText().trim();
                String password1 = jTextField9.getText().trim();
                String password2 = jTextField10.getText().trim();
-               String password = "";
+               String afterPassword = "";
                if(!password1.equals("")&&password1.equals(password2)){
-            	   password = password1;
+            	   afterPassword = password1;
                }else{
             	   JOptionPane.showMessageDialog(null, "两次密码输入不一致，请重新输入！");
                }
-                
-               UserRole role = (UserRole) jComboBox2.getSelectedItem();
-              
-               ResultMessage resultMessage = adminViewController.change(name, id, password, role);
+               //id和用户类型没有被修改
+               UserPO beforeUserPO = new UserPO(id, beforeName, beforePassword, userRole);
+               UserPO afterUserPO = new UserPO(id, afterName, afterPassword, userRole);
+               ResultMessage resultMessage = adminViewController.change(beforeUserPO,afterUserPO);
                if(resultMessage==ResultMessage.SUCCEED){
             	   JOptionPane.showMessageDialog(null, "修改成功！");
                }else{
@@ -389,11 +394,11 @@ public class AdminView extends javax.swing.JFrame {
        jButton7.setText("确认删除");
        jButton7.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 String id = jTextField12.getText().trim();
-                 String name = jTextField13.getText().trim();
-                 String password = jTextField14.getText().trim();
-                 UserRole userRole = (UserRole)jComboBox3.getSelectedItem();
-                 ResultMessage resultMessage = adminViewController.delete(id, userRole);
+        	     String name = jTextField11.getText().trim();
+        	     UserRole userRole = (UserRole)jComboBox3.getSelectedItem();
+        	     UserPO userPO = adminViewController.findUser(name, userRole);
+        	   
+                 ResultMessage resultMessage = adminViewController.delete(userPO, userRole);
                  if(resultMessage==ResultMessage.SUCCEED){
                 	 JOptionPane.showMessageDialog(null, "删除成功！");
                  }else{
