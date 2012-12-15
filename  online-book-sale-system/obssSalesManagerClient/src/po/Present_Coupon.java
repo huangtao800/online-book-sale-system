@@ -2,7 +2,7 @@ package po;
 
 import java.util.Calendar;
 
-public class Present_Coupon {
+public class Present_Coupon implements PO{
 	private VIPRank rank;
     private double rate;//´òÕÛÂÊ
     private int amount;
