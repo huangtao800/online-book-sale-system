@@ -29,13 +29,13 @@ public class UserController implements UserBLService, Serializable {
 	// 对用户的调整(增加，删除，修改)
 	public ResultMessage addUser(String userName, String id, String password,
 			UserRole userRole) {
-		UserPO userPO = new UserPO(userName,id,password,userRole);
+		UserPO userPO = new UserPO(id,userName,password,userRole);
 		return user.addUser(userPO,userRole);
 		
 	}
 
-	public ResultMessage deleteUser(String id,UserRole userRole) {
-		return user.deleteUser(id,userRole);
+	public ResultMessage deleteUser(UserPO userPO,UserRole userRole) {
+		return user.deleteUser(userPO,userRole);
 	}
 	
 	//查找用户通过name
@@ -44,10 +44,8 @@ public class UserController implements UserBLService, Serializable {
 	}
 	
 	//顾客，总经理，销售经理（密码） , 管理员
-	public ResultMessage changeUser(String userName, String id,
-			String password, UserRole userRole) {
-		UserPO userPO = new UserPO(id, userName, password, userRole);
-		return user.changeUser(userPO,id);
+	public ResultMessage changeUser(UserPO beforeUserPO,UserPO afterUserPO) {
+	      return user.changeUser(beforeUserPO, afterUserPO);
 	}
 
 	public ArrayList<UserPO> getAllUser(){
