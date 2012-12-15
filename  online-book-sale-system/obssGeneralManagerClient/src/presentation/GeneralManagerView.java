@@ -514,10 +514,10 @@ public class GeneralManagerView extends JFrame implements ActionListener {
         jLabel14.setText("等 价 券 赠 送");
 
         sendCouponComboBox.setFont(new java.awt.Font("幼圆", 0, 12)); // NOI18N
-        sendCouponComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        sendCouponComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "尚无打折券" }));
 
         sendEquivalentComboBox.setFont(new java.awt.Font("幼圆", 0, 12)); // NOI18N
-        sendEquivalentComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        sendEquivalentComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "尚无等价券" }));
 
         jLabel4.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
@@ -928,15 +928,28 @@ public class GeneralManagerView extends JFrame implements ActionListener {
 	         couponTableModel=new DefaultTableModel(value, name);
 	         setCouponTable.setModel(couponTableModel);
 	         
-    		setExchangeRateTextField.setText(""+proPO.getExchangeOfScore());
+	         if(  (Math.abs(proPO.getExchangeOfScore()-0.0)<0.000001)  &&
+	        		 (equivalentList ==null ||equivalentList.size()==0)  &&
+	        		 (couponRateList==null || couponRateList.size()==0)
+	        	 ){
+	        	  JOptionPane.showMessageDialog(null, "您尚未制定促销信息");
+	        	  return;
+	         }
+	         
+	         setExchangeRateTextField.setText(""+proPO.getExchangeOfScore());
+	         
+	    if(equivalentList !=null && equivalentList.size()!=0)     {	
     		for(int i=0;i<equivalentList.size();i++){
     			equivalentTableModel.setValueAt(""+equivalentList.get(i).get(0), i, 0);
     			equivalentTableModel.setValueAt(""+equivalentList.get(i).get(1), i, 1);		
     		}
+	    }
+	    
+	    if(couponRateList!=null && couponRateList.size()!=0){
     		for(int j=0;j<couponRateList.size();j++){
     			couponTableModel.setValueAt(""+couponRateList.get(j), j, 0);
     		}
-    		
+	    }	
     	}
     }
     
@@ -1042,7 +1055,12 @@ private void checkPresent(){
 				&&!vip4CheckBox.isSelected() &&!vip5CheckBox.isSelected())
 	    {			
 		   JOptionPane.showMessageDialog(null, "请首先选择会员等级！");
+		   return;
 		}
+	   else if(equivalentList ==null || equivalentList.size()==0){
+		   JOptionPane.showMessageDialog(null, "请先在'设置促销手段'项中制定等价券信息！");
+		   return ;
+	   }
 	   else{
 		   if(StringToInt(amountOfEquivalentTextField.getText()) && 
 				                 stringToCalendar(endDateOfEqivalentTextField.getText()) &&
@@ -1100,6 +1118,11 @@ private void checkPresent(){
 		   JOptionPane.showMessageDialog(null, "请首先选择会员等级！");
 		   return ;
 		}
+	   
+	   if(equivalentList ==null || equivalentList.size()==0){
+		   JOptionPane.showMessageDialog(null, "请先在'设置促销手段'项中制定打折券信息！");
+		   return ;
+	   }
 
 		   if(  StringToInt(amountOfCouponTextField.getText()) &&
 				   stringToCalendar(endDateOfCouponTextField.getText()) && 
@@ -1305,20 +1328,25 @@ private void checkPresent(){
 			proPO=proController.getProPO();
 			equivalentList=proPO.getEquivalentList();
 			couponRateList=proPO.getCouponrateList();
-			String e[]=new String[equivalentList.size()];
-			String c[]=new String[couponRateList.size()];
+			String e[];
+			String c[];
+			
 			if(equivalentList !=null && equivalentList.size()!=0){
+				 e=new String[equivalentList.size()];
 			    for(int i=0;i<equivalentList.size(); i++){
 				    e[i]=equivalentList.get(i).get(0)+"元,最低消费"+equivalentList.get(i).get(1)+"元";
 			    }
+			    sendEquivalentComboBox.setModel(new DefaultComboBoxModel(e));
 			}
 			if(couponRateList!=null && couponRateList.size() !=0){
+				 c=new String[couponRateList.size()];
 			     for(int  j=0;j<couponRateList.size(); j++){
 				     c[j]=couponRateList.get(j)*10+"折";
 			     }
+			     sendCouponComboBox.setModel(new DefaultComboBoxModel(c));
 			}
-			sendEquivalentComboBox.setModel(new DefaultComboBoxModel(e));
-			sendCouponComboBox.setModel(new DefaultComboBoxModel(c));
+			
+			
 				
 			}
 			
