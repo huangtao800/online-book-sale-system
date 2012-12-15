@@ -24,7 +24,7 @@ public class InitMemberData {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		MemberPO memberPO=new MemberPO("1", "huang", "111111","江苏南通");
+		MemberPO memberPO=new MemberPO("m1", "huang", "111111","江苏南通");
 		
 		BookPO bookPO=new BookPO("Java","11111",  "计算机","中国", "hjuang",  "2011", 10, 5);
 		BookPO bookPO2=new BookPO("JavaCode","11112",  "计算机","中国", "gr",  "2012", 10, 5);
@@ -40,7 +40,7 @@ public class InitMemberData {
 		
 		memberPO.getFavority().getFavorities().add(bookPO);
 		
-		MemberPO m2=new MemberPO("2", "hu", "000000","江苏南通");
+		MemberPO m2=new MemberPO("m2", "hu", "000000","江苏南通");
 		ArrayList<MemberPO> list=new ArrayList<MemberPO>();
 		list.add(memberPO);
 		list.add(m2);
