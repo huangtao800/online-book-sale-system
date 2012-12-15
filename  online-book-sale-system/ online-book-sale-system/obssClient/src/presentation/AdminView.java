@@ -103,26 +103,25 @@ public class AdminView extends javax.swing.JFrame {
        jButton1.setText("确认添加");
        jButton1.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        	  UserRole role = (UserRole) jComboBox1.getSelectedItem();
               String id = jTextField1.getText().trim();
               String name = jTextField2.getText().trim();
               String password1 = jTextField3.getText().trim();
               String password2 = jTextField4.getText().trim();
               String password = "";
+              
               if(!password1.equals("")&&password1.equals(password2)){
             	  password = jTextField3.getText().trim();
+            	  ResultMessage resultMessage = adminViewController.add(name,id,password,role);
+                  
+                  if(resultMessage==ResultMessage.SUCCEED){
+                	  JOptionPane.showMessageDialog(null, "添加成功！");
+                  }else {
+                	  JOptionPane.showMessageDialog(null, "该用户名已存在，请重新输入用户名");
+                  }
               }else{
             	  JOptionPane.showMessageDialog(null," 两次密码输入不一致，请重新输入！");
               }
-              UserRole role = (UserRole) jComboBox1.getSelectedItem();
-            
-              ResultMessage resultMessage = adminViewController.add(name,id,password,role);
-              
-              if(resultMessage==ResultMessage.SUCCEED){
-            	  JOptionPane.showMessageDialog(null, "添加成功！");
-              }else {
-            	  JOptionPane.showMessageDialog(null, "该用户名已存在，请重新输入用户名");
-              }
-
            }
        });
 
@@ -240,18 +239,19 @@ public class AdminView extends javax.swing.JFrame {
                String afterPassword = "";
                if(!password1.equals("")&&password1.equals(password2)){
             	   afterPassword = password1;
+            	   //id和用户类型没有被修改
+                   UserPO beforeUserPO = new UserPO(id, beforeName, beforePassword, userRole);
+                   UserPO afterUserPO = new UserPO(id, afterName, afterPassword, userRole);
+                   ResultMessage resultMessage = adminViewController.change(beforeUserPO,afterUserPO);
+                   if(resultMessage==ResultMessage.SUCCEED){
+                	   JOptionPane.showMessageDialog(null, "修改成功！");
+                   }else{
+                	   JOptionPane.showMessageDialog(null, "系统异常，请重试！");
+                   }
                }else{
             	   JOptionPane.showMessageDialog(null, "两次密码输入不一致，请重新输入！");
                }
-               //id和用户类型没有被修改
-               UserPO beforeUserPO = new UserPO(id, beforeName, beforePassword, userRole);
-               UserPO afterUserPO = new UserPO(id, afterName, afterPassword, userRole);
-               ResultMessage resultMessage = adminViewController.change(beforeUserPO,afterUserPO);
-               if(resultMessage==ResultMessage.SUCCEED){
-            	   JOptionPane.showMessageDialog(null, "修改成功！");
-               }else{
-            	   JOptionPane.showMessageDialog(null, "系统异常，请重试！");
-               }
+               
            }
        });
        
