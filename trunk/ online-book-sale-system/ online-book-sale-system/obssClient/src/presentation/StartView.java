@@ -97,10 +97,10 @@ public class StartView extends JFrame {
 		managerButton.setBounds(237, 183, 87, 23);
 		contentPane.add(managerButton);
 		
-		JRadioButton radioButton_3 = new JRadioButton("\u7BA1\u7406\u5458");
-		buttonGroup.add(radioButton_3);
-		radioButton_3.setBounds(348, 184, 87, 22);
-		contentPane.add(radioButton_3);
+		JRadioButton adminButton = new JRadioButton("\u7BA1\u7406\u5458");
+		buttonGroup.add(adminButton);
+		adminButton.setBounds(348, 184, 87, 22);
+		contentPane.add(adminButton);
 		
 		JButton logButton = new JButton("\u767B\u5F55");
 		
@@ -121,7 +121,7 @@ public class StartView extends JFrame {
 					return UserRole.GeneralManager;
 				}else if(buttonGroup.getSelection()==saleManagerButton.getModel()){
 					return UserRole.SalesManager;
-				}else{
+				}else {
 					return UserRole.Administrator;
 				}
 			}
