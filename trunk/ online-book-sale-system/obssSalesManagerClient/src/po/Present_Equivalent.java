@@ -2,7 +2,7 @@ package po;
 
 import java.util.Calendar;
 //给某个等级会员的 一种等价券
-public class Present_Equivalent {
+public class Present_Equivalent implements PO{
      private VIPRank rank;
 	 private double deno;//面额
      private double min;//使用该面额的等价券所需的最低消费
