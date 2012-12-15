@@ -1,8 +1,6 @@
 package bussinessLogic.domain;
 
 import java.rmi.Naming;
-
-import po.PresentPO;
 import po.PromotionPO;
 import po.ResultMessage;
 

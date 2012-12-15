@@ -1,8 +1,6 @@
 package databaseService.promotion;
 
 import java.rmi.RemoteException;
-
-import po.PresentPO;
 import po.PromotionPO;
 import po.ResultMessage;
 import po.UserPO;

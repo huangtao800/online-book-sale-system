@@ -1,5 +1,6 @@
 package presentation;
-//董仁广
+//董仁广,此界面废了，重新写了一个
+/*
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -14,13 +15,12 @@ import javax.swing.table.DefaultTableModel;
 import festival.News;
 
 import po.GeneralManagerPO;
-import po.PresentPO;
 import po.PromotionPO;
 import po.ResultMessage;
 import po.UserRole;
 import po.VIPRank;
-import presentationController.PromotionView.PromotionViewController;
-import presentationController.PromotionView.PromotionViewControllerInterface;
+import presentationController.GeneralManagerView.GeneralManagerViewController;
+import presentationController.GeneralManagerView.GeneralManagerViewControllerInterface;
 
 
 @SuppressWarnings("serial")
@@ -30,7 +30,7 @@ public class PromotionView extends JFrame implements ActionListener{
 	   private static final int column=2;//第一列表示等价券额度，第二列表示等价券的最低消费
 	   private static final int column2=3;//第三列为等价券有效截止日期
 	   
-	    private PromotionViewControllerInterface proController ;//控制器
+	    private GeneralManagerViewControllerInterface proController ;//控制器
 	    private DefaultTableModel tableModel;  
 //        private JTable checkEqualityTable;  
         
@@ -120,7 +120,7 @@ public class PromotionView extends JFrame implements ActionListener{
 	    // End of variables declaration
 	 
 	    
-	    public PromotionView(PromotionViewControllerInterface proContr ){
+	    public PromotionView(GeneralManagerViewControllerInterface proContr ){
 	    	super("总经理操作界面");
 	    	this.proController=proContr;
 	       // proModel.registerObserver(this);	
@@ -1005,6 +1005,7 @@ public class PromotionView extends JFrame implements ActionListener{
 			    		   * 而不能用(String)***强制类型转换
 			    		   * 尼玛！！！！
 			    		   * */
+/*
 			    	  {
 			    		  proPO.setEquivalent(i, 0, Double.parseDouble(setEqualityTable.getValueAt(i, 0).toString().trim()) );
 			    		  proPO.setEquivalent(i, 1,Double.parseDouble(setEqualityTable.getValueAt(i, 1).toString().trim()) );
@@ -1464,3 +1465,4 @@ public class PromotionView extends JFrame implements ActionListener{
 	
 	
 }//大boss
+*/
