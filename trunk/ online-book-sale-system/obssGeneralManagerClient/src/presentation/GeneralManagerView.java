@@ -1338,12 +1338,21 @@ private void checkPresent(){
 			    }
 			    sendEquivalentComboBox.setModel(new DefaultComboBoxModel(e));
 			}
+			else{
+				e=new String[1];
+				e[0]="尚无等价券";
+				 sendEquivalentComboBox.setModel(new DefaultComboBoxModel(e));
+			}
 			if(couponRateList!=null && couponRateList.size() !=0){
 				 c=new String[couponRateList.size()];
 			     for(int  j=0;j<couponRateList.size(); j++){
 				     c[j]=couponRateList.get(j)*10+"折";
 			     }
 			     sendCouponComboBox.setModel(new DefaultComboBoxModel(c));
+			}else{
+				c=new String[1];
+				c[0]="尚无打折券";
+				 sendCouponComboBox.setModel(new DefaultComboBoxModel(c));
 			}
 			
 			
