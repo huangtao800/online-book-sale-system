@@ -13,8 +13,8 @@ import po.ResultMessage;
 import po.UserPO;
 import po.UserRole;
 import presentation.StartView;
-import presentationController.PromotionView.PromotionViewController;
-import presentationController.PromotionView.PromotionViewControllerInterface;
+import presentationController.GeneralManagerView.GeneralManagerViewController;
+import presentationController.GeneralManagerView.GeneralManagerViewControllerInterface;
 
 import bussinessLogic.controller.PromotionController;
 import bussinessLogicService.StartBLService;
@@ -64,7 +64,7 @@ public class StartController implements StartBLService {
 		// TODO Auto-generated method stub
 		GeneralManagerPO generalManagerPO=(GeneralManagerPO) userPO;
 		
-		PromotionViewControllerInterface promotionViewController=new PromotionViewController(generalManagerPO);
+		GeneralManagerViewControllerInterface promotionViewController=new GeneralManagerViewController(generalManagerPO);
 		
 	}
 

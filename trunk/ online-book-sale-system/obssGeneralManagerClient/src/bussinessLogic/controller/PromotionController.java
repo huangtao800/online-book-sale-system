@@ -1,6 +1,5 @@
 package bussinessLogic.controller;
 
-import po.PresentPO;
 import po.PromotionPO;
 import po.ResultMessage;
 import bussinessLogic.domain.Promotion;
