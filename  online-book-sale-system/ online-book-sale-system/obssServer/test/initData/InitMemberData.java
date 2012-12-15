@@ -123,6 +123,7 @@ public class InitMemberData {
 			
 			outputStream.close();
 			objoutput.close();
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
