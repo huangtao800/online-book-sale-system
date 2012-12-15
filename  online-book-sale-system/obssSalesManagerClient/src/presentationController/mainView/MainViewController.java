@@ -25,7 +25,7 @@ public class MainViewController implements MainViewControllerInterface{
     ArrayList<Present_Equivalent> present_EquivalentList;
     ArrayList<Present_Coupon> present_CouponList;
     
-    private PresentBLService presenController=PresentController.getInstance();
+    private PresentBLService presentController=PresentController.getInstance();
     private BookBLService bookController=BookController.getInstance();
     private SalesManagerService salesManagerController=SalesManagerController.getInstance();
    
@@ -41,17 +41,17 @@ public class MainViewController implements MainViewControllerInterface{
     
 //从数据层获取礼券赠送信息列表
     public ArrayList<Present_Equivalent> getPresent_EquivalentList(){
-    	this.present_EquivalentList=presenController.getPresent_EquivalentList();
+    	this.present_EquivalentList=presentController.getPresent_EquivalentList();
     	return present_EquivalentList;
     }
     public ArrayList<Present_Coupon> getPresent_CouponList(){
-    	this.present_CouponList=presenController.getPresent_CouponList();
+    	this.present_CouponList=presentController.getPresent_CouponList();
     	return present_CouponList;
     }
 
 //礼券总送命令
     public ResultMessage sendPresent(){
-    	return  presenController.sendPresent();
+    	return  presentController.sendPresent();
     }
     
 //添加图书

@@ -3,14 +3,9 @@ package bussinessLogic.domain;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import com.sun.org.apache.regexp.internal.recompile;
-import bussinessLogicService.PresentBLService;
-import po.MemberPO;
 import po.Present_Coupon;
 import po.Present_Equivalent;
 import po.ResultMessage;
-import databaseService.DatabaseService;
-import databaseService.member.MemberDatabaseService;
 import databaseService.present.PresentDatabaseService;
 
 public class Present {
