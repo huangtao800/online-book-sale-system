@@ -47,10 +47,22 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		// TODO Auto-generated method stub
 		UserPO result=null;
 		
-		ArrayList<UserPO> userList=readFileByRole(userRole);
+		ArrayList<UserPO> userList=UserDatabase.getInstance().readFileByRole(userRole);
 		result=searchUser(userName, password, userList);
 				
 		return result;
+	}
+	
+	private int getIsExistIndex(UserPO userPO ,ArrayList<UserPO> arrayList){
+	    ArrayList<UserPO> bookList = UserDatabase.getInstance().readFileByRole(userPO.getUserRole());
+        int index = -1;
+        for(int i=0;i<arrayList.size();i++){
+        	if(userPO.getUserID().equals(arrayList.get(i).getUserID())){
+        		index = i;
+        	}
+        }
+        
+        return index;
 	}
 	
 	
@@ -101,18 +113,12 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 	public ResultMessage insert(PO po) throws RemoteException {
 		UserPO userPO = (UserPO)po;
 		UserRole userRole = userPO.getUserRole();
-		ArrayList<UserPO> userList=readFileByRole(userRole);
+		ArrayList<UserPO> userList=UserDatabase.getInstance().readFileByRole(userRole);
 		
-		UserPO tempPO = isExisit(userPO.getUserName(), userPO.getUserPassword(), userRole);
-		if(tempPO!=null){
-			userList.add(userPO);
-			writeFileByRole(userList, userRole);
-			return ResultMessage.SUCCEED;
-		}else{
-			return ResultMessage.EXIST;
-		}
+	    userList.add(userPO);
+		return UserDatabase.getInstance().writeFileByRole(userList, userRole);
 		
-	}
+    }
 	
 	public ResultMessage changePassword(String name,String password,UserRole userRole)throws RemoteException{
 		return ResultMessage.SUCCEED;
@@ -122,40 +128,35 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 	public ResultMessage delete(PO po) throws RemoteException {
 		UserPO userPO = (UserPO)po;
 		UserRole userRole = userPO.getUserRole();
-		ArrayList<UserPO> userList=readFileByRole(userRole);
+		ArrayList<UserPO> userList=UserDatabase.getInstance().readFileByRole(userRole);
+		int index = UserDatabase.getInstance().getIsExistIndex(userPO, userList);
+		userList.remove(index);
+        return UserDatabase.getInstance().writeFileByRole(userList, userRole);
 		
-		UserPO tempPO = searchUser(userPO.getUserName(), userPO.getUserPassword(), userList);
-		if(tempPO!=null){
-			userList.remove(userPO);
-			writeFileByRole(userList, userRole);
-			return ResultMessage.SUCCEED;
-		}else{
-			return ResultMessage.FAILED;
-		}
 	}
 
 	@Override
 	//修改用户信息
 	public ResultMessage update(PO po) throws RemoteException {
-		UserPO userPO = (UserPO)po;
-		UserRole userRole = userPO.getUserRole();
-		ArrayList<UserPO> userList = readFileByRole(userRole);
-		
-		UserPO tempPO = searchUser(userPO.getUserName(), userPO.getUserPassword(), userList);
-		if(tempPO!=null){
+		return ResultMessage.SUCCEED;
+	}
+	
+	public ResultMessage modify(UserPO beforeUserPO,UserPO afterUserPO){
+		ArrayList<UserPO> userList = UserDatabase.getInstance().readFileByRole(beforeUserPO.getUserRole());
+		if(beforeUserPO!=null){
 			//用户ID和用户类型不可修改，只有用户密码和用户名可以修改
-			userList.remove(tempPO);
-			userList.add(userPO);
-			writeFileByRole(userList, userRole);
-			return ResultMessage.SUCCEED;
+			int index = UserDatabase.getInstance().getIsExistIndex(beforeUserPO, userList);
+			userList.remove(index);
+			userList.add(afterUserPO);
+			return UserDatabase.getInstance().writeFileByRole(userList, afterUserPO.getUserRole());
 		}else{
 			return ResultMessage.FAILED;
 		}
 	
 	}
 	
-	public UserPO findUserThroughName(String name,UserRole userRole) {
-		ArrayList<UserPO> userList = readFileByRole(userRole);
+	public UserPO findUserThroughName(String name,UserRole userRole) throws RemoteException{
+		ArrayList<UserPO> userList = UserDatabase.getInstance().readFileByRole(userRole);
 		UserPO userPO = null;
 		for(int i=0;i<userList.size();i++){
 			if(userList.get(i).getUserName().equals(name)){
@@ -165,44 +166,30 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		return userPO;
 	}
 	
-	public ArrayList<UserPO> getAllUser() throws RemoteException{
-		ArrayList<UserPO> userList=null;
-		FileInputStream	inputStream;
-		ObjectInputStream objInput;
-		
-		try {
-		    inputStream=new FileInputStream("member.ser");
-		    objInput=new ObjectInputStream(inputStream);	
-		    ArrayList<UserPO> member=(ArrayList<UserPO>)objInput.readObject();
-		   
-		    inputStream=new FileInputStream("administrator.ser");
-		    objInput=new ObjectInputStream(inputStream);	
-		    ArrayList<UserPO> administrator=(ArrayList<UserPO>)objInput.readObject();
-		    
-		    inputStream=new FileInputStream("generalManager.ser");
-		    objInput=new ObjectInputStream(inputStream);	
-		    ArrayList<UserPO> generalManager=(ArrayList<UserPO>)objInput.readObject();
-		    
-		    inputStream=new FileInputStream("salesManager.ser");
-		    objInput=new ObjectInputStream(inputStream);	
-		    ArrayList<UserPO> salesManager=(ArrayList<UserPO>)objInput.readObject();
-		    
-		    userList.addAll(member);
-		    userList.addAll(administrator);
-		    userList.addAll(generalManager);
-		    userList.addAll(salesManager);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
+	private UserPO findUserThroughID(String id,UserRole userRole)throws RemoteException{
+		ArrayList<UserPO> userList = UserDatabase.getInstance().readFileByRole(userRole);
+		UserPO userPO = null;
+		for(int i=0;i<userList.size();i++){
+			if(userList.get(i).getUserID().equals(id)){
+				userPO = userList.get(i);
+			}
 		}
-		
-		return userList;
+		return userPO;
 	}
 	
-	private void writeFileByRole(ArrayList<UserPO> arrayList,UserRole userRole){
+	@SuppressWarnings("null")
+	public ArrayList<UserPO> getAllUser() throws RemoteException{
+		ArrayList<UserPO> userList = UserDatabase.getInstance().readFileByRole(UserRole.Administrator);
+		userList.addAll(UserDatabase.getInstance().readFileByRole(UserRole.SalesManager));
+		userList.addAll(UserDatabase.getInstance().readFileByRole(UserRole.Member));
+		userList.addAll(UserDatabase.getInstance().readFileByRole(UserRole.GeneralManager));
+		return userList;
+	
+	}
+	
+	private ResultMessage writeFileByRole(ArrayList<UserPO> arrayList,UserRole userRole){
 		FileOutputStream fileOutputStream;
-		ArrayList<UserPO> userList=null;
-		
+	
 		try {
 			if(userRole==UserRole.Member){
 				fileOutputStream=new FileOutputStream("member.ser");
@@ -219,9 +206,11 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 			
 			fileOutputStream.close();
 			objectOutputStream.close();
+			return ResultMessage.SUCCEED;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+			return ResultMessage.FAILED;
 		}
 		
 	}
