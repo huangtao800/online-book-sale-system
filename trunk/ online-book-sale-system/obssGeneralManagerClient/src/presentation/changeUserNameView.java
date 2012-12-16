@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import po.GeneralManagerPO;
 import po.ResultMessage;
+import po.UserPO;
 import presentationController.changeUserNameView.changeUserNameControllerInterface;
 
 public class changeUserNameView extends JFrame implements ActionListener{
@@ -122,9 +123,9 @@ public class changeUserNameView extends JFrame implements ActionListener{
 	    		if(newUserNameTextField.getText().equals("")){
 	    			JOptionPane.showMessageDialog(null, "新用户名不能为空！");
 	    		}else{
-	    			
-	    			if(  controller.changeUser(newUserNameTextField.getText(), userpo.getUserID(), 
-	    					                          userpo.getUserPassword(), userpo.getUserRole()) 
+	    			UserPO newuserpo=new UserPO(userpo.getUserID(),newUserNameTextField.getText(),
+	    					userpo.getUserPassword(),userpo.getUserRole());
+	    			if(  controller.changeUser(userpo,newuserpo) 
 	    			     ==ResultMessage.SUCCEED)
 	    			{
 	    				userpo.setUserName(newUserNameTextField.getText());
