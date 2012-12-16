@@ -22,6 +22,8 @@ import po.PromotionPO;
 import po.ResultMessage;
 import po.VIPRank;
 import presentationController.GeneralManagerView.GeneralManagerViewControllerInterface;
+import presentationController.changePasswordView.changePasswordController;
+import presentationController.changePasswordView.changePasswordControllerInterface;
 import presentationController.changeUserNameView.changeUserNameController;
 import presentationController.changeUserNameView.changeUserNameControllerInterface;
 
@@ -887,7 +889,7 @@ public class GeneralManagerView extends JFrame implements ActionListener {
     	}
     	//修改用户密码
     	else if(event.getSource()==changeUserPasswordButton1){
-    		
+    		changePasswordControllerInterface controller=new changePasswordController(userpo);
     	}
     	//退出
     	else if(event.getSource()== exitButton){
@@ -960,7 +962,21 @@ public class GeneralManagerView extends JFrame implements ActionListener {
 	if(setExchangeRateTextField.getText().equals(""))
 		JOptionPane.showMessageDialog(null, "积分与消费额的兑换比例 为必填项！");
 	else{
-		if( rateValuable() && trueOfsetEquTable() && trueOfCouTable() ){
+		if(! rateValuable()){
+			JOptionPane.showMessageDialog(null, "您设置的'积分与消费额的兑换比例'有误！请先检查！");
+			return;
+		}
+		
+		if(! trueOfsetEquTable()){
+			JOptionPane.showMessageDialog(null, "您设置的'等价券'有误！请先检查！");
+			return;
+		}
+		
+		if( ! trueOfCouTable()){
+			JOptionPane.showMessageDialog(null, "您设置的'打折券'有误！请先检查！");
+			return;
+		}
+	
 			proPO.setExchangeOfScore(Double.parseDouble(setExchangeRateTextField.getText()));
 			
 			if(setEquTableIsEmpty()){
@@ -1000,8 +1016,6 @@ public class GeneralManagerView extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "存储促销手段成功！");
 			else 
 				JOptionPane.showMessageDialog(null, "存储失败！");
-			
-	    }else JOptionPane.showMessageDialog(null, "您设置的数据有误！请先检查！");
 		
 	}	
     }
@@ -1105,7 +1119,7 @@ private void checkPresent(){
                             JOptionPane.showMessageDialog(null,"等价券赠送成功");
 			 		   
 		   }else{
-			   JOptionPane.showMessageDialog(null, "您设置的等价券信息不正确！");
+			   JOptionPane.showMessageDialog(null, "您设置的等价券信息有误！");
 		   }	
 		}  
    }
@@ -1167,7 +1181,7 @@ private void checkPresent(){
                             JOptionPane.showMessageDialog(null,"打折券赠送成功");
 			   
 		   }else{
-			   JOptionPane.showMessageDialog(null, "您设置的打折券信息不正确！");
+			   JOptionPane.showMessageDialog(null, "您设置的打折券信息有误！");
 		   }
    }
    
@@ -1301,7 +1315,7 @@ private void checkPresent(){
 				else if (month==11 && day>30)  return false;
 				else if(month==12 && day>31)   return false;
 
-				return true;	
+				else return true;	
 			}catch(Exception e){
 				return false;
 			}	
@@ -1372,7 +1386,7 @@ private void checkPresent(){
     
     private boolean present_couponSend(VIPRank vipX){
     	Present_Coupon pre_couCoupon=new Present_Coupon(vipX, getRate(), 
-    			     Integer.parseInt(endDateOfCouponTextField.getText()), 
+    			     Integer.parseInt(amountOfCouponTextField.getText()), 
     			     strToCal(endDateOfCouponTextField.getText()));
     	if(proController.writePresent_Coupon(pre_couCoupon)== ResultMessage.SUCCEED){
     		return true;
