@@ -6,6 +6,7 @@ import po.Present_Coupon;
 import po.Present_Equivalent;
 import po.PromotionPO;
 import po.ResultMessage;
+import po.UserPO;
 import po.UserRole;
 
 public interface GeneralManagerViewControllerInterface {
@@ -13,7 +14,7 @@ public interface GeneralManagerViewControllerInterface {
 	public PromotionPO getProPO();
 	public ResultMessage setPromotion_YES(PromotionPO proPO);
 	
-	public ResultMessage  changeUser(String userName, String id,String password,UserRole userRole);
+	public ResultMessage  changeUser(UserPO old,UserPO newpo);
 	public GeneralManagerPO getUserPO();
 	 public ArrayList<Present_Equivalent> getPresent_EquivalentList();
      public ArrayList<Present_Coupon> getPresent_CouponList();

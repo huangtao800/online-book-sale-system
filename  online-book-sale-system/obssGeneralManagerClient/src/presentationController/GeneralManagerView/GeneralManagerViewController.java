@@ -69,9 +69,9 @@ public class GeneralManagerViewController implements GeneralManagerViewControlle
 	 }
 	
 	//修改用户信息
-	public ResultMessage  changeUser(String userName, String id,String password,UserRole userRole){
+	public ResultMessage  changeUser(UserPO old,UserPO newpo){
 //		return generalController.updateUserPO(userPO, role);
-		return userController .changeUser(userName, id, password, userRole);
+		return userController .changeUser(old,newpo);
 	}
 
 	public GeneralManagerPO getUserPO(){
