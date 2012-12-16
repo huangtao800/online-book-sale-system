@@ -203,7 +203,8 @@ public class PayView extends javax.swing.JFrame {
 				if(complete){
 					setVisible(false);
 					String address = jTextField1.getText();
-					salesViewController.pay(address);
+					int index = jComboBox1.getSelectedIndex();
+					salesViewController.pay(address, index - 1);
 				}
 				else
 					JOptionPane.showMessageDialog(null, "请确认优惠类型");
