@@ -16,6 +16,5 @@ public interface UserBLService {
 	public UserPO findUser(String name,UserRole userRole);
     public ArrayList<UserPO> getAllUser();
     
-    public ResultMessage changePassword(String name,String beforePassword,String afterPassword,UserRole userRole);
-
+    public String autoGetUserId(UserRole userRole);
 }
