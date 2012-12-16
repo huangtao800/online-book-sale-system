@@ -8,7 +8,10 @@ import java.io.ObjectOutputStream;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
 import po.BookPO;
 import po.PO;
@@ -152,7 +155,7 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		ArrayList<BookPO> arrayList = BookDatabase.getInstance().readFile();
 		ArrayList<BookPO> bookList = new ArrayList<BookPO>();
 		for(int i=0;i<arrayList.size();i++){
-			if((arrayList.get(i).getBookName().equals(name)||name.equals(""))&&
+			if((arrayList.get(i).getBookName().contains(name)||name.equals(""))&&
 			   (arrayList.get(i).getAuthor().equals(author)||author.equals(""))&&
 			   (arrayList.get(i).getPress().equals(press)||press.equals(""))&&
 			   (arrayList.get(i).getPublishDate().equals(publishDate)||publishDate.equals(""))){
@@ -176,8 +179,8 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		return bookList;
 	}
 	
-	
-	private ArrayList<BookPO> readFile(){
+	@Override
+	public ArrayList<BookPO> readFile(){
 		FileInputStream inputStream;
 		ArrayList<BookPO> bookList = new ArrayList<BookPO>();
 		
@@ -208,7 +211,7 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		bookTypeList = BookDatabase.getInstance().sortBookType(bookTypeList);
 		return bookTypeList;
 	}
 	
@@ -234,17 +237,80 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		return writeBookType(arrayList);
 	}
 		
-	//未判断原类型是否存在
+	
 	public ResultMessage changeBookType(String beforeType,String afterType)throws RemoteException{
-		ArrayList<String> arrayList = getBookType();
-		for(int i=0;i<arrayList.size();i++){
-			if(arrayList.get(i).equals(beforeType)){
-				arrayList.remove(i);
-				arrayList.add(afterType);
-			}
-		}
+		ArrayList<String> typeList = BookDatabase.getInstance().getBookType();
+		ArrayList<BookPO> bookList = BookDatabase.getInstance().readFile();
 		
-		return writeBookType(arrayList);
+		int index = BookDatabase.getInstance().isBookTypeExist(typeList,afterType);
+		//存在afterType图书类型
+		if(index!=-1){
+		   typeList.remove(BookDatabase.getInstance().getBookTypeIndex(typeList, beforeType));
+		   for(int i=0;i<bookList.size();i++){
+			   if(bookList.get(i).getType().equals(beforeType)){
+				   bookList.get(i).setType(afterType);
+			   }
+		   }
+		   BookDatabase.getInstance().writeFile(bookList);
+		   return BookDatabase.getInstance().writeBookType(typeList);
+		   
+		   
+		}else{     //不存在afterType类型的图书
+			typeList.add(afterType);
+			return BookDatabase.getInstance().writeBookType(typeList);
+		}
+	}
+	
+	//判断原类型是否存在
+	private int isBookTypeExist(ArrayList<String> typeList,String afterType){
+		int index = -1;
+        for(int i=0;i<typeList.size();i++){
+        	if(typeList.get(i).equals(afterType)){
+        		index = i;
+        	}
+        }
+        return index;
+	}
+	
+	private int getBookTypeIndex(ArrayList<String> typeList,String Type){
+		int index = 0;
+        for(int i=0;i<typeList.size();i++){
+        	if(typeList.get(i).equals(Type)){
+        		index = i;
+        	}
+        }
+        return index;
+	}
+	
+	//实现图书类型的排序
+	private ArrayList<String> sortBookType(ArrayList<String> arrayList){
+		 ArrayList<String> sortList = new ArrayList<String>();
+		 int index = -1;
+		 for(int i=0;i<arrayList.size();i++){
+			 if(arrayList.get(i).equals("其他")){
+				 index = i;
+			 }
+		 }
+		 //有其他这一类型
+		 if(!(index==-1)){   
+			 arrayList.remove(index);
+		 }
+		 
+		 String[] arr = new String[arrayList.size()];
+		 for(int i=0;i<arrayList.size();i++){
+			 arr[i]=arrayList.get(i);
+		 }
+		 Comparator cmp = Collator.getInstance(java.util.Locale.CHINA);
+         Arrays.sort(arr, cmp);
+		 for(int i=0;i<arr.length;i++){
+			 sortList.add(arr[i]);
+		 }
+		 //有其他这一类型
+		 if(!(index==-1)){   
+			 sortList.add("其他");
+		 }
+		 
+		 return sortList;
 	}
 	
 }
