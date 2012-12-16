@@ -397,20 +397,19 @@ public class InitDatabase extends UnicastRemoteObject implements
 			return null;		//用户名已被使用
 		}
 		
-		int newId=generateNewID();
-		String id=""+newId;
-		MemberPO newMemberPO=new MemberPO(id, name, password,address);
+		String newId=generateNewID();
+		MemberPO newMemberPO=new MemberPO(newId, name, password,address);
 		memberPOList.add(newMemberPO);
 		
 		saveMember();
 		return newMemberPO;
 	}
 	
-	private int generateNewID(){
+	private String generateNewID(){
 		String lastID=memberPOList.get(memberPOList.size()-1).getUserID();
 		String idString=lastID.substring(1);
 		int oldId=Integer.parseInt(idString);
-		int newID=oldId+1;
+		String newID="m"+(oldId+1);
 		return newID;
 	}
 	
