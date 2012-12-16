@@ -146,6 +146,10 @@ public class MemberDatabase extends UnicastRemoteObject implements
 		OrderPO orderPO=memberPO.getOrderList().get(orderIndex);
 		orderPO.setOrderState(orderState);
 		
+		if(orderState==OrderState.SIGNED){
+			return addPoint(memberID, orderPO.getTotalPrice());
+		}
+		
 		return update(memberPO);
 	}
 	
