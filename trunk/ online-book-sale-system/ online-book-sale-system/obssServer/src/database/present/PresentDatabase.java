@@ -12,7 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
 import po.CouponPO;
 import po.EquivalentPO;
 import po.IdPO;
@@ -21,15 +20,12 @@ import po.PO;
 import po.Present_Coupon;
 import po.Present_Equivalent;
 import po.ResultMessage;
-import po.UserPO;
-import po.UserRole;
 import po.VIPRank;
 import database.init.InitDatabase;
-import database.member.MemberDatabase;
-import databaseService.DatabaseService;
 import databaseService.init.InitDatabaseService;
 import databaseService.present.PresentDatabaseService;
 
+@SuppressWarnings("serial")
 public class PresentDatabase extends UnicastRemoteObject implements  PresentDatabaseService{
 	private static final String Present_equivalent_Ser="present_equivalent.ser";
 	private static final String Present_coupon_Ser="present_coupon.ser";
@@ -38,7 +34,7 @@ public class PresentDatabase extends UnicastRemoteObject implements  PresentData
 	private static ArrayList<Present_Coupon> present_couponList=new ArrayList<Present_Coupon>();
 	private static ArrayList<MemberPO> memberPOList=new ArrayList<MemberPO>() ;
 	private static final String IdPO_ser="idPO.ser";
-	private static  IdPO idPO;
+	private static  IdPO idPO=new IdPO(0);
 	private static  long presentID;
 	private InitDatabaseService initDatabase;
 	
