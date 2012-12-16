@@ -13,8 +13,7 @@ import po.UserPO;
 import po.UserRole;
 import presentation.RegistryView;
 import presentation.StartView;
-import presentationController.Admin.AdminOverviewController;
-import presentationController.Admin.AdminOverviewService;
+
 import presentationController.Member.MemberViewController;
 import presentationController.Member.MemberViewService;
 import bussinessLogic.controller.UserController;
@@ -73,14 +72,8 @@ public class StartController implements StartBLService {
 	@Override
 	public void enterMainView(UserRole role,UserPO userPO) {
 		// TODO Auto-generated method stub
-		if (role == UserRole.Member) {
 			MemberPO memberPO=(MemberPO) userPO;
 			MemberViewService memberViewController=MemberViewController.getInstance(memberPO);
-		} else if (role == UserRole.SalesManager) {
-			
-		}else if(role==UserRole.Administrator){
-			AdminOverviewService adminOverviewController = new AdminOverviewController();
-		}
 	}
 
 	@Override
