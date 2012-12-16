@@ -86,7 +86,7 @@ public class User {
 	
 	public ResultMessage changePassword(String name,String beforePassword,String afterPassword,UserRole userRole){
 		try{
-		    return userDatabase.changePassword(name,  afterPassword, userRole);
+		    return userDatabase.changePassword(name, beforePassword, afterPassword, userRole);
 		     
 		}catch (RemoteException e) {
 			e.printStackTrace();
