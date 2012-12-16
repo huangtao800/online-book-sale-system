@@ -100,10 +100,18 @@ public class SalesController implements SalesBLService{
 		return specialPrice;
 	}
 	
-	public OrderVO pay(double price,String address){
+	public OrderVO pay(double price,String address,int index){
 		ArrayList<LineItemPO> cartList = getCartList();
 		OrderPO orderPO = sales.creareOrderPO(cartList, memberController.getMemberID(), price, address);
-	//	OrderPO orderPO = new OrderPO(cartList, memberController.getMemberID(), price, address);
+		PO special = getSpecialList().get(index);
+		if(special instanceof EquivalentPO){
+			EquivalentPO equivalentPO = (EquivalentPO)special;
+			memberController.deleteEquivalent(equivalentPO);
+		}
+		else if(special instanceof CouponPO){
+			CouponPO couponPO = (CouponPO)special;
+			memberController.deleteCouponPO(couponPO);
+		}	
 		memberController.addOrder(orderPO);
 		sales.addOrder(orderPO);
 		OrderVO orderVO = new OrderVO(orderPO);
