@@ -52,10 +52,8 @@ public class UserController implements UserBLService, Serializable {
 		return user.getAllUser();
 	}
 	
-	 public ResultMessage changePassword(String name,String beforePassword,String afterPassword,UserRole userRole){
-		 return user.changePassword(name, beforePassword, afterPassword, userRole);
+	 public String autoGetUserId(UserRole userRole){
+		 return user.autoGetUserId(userRole);
 	 }
-
-	
 
 }
