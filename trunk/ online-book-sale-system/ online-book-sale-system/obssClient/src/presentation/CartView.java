@@ -105,8 +105,7 @@ public class CartView extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>
-	
+    }// </editor-fold>    
 	
 //刷新购物车列表
 	private void freshTableModel(JTable table){
@@ -202,8 +201,12 @@ public class CartView extends javax.swing.JFrame {
 		});
 		jButton3.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
-				salesViewController.initPayFrame();
+				if(salesViewController.getCartList().size() == 0)
+					JOptionPane.showMessageDialog(null, "未购买商品");
+				else{
+				    setVisible(false);
+				    salesViewController.initPayFrame();
+				}
 			}
 		});
 		jButton4.addMouseListener(new MouseAdapter() {
@@ -230,7 +233,7 @@ public class CartView extends javax.swing.JFrame {
 	}
 
 	public void refreshTotalPrice(double totalPrice) {
-		jLabel2.setText("商品总价：" + totalPrice);
+		jLabel2.setText("商品总价：" + totalPrice + "元");
 		setVisible(true);	
 	}
     
