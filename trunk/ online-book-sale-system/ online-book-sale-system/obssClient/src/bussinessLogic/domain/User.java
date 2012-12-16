@@ -84,14 +84,17 @@ public class User {
 		
 	}
 	
-	public ResultMessage changePassword(String name,String beforePassword,String afterPassword,UserRole userRole){
+	
+	
+	public String autoGetUserId(UserRole userRole) {
 		try{
-		    return userDatabase.changePassword(name, beforePassword, afterPassword, userRole);
+	       return userDatabase.autoGetUserId(userRole);
 		     
 		}catch (RemoteException e) {
 			e.printStackTrace();
-			return ResultMessage.FAILED;
+			return null;
 		}
+		
 		
 	}
 
