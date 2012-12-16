@@ -92,6 +92,8 @@ public class MemberView extends JFrame {
 	private JButton enterCartButton;
 	private JButton freshOrderButton;
 	private JButton orderDetailButton;
+	private JButton exitButton;
+	private JButton button;
 
 	/**
 	 * Launch the application.
@@ -431,7 +433,7 @@ public class MemberView extends JFrame {
 		);
 		jPanel6.setLayout(gl_jPanel6);
 
-		jTabbedPane1.addTab("   首页   ", jPanel6);
+		jTabbedPane1.addTab("       \u9996\u9875       ", jPanel6);
 
 		jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(
 				javax.swing.BorderFactory.createEtchedBorder(), "我的信息"));
@@ -633,7 +635,7 @@ public class MemberView extends JFrame {
 				jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE,
 				javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
-		jTabbedPane1.addTab("  我的信息  ", jPanel1);
+		jTabbedPane1.addTab("      \u6211\u7684\u4FE1\u606F      ", jPanel1);
 
 		favorityTable.setModel(new DefaultTableModel(new Object[][] {
 				{ null, null, null, null, null },
@@ -721,7 +723,7 @@ public class MemberView extends JFrame {
 		);
 		jPanel3.setLayout(gl_jPanel3);
 
-		jTabbedPane1.addTab("  收藏夹  ", jPanel3);
+		jTabbedPane1.addTab("      \u6536\u85CF\u5939      ", jPanel3);
 
 		jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(
 				javax.swing.BorderFactory.createEtchedBorder(), "  我的等价券  "));
@@ -822,12 +824,12 @@ public class MemberView extends JFrame {
 				jPanel4);
 		gl_jPanel4.setHorizontalGroup(
 			gl_jPanel4.createParallelGroup(Alignment.LEADING)
-				.addComponent(jPanel9, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
-				.addComponent(jPanel10, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
-				.addGroup(gl_jPanel4.createSequentialGroup()
-					.addGap(306)
+				.addComponent(jPanel9, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
+				.addComponent(jPanel10, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, gl_jPanel4.createSequentialGroup()
+					.addContainerGap(367, Short.MAX_VALUE)
 					.addComponent(freshButton, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(383, Short.MAX_VALUE))
+					.addGap(350))
 		);
 		gl_jPanel4.setVerticalGroup(
 			gl_jPanel4.createParallelGroup(Alignment.LEADING)
@@ -837,11 +839,11 @@ public class MemberView extends JFrame {
 					.addComponent(jPanel10, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(freshButton, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(25, Short.MAX_VALUE))
+					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		jPanel4.setLayout(gl_jPanel4);
 
-		jTabbedPane1.addTab("  我的礼券  ", jPanel4);
+		jTabbedPane1.addTab("      \u6211\u7684\u793C\u5238      ", jPanel4);
 
 		orderTable.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -892,37 +894,62 @@ public class MemberView extends JFrame {
 				jPanel5);
 		gl_jPanel5.setHorizontalGroup(
 			gl_jPanel5.createParallelGroup(Alignment.LEADING)
-				.addComponent(jScrollPane3, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
+				.addComponent(jScrollPane3, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
 				.addGroup(gl_jPanel5.createSequentialGroup()
-					.addGap(246)
+					.addGap(247)
 					.addComponent(freshOrderButton, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-					.addGap(65)
+					.addGap(52)
 					.addComponent(orderDetailButton, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(297, Short.MAX_VALUE))
+					.addContainerGap(327, Short.MAX_VALUE))
 		);
 		gl_jPanel5.setVerticalGroup(
 			gl_jPanel5.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_jPanel5.createSequentialGroup()
 					.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addGroup(gl_jPanel5.createParallelGroup(Alignment.LEADING, false)
+					.addGap(44)
+					.addGroup(gl_jPanel5.createParallelGroup(Alignment.TRAILING, false)
 						.addComponent(orderDetailButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(freshOrderButton, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
-					.addContainerGap(37, Short.MAX_VALUE))
+					.addGap(45))
 		);
 		jPanel5.setLayout(gl_jPanel5);
 
-		jTabbedPane1.addTab(" 我的购买记录 ", jPanel5);
+		jTabbedPane1.addTab("     \u6211\u7684\u8D2D\u4E70\u8BB0\u5F55     ", jPanel5);
+		
+		exitButton = new JButton("\u9000\u51FA");
+		exitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		exitButton.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		
+		button = new JButton("\u8FDB\u5165\u8D2D\u7269\u8F66");
+		button.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
+		layout.setHorizontalGroup(
+			layout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap(552, Short.MAX_VALUE)
+					.addComponent(button, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+					.addGap(39)
+					.addComponent(exitButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+					.addGap(60))
+				.addComponent(jTabbedPane1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
+		);
+		layout.setVerticalGroup(
+			layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(button, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(exitButton, GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+					.addGap(13)
+					.addComponent(jTabbedPane1, GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE))
+		);
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addComponent(
-				jTabbedPane1));
-		layout.setVerticalGroup(layout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addComponent(
-				jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING));
 
 		pack();
 	}
