@@ -33,8 +33,8 @@ public class User {
 	}
 	
 	//系统管理员删除用户
-	public ResultMessage deleteUser(String name,UserRole userRole) {
-		UserPO userPO = user.findUserThroughName(name,userRole);
+	public ResultMessage deleteUser(UserPO userPO,UserRole userRole) {
+		
 		try{
 			return userDatabase.delete(userPO);
 		}catch (RemoteException e) {
@@ -45,10 +45,10 @@ public class User {
 	}
 	
 	//系统管理员 修改用户信息
-	public ResultMessage changeUser(UserPO u,String name){
-        UserPO userPO = user.findUserThroughName(name,u.getUserRole());
+	public ResultMessage changeUser(UserPO beforeUserPO,UserPO afterUserPO){
+       
         try{
-			return userDatabase.update(userPO);
+			return userDatabase.modify(beforeUserPO, afterUserPO);
 		}catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.FAILED;
@@ -68,6 +68,31 @@ public class User {
 		}
 		
 		return userPO;
+	}
+	
+	
+	
+	public ArrayList<UserPO> getAllUser(){
+		ArrayList<UserPO> userList = new ArrayList<>();
+		try{
+		     userList = userDatabase.getAllUser();
+		     
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return userList;
+		
+	}
+	
+	public ResultMessage changePassword(String name,String beforePassword,String afterPassword,UserRole userRole){
+		try{
+		    return userDatabase.changePassword(name, beforePassword, afterPassword, userRole);
+		     
+		}catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+		
 	}
 
 }
