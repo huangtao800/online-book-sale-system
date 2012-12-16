@@ -22,6 +22,7 @@ import po.Present_Coupon;
 import po.Present_Equivalent;
 import po.ResultMessage;
 import po.SalesManagerPO;
+import po.UserPO;
 import po.UserRole;
 import presentationController.CheckAllBook.CheckAllBookController;
 import presentationController.CheckAllBook.CheckAllBookControllerInterface;
@@ -33,6 +34,7 @@ import presentationController.mainView.MainViewController;
 import presentationController.mainView.MainViewControllerInterface;
 
 import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+import com.sun.org.apache.xml.internal.security.utils.IgnoreAllErrorHandler;
 import com.sun.org.apache.xml.internal.serializer.utils.StringToIntTable;
 
 public class MainView extends JFrame implements ActionListener{
@@ -1013,8 +1015,13 @@ public class MainView extends JFrame implements ActionListener{
 	      
 	     //修改用户名
 			else if(event.getSource()== changeUserNameButton){
-				changeUserNameControllerInterface controller=new changeUserNameController(userpo) ;
-                 userNameLabel.setText(userpo.getUserName());
+				changeUserNameControllerInterface controller=new changeUserNameController(userpo,mainViewController) ;
+//                userpo=controller.getNewUserPO();
+//                if(userpo==null){
+//                	System.out.println("Fall");
+//                }
+//                
+//				userNameLabel.setText(userpo.getUserName());
 			}
 	
 	//修改用户密码
@@ -1255,6 +1262,11 @@ public class MainView extends JFrame implements ActionListener{
 		}
 		   
 	   }
+
+	public void freshName(String name) {
+		// TODO Auto-generated method stub
+		userNameLabel.setText(name);
+	}
 	   
 	   
 }

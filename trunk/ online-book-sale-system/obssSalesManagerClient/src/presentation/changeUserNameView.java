@@ -23,6 +23,7 @@ public class changeUserNameView extends JFrame implements ActionListener{
 	    private javax.swing.JPanel jPanel1;
 	    private javax.swing.JTextField newUserNameTextField;
 	    private javax.swing.JLabel oldUserNameLabel;
+	    private UserPO newuserpo;
 	    
 	    public changeUserNameView(changeUserNameControllerInterface controller,SalesManagerPO userpo){
 	    	this.controller=controller;
@@ -115,7 +116,7 @@ public class changeUserNameView extends JFrame implements ActionListener{
 	        
 	        this.setVisible(true);
 	        oldUserNameLabel.setText(userpo.getUserName());
-	        this.setLocation(200, 300);
+	        this.setLocation(300, 200);
 	        
 	        changeUserNameButton.addActionListener(this);
 	        cancelButton.addActionListener(this);
@@ -125,8 +126,9 @@ public class changeUserNameView extends JFrame implements ActionListener{
 	    	if(event.getSource()==changeUserNameButton ){
 	    		if(newUserNameTextField.getText().equals("")){
 	    			JOptionPane.showMessageDialog(null, "新用户名不能为空！");
+	    			newuserpo=userpo;
 	    		}else{
-	    			UserPO newuserpo=new UserPO(userpo.getUserID(),newUserNameTextField.getText(),
+	    			newuserpo=new UserPO(userpo.getUserID(),newUserNameTextField.getText(),
 	    					userpo.getUserPassword(),userpo.getUserRole());//String id,String name,String password,UserRole role
 	    			
 	    			if(  controller.changeUser(userpo,newuserpo)
@@ -143,5 +145,8 @@ public class changeUserNameView extends JFrame implements ActionListener{
 	    	else if(event.getSource()==cancelButton){
 	    		dispose();
 	    	}
+	    }
+	    public UserPO getNewUserPO(){
+	    	return newuserpo;
 	    }
 }
