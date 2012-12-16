@@ -32,13 +32,13 @@ public class AdminView extends javax.swing.JFrame {
 	   
        jTabbedPane1 = new javax.swing.JTabbedPane();
        jPanel1 = new javax.swing.JPanel();
-       jLabel1 = new javax.swing.JLabel();
+     
        jLabel2 = new javax.swing.JLabel();
        jLabel3 = new javax.swing.JLabel();
        jLabel4 = new javax.swing.JLabel();
        jLabel5 = new javax.swing.JLabel();
        jComboBox1 = new javax.swing.JComboBox();
-       jTextField1 = new javax.swing.JTextField();
+    
        jTextField2 = new javax.swing.JTextField();
        jTextField3 = new javax.swing.JTextField();
        jTextField4 = new javax.swing.JTextField();
@@ -83,7 +83,7 @@ public class AdminView extends javax.swing.JFrame {
 
 //       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-       jLabel1.setText("用户ID：");
+   
 
        jLabel2.setText("用户姓名：");
 
@@ -95,16 +95,15 @@ public class AdminView extends javax.swing.JFrame {
 
        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new UserRole[] { UserRole.Member, UserRole.GeneralManager, UserRole.SalesManager, UserRole.Administrator }));
 
-       jTextField1.setText("");
        jTextField2.setText("");
        jTextField3.setText("");
        jTextField4.setText("");
-
+       
        jButton1.setText("确认添加");
        jButton1.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
         	  UserRole role = (UserRole) jComboBox1.getSelectedItem();
-              String id = jTextField1.getText().trim();
+              String id = adminViewController.autoGetUserId(role);
               String name = jTextField2.getText().trim();
               String password1 = jTextField3.getText().trim();
               String password2 = jTextField4.getText().trim();
@@ -128,7 +127,7 @@ public class AdminView extends javax.swing.JFrame {
        jButton2.setText("清空");
        jButton2.addActionListener(new java.awt.event.ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
-        	   jTextField1.setText("");
+        	  
                jTextField2.setText("");
                jTextField3.setText("");
                jTextField4.setText("");
@@ -143,14 +142,14 @@ public class AdminView extends javax.swing.JFrame {
                .addGap(52, 52, 52)
                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                    .addComponent(jLabel5)
-                   .addComponent(jLabel1)
+                 
                    .addComponent(jLabel2)
                    .addComponent(jLabel3)
                    .addComponent(jLabel4)
                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                   .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                 
                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,10 +164,6 @@ public class AdminView extends javax.swing.JFrame {
                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                    .addComponent(jLabel5)
                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGap(24, 24, 24)
-               .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                   .addComponent(jLabel1)
-                   .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGap(24, 24, 24)
                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                    .addComponent(jLabel2)
@@ -536,7 +531,7 @@ public class AdminView extends javax.swing.JFrame {
    private javax.swing.JComboBox jComboBox1;
    private javax.swing.JComboBox jComboBox2;
    private javax.swing.JComboBox jComboBox3;
-   private javax.swing.JLabel jLabel1;
+ 
    private javax.swing.JLabel jLabel10;
    private javax.swing.JLabel jLabel11;
    private javax.swing.JLabel jLabel12;
@@ -559,7 +554,7 @@ public class AdminView extends javax.swing.JFrame {
    private javax.swing.JSeparator jSeparator1;
    private javax.swing.JSeparator jSeparator2;
    private javax.swing.JTabbedPane jTabbedPane1;
-   private javax.swing.JTextField jTextField1;
+  
    private javax.swing.JTextField jTextField10;
    private javax.swing.JTextField jTextField11;
    private javax.swing.JTextField jTextField12;
