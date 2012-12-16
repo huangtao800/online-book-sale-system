@@ -128,4 +128,10 @@ public class MainViewController implements MainViewControllerInterface{
 		return bookController.changeBookType(type, "ÆäËû");
 	}
 
+	@Override
+	public void freshName(String name) {
+		// TODO Auto-generated method stub
+		mainView.freshName(name);
+	}
+
 }
