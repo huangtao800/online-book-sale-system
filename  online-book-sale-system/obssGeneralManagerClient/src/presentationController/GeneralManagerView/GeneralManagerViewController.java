@@ -78,4 +78,10 @@ public class GeneralManagerViewController implements GeneralManagerViewControlle
 		return generalManagerPO;
 	}
 
+	@Override
+	public void freshName(String userName) {
+		// TODO Auto-generated method stub
+		view.freshName(userName);
+	}
+
 }

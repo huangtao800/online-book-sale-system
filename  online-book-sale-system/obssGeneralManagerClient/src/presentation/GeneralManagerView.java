@@ -842,8 +842,8 @@ public class GeneralManagerView extends JFrame implements ActionListener {
     	}
     	//修改用户名
     	else if(event.getSource()==changeUserNameButton1){
-    		changeUserNameControllerInterface controller=new changeUserNameController(userpo) ;
-            userNameLabel.setText(userpo.getUserName());
+    		changeUserNameControllerInterface controller=new changeUserNameController(userpo,proController) ;
+//            userNameLabel.setText(userpo.getUserName());
     	}
     	//修改用户密码
     	else if(event.getSource()==changeUserPasswordButton1){
@@ -1377,5 +1377,10 @@ private void checkPresent(){
 			return null;
 		}
     }
+
+	public void freshName(String userName) {
+		// TODO Auto-generated method stub
+		userNameLabel.setText(userName);
+	}
 	
 }
