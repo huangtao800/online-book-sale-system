@@ -21,4 +21,5 @@ public interface BookDatabaseService extends DatabaseService{
 	public ArrayList<String> getBookType() throws RemoteException;
 	public ResultMessage addBookType(String type) throws RemoteException;
 	public ResultMessage changeBookType(String beforeType,String afterType)throws RemoteException;
+	public ArrayList<BookPO> readFile() throws RemoteException;
 }
