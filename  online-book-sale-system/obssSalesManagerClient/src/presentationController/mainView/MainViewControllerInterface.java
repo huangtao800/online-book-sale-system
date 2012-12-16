@@ -34,4 +34,6 @@ public interface MainViewControllerInterface {
     public ResultMessage deleteBookType(String type);
   
 	public SalesManagerPO getUserPO();
+	
+	public void freshName(String name);
 }
