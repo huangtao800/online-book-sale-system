@@ -263,7 +263,7 @@ public class MainView extends JFrame implements ActionListener{
 	                .addGap(34, 34, 34))
 	        );
 
-	        mainViewTabbedPane.addTab("       首页       ", homePagePanel);
+	        mainViewTabbedPane.addTab("        首页        ", homePagePanel);
 
 	        checkMemberInforButton.setBackground(new java.awt.Color(0, 255, 255));
 	        checkMemberInforButton.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
@@ -339,7 +339,7 @@ public class MainView extends JFrame implements ActionListener{
 	                .addGap(35, 35, 35))
 	        );
 
-	        mainViewTabbedPane.addTab("    顾客信息查询     ", memberPanel);
+	        mainViewTabbedPane.addTab("    顾客信息查询    ", memberPanel);
 
 	        checkPresentButton.setBackground(new java.awt.Color(0, 153, 153));
 	        checkPresentButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
@@ -350,7 +350,7 @@ public class MainView extends JFrame implements ActionListener{
 	        sendPresentButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        sendPresentButton.setForeground(new java.awt.Color(255, 0, 0));
 	        sendPresentButton.setText("确认赠送");
-	
+
 	        showPresentTextArea.setColumns(20);
 	        showPresentTextArea.setRows(5);
 	        jScrollPane2.setViewportView(showPresentTextArea);
@@ -384,7 +384,7 @@ public class MainView extends JFrame implements ActionListener{
 	                .addGap(56, 56, 56))
 	        );
 
-	        mainViewTabbedPane.addTab("      礼券赠送       ", presentPanel);
+	        mainViewTabbedPane.addTab("      礼券赠送      ", presentPanel);
 
 	        orderTable.setModel(new javax.swing.table.DefaultTableModel(
 	            new Object [][] {
@@ -441,7 +441,7 @@ public class MainView extends JFrame implements ActionListener{
 	        buttonGroup1.add(signedRadioButton);
 	        signedRadioButton.setFont(new java.awt.Font("宋体", 2, 14)); // NOI18N
 	        signedRadioButton.setText("已签收");
-	
+
 	        jLabel7.setFont(new java.awt.Font("宋体", 2, 14)); // NOI18N
 	        jLabel7.setText("订单状态：");
 
@@ -657,7 +657,7 @@ public class MainView extends JFrame implements ActionListener{
 	                        .addGap(41, 41, 41))))
 	        );
 
-	        mainViewTabbedPane.addTab("     图书管理      ", bookPanel);
+	        mainViewTabbedPane.addTab("      图书管理      ", bookPanel);
 
 	        bookTypeList.setModel(new javax.swing.AbstractListModel() {
 	            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -736,11 +736,11 @@ public class MainView extends JFrame implements ActionListener{
 	                .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
 	                .addGap(169, 169, 169)
 	                .addComponent(changeUserNameButton)
-	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
 	                .addComponent(changeUserPasswordButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
 	                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                .addContainerGap())
+	                .addGap(14, 14, 14))
 	        );
 	        jPanel1Layout.setVerticalGroup(
 	            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -849,12 +849,16 @@ public class MainView extends JFrame implements ActionListener{
 //礼券赠送
 	    	else if(event.getSource()==sendPresentButton){	 
 	    		ResultMessage result= mainViewController.sendPresent();
-	    		if(result== ResultMessage.NOTEXIST)
+	    		if(result== ResultMessage.NOTEXIST){
 	    	        JOptionPane.showMessageDialog(null, "总经理未制定礼券 或 礼券已经赠送完毕！");
+	    	        showPresentTextArea.setText("尚无礼券！");
+	    		}
 	    		else if(result ==ResultMessage.OVORTIME){
 	    		   JOptionPane.showMessageDialog(null, "礼券赠送完毕！且已将过期的礼券删除！");
+	    		   showPresentTextArea.setText("礼券赠送完毕！");
 	    		}else if(result== ResultMessage.SUCCEED){
 	    		   JOptionPane.showMessageDialog(null, "礼券赠送完毕！");
+	    		   showPresentTextArea.setText("礼券赠送完毕！");
 	    		}
 	    	}
 	    	
