@@ -919,6 +919,7 @@ public class MainView extends JFrame implements ActionListener{
 		    			bookIDTextField.setText(bookPO.getISBN());
 		    			bookNameTextField.setText(bookPO.getBookName());
 		    			bookPriceTextField.setText(""+bookPO.getPrice());
+		    			bookNumberTextField.setText(""+bookPO.getNumOfBook());
 		    			bookPublishHouseTextField.setText(bookPO.getPress());
 		    			bookPublishYearField.setText(bookPO.getPublishDate());
 		    			JOptionPane.showMessageDialog(null, "系统已显示您要修改的图书信息,请在界面上修改！\n" 

@@ -52,7 +52,7 @@ public class changePassWordView extends JFrame implements ActionListener{
 
 	        changePWButton.setBackground(new java.awt.Color(0, 255, 255));
 	        changePWButton.setFont(new java.awt.Font("方正舒体", 1, 24)); // NOI18N
-	        changePWButton.setText("确认修改");
+	        changePWButton.setText("确定");
 
 	        cancelButton.setBackground(new java.awt.Color(204, 51, 0));
 	        cancelButton.setFont(new java.awt.Font("方正舒体", 1, 24)); // NOI18N
@@ -119,11 +119,13 @@ public class changePassWordView extends JFrame implements ActionListener{
 	        
 	        this.setVisible(true);
 	        this.setLocation(200,300);
+	        changePWButton.addActionListener(this);
+	        cancelButton.addActionListener(this);
 	    }// </editor-fold>
 	    
 	    public void actionPerformed(ActionEvent event){
 	    	if(event.getSource()==changePWButton ){
-	    		if(oldPWTextField.getText().equals("")){
+	    		if(! oldPWTextField.getText().equals("")){
 	    			if( ! oldPWTextField.getText().equals(userpo.getUserPassword())){
 	    				JOptionPane.showMessageDialog(null, "原密码不正确！");
 	    			}else{
@@ -133,7 +135,7 @@ public class changePassWordView extends JFrame implements ActionListener{
 	    					if(newPWagainTextField.getText().equals("")){
 	    						JOptionPane.showMessageDialog(null, "请再次输入新密码！");
 	    					}else{
-	    						if( ! newPWagainTextField.getText().equals(newPWagainTextField.getText())){
+	    						if( ! newPWTextField.getText().equals(newPWagainTextField.getText())){
 	    							JOptionPane.showMessageDialog(null, "请确认两次输入的新密码相同！");
 	    						}else{
 	    							if(controller.changeUser(userpo.getUserName(), userpo.getUserID(),
