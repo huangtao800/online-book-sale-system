@@ -60,4 +60,7 @@ public class AdminViewController implements AdminViewService{
  		return userController.getAllUser();
  	}
      
+ 	public String autoGetUserId(UserRole userRole){
+ 		return userController.autoGetUserId(userRole);
+ 	}
 }
