@@ -4,6 +4,7 @@ import bussinessLogic.controller.UserController;
 import bussinessLogicService.UserBLService;
 import po.ResultMessage;
 import po.SalesManagerPO;
+import po.UserPO;
 import po.UserRole;
 import presentation.changePassWordView;
 import presentation.changeUserNameView;
@@ -18,7 +19,7 @@ public class changePasswordController implements changePasswordControllerInterfa
     	  View=new changePassWordView(this,this.userPO);
       }
 	
-	  public ResultMessage  changeUser(String userName, String id,String password,UserRole userRole){
-		  return userController.changeUser(userName, id, password, userRole);
+	  public ResultMessage  changeUser(UserPO userpo,UserPO newuserpo){
+		  return userController.changeUser(userpo,newuserpo);
 	  }
 }
