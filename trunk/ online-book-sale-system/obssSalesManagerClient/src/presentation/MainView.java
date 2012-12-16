@@ -23,6 +23,8 @@ import po.Present_Equivalent;
 import po.ResultMessage;
 import po.SalesManagerPO;
 import po.UserRole;
+import presentationController.CheckAllBook.CheckAllBookController;
+import presentationController.CheckAllBook.CheckAllBookControllerInterface;
 import presentationController.changePasswordView.changePasswordController;
 import presentationController.changePasswordView.changePasswordControllerInterface;
 import presentationController.changeUserNameView.changeUserNameController;
@@ -56,18 +58,20 @@ public class MainView extends JFrame implements ActionListener{
 	    private javax.swing.ButtonGroup buttonGroup1;
 	    private javax.swing.JButton changeBookButton;
 	    private javax.swing.JButton changeOrderButton;
+	    private javax.swing.JButton changeUserNameButton;
+	    private javax.swing.JButton changeUserPasswordButton;
+	    private javax.swing.JButton checkAllBookButton;
 	    private javax.swing.JButton checkMemberInforButton;
 	    private javax.swing.JButton checkPresentButton;
 	    private javax.swing.JButton confirmChangeBookButton;
 	    private javax.swing.JButton deleteBookButton;
 	    private javax.swing.JRadioButton distributionRadioButton;
+	    private javax.swing.JButton exitButton;
 	    private javax.swing.JPanel homePagePanel;
 	    private javax.swing.JButton jButton1;
 	    private javax.swing.JButton jButton2;
 	    private javax.swing.JButton jButton3;
-	    private javax.swing.JButton changeUserNameButton;
-	    private javax.swing.JButton changeUserPasswordButton;
-	    private javax.swing.JButton exitButton;
+	    private javax.swing.JButton findBookButton;
 	    private javax.swing.JLabel jLabel1;
 	    private javax.swing.JLabel jLabel10;
 	    private javax.swing.JLabel jLabel11;
@@ -177,6 +181,8 @@ public class MainView extends JFrame implements ActionListener{
 	        jLabel14 = new javax.swing.JLabel();
 	        bookNumberTextField = new javax.swing.JTextField();
 	        typeComboBox = new javax.swing.JComboBox();
+	        checkAllBookButton = new javax.swing.JButton();
+	        findBookButton = new javax.swing.JButton();
 	        bookTypejPanel = new javax.swing.JPanel();
 	        jScrollPane6 = new javax.swing.JScrollPane();
 	        jScrollPane1 = new javax.swing.JScrollPane();
@@ -222,52 +228,39 @@ public class MainView extends JFrame implements ActionListener{
 	            .addGroup(homePagePanelLayout.createSequentialGroup()
 	                .addGroup(homePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	                    .addGroup(homePagePanelLayout.createSequentialGroup()
-	                        .addContainerGap()
-	                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-	                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                    .addGroup(homePagePanelLayout.createSequentialGroup()
 	                        .addGap(117, 117, 117)
 	                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
 	                    .addGroup(homePagePanelLayout.createSequentialGroup()
-	                        .addGap(227, 227, 227)
-	                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                        .addGap(42, 42, 42)
+	                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
 	                    .addGroup(homePagePanelLayout.createSequentialGroup()
-	                        .addGap(313, 313, 313)
-	                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+	                        .addGap(180, 180, 180)
+	                        .addGroup(homePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
 	                .addContainerGap(204, Short.MAX_VALUE))
-	            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePagePanelLayout.createSequentialGroup()
-	                .addGap(0, 0, Short.MAX_VALUE)
-	                .addGroup(homePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePagePanelLayout.createSequentialGroup()
-	                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(284, 284, 284))
-	                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePagePanelLayout.createSequentialGroup()
-	                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(154, 154, 154))))
 	        );
 	        homePagePanelLayout.setVerticalGroup(
 	            homePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	            .addGroup(homePagePanelLayout.createSequentialGroup()
 	                .addGap(21, 21, 21)
 	                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                .addGroup(homePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addGroup(homePagePanelLayout.createSequentialGroup()
-	                        .addGap(45, 45, 45)
-	                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(30, 30, 30)
-	                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(37, 37, 37)
-	                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(42, 42, 42)
-	                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-	                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(30, 30, 30))
-	                    .addGroup(homePagePanelLayout.createSequentialGroup()
-	                        .addGap(18, 18, 18)
-	                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addContainerGap())))
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+	                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                .addGap(7, 7, 7)
+	                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                .addGap(32, 32, 32)
+	                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                .addGap(37, 37, 37)
+	                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                .addGap(41, 41, 41)
+	                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                .addGap(42, 42, 42)
+	                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                .addGap(34, 34, 34))
 	        );
 
 	        mainViewTabbedPane.addTab("       首页       ", homePagePanel);
@@ -357,7 +350,7 @@ public class MainView extends JFrame implements ActionListener{
 	        sendPresentButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        sendPresentButton.setForeground(new java.awt.Color(255, 0, 0));
 	        sendPresentButton.setText("确认赠送");
-	
+
 	        showPresentTextArea.setColumns(20);
 	        showPresentTextArea.setRows(5);
 	        jScrollPane2.setViewportView(showPresentTextArea);
@@ -375,8 +368,8 @@ public class MainView extends JFrame implements ActionListener{
 	                        .addGap(256, 256, 256)
 	                        .addComponent(checkPresentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
 	                    .addGroup(presentPanelLayout.createSequentialGroup()
-	                        .addGap(307, 307, 307)
-	                        .addComponent(sendPresentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+	                        .addGap(296, 296, 296)
+	                        .addComponent(sendPresentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
 	                .addContainerGap(160, Short.MAX_VALUE))
 	        );
 	        presentPanelLayout.setVerticalGroup(
@@ -386,9 +379,9 @@ public class MainView extends JFrame implements ActionListener{
 	                .addComponent(checkPresentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
 	                .addGap(18, 18, 18)
 	                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                .addGap(32, 32, 32)
-	                .addComponent(sendPresentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-	                .addGap(25, 25, 25))
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+	                .addComponent(sendPresentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                .addGap(56, 56, 56))
 	        );
 
 	        mainViewTabbedPane.addTab("      礼券赠送       ", presentPanel);
@@ -448,7 +441,7 @@ public class MainView extends JFrame implements ActionListener{
 	        buttonGroup1.add(signedRadioButton);
 	        signedRadioButton.setFont(new java.awt.Font("宋体", 2, 14)); // NOI18N
 	        signedRadioButton.setText("已签收");
-	
+
 	        jLabel7.setFont(new java.awt.Font("宋体", 2, 14)); // NOI18N
 	        jLabel7.setText("订单状态：");
 
@@ -499,7 +492,7 @@ public class MainView extends JFrame implements ActionListener{
 	                    .addComponent(distributionRadioButton)
 	                    .addComponent(transportRadioButton)
 	                    .addComponent(signedRadioButton))
-	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
 	                .addComponent(changeOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
 	                .addGap(36, 36, 36))
 	        );
@@ -535,7 +528,7 @@ public class MainView extends JFrame implements ActionListener{
 
 	        jLabel6.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
 	        jLabel6.setText("图书类别：");
-
+	        
 	        confirmChangeBookButton.setBackground(new java.awt.Color(0, 204, 204));
 	        confirmChangeBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        confirmChangeBookButton.setForeground(new java.awt.Color(255, 0, 0));
@@ -548,26 +541,19 @@ public class MainView extends JFrame implements ActionListener{
 	        jLabel14.setText("数量/册：");
 
 	        typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-	        
-	        
+
+	        checkAllBookButton.setBackground(new java.awt.Color(0, 204, 204));
+	        checkAllBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
+	        checkAllBookButton.setText("浏览图书");
+
+	        findBookButton.setBackground(new java.awt.Color(0, 204, 204));
+	        findBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
+	        findBookButton.setText("查询图书");
+
 	        javax.swing.GroupLayout bookPanelLayout = new javax.swing.GroupLayout(bookPanel);
 	        bookPanel.setLayout(bookPanelLayout);
 	        bookPanelLayout.setHorizontalGroup(
 	            bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
-	                .addContainerGap(293, Short.MAX_VALUE)
-	                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
-	                        .addComponent(addBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(305, 305, 305))
-	                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
-	                        .addComponent(changeBookButton)
-	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-	                        .addComponent(confirmChangeBookButton)
-	                        .addGap(266, 266, 266))
-	                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
-	                        .addComponent(deleteBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(303, 303, 303))))
 	            .addGroup(bookPanelLayout.createSequentialGroup()
 	                .addGap(17, 17, 17)
 	                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -606,6 +592,25 @@ public class MainView extends JFrame implements ActionListener{
 	                            .addComponent(bookPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
 	                    .addComponent(bookNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
 	                .addContainerGap(72, Short.MAX_VALUE))
+	            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
+	                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+	                    .addGroup(bookPanelLayout.createSequentialGroup()
+	                        .addComponent(checkAllBookButton)
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	                        .addComponent(findBookButton))
+	                    .addGroup(bookPanelLayout.createSequentialGroup()
+	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                            .addGroup(bookPanelLayout.createSequentialGroup()
+	                                .addComponent(changeBookButton)
+	                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+	                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
+	                                .addComponent(addBookButton)
+	                                .addGap(37, 37, 37)))
+	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+	                            .addComponent(confirmChangeBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	                            .addComponent(deleteBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+	                .addGap(266, 266, 266))
 	        );
 	        bookPanelLayout.setVerticalGroup(
 	            bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -633,29 +638,29 @@ public class MainView extends JFrame implements ActionListener{
 	                                .addComponent(bookPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
 	                        .addGap(17, 17, 17)))
 	                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addGroup(bookPanelLayout.createSequentialGroup()
-	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                            .addGroup(bookPanelLayout.createSequentialGroup()
-	                                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                                    .addComponent(bookPublishYearField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                                    .addComponent(bookPublishHouseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                                .addGap(42, 42, 42)
-	                                .addComponent(addBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                                .addGap(43, 43, 43))
-	                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
-	                                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                                .addGap(116, 116, 116)))
-	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                            .addComponent(changeBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                            .addComponent(confirmChangeBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                        .addGap(42, 42, 42)
-	                        .addComponent(deleteBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
 	                    .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 	                        .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-	                .addGap(62, 62, 62))
+	                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                    .addGroup(bookPanelLayout.createSequentialGroup()
+	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                            .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                            .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                                .addComponent(bookPublishYearField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                                .addComponent(bookPublishHouseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+	                        .addGap(92, 92, 92)
+	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                            .addComponent(addBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                            .addComponent(deleteBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                        .addGap(49, 49, 49)
+	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                            .addComponent(changeBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                            .addComponent(confirmChangeBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
+	                .addGap(40, 40, 40)
+	                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                    .addComponent(checkAllBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                    .addComponent(findBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
 	        );
 
 	        mainViewTabbedPane.addTab("     图书管理      ", bookPanel);
@@ -665,8 +670,6 @@ public class MainView extends JFrame implements ActionListener{
 	            public int getSize() { return strings.length; }
 	            public Object getElementAt(int i) { return strings[i]; }
 	        });
-	        
-	        
 	        jScrollPane1.setViewportView(bookTypeList);
 
 	        jScrollPane6.setViewportView(jScrollPane1);
@@ -711,7 +714,7 @@ public class MainView extends JFrame implements ActionListener{
 	                    .addGroup(bookTypejPanelLayout.createSequentialGroup()
 	                        .addGap(56, 56, 56)
 	                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
-	                .addGap(0, 45, Short.MAX_VALUE))
+	                .addGap(0, 115, Short.MAX_VALUE))
 	        );
 
 	        mainViewTabbedPane.addTab("   设置图书类别   ", bookTypejPanel);
@@ -726,7 +729,7 @@ public class MainView extends JFrame implements ActionListener{
 	        changeUserPasswordButton.setText("修改密码");
 
 	        exitButton.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
-	        exitButton.setText("退出");
+	        exitButton.setText("退  出");
 
 	        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 	        jPanel1.setLayout(jPanel1Layout);
@@ -737,16 +740,13 @@ public class MainView extends JFrame implements ActionListener{
 	                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
 	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 	                .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                .addGap(265, 265, 265)
-	                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addGroup(jPanel1Layout.createSequentialGroup()
-	                        .addComponent(changeUserPasswordButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                        .addGap(46, 46, 46)
-	                        .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(23, 23, 23))
-	                    .addGroup(jPanel1Layout.createSequentialGroup()
-	                        .addComponent(changeUserNameButton)
-	                        .addContainerGap())))
+	                .addGap(169, 169, 169)
+	                .addComponent(changeUserNameButton)
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                .addComponent(changeUserPasswordButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                .addContainerGap())
 	        );
 	        jPanel1Layout.setVerticalGroup(
 	            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -757,12 +757,11 @@ public class MainView extends JFrame implements ActionListener{
 	                .addGap(0, 0, Short.MAX_VALUE))
 	            .addGroup(jPanel1Layout.createSequentialGroup()
 	                .addContainerGap()
-	                .addComponent(changeUserNameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
 	                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                    .addComponent(changeUserPasswordButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                    .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                .addContainerGap(12, Short.MAX_VALUE))
+	                    .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                    .addComponent(changeUserPasswordButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                    .addComponent(changeUserNameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                .addContainerGap())
 	        );
 
 	        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -778,9 +777,9 @@ public class MainView extends JFrame implements ActionListener{
 	        layout.setVerticalGroup(
 	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-	                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                .addGap(18, 18, 18)
-	                .addComponent(mainViewTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                .addComponent(mainViewTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE))
 	        );
 
 	        pack();
@@ -796,6 +795,8 @@ public class MainView extends JFrame implements ActionListener{
 	        confirmChangeBookButton.addActionListener(this);
 	        confirmChangeBookButton.setEnabled(false);
 	        changeBookButton.addActionListener(this);
+	        checkAllBookButton.addActionListener(this);
+	        findBookButton.addActionListener(this);
 //	        bookIDTextField.setEditable(false);
 	        
 	        // orderPanel
@@ -1093,6 +1094,12 @@ public class MainView extends JFrame implements ActionListener{
 				}else{
 					JOptionPane.showMessageDialog(null,"修改失败！");
 				}
+			}
+			else if(event.getSource()==checkAllBookButton){
+				CheckAllBookControllerInterface checkAllBookControlle=new CheckAllBookController();
+			}
+			else if(event.getSource()==findBookButton){
+//				***
 			}
 
 	    }//事件结束
