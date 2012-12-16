@@ -407,7 +407,11 @@ public class InitDatabase extends UnicastRemoteObject implements
 	}
 	
 	private int generateNewID(){
-		return memberPOList.size()+1;
+		String lastID=memberPOList.get(memberPOList.size()-1).getUserID();
+		String idString=lastID.substring(1);
+		int oldId=Integer.parseInt(idString);
+		int newID=oldId+1;
+		return newID;
 	}
 	
 	private boolean isNameValid(String name){
