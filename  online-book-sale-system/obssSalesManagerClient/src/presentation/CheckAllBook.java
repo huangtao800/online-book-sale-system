@@ -103,8 +103,8 @@ public class CheckAllBook extends JFrame implements ActionListener{
 			 for(int i=0;i<bookList.size(); i++){
 				 BookPO book=bookList.get(i);
 				 jTextArea1.append("ISBN:"+book.getISBN()+"  书名:"+book.getBookName()+
-						 "  作者:"+book.getAuthor()+"  出版社"+book.getPress()+"  出版年份"+
-						 book.getPublishDate()+"  图书类别"+book.getType()+"  价格/元:"+
+						 "  作者:"+book.getAuthor()+"  出版社:"+book.getPress()+"  出版年份:"+
+						 book.getPublishDate()+"  图书类别:"+book.getType()+"  价格/元:"+
 						 book.getPrice()+"  库存/册:"+book.getNumOfBook()+"\n");
 			 }
 			 
