@@ -13,6 +13,7 @@ public interface OrderDatabaseService extends DatabaseService{
 	public ResultMessage insert(PO po) throws RemoteException;
 	public ResultMessage delete(PO po) throws RemoteException;
 	public ResultMessage update(PO po) throws RemoteException;
+	public long getUId()throws RemoteException;
 	
 
 }
