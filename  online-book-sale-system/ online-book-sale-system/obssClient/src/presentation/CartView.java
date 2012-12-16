@@ -182,21 +182,28 @@ public class CartView extends javax.swing.JFrame {
 		// TODO Auto-generated method stub
 		jButton1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				int i = getSeclectedLine();
-				System.out.print(i);
-				if(salesViewController.addFavorities(i) == ResultMessage.SUCCEED)
-					JOptionPane.showMessageDialog(null, "添加成功");
-				else
-					JOptionPane.showMessageDialog(null, "请选中要加入收藏夹的商品");
+				if(salesViewController.getCartList().size() == 0)
+					JOptionPane.showMessageDialog(null, "购物车为空");
+				else{
+					int i = getSeclectedLine();
+				    if(salesViewController.addFavorities(i) == ResultMessage.SUCCEED)
+				    	JOptionPane.showMessageDialog(null, "添加成功");
+				    else
+					    JOptionPane.showMessageDialog(null, "请选中要加入收藏夹的商品");
+				}
 			}
 		});
 		jButton2.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				int i = getSeclectedLine();
-				if(salesViewController.removeFromCart(i) == ResultMessage.SUCCEED)
-					freshTableModel(jTable1);
-				else
-					JOptionPane.showMessageDialog(null, "请选中要删除的商品");
+				if(salesViewController.getCartList().size() == 0)
+					JOptionPane.showMessageDialog(null, "购物车为空");
+				else{
+					int i = getSeclectedLine();
+				    if(salesViewController.removeFromCart(i) == ResultMessage.SUCCEED)
+					    freshTableModel(jTable1);
+				    else
+				    	JOptionPane.showMessageDialog(null, "请选中要删除的商品");
+				}
 			}
 		});
 		jButton3.addMouseListener(new MouseAdapter() {
