@@ -156,4 +156,14 @@ public class Book{
 			return ResultMessage.FAILED;
 		}
 	}
+	
+	public ArrayList<BookPO> getAllBook() {
+		
+		try{
+			return bookDatabase.readFile();
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

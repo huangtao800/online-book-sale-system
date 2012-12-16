@@ -1,5 +1,6 @@
 package bussinessLogic.controller;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import po.*;
 import bussinessLogic.domain.Book;
@@ -64,6 +65,10 @@ public class BookController implements BookBLService{
 	
 	public ResultMessage changeBookType(String beforeType,String afterType){
 		return book.changeBookType(beforeType, afterType);
+	}
+	
+	public ArrayList<BookPO> getAllBook(){
+        return book.getAllBook();
 	}
 
 }

@@ -1,5 +1,6 @@
 package bussinessLogicService;
 //ÓÈ¼Ñç÷
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import po.*;
 
@@ -21,5 +22,5 @@ public interface BookBLService {
 	public ArrayList<String> getBookType();
 	public ResultMessage addBookType(String type);
 	public ResultMessage changeBookType(String beforeType,String afterType);
-
+	public ArrayList<BookPO> getAllBook() ;
 }

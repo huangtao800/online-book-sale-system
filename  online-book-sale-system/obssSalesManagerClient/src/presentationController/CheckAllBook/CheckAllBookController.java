@@ -18,6 +18,6 @@ public class CheckAllBookController implements CheckAllBookControllerInterface{
 	}
 
 	public ArrayList<BookPO> getBookList(){
-		return bookController
+		return bookController.getAllBook();
 	}
 }
