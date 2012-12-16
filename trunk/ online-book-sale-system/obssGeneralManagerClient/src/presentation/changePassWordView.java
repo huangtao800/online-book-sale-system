@@ -119,7 +119,7 @@ public class changePassWordView extends JFrame implements ActionListener{
 	        pack();
 	        
 	        this.setVisible(true);
-	        this.setLocation(200,300);
+	        this.setLocation(300,200);
 	        changePWButton.addActionListener(this);
 	        cancelButton.addActionListener(this);
 	    }// </editor-fold>
