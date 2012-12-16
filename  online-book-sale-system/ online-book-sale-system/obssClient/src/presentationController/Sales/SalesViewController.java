@@ -112,8 +112,8 @@ public class SalesViewController implements SalesViewService{
 		return priceBuffer;
 	}
 	
-	public void pay(String address){
-		OrderVO orderVO = salesController.pay(priceBuffer,address);
+	public void pay(String address, int index){
+		OrderVO orderVO = salesController.pay(priceBuffer,address,index);
 		initOrderView(orderVO);
 	}
 	public void endSale(){
