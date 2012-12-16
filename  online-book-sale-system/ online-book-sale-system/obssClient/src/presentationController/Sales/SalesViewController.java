@@ -42,7 +42,7 @@ public class SalesViewController implements SalesViewService{
 		payView = new PayView(this);
 		double commonPrice = salesController.getTotalPrice();
 		payView.setCommonPrice(commonPrice);
-		ArrayList<String> specialList = salesController.showSpecial(commonPrice);	
+		ArrayList<String> specialList = salesController.showSpecial(commonPrice);
 		payView.showSpecial(specialList);
 		String address = salesController.getAddress();
 		payView.setAddress(address);

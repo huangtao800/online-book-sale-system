@@ -1,7 +1,7 @@
 package presentationController.Sales;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import po.LineItemPO;
 import po.OrderPO;
@@ -16,7 +16,7 @@ public class OrderVO {
 		this.productList = orderPO.getProductList();
 		this.setOrderNum("订单编号：" + orderPO.getOrderNum());
 		this.setMemberID("会员编号：" + orderPO.getMemberID());
-		this.date = orderPO.getDate().toString();
+		this.setDate(orderPO.getDate());
 		this.setTotalPrice("商品总价：" + orderPO.getTotalPrice()+"");
 		if(orderPO.getOrderState() == OrderState.ORDERDED)
 			this.setOrderState("订单状态：已下单");
@@ -45,8 +45,10 @@ public class OrderVO {
 		return memberID;
 	}
 	
-	public void setDate(String date) {
-		this.date = date;
+	public void setDate(Calendar calendar) {
+		this.date = "下单时间"+ calendar.get(Calendar.YEAR)+"年"
+				+calendar.get(Calendar.MONTH)+"月"
+				+calendar.get(Calendar.DAY_OF_MONTH)+"日";
 	}
 	
 	public String getDate() {

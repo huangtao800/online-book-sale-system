@@ -2,9 +2,11 @@ package bussinessLogic.domain;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import databaseService.sales.OrderDatabaseService;
 
+import po.LineItemPO;
 import po.OrderPO;
 import po.ResultMessage;
 
@@ -32,6 +34,18 @@ public class Sales {
 			e.printStackTrace();
 		}
 		return ResultMessage.SUCCEED;
+	}
+	public OrderPO creareOrderPO(ArrayList<LineItemPO> cartList,
+			String memberID, double price, String address) {
+		OrderPO orderPO = null;
+		long orderNum;
+		try {
+			orderNum = orderDatabase.getUId();
+			orderPO = new OrderPO(orderNum, cartList, memberID, price, address);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return orderPO;
 	}
 
 }

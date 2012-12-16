@@ -72,14 +72,14 @@ public class SalesController implements SalesBLService{
 		ArrayList<String> voList = new ArrayList<String>();
 		
 		for(int i = 0; i < couponList.size(); i ++){
-			String s = couponList.get(i).getRate() * 10 + "ีÛ"; 
+			String s = couponList.get(i).toString(); 
 			voList.add(s);
 		}
 		for(int i = 0; i < equivalentList.size(); i ++){
 			EquivalentPO equivalentPO = equivalentList.get(i);
-			if(commonPrice >= equivalentPO.getMin())
+			if(commonPrice < equivalentPO.getMin())			
 				break;
-			String s = equivalentPO.getDeno() + "ิช"; 
+			String s = equivalentPO.toString(); 
 			voList.add(s);
 		}
 		return voList;	
@@ -102,7 +102,8 @@ public class SalesController implements SalesBLService{
 	
 	public OrderVO pay(double price,String address){
 		ArrayList<LineItemPO> cartList = getCartList();
-		OrderPO orderPO = new OrderPO(cartList, memberController.getMemberID(), price, address);
+		OrderPO orderPO = sales.creareOrderPO(cartList, memberController.getMemberID(), price, address);
+	//	OrderPO orderPO = new OrderPO(cartList, memberController.getMemberID(), price, address);
 		memberController.addOrder(orderPO);
 		sales.addOrder(orderPO);
 		OrderVO orderVO = new OrderVO(orderPO);
