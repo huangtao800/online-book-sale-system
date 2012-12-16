@@ -4,6 +4,7 @@ import bussinessLogic.controller.UserController;
 import bussinessLogicService.UserBLService;
 import po.ResultMessage;
 import po.SalesManagerPO;
+import po.UserPO;
 import po.UserRole;
 import presentation.changeUserNameView;
 
@@ -17,7 +18,8 @@ public class changeUserNameController implements changeUserNameControllerInterfa
     	  View=new changeUserNameView(this,this.userPO);
       }
 	
-	  public ResultMessage  changeUser(String userName, String id,String password,UserRole userRole){
-		  return userController.changeUser(userName, id, password, userRole);
+	  public ResultMessage  changeUser(UserPO oldUserpo,UserPO newPo){
+		  return userController.changeUser(oldUserpo,newPo);
 	  }
+	  
 }
