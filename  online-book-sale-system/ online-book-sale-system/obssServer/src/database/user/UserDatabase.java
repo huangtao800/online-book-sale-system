@@ -141,7 +141,7 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		return ResultMessage.SUCCEED;
 	}
 	
-	public ResultMessage modify(UserPO beforeUserPO,UserPO afterUserPO){
+	public ResultMessage modify(UserPO beforeUserPO,UserPO afterUserPO)throws RemoteException{
 		ArrayList<UserPO> userList = UserDatabase.getInstance().readFileByRole(beforeUserPO.getUserRole());
 		if(beforeUserPO!=null){
 			//用户ID和用户类型不可修改，只有用户密码和用户名可以修改
@@ -212,6 +212,25 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 			e.printStackTrace();
 			return ResultMessage.FAILED;
 		}
+		
+	}
+	
+	@Override
+	public String autoGetUserId(UserRole userRole) throws RemoteException{
+			ArrayList<UserPO> userList =UserDatabase.getInstance().readFileByRole(userRole);
+			UserPO userPO = userList.get(userList.size()-1);
+			String maxId = userPO.getUserID();
+			maxId = maxId.substring(1);
+			String max = ""+(Integer.parseInt(maxId)+1);
+			if(userRole==UserRole.Administrator){
+				return "a"+max;
+			}else if(userRole==UserRole.SalesManager){
+				return "s"+max;
+			}else if(userRole==UserRole.GeneralManager){
+				return "g"+max;
+			}else{
+				return "m"+max;
+			}
 		
 	}
 	
