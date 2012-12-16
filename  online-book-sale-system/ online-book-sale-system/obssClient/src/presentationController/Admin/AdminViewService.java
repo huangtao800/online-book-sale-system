@@ -13,4 +13,5 @@ public interface AdminViewService {
 	public UserPO findUser(String name,UserRole userRole);
 	public ArrayList<UserPO> getAllUser();
 	public void init(int index);
+	public String autoGetUserId(UserRole userRole);
 }
