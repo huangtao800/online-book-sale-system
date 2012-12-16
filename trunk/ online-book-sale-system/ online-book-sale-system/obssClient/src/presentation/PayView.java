@@ -21,7 +21,8 @@ public class PayView extends javax.swing.JFrame {
 
     }
 
-	 private void initComponents() {
+	 @SuppressWarnings({ "unchecked", "rawtypes" })
+	private void initComponents() {
 
 	        jPanel1 = new javax.swing.JPanel();
 	        jLabel1 = new javax.swing.JLabel();
@@ -36,8 +37,6 @@ public class PayView extends javax.swing.JFrame {
 	        jButton2 = new javax.swing.JButton();
 	        jLabel6 = new javax.swing.JLabel();
 	        jTextField1 = new javax.swing.JTextField();
-
-	        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
 	        jLabel1.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 1, 18)); // NOI18N
 	        jLabel1.setText("Ô­¼Û£º");
