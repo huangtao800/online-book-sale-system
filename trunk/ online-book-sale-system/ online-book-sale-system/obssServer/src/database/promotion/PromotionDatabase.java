@@ -44,7 +44,8 @@ public class PromotionDatabase extends UnicastRemoteObject implements PromotionD
 				poInputStream.close();
 				 return promotionPO;
 			} catch (Exception e) {
-				return null;
+				promotionPO=new PromotionPO();
+				return promotionPO;
 			}
 		 }
 	
