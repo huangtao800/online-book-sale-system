@@ -533,49 +533,57 @@ public class MemberView extends JFrame {
 			}
 		});
 		
+		JButton freshPointButton = new JButton("\u5237\u65B0\u79EF\u5206");
+		freshPointButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				freshMemberPO(memberPO.getUserID());
+				pointLabel.setText(""+memberPO.getPoints());
+			}
+		});
+
+		freshPointButton.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		
 		javax.swing.GroupLayout gl_jPanel2 = new javax.swing.GroupLayout(
 				jPanel2);
 		gl_jPanel2.setHorizontalGroup(
-			gl_jPanel2.createParallelGroup(Alignment.TRAILING)
+			gl_jPanel2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_jPanel2.createSequentialGroup()
 					.addContainerGap(385, Short.MAX_VALUE)
 					.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
 					.addGap(327))
-				.addGroup(Alignment.LEADING, gl_jPanel2.createSequentialGroup()
+				.addGroup(gl_jPanel2.createSequentialGroup()
 					.addGap(33)
 					.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING)
+						.addComponent(changeAddressButton, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_jPanel2.createSequentialGroup()
-							.addComponent(changeAddressButton, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
-						.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING)
-							.addGroup(gl_jPanel2.createSequentialGroup()
-								.addComponent(jLabel1)
-								.addGap(18)
-								.addComponent(addressLabel, GroupLayout.PREFERRED_SIZE, 477, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap())
-							.addGroup(gl_jPanel2.createSequentialGroup()
-								.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING, false)
-									.addGroup(gl_jPanel2.createSequentialGroup()
-										.addComponent(jLabel3)
-										.addGap(18)
-										.addComponent(nameLabel))
-									.addGroup(gl_jPanel2.createSequentialGroup()
-										.addComponent(ID, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(idLabel)))
-								.addGap(29)
-								.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING)
-									.addComponent(changeNameButton, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-									.addComponent(changePasswordButton, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
-								.addGap(149)
-								.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING)
-									.addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
-									.addComponent(jLabel5))
-								.addGap(44)
-								.addGroup(gl_jPanel2.createParallelGroup(Alignment.TRAILING)
-									.addComponent(pointLabel)
-									.addComponent(rankLabel))
-								.addGap(171)))))
+							.addComponent(jLabel1)
+							.addGap(18)
+							.addComponent(addressLabel, GroupLayout.PREFERRED_SIZE, 477, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_jPanel2.createSequentialGroup()
+							.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING, false)
+								.addGroup(gl_jPanel2.createSequentialGroup()
+									.addComponent(jLabel3)
+									.addGap(18)
+									.addComponent(nameLabel))
+								.addGroup(gl_jPanel2.createSequentialGroup()
+									.addComponent(ID, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(idLabel)))
+							.addGap(29)
+							.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING)
+								.addComponent(changeNameButton, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+								.addComponent(changePasswordButton, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
+							.addGap(149)
+							.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING)
+								.addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
+								.addComponent(jLabel5))
+							.addGap(44)
+							.addGroup(gl_jPanel2.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(pointLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(rankLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addGap(27)
+							.addComponent(freshPointButton, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
 		);
 		gl_jPanel2.setVerticalGroup(
 			gl_jPanel2.createParallelGroup(Alignment.LEADING)
@@ -606,6 +614,10 @@ public class MemberView extends JFrame {
 					.addGap(46)
 					.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 					.addGap(37))
+				.addGroup(gl_jPanel2.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(freshPointButton, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(387, Short.MAX_VALUE))
 		);
 		jPanel2.setLayout(gl_jPanel2);
 
@@ -856,6 +868,7 @@ public class MemberView extends JFrame {
 		freshOrderButton = new JButton("\u5237\u65B0\u5217\u8868");
 		freshOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				freshMemberPO(memberPO.getUserID());
 				freshOrderTable(orderTable);
 			}
 		});
@@ -1010,7 +1023,7 @@ public class MemberView extends JFrame {
 				return equivalentList.get(rowIndex).getDeno();
 			case 2:
 				Calendar endDate=equivalentList.get(rowIndex).getEndDate();
-				return endDate.get(Calendar.YEAR)+"年"+endDate.get(Calendar.MONTH)+"月"+
+				return endDate.get(Calendar.YEAR)+"年"+(endDate.get(Calendar.MONTH)+1)+"月"+
 						endDate.get(Calendar.DATE)+"日";
 			default:
 				return equivalentList.get(rowIndex).getMin();
@@ -1056,7 +1069,7 @@ public class MemberView extends JFrame {
 				return couponList.get(rowIndex).getRate();
 			default:
 				Calendar endDate=couponList.get(rowIndex).getEndDate();
-				return endDate.get(Calendar.YEAR)+"年"+endDate.get(Calendar.MONTH)+"月"+
+				return endDate.get(Calendar.YEAR)+"年"+(endDate.get(Calendar.MONTH)+1)+"月"+
 						endDate.get(Calendar.DATE)+"日";
 			}
 		}
