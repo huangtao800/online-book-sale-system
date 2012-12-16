@@ -58,6 +58,7 @@ public class StartView extends JFrame {
 	 * Create the frame.
 	 */
 	public StartView() {
+		super("总经理登陆界面");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 470, 377);
 		contentPane = new JPanel();
