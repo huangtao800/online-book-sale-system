@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import po.AdministratorPO;
 import po.BookPO;
 import po.GeneralManagerPO;
+import po.IdPO;
 import po.MemberPO;
 import po.Present_Coupon;
 import po.Present_Equivalent;
@@ -63,6 +64,8 @@ public class InitMemberData {
 		ArrayList<Present_Coupon> present_couponList=new ArrayList<Present_Coupon>();
 		
 		PromotionPO promotionPO =new PromotionPO();
+		
+		IdPO idPO=new IdPO(0);
 		
 		try {
 			FileOutputStream outputStream=new FileOutputStream("member.ser");
@@ -120,7 +123,11 @@ public class InitMemberData {
 			
 			objoutput.writeObject(new ArrayList<OrderPO>());
 			
+			outputStream =new FileOutputStream("idPO.ser");
+			objoutput=new ObjectOutputStream(outputStream);
 			
+			objoutput.writeObject(idPO);
+		
 			outputStream.close();
 			objoutput.close();
 			
