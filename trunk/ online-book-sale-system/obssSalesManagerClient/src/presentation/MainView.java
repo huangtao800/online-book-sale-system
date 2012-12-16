@@ -71,7 +71,6 @@ public class MainView extends JFrame implements ActionListener{
 	    private javax.swing.JButton jButton1;
 	    private javax.swing.JButton jButton2;
 	    private javax.swing.JButton jButton3;
-	    private javax.swing.JButton findBookButton;
 	    private javax.swing.JLabel jLabel1;
 	    private javax.swing.JLabel jLabel10;
 	    private javax.swing.JLabel jLabel11;
@@ -182,7 +181,6 @@ public class MainView extends JFrame implements ActionListener{
 	        bookNumberTextField = new javax.swing.JTextField();
 	        typeComboBox = new javax.swing.JComboBox();
 	        checkAllBookButton = new javax.swing.JButton();
-	        findBookButton = new javax.swing.JButton();
 	        bookTypejPanel = new javax.swing.JPanel();
 	        jScrollPane6 = new javax.swing.JScrollPane();
 	        jScrollPane1 = new javax.swing.JScrollPane();
@@ -350,7 +348,7 @@ public class MainView extends JFrame implements ActionListener{
 	        sendPresentButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        sendPresentButton.setForeground(new java.awt.Color(255, 0, 0));
 	        sendPresentButton.setText("确认赠送");
-
+	
 	        showPresentTextArea.setColumns(20);
 	        showPresentTextArea.setRows(5);
 	        jScrollPane2.setViewportView(showPresentTextArea);
@@ -441,7 +439,7 @@ public class MainView extends JFrame implements ActionListener{
 	        buttonGroup1.add(signedRadioButton);
 	        signedRadioButton.setFont(new java.awt.Font("宋体", 2, 14)); // NOI18N
 	        signedRadioButton.setText("已签收");
-
+	
 	        jLabel7.setFont(new java.awt.Font("宋体", 2, 14)); // NOI18N
 	        jLabel7.setText("订单状态：");
 
@@ -528,7 +526,7 @@ public class MainView extends JFrame implements ActionListener{
 
 	        jLabel6.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
 	        jLabel6.setText("图书类别：");
-	        
+
 	        confirmChangeBookButton.setBackground(new java.awt.Color(0, 204, 204));
 	        confirmChangeBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        confirmChangeBookButton.setForeground(new java.awt.Color(255, 0, 0));
@@ -545,10 +543,6 @@ public class MainView extends JFrame implements ActionListener{
 	        checkAllBookButton.setBackground(new java.awt.Color(0, 204, 204));
 	        checkAllBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        checkAllBookButton.setText("浏览图书");
-
-	        findBookButton.setBackground(new java.awt.Color(0, 204, 204));
-	        findBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
-	        findBookButton.setText("查询图书");
 
 	        javax.swing.GroupLayout bookPanelLayout = new javax.swing.GroupLayout(bookPanel);
 	        bookPanel.setLayout(bookPanelLayout);
@@ -594,23 +588,20 @@ public class MainView extends JFrame implements ActionListener{
 	                .addContainerGap(72, Short.MAX_VALUE))
 	            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
 	                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-	                    .addGroup(bookPanelLayout.createSequentialGroup()
+	                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
+	                        .addComponent(changeBookButton)
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                        .addComponent(confirmChangeBookButton)
+	                        .addGap(274, 274, 274))
+	                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
+	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+	                            .addComponent(addBookButton)
+	                            .addComponent(deleteBookButton))
+	                        .addGap(334, 334, 334))
+	                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
 	                        .addComponent(checkAllBookButton)
-	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                        .addComponent(findBookButton))
-	                    .addGroup(bookPanelLayout.createSequentialGroup()
-	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                            .addGroup(bookPanelLayout.createSequentialGroup()
-	                                .addComponent(changeBookButton)
-	                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-	                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookPanelLayout.createSequentialGroup()
-	                                .addComponent(addBookButton)
-	                                .addGap(37, 37, 37)))
-	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-	                            .addComponent(confirmChangeBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                            .addComponent(deleteBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-	                .addGap(266, 266, 266))
+	                        .addGap(332, 332, 332))))
 	        );
 	        bookPanelLayout.setVerticalGroup(
 	            bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -638,9 +629,11 @@ public class MainView extends JFrame implements ActionListener{
 	                                .addComponent(bookPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
 	                        .addGap(17, 17, 17)))
 	                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                        .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                    .addGroup(bookPanelLayout.createSequentialGroup()
+	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                            .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                        .addContainerGap())
 	                    .addGroup(bookPanelLayout.createSequentialGroup()
 	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	                            .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -649,18 +642,17 @@ public class MainView extends JFrame implements ActionListener{
 	                            .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 	                                .addComponent(bookPublishYearField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
 	                                .addComponent(bookPublishHouseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-	                        .addGap(92, 92, 92)
-	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                            .addComponent(addBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                            .addComponent(deleteBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                        .addGap(49, 49, 49)
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+	                        .addComponent(addBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addGap(30, 30, 30)
+	                        .addComponent(deleteBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addGap(29, 29, 29)
 	                        .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 	                            .addComponent(changeBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                            .addComponent(confirmChangeBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
-	                .addGap(40, 40, 40)
-	                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                    .addComponent(checkAllBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                    .addComponent(findBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+	                            .addComponent(confirmChangeBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                        .addGap(33, 33, 33)
+	                        .addComponent(checkAllBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addGap(41, 41, 41))))
 	        );
 
 	        mainViewTabbedPane.addTab("     图书管理      ", bookPanel);
@@ -796,8 +788,6 @@ public class MainView extends JFrame implements ActionListener{
 	        confirmChangeBookButton.setEnabled(false);
 	        changeBookButton.addActionListener(this);
 	        checkAllBookButton.addActionListener(this);
-	        findBookButton.addActionListener(this);
-//	        bookIDTextField.setEditable(false);
 	        
 	        // orderPanel
 	        updateOrderButton.addActionListener(this);
@@ -1097,9 +1087,6 @@ public class MainView extends JFrame implements ActionListener{
 			}
 			else if(event.getSource()==checkAllBookButton){
 				CheckAllBookControllerInterface checkAllBookControlle=new CheckAllBookController();
-			}
-			else if(event.getSource()==findBookButton){
-//				***
 			}
 
 	    }//事件结束
