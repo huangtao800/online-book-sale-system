@@ -48,7 +48,7 @@ public class changeUserNameView extends JFrame implements ActionListener{
 
 	        changeUserNameButton.setBackground(new java.awt.Color(0, 204, 204));
 	        changeUserNameButton.setFont(new java.awt.Font("方正舒体", 1, 24)); // NOI18N
-	        changeUserNameButton.setText("确认修改");
+	        changeUserNameButton.setText("确定");
 
 	        cancelButton.setBackground(new java.awt.Color(204, 51, 0));
 	        cancelButton.setFont(new java.awt.Font("方正舒体", 1, 24)); // NOI18N
@@ -114,6 +114,9 @@ public class changeUserNameView extends JFrame implements ActionListener{
 	        this.setVisible(true);
 	        oldUserNameLabel.setText(userpo.getUserName());
 	        this.setLocation(200, 300);
+	        
+	        changeUserNameButton.addActionListener(this);
+	        cancelButton.addActionListener(this);
    }
 	    
 	    public void actionPerformed(ActionEvent event){
