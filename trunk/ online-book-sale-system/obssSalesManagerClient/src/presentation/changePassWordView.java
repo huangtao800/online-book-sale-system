@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import po.ResultMessage;
 import po.SalesManagerPO;
+import po.UserPO;
 import presentationController.changePasswordView.changePasswordControllerInterface;
 
 public class changePassWordView extends JFrame implements ActionListener{
@@ -138,8 +139,9 @@ public class changePassWordView extends JFrame implements ActionListener{
 	    						if( ! newPWTextField.getText().equals(newPWagainTextField.getText())){
 	    							JOptionPane.showMessageDialog(null, "请确认两次输入的新密码相同！");
 	    						}else{
-	    							if(controller.changeUser(userpo.getUserName(), userpo.getUserID(),
-	    									                newPWTextField.getText(), userpo.getUserRole())== ResultMessage.SUCCEED)
+	    							UserPO newuserpo=new UserPO(userpo.getUserID(),userpo.getUserName(),newPWTextField.getText(),
+	    			    					userpo.getUserRole());
+	    							if(controller.changeUser(userpo,newuserpo)== ResultMessage.SUCCEED)
 	    							{
 	    								userpo.setUserPassword(newPWTextField.getText());
 	    								JOptionPane.showMessageDialog(null, "密码修改成功！");
