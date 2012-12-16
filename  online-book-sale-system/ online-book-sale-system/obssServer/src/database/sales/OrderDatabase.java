@@ -21,6 +21,7 @@ public class OrderDatabase extends UnicastRemoteObject implements OrderDatabaseS
 	
 	private static final long serialVersionUID = 1L;
 	private ArrayList<OrderPO> orderList = reloadOrderList();
+	private long orderNum = reloadOrderNum();
 
 	private static OrderDatabase instance = null;
 
@@ -77,13 +78,23 @@ public class OrderDatabase extends UnicastRemoteObject implements OrderDatabaseS
 		return orderList;
 	}
 	
+	@Override
+	public long getUId() throws RemoteException {
+		long UId = orderNum;
+		orderNum ++;
+		return UId;
+	}
+	
 	private ResultMessage save() {
-		ObjectOutputStream oos;
+		ObjectOutputStream oos, oosNum;
 		try {
 			oos = new ObjectOutputStream(new FileOutputStream("OrderList.ser"));
+			oosNum = new ObjectOutputStream(new FileOutputStream("OrderNumber.ser"));
 			try {
 				oos.writeObject(orderList);
 				oos.close();
+				oosNum.writeObject(orderNum);
+				oosNum.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -113,4 +124,24 @@ public class OrderDatabase extends UnicastRemoteObject implements OrderDatabaseS
 		}
 		return new ArrayList<OrderPO>();
 	}
+	
+	private long reloadOrderNum(){
+		long number = 0;
+		try {
+			ObjectInputStream oisNum = new ObjectInputStream(new FileInputStream("OrderNumber.ser"));
+			number = (Long) oisNum.readObject();
+			oisNum.close();
+			return number;
+		} catch (FileNotFoundException e) {
+			System.out.println("System initializing(orderNumber)");
+			return 0;
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return number;
+		
+	}
+
 }
