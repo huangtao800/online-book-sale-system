@@ -6,7 +6,7 @@ public class PromotionPO implements PO{
 //	private static final int line=10;//界面上默认有十行关于等价券的信息
 //	private static final int column=2;//第一列表示等价券额度，第二列表示等价券的最低消费
 
-	private double exchangeOfScore;//消费额与积分的兑换比例
+	private double exchangeOfScore=100;//消费额与积分的兑换比例
 	//private double[][] equivalent=new double [line][column];//二维数组，第一列表示等价券额度，
 	                                                                                                         //第二列表示使用该等价券的最低消费
 	//private double discount;//打折券的打折率
