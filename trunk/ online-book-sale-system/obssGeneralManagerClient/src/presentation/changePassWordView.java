@@ -57,7 +57,7 @@ public class changePassWordView extends JFrame implements ActionListener{
 
 	        cancelButton.setBackground(new java.awt.Color(204, 51, 0));
 	        cancelButton.setFont(new java.awt.Font("方正舒体", 1, 24)); // NOI18N
-	        cancelButton.setText("取消");
+	        cancelButton.setText("退出");
 
 	        jLabel5.setFont(new java.awt.Font("方正舒体", 0, 16)); // NOI18N
 	        jLabel5.setText("再次输入新密码：");
