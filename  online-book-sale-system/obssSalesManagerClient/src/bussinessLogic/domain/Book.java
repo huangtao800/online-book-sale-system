@@ -56,9 +56,8 @@ public class Book{
 	
     //管理图书（增，删，改）
 	public ResultMessage addBook(BookPO bookPO){
-			
-			try {
-				return bookDatabase.insert(this.bookPO);
+		    try {
+				return bookDatabase.insert(bookPO);
 			} catch (RemoteException e) {
 			
 				e.printStackTrace();
