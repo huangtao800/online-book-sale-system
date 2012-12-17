@@ -32,7 +32,7 @@ public interface MainViewControllerInterface {
     public ResultMessage addBookType(String newType);
     public ResultMessage changeBookType(String oldType,String newType);
     public ResultMessage deleteBookType(String type);
-  
+    
 	public SalesManagerPO getUserPO();
 	
 	public void freshName(String name);

@@ -56,13 +56,14 @@ public class MainViewController implements MainViewControllerInterface{
     
 //添加图书
     public ResultMessage addBook(BookPO bookPO){
-    	return bookController.addBook(bookPO);
+          return bookController.addBook(bookPO);
     }
     
 //删除图书 
     public ResultMessage deleteBook(String s){
     	return bookController.deleteBook(s);
     }
+
 
 //    //修改图书时，先检查是否存在此书
 //    public int indexOfBook(String s){
@@ -74,7 +75,7 @@ public class MainViewController implements MainViewControllerInterface{
     	return bookController.findByISBN(s);
     }
     
-    //
+    //修改图书
     public ResultMessage changeBookPO(BookPO bookPO){
     	return bookController.modifyBook(bookPO);
     }
