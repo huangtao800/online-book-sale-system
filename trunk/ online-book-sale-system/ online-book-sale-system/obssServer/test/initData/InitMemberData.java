@@ -38,6 +38,7 @@ public class InitMemberData {
 		bookTypeList.add("计算机");
 		bookTypeList.add("历史");
 		bookTypeList.add("经济");
+		bookTypeList.add("其他");
 		
 		memberPO.getFavority().getFavorities().add(bookPO);
 		
