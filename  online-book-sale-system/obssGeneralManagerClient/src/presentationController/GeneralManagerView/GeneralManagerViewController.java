@@ -83,5 +83,8 @@ public class GeneralManagerViewController implements GeneralManagerViewControlle
 		// TODO Auto-generated method stub
 		view.freshName(userName);
 	}
+	public void freshPassword(String newPW){
+		view.freshPassword(newPW);
+	}
 
 }
