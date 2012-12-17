@@ -51,14 +51,15 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 
 	@Override
 	public ResultMessage insert(PO po){
-		// TODO Auto-generated method stub
-		int index = BookDatabase.getInstance().isExist(po);
 		BookPO bookPO = (BookPO)po;
-		ArrayList<BookPO> bookList = BookDatabase.getInstance().readFile();
+		ArrayList<BookPO> bookList = readFile();
+		int index = isExist(bookPO, bookList);
 		
-		if(index!=-1){
-			bookList.get(index).setNumOfBook(bookList.get(index).getNumOfBook()+bookPO.getNumOfBook());
-		}else{
+		if(index!=-1){     //图书存在
+			int oldNum = bookList.get(index).getNumOfBook();
+			int newNum = oldNum + bookPO.getNumOfBook();
+			bookList.get(index).setNumOfBook(newNum);
+		}else{             //图书不存在
 		    bookList.add(bookPO);
 		}
 		
@@ -81,12 +82,11 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		}
 		
 	}
-	private int isExist(PO po){
-		BookPO bookPO = (BookPO)po;
-        ArrayList<BookPO> bookList = BookDatabase.getInstance().readFile();
-        int index = -1;
+	
+	private int isExist(BookPO bookPO,ArrayList<BookPO> bookList){
+        int index = -1;//-1表示图书不存在
         for(int i=0;i<bookList.size();i++){
-        	if(bookPO.getISBN().equals(bookList.get(i).getISBN())){
+            if(bookPO.getISBN().equals(bookList.get(i).getISBN())){
         		index = i;
         	}
         }
@@ -96,31 +96,27 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 
 	@Override
 	public ResultMessage delete(PO po) {
-		// TODO Auto-generated method stub
-		int index = BookDatabase.getInstance().isExist(po);
 		BookPO bookPO = (BookPO)po;
-        ArrayList<BookPO> bookList = BookDatabase.getInstance().readFile();
+        ArrayList<BookPO> bookList = readFile();
+        int index = isExist(bookPO, bookList);
         
-        if(index!=-1){
+        if((index!=-1)&&(bookList.get(index).getNumOfBook()!=0)){  // 图书存在，则删除就是将图书数量设为0
 			bookList.get(index).setNumOfBook(0);
 			return writeFile(bookList);
-	      
-		}else{
+	    }else{
 	   	    return ResultMessage.NOTEXIST;
 	    }
-        
-        
- 
-	}
+    }
 
 
 	@Override
 	//用于修改
 	public ResultMessage update(PO po) {
-		int index = BookDatabase.getInstance().isExist(po);
-		BookPO bookPO = (BookPO)po;
-		ArrayList<BookPO> bookList = BookDatabase.getInstance().readFile();
 		
+		BookPO bookPO = (BookPO)po;
+		ArrayList<BookPO> bookList = readFile();
+		int index = isExist(bookPO, bookList);
+		//book的ISBN不可以修改
 		if(index!=-1){
 			bookList.get(index).setAuthor(bookPO.getAuthor());
     		bookList.get(index).setBookName(bookPO.getBookName());
@@ -129,8 +125,7 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
     		bookList.get(index).setPrice(bookPO.getPrice());
     		bookList.get(index).setPublishDate(bookPO.getPublishDate());
     		bookList.get(index).setType(bookPO.getType());
-    		writeFile(bookList);
-	        return ResultMessage.SUCCEED;
+    		return writeFile(bookList);
 		}else{
 			return ResultMessage.NOTEXIST;
 		}
@@ -138,7 +133,7 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 	}
 	
 	public BookPO findThroughISBN(String isbn) {
-		ArrayList<BookPO> bookList = BookDatabase.getInstance().readFile();
+		ArrayList<BookPO> bookList = readFile();
 	    BookPO bookPO = null;
 	    for(int i=0;i<bookList.size();i++){
 	    	if(bookList.get(i).getISBN().equals(isbn)){
@@ -152,7 +147,7 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 	//根据关键字返回相应的图书列表
 	public ArrayList<BookPO>  findByKey(String name,String author,String press,
 		     String publishDate) throws RemoteException{ 
-		ArrayList<BookPO> arrayList = BookDatabase.getInstance().readFile();
+		ArrayList<BookPO> arrayList = readFile();
 		ArrayList<BookPO> bookList = new ArrayList<BookPO>();
 		for(int i=0;i<arrayList.size();i++){
 			if((arrayList.get(i).getBookName().contains(name)||name.equals(""))&&
@@ -168,7 +163,7 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		
 	//通过图书类型查找返回相应的图书列表
 	public ArrayList<BookPO> findByType(String type)  {
-		ArrayList<BookPO> arrayList = BookDatabase.getInstance().readFile();
+		ArrayList<BookPO> arrayList = readFile();
 		ArrayList<BookPO> bookList = new ArrayList<BookPO>();
 		for(int i=0;i<arrayList.size();i++){
 			if(arrayList.get(i).getType().equals(type)){
@@ -239,25 +234,25 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		
 	
 	public ResultMessage changeBookType(String beforeType,String afterType)throws RemoteException{
-		ArrayList<String> typeList = BookDatabase.getInstance().getBookType();
-		ArrayList<BookPO> bookList = BookDatabase.getInstance().readFile();
+		ArrayList<String> typeList = getBookType();
+		ArrayList<BookPO> bookList = readFile();
 		
-		int index = BookDatabase.getInstance().isBookTypeExist(typeList,afterType);
+		int index = isBookTypeExist(typeList,afterType);
 		//存在afterType图书类型
 		if(index!=-1){
-		   typeList.remove(BookDatabase.getInstance().getBookTypeIndex(typeList, beforeType));
+		   typeList.remove(getBookTypeIndex(typeList, beforeType));
 		   for(int i=0;i<bookList.size();i++){
 			   if(bookList.get(i).getType().equals(beforeType)){
 				   bookList.get(i).setType(afterType);
 			   }
 		   }
-		   BookDatabase.getInstance().writeFile(bookList);
-		   return BookDatabase.getInstance().writeBookType(typeList);
+		   writeFile(bookList);
+		   return writeBookType(typeList);
 		   
 		   
 		}else{     //不存在afterType类型的图书
 			typeList.add(afterType);
-			return BookDatabase.getInstance().writeBookType(typeList);
+			return writeBookType(typeList);
 		}
 	}
 	
