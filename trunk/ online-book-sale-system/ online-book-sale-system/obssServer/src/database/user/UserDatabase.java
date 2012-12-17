@@ -44,17 +44,13 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 	
 	@Override
 	public UserPO isExisit(String userName, String password, UserRole userRole) {
-		// TODO Auto-generated method stub
 		UserPO result=null;
-		
 		ArrayList<UserPO> userList=UserDatabase.getInstance().readFileByRole(userRole);
 		result=searchUser(userName, password, userList);
-				
-		return result;
+	    return result;
 	}
 	
 	private int getIsExistIndex(UserPO userPO ,ArrayList<UserPO> arrayList){
-	    ArrayList<UserPO> bookList = UserDatabase.getInstance().readFileByRole(userPO.getUserRole());
         int index = -1;
         for(int i=0;i<arrayList.size();i++){
         	if(userPO.getUserID().equals(arrayList.get(i).getUserID())){
@@ -97,6 +93,7 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		return userList;
 	}
 	
+	//用来查找某个存在的用户
 	private UserPO searchUser(String name, String password,ArrayList<UserPO> userList){
 		for(int i=0;i<userList.size();i++){
 			UserPO current=userList.get(i);
@@ -113,17 +110,32 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 	public ResultMessage insert(PO po) throws RemoteException {
 		UserPO userPO = (UserPO)po;
 		UserRole userRole = userPO.getUserRole();
+		String name = userPO.getUserName();
 		ArrayList<UserPO> userList=UserDatabase.getInstance().readFileByRole(userRole);
+		ResultMessage resultMessage= UserDatabase.getInstance().isNameExist(name, userList);
 		
-	    userList.add(userPO);
-		return UserDatabase.getInstance().writeFileByRole(userList, userRole);
-		
-    }
+		if(resultMessage==ResultMessage.EXIST){      //该用户已经存在了
+			return ResultMessage.EXIST;
+		}else{           //用户不存在则添加
+			userList.add(userPO);
+			return UserDatabase.getInstance().writeFileByRole(userList, userRole);
+		}
+	 }
 	
-	public ResultMessage changePassword(String name,String password,UserRole userRole)throws RemoteException{
-		return ResultMessage.SUCCEED;
-	}
-
+	//判断用户名是否存在
+	 private ResultMessage isNameExist(String name,ArrayList<UserPO> userList){
+		 int i = -1;
+		 for(int j=0;j<userList.size();j++){
+			 if(userList.get(j).getUserName().equals(name)){
+				 i=j;
+			 }
+		 }
+		 if(i==-1){
+			 return ResultMessage.NOTEXIST;
+		 }else{
+			 return ResultMessage.EXIST;
+		 }
+	 }
 	
 	public ResultMessage delete(PO po) throws RemoteException {
 		UserPO userPO = (UserPO)po;
