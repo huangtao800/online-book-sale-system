@@ -153,7 +153,8 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 			if((arrayList.get(i).getBookName().contains(name)||name.equals(""))&&
 			   (arrayList.get(i).getAuthor().equals(author)||author.equals(""))&&
 			   (arrayList.get(i).getPress().equals(press)||press.equals(""))&&
-			   (arrayList.get(i).getPublishDate().equals(publishDate)||publishDate.equals(""))){
+			   (arrayList.get(i).getPublishDate().equals(publishDate)||publishDate.equals(""))&&
+			   (arrayList.get(i).getNumOfBook()!=0)){
 				   bookList.add(arrayList.get(i));
 			   }
 		}
@@ -166,7 +167,8 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		ArrayList<BookPO> arrayList = readFile();
 		ArrayList<BookPO> bookList = new ArrayList<BookPO>();
 		for(int i=0;i<arrayList.size();i++){
-			if(arrayList.get(i).getType().equals(type)){
+			if(arrayList.get(i).getType().equals(type)&&
+					(arrayList.get(i).getNumOfBook()!=0)){
 				   bookList.add(arrayList.get(i));
 			}
 		}
@@ -206,7 +208,7 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		bookTypeList = BookDatabase.getInstance().sortBookType(bookTypeList);
+		bookTypeList = sortBookType(bookTypeList);
 		return bookTypeList;
 	}
 	
@@ -228,29 +230,36 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 	
 	public ResultMessage addBookType(String type) throws RemoteException{
 		ArrayList<String> arrayList = getBookType();
-		arrayList.add(type);
-		return writeBookType(arrayList);
+		int index = isBookTypeExist(arrayList, type);
+		if(index==-1){       //该类型不存在
+			arrayList.add(type);
+			return writeBookType(arrayList);
+		}else{
+			return ResultMessage.EXIST;
+		}
+		
+		
 	}
 		
 	
 	public ResultMessage changeBookType(String beforeType,String afterType)throws RemoteException{
 		ArrayList<String> typeList = getBookType();
 		ArrayList<BookPO> bookList = readFile();
+		int oldIndex = isBookTypeExist(typeList, beforeType);
+		int newIndex = isBookTypeExist(typeList,afterType);
 		
-		int index = isBookTypeExist(typeList,afterType);
-		//存在afterType图书类型
-		if(index!=-1){
-		   typeList.remove(getBookTypeIndex(typeList, beforeType));
+		//原来就存在afterType图书类型
+		if(newIndex!=-1){
 		   for(int i=0;i<bookList.size();i++){
 			   if(bookList.get(i).getType().equals(beforeType)){
 				   bookList.get(i).setType(afterType);
 			   }
 		   }
+		   typeList.remove(oldIndex);
 		   writeFile(bookList);
 		   return writeBookType(typeList);
-		   
-		   
-		}else{     //不存在afterType类型的图书
+	    }else{     //不存在afterType类型的图书
+	    	typeList.remove(oldIndex);
 			typeList.add(afterType);
 			return writeBookType(typeList);
 		}
@@ -261,16 +270,6 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		int index = -1;
         for(int i=0;i<typeList.size();i++){
         	if(typeList.get(i).equals(afterType)){
-        		index = i;
-        	}
-        }
-        return index;
-	}
-	
-	private int getBookTypeIndex(ArrayList<String> typeList,String Type){
-		int index = 0;
-        for(int i=0;i<typeList.size();i++){
-        	if(typeList.get(i).equals(Type)){
         		index = i;
         	}
         }
