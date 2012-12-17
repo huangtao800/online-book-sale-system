@@ -1,18 +1,14 @@
 package presentation;
 //董仁广
-import java.awt.TrayIcon.MessageType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import po.BookPO;
 import po.MemberPO;
@@ -22,21 +18,15 @@ import po.Present_Coupon;
 import po.Present_Equivalent;
 import po.ResultMessage;
 import po.SalesManagerPO;
-import po.UserPO;
-import po.UserRole;
 import presentationController.CheckAllBook.CheckAllBookController;
 import presentationController.CheckAllBook.CheckAllBookControllerInterface;
 import presentationController.changePasswordView.changePasswordController;
 import presentationController.changePasswordView.changePasswordControllerInterface;
 import presentationController.changeUserNameView.changeUserNameController;
 import presentationController.changeUserNameView.changeUserNameControllerInterface;
-import presentationController.mainView.MainViewController;
 import presentationController.mainView.MainViewControllerInterface;
 
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
-import com.sun.org.apache.xml.internal.security.utils.IgnoreAllErrorHandler;
-import com.sun.org.apache.xml.internal.serializer.utils.StringToIntTable;
-
+@SuppressWarnings("serial")
 public class MainView extends JFrame implements ActionListener{
 	   MainViewControllerInterface mainViewController;
 	   private int lineOfUncompletedOrder=11;//初始为11
@@ -44,6 +34,7 @@ public class MainView extends JFrame implements ActionListener{
 	   private DefaultTableModel tableModel;
 	   private SalesManagerPO userpo;
 	   private ArrayList<OrderPO> uncompletedOrderList;
+	   private boolean hasUpdateUncompleteOrder= false;
 //	   SalesManagerModelInterface model;
 	
 	    private javax.swing.JButton addBookButton;
@@ -55,7 +46,8 @@ public class MainView extends JFrame implements ActionListener{
 	    private javax.swing.JTextField bookPriceTextField;
 	    private javax.swing.JTextField bookPublishHouseTextField;
 	    private javax.swing.JTextField bookPublishYearField;
-	    private javax.swing.JList bookTypeList;
+	    @SuppressWarnings("rawtypes")
+		private javax.swing.JList bookTypeList;
 	    private javax.swing.JPanel bookTypejPanel;
 	    private javax.swing.ButtonGroup buttonGroup1;
 	    private javax.swing.JButton changeBookButton;
@@ -113,7 +105,8 @@ public class MainView extends JFrame implements ActionListener{
 	    private javax.swing.JTextArea showPresentTextArea;
 	    private javax.swing.JRadioButton signedRadioButton;
 	    private javax.swing.JRadioButton transportRadioButton;
-	    private javax.swing.JComboBox typeComboBox;
+	    @SuppressWarnings("rawtypes")
+		private javax.swing.JComboBox typeComboBox;
 	    private javax.swing.JButton updateOrderButton;
 	    private javax.swing.JLabel userNameLabel;
 	    // End of variables declaration
@@ -123,7 +116,7 @@ public class MainView extends JFrame implements ActionListener{
 	    	this.mainViewController=mainViewController;
 	    }
 	    
-	    @SuppressWarnings("unchecked")
+	    @SuppressWarnings({ "unchecked", "rawtypes" })
 		public void createMainView(){
 
 	        buttonGroup1 = new javax.swing.ButtonGroup();
@@ -839,7 +832,8 @@ public class MainView extends JFrame implements ActionListener{
                    //	    private boolean checkPresentFirst=false;
 	    
  //事件响应    
-	    public void actionPerformed(ActionEvent event){
+	    @SuppressWarnings("unchecked")
+		public void actionPerformed(ActionEvent event){
 	    	String isbn="";
 //查看总经理制定的大范围促销规则    	
 	       if(event.getSource()==checkPresentButton){     
@@ -976,11 +970,21 @@ public class MainView extends JFrame implements ActionListener{
 	       
 //更新未完成的订单
 	    	else if(event.getSource()== updateOrderButton){
+	    		hasUpdateUncompleteOrder=true;
 	    		updateUncompletedOrder();	    	
 	    	}
 	       
 //修改订单状态
 	    	else if(event.getSource() ==changeOrderButton){
+	    		if(! hasUpdateUncompleteOrder){
+	    			  JOptionPane.showMessageDialog(null, "请先查看未完成的订单！");
+	    			  return ;
+	    		}
+	    		if(uncompletedOrderList==null || uncompletedOrderList.size()==0){
+	    			 JOptionPane.showMessageDialog(null, "暂无未完成的订单！");
+	    			return;
+	    		}
+	    		
 	    		int selectedRow=orderTable.getSelectedRow();
 	    		if(selectedRow != -1){
 	    			OrderPO orderPO=uncompletedOrderList.get(selectedRow);
@@ -1019,6 +1023,7 @@ public class MainView extends JFrame implements ActionListener{
 	      
 	     //修改用户名
 			else if(event.getSource()== changeUserNameButton){
+				@SuppressWarnings("unused")
 				changeUserNameControllerInterface controller=new changeUserNameController(userpo,mainViewController) ;
 //                userpo=controller.getNewUserPO();
 //                if(userpo==null){
@@ -1030,7 +1035,8 @@ public class MainView extends JFrame implements ActionListener{
 	
 	//修改用户密码
 			else if(event.getSource()== changeUserPasswordButton){
-                 changePasswordControllerInterface controller=new changePasswordController(userpo);
+                 @SuppressWarnings("unused")
+				changePasswordControllerInterface controller=new changePasswordController(userpo,mainViewController);
 			}
 	//退出
 			else if(event.getSource()== exitButton){
@@ -1044,10 +1050,10 @@ public class MainView extends JFrame implements ActionListener{
 				}
 				ResultMessage result=mainViewController.addBookType(newType);
 				if(result==ResultMessage.SUCCEED){
-					JOptionPane.showMessageDialog(null, "添加成功！");
 					bookTypeList.setModel(new TypeListModel());
 					setTypeComboxModel();
-//					***
+					JOptionPane.showMessageDialog(null, "添加成功！");
+				
 				}else {
 					JOptionPane.showMessageDialog(null, "添加失败！");
 				}
@@ -1064,10 +1070,10 @@ public class MainView extends JFrame implements ActionListener{
 				String deleteType=(String) bookTypeList.getSelectedValue();
 				ResultMessage result=mainViewController.changeBookType(deleteType, "其他");
 				if(result==ResultMessage.SUCCEED){
-					JOptionPane.showMessageDialog(null, "删除成功！");
 					bookTypeList.setModel(new TypeListModel());
 					setTypeComboxModel();
-//					***
+					JOptionPane.showMessageDialog(null, "删除成功！");
+					
 				}else{
 					JOptionPane.showMessageDialog(null, "删除失败！");
 				}
@@ -1088,15 +1094,17 @@ public class MainView extends JFrame implements ActionListener{
 				
 				ResultMessage result=mainViewController.changeBookType(oldType, newType);
 				if(result==ResultMessage.SUCCEED){
-					JOptionPane.showMessageDialog(null,"修改成功！");
 					bookTypeList.setModel(new TypeListModel());
 					setTypeComboxModel();
-//					***
+					JOptionPane.showMessageDialog(null,"修改成功！");
+					
+
 				}else{
 					JOptionPane.showMessageDialog(null,"修改失败！");
 				}
 			}
 			else if(event.getSource()==checkAllBookButton){
+				@SuppressWarnings("unused")
 				CheckAllBookControllerInterface checkAllBookControlle=new CheckAllBookController();
 			}
 
@@ -1161,21 +1169,22 @@ public class MainView extends JFrame implements ActionListener{
 //String 是否可以转换成Double
 	   private boolean stringToDouble(String s){
 		   try{
-			   double d=Double.parseDouble(s);
+			   @SuppressWarnings("unused")
+			double d=Double.parseDouble(s);
 			   return true;
 		   }catch(Exception e){
-			   e.printStackTrace();
 			   return false;
 		   }
 	   }
 //
 	   private boolean StringToInt(String s){
 		   try {
-			   int n=Integer.parseInt(s);
+			   @SuppressWarnings("unused")
+			int n=Integer.parseInt(s);
 			   return true;
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+		
 			return false;
 		}
 	   }
@@ -1207,13 +1216,17 @@ public class MainView extends JFrame implements ActionListener{
 //	   更新未完成的订单
 	   private void updateUncompletedOrder(){
 			uncompletedOrderList=mainViewController.getUncompletedOrderPOList();
-    		
-    		if(uncompletedOrderList== null || lineOfUncompletedOrder==0){
-    	    	JOptionPane.showMessageDialog(null, "没有未完成的订单！");
+		     
+    		if(uncompletedOrderList== null || uncompletedOrderList.size()==0){
+    	    	JOptionPane.showMessageDialog(null, "现在已无未完成的订单！");
+    	    	for(int k=0;k<lineOfUncompletedOrder;k++)
+    	    		for(int h=0;h<5;h++)
+    	    		   orderTable.setValueAt(null, k, h);
+    	    	
+    	    	orderTable.setEnabled(false); 
     	    }else{
-    	    	  orderTable.setEnabled(true);
+    	    	  orderTable.setEnabled(true); 
     	    	  lineOfUncompletedOrder=uncompletedOrderList.size();
-    	    	 
     	    	  
     	    	  String [] columnNames={"订单号", "下单时间", "总价", "顾客编号", "订单状态"};
     		      String [][] tableValue=new String[lineOfUncompletedOrder][5];
@@ -1241,7 +1254,8 @@ public class MainView extends JFrame implements ActionListener{
 		   return -1;
 	   }
 	   
-	  private void setTypeComboxModel(){
+	  @SuppressWarnings({ "rawtypes", "unchecked" })
+	private void setTypeComboxModel(){
 	        ArrayList<String> bookTypeList=mainViewController.getTypeList();
 	        String[] typeStrings=new String[bookTypeList.size()];
 	        for(int i=0;i<bookTypeList.size();i++){
@@ -1250,27 +1264,30 @@ public class MainView extends JFrame implements ActionListener{
 	        typeComboBox.setModel(new DefaultComboBoxModel(typeStrings));
 	  }
 	   
-	   class TypeListModel extends AbstractListModel{
+	   @SuppressWarnings({ "rawtypes" })
+	class TypeListModel extends AbstractListModel{
 		   ArrayList<String> typeLsit=mainViewController.getTypeList();
 		   
 		@Override
 		public int getSize() {
-			// TODO Auto-generated method stub
+		
 			return typeLsit.size();
 		}
 
 		@Override
 		public Object getElementAt(int index) {
-			// TODO Auto-generated method stub
 			return typeLsit.get(index);
 		}
 		   
 	   }
 
 	public void freshName(String name) {
-		// TODO Auto-generated method stub
+		
+		userpo.setUserName(name);
 		userNameLabel.setText(name);
 	}
-	   
+	public void freshPassword(String newPW){
+		userpo.setUserPassword(newPW);
+	}
 	   
 }

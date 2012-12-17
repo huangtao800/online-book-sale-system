@@ -55,7 +55,7 @@ public class changeUserNameView extends JFrame implements ActionListener{
 
 	        cancelButton.setBackground(new java.awt.Color(204, 51, 0));
 	        cancelButton.setFont(new java.awt.Font("方正舒体", 1, 24)); // NOI18N
-	        cancelButton.setText("取消");
+	        cancelButton.setText("退出");
 
 	        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 	        jPanel1.setLayout(jPanel1Layout);
