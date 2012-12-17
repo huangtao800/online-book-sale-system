@@ -835,7 +835,7 @@ public class GeneralManagerView extends JFrame implements ActionListener {
     	}
     	//修改用户密码
     	else if(event.getSource()==changeUserPasswordButton1){
-    		changePasswordControllerInterface controller=new changePasswordController(userpo);
+    		changePasswordControllerInterface controller=new changePasswordController(userpo,proController);
     	}
     	//退出
     	else if(event.getSource()== exitButton){
@@ -1158,8 +1158,11 @@ private void checkPresent(){
     private boolean setEquTableIsEmpty(){
     	for(int i=0;i<line;i++){
     		for(int j=0;j<2;j++){
-    			if(setEqualityTable.getValueAt(i, j)!= null)
+    			if(   (setEqualityTable.getValueAt(i, j)!= null) && 
+    					!setEqualityTable.getValueAt(i, j).toString().trim().equals("") 
+    		      )
     				return false;
+    			
     		}
     	}
     	return true;
@@ -1167,7 +1170,7 @@ private void checkPresent(){
     //setCouponTable是否为空
     private boolean setCouTableIsEmpty(){
     	for(int i=0;i<line;i++){
-    		if(setCouponTable.getValueAt(i, 0)!=null)
+    		if(setCouponTable.getValueAt(i, 0)!=null  && !setCouponTable.getValueAt(i, 0).toString().trim().equals("") )
     			return false;
     	}
     	return true;
@@ -1368,7 +1371,11 @@ private void checkPresent(){
 
 	public void freshName(String userName) {
 		// TODO Auto-generated method stub
+		userpo.setUserName(userName);
 		userNameLabel.setText(userName);
+	}
+	public void freshPassword(String newPW){
+		userpo.setUserPassword(newPW);
 	}
 	
 }
