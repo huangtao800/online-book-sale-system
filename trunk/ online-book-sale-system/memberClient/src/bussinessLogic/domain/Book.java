@@ -58,7 +58,7 @@ public class Book{
 	public ResultMessage addBook(BookPO bookPO){
 			
 			try {
-				return bookDatabase.insert(this.bookPO);
+				return bookDatabase.insert(bookPO);
 			} catch (RemoteException e) {
 			
 				e.printStackTrace();
