@@ -18,13 +18,13 @@ import po.Present_Coupon;
 import po.Present_Equivalent;
 import po.ResultMessage;
 import po.SalesManagerPO;
-import presentationController.CheckAllBook.CheckAllBookController;
-import presentationController.CheckAllBook.CheckAllBookControllerInterface;
 import presentationController.changePasswordView.changePasswordController;
 import presentationController.changePasswordView.changePasswordControllerInterface;
 import presentationController.changeUserNameView.changeUserNameController;
 import presentationController.changeUserNameView.changeUserNameControllerInterface;
 import presentationController.mainView.MainViewControllerInterface;
+import presentationController.searchBookView.SearchBookService;
+import presentationController.searchBookView.SearchBookViewController;
 
 @SuppressWarnings("serial")
 public class MainView extends JFrame implements ActionListener{
@@ -537,7 +537,7 @@ public class MainView extends JFrame implements ActionListener{
 
 	        checkAllBookButton.setBackground(new java.awt.Color(0, 204, 204));
 	        checkAllBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
-	        checkAllBookButton.setText("浏览图书");
+	        checkAllBookButton.setText("图书查询");
 
 	        javax.swing.GroupLayout bookPanelLayout = new javax.swing.GroupLayout(bookPanel);
 	        bookPanel.setLayout(bookPanelLayout);
@@ -866,7 +866,7 @@ public class MainView extends JFrame implements ActionListener{
 	    		    		                                         Double.parseDouble(bookPriceTextField.getText()),
 	    		    		                                         Integer.parseInt(bookNumberTextField.getText())
 	    		    		                                      );
-	    		     if( mainViewController.addBook(bookPO) ==ResultMessage.FAILED ){
+	    		     if( mainViewController.addBook(bookPO) == ResultMessage.FAILED ){
 	    		    	 JOptionPane.showMessageDialog(null, "您输入的图书ISBM已经存在，请另行设置！");
 	    		     }else{
 	    		    	 JOptionPane.showMessageDialog(null, "添加图书成功！");
@@ -913,7 +913,7 @@ public class MainView extends JFrame implements ActionListener{
 		    			bookNumberTextField.setText(""+bookPO.getNumOfBook());
 		    			bookPublishHouseTextField.setText(bookPO.getPress());
 		    			bookPublishYearField.setText(bookPO.getPublishDate());
-		    			JOptionPane.showMessageDialog(null, "系统已显示您要修改的图书信息,请在界面上修改！\n" 
+		    			JOptionPane.showMessageDialog(null, "系统已显示您要修改的图书信息,请在界面上修改！注意：图书ISBN不可以修改！\n" 
 		    					                                                   +"修改完成后请点击‘确认修改按钮’。");
       	    			bookIDTextField.setEditable(false);
 		    			confirmChangeBookButton.setEnabled(true);
@@ -923,13 +923,13 @@ public class MainView extends JFrame implements ActionListener{
 	       
 //确认修改图书
 	    	else if(event.getSource()== confirmChangeBookButton){
-	    		 mainViewController.deleteBook(isbn);
+	    		//图书的ISBN不可以修改
 	    		  BookPO bookPO=new BookPO(bookIDTextField.getText(), bookNameTextField.getText(), 
                           bookAutherTextField.getText(),bookPublishHouseTextField.getText(),
                           bookPublishYearField.getText(), (String)typeComboBox.getSelectedItem(),
                           Double.parseDouble(bookPriceTextField.getText()), Integer.parseInt(bookNumberTextField.getText())
                        );
-	    	   mainViewController.addBook(bookPO);		
+	    	    mainViewController.changeBookPO(bookPO);	
 	    		
     			confirmChangeBookButton.setEnabled(false);
     			bookIDTextField.setEditable(true);
@@ -1054,7 +1054,9 @@ public class MainView extends JFrame implements ActionListener{
 					setTypeComboxModel();
 					JOptionPane.showMessageDialog(null, "添加成功！");
 				
-				}else {
+				}else if(result==ResultMessage.EXIST){
+					JOptionPane.showMessageDialog(null, "该类型已经存在！");
+				}else{
 					JOptionPane.showMessageDialog(null, "添加失败！");
 				}
 			}
@@ -1073,8 +1075,7 @@ public class MainView extends JFrame implements ActionListener{
 					bookTypeList.setModel(new TypeListModel());
 					setTypeComboxModel();
 					JOptionPane.showMessageDialog(null, "删除成功！");
-					
-				}else{
+			    }else{
 					JOptionPane.showMessageDialog(null, "删除失败！");
 				}
 			}
@@ -1105,7 +1106,8 @@ public class MainView extends JFrame implements ActionListener{
 			}
 			else if(event.getSource()==checkAllBookButton){
 				@SuppressWarnings("unused")
-				CheckAllBookControllerInterface checkAllBookControlle=new CheckAllBookController();
+				SearchBookService searchBookController = SearchBookViewController.getInstance();
+				searchBookController.init();
 			}
 
 	    }//事件结束
