@@ -36,4 +36,5 @@ public interface MainViewControllerInterface {
 	public SalesManagerPO getUserPO();
 	
 	public void freshName(String name);
+	public void freshPassword(String newPW);
 }
