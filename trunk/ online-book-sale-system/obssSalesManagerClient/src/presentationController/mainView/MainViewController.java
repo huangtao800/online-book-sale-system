@@ -133,5 +133,8 @@ public class MainViewController implements MainViewControllerInterface{
 		// TODO Auto-generated method stub
 		mainView.freshName(name);
 	}
+	public void freshPassword(String newPW){
+		mainView.freshPassword(newPW);
+	}
 
 }
