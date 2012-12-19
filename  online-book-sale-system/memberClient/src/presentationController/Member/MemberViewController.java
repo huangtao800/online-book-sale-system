@@ -13,6 +13,8 @@ import presentation.MemberView;
 import presentationController.Sales.SalesViewController;
 import presentationController.book.BookViewController;
 import presentationController.book.BookViewService;
+import vo.KeywordVO;
+import vo.MemberVO;
 
 
 public class MemberViewController implements MemberViewService{
@@ -20,15 +22,17 @@ public class MemberViewController implements MemberViewService{
 	private MemberView memberView;
 	private static MemberViewService instance;
 	private MemberPO memberPO;
+	private MemberVO memberVO;
 	private MemberBLService memberController;
 	
 	private MemberViewController(MemberPO memberPO){
 
 		this.memberPO=memberPO;
+		this.memberVO=new MemberVO(memberPO);
 		
 		MemberController.setMember(memberPO);
 		this.memberController=MemberController.getInstance();
-		memberView=new MemberView(this,memberPO);
+		memberView=new MemberView(this,memberVO,memberPO);
 		memberView.setVisible(true);
 	}
 
@@ -57,8 +61,9 @@ public class MemberViewController implements MemberViewService{
 	}
 
 	@Override
-	public ResultMessage removeFavority(BookPO bookPO) {
+	public ResultMessage removeFavority(int selectedRow) {
 		// TODO Auto-generated method stub
+		BookPO bookPO=memberPO.getFavority().getFavorities().get(selectedRow);
 		return memberController.removeFavorities(bookPO);
 	}
 
@@ -81,8 +86,9 @@ public class MemberViewController implements MemberViewService{
 	}
 
 	@Override
-	public ResultMessage putInCart(BookPO bookPO,int number) {
+	public ResultMessage putInCart(int selectedRow,int number) {
 		// TODO Auto-generated method stub
+		BookPO bookPO=memberPO.getFavority().getFavorities().get(selectedRow);
 		LineItemPO lineItemPO=new LineItemPO(bookPO, number);
 		return memberController.putInCart(lineItemPO);
 	}
@@ -109,13 +115,24 @@ public class MemberViewController implements MemberViewService{
 	@Override
 	public MemberPO freshMemberPO(String memberID) {
 		// TODO Auto-generated method stub
-		return memberController.freshMemberPO(memberID);
+		MemberPO newMemberPO = memberController.freshMemberPO(memberID);
+		this.memberPO=newMemberPO;
+		this.memberVO=new MemberVO(newMemberPO);
+		
+		freshMemberVO();
+		return newMemberPO;
 	}
 
 	@Override
 	public ArrayList<String> getBookType() {
 		// TODO Auto-generated method stub
 		return memberController.getBookType();
+	}
+
+	@Override
+	public void freshMemberVO() {
+		// TODO Auto-generated method stub
+		memberView.setMemberVO(new MemberVO(memberPO));
 	}
 	
 }
