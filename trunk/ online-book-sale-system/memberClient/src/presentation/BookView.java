@@ -15,9 +15,10 @@ import bussinessLogicService.BookBLService;
 import po.BookPO;
 import po.LineItemPO;
 import po.ResultMessage;
-import presentationController.Member.KeywordVO;
 import presentationController.book.BookViewController;
 import presentationController.book.BookViewService;
+import vo.KeywordVO;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
