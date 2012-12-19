@@ -8,18 +8,17 @@ import javax.swing.JOptionPane;
 import databaseService.init.InitDatabaseService;
 
 import po.MemberPO;
-import po.ResultMessage;
+
 import po.UserPO;
 import po.UserRole;
-import presentation.RegistryView;
+
 import presentation.StartView;
 
 import presentationController.Member.MemberViewController;
 import presentationController.Member.MemberViewService;
-import bussinessLogic.controller.UserController;
+
 import bussinessLogicService.RegistryBLService;
 import bussinessLogicService.StartBLService;
-import bussinessLogicService.UserBLService;
 
 public class StartController implements StartBLService {
 	private StartView startView;
@@ -27,9 +26,10 @@ public class StartController implements StartBLService {
 	private RegistryBLService registryController;
 
 	// 构造函数应传入Model
-	public StartController() { 
+	public StartController() {
 		try {
-			initDatabase=(InitDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/InitDatabase");
+			initDatabase = (InitDatabaseService) Naming
+					.lookup("rmi://127.0.0.1:5000/InitDatabase");
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -41,8 +41,8 @@ public class StartController implements StartBLService {
 	@Override
 	public void logIn(String name, String password, UserRole role) {
 		// TODO Auto-generated method stub
-		
-		UserPO userPO=null;
+
+		UserPO userPO = null;
 		try {
 			userPO = initDatabase.logIn(name, password, role);
 		} catch (RemoteException e) {
@@ -50,18 +50,16 @@ public class StartController implements StartBLService {
 			e.printStackTrace();
 		}
 
-		
 		if (userPO != null) {
 			startView.setVisible(false);
 			startView.dispose();
-			
-			enterMainView(role,userPO);
+
+			enterMainView(role, userPO);
 			System.out.println("success!");
 		} else {
 			JOptionPane.showMessageDialog(null, "对不起！用户名或密码错误！");
 		}
 	}
-
 
 	@Override
 	public void startRegistry() {
@@ -70,10 +68,11 @@ public class StartController implements StartBLService {
 	}
 
 	@Override
-	public void enterMainView(UserRole role,UserPO userPO) {
+	public void enterMainView(UserRole role, UserPO userPO) {
 		// TODO Auto-generated method stub
-			MemberPO memberPO=(MemberPO) userPO;
-			MemberViewService memberViewController=MemberViewController.getInstance(memberPO);
+		MemberPO memberPO = (MemberPO) userPO;
+		MemberViewService memberViewController = MemberViewController
+				.getInstance(memberPO);
 	}
 
 	@Override
