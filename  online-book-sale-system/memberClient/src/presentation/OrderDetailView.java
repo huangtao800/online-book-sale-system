@@ -13,6 +13,9 @@ import javax.swing.table.DefaultTableModel;
 
 import po.LineItemPO;
 import po.OrderPO;
+import vo.LineItemVO;
+import vo.NewOrderVO;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -25,7 +28,7 @@ public class OrderDetailView extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	
-	private OrderPO orderPO;
+	private NewOrderVO orderVO;
 
 	/**
 	 * Launch the application.
@@ -43,8 +46,8 @@ public class OrderDetailView extends JFrame {
 //		});
 //	}
 
-	public OrderDetailView(OrderPO orderPO){
-		this.orderPO=orderPO;
+	public OrderDetailView(NewOrderVO orderVO){
+		this.orderVO=orderVO;
 		initComponent();
 	}
 	
@@ -84,7 +87,7 @@ public class OrderDetailView extends JFrame {
 			}
 		});
 		
-		table.setModel(new OrderDetailTableModel(orderPO));
+		table.setModel(new OrderDetailTableModel(orderVO));
 		scrollPane.setViewportView(table);
 		
 		JLabel label = new JLabel("\u8BA2\u5355\u603B\u4EF7\uFF1A");
@@ -93,7 +96,7 @@ public class OrderDetailView extends JFrame {
 		contentPane.add(label);
 		
 		JLabel priceLabel = new JLabel("New label");
-		priceLabel.setText(""+orderPO.getTotalPrice());
+		priceLabel.setText(""+orderVO.totalPrice);
 		priceLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
 		priceLabel.setBounds(180, 210, 86, 26);
 		contentPane.add(priceLabel);
@@ -112,16 +115,16 @@ public class OrderDetailView extends JFrame {
 	
 	class OrderDetailTableModel extends AbstractTableModel{
 
-		private OrderPO orderPO;
+		private NewOrderVO orderVO;
 		
-		public OrderDetailTableModel(OrderPO orderPO){
-			this.orderPO=orderPO;
+		public OrderDetailTableModel(NewOrderVO orderVO){
+			this.orderVO=orderVO;
 		}
 		
 		@Override
 		public int getRowCount() {
 			// TODO Auto-generated method stub
-			return orderPO.getProductList().size();
+			return orderVO.lineItemVOList.size();
 		}
 
 		@Override
@@ -133,26 +136,27 @@ public class OrderDetailView extends JFrame {
 		@Override
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			// TODO Auto-generated method stub
-			ArrayList<LineItemPO> productList=orderPO.getProductList();
+			ArrayList<LineItemVO> productList=orderVO.lineItemVOList;
+			
 			switch (columnIndex) {
 			case 0:
 				return rowIndex+1;
 			case 1:
-				return productList.get(rowIndex).getBook().getISBN();
+				return productList.get(rowIndex).bookVO.ISBN;
 			case 2:
-				return productList.get(rowIndex).getBook().getBookName();
+				return productList.get(rowIndex).bookVO.bookName;
 			case 3:
-				return productList.get(rowIndex).getBook().getAuthor();
+				return productList.get(rowIndex).bookVO.author;
 			case 4:
-				return productList.get(rowIndex).getBook().getPress();
+				return productList.get(rowIndex).bookVO.press;
 			case 5:
-				return productList.get(rowIndex).getBook().getPublishDate();
+				return productList.get(rowIndex).bookVO.publishDate;
 			case 6:
-				return productList.get(rowIndex).getBook().getPrice();
+				return productList.get(rowIndex).bookVO.price;
 			case 7:
-				return productList.get(rowIndex).getNumber();
+				return productList.get(rowIndex).number;
 			default:
-				return productList.get(rowIndex).getSumPrice();
+				return productList.get(rowIndex).sumPrice;
 			}
 		}
 		
