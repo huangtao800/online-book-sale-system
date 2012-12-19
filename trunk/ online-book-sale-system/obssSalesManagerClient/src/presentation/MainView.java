@@ -1139,7 +1139,7 @@ public class MainView extends JFrame implements ActionListener{
 		    	  //private String equivalent[][]=new String [line][column4];
 		    	  //10组,每组分别表示:等价券额度，张数，有效截止日期，最低消费 
 		    	  if( present_EquivalentList!= null && present_EquivalentList.size()!=0 ){
-		    		  showPresentTextArea.append("**********等价券**********\n");
+		    		  showPresentTextArea.append("                         ********************等价券********************\n");
 		    		  for(int i=0;i<present_EquivalentList.size(); i++){
 		    			  present_Equivalent=present_EquivalentList.get(i);
 		    			  showPresentTextArea.append("会员等级:"+present_Equivalent.getVIPRank_String() 
@@ -1150,7 +1150,7 @@ public class MainView extends JFrame implements ActionListener{
 		    		  }	  
 		    	  }
 		    	  if( present_CouponList!= null && present_CouponList.size()!=0 ){
-		    		  showPresentTextArea.append("**********打折券**********\n");
+		    		  showPresentTextArea.append("                         ********************打折券********************\n");
 		    		  for(int j=0;j<present_CouponList.size(); j++){
 		    			  present_Coupon=present_CouponList.get(j);
 		    			  showPresentTextArea.append("会员等级:"+present_Coupon.getVIPRank_String()
