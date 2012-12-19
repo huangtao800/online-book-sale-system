@@ -2,7 +2,6 @@ package presentationController.book;
 
 import java.util.ArrayList;
 
-import javax.swing.JPanel;
 
 import bussinessLogic.controller.BookController;
 import bussinessLogic.controller.MemberController;
@@ -13,11 +12,10 @@ import po.BookPO;
 import po.LineItemPO;
 import po.ResultMessage;
 import presentation.BookView;
-import presentationController.Member.KeywordVO;
-import presentationController.Member.MemberViewController;
-import presentationController.Member.MemberViewService;
+
 import presentationController.Sales.SalesViewController;
-import presentationController.Sales.SalesViewService;
+
+import vo.KeywordVO;
 
 public class BookViewController implements BookViewService{
 	 private BookView bookView;
