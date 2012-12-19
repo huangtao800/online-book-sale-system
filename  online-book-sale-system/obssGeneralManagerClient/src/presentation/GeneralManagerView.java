@@ -266,7 +266,7 @@ public class GeneralManagerView extends JFrame implements ActionListener {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("          首页           ", jPanel1);
+        jTabbedPane1.addTab("            首页             ", jPanel1);
 
         jLabel7.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
@@ -849,6 +849,14 @@ public class GeneralManagerView extends JFrame implements ActionListener {
     //查看促销手段
     private void checkPromotion(){
     	proPO=proController.getProPO();
+    	equivalentList=proPO.getEquivalentList();
+		couponRateList=proPO.getCouponrateList();
+		
+    	if(Math.abs(proPO.getExchangeOfScore()-100)<0.000001  &&
+    			( equivalentList==null ||equivalentList.size()==0  )&&
+    			couponRateList==null || couponRateList.size()==0    ){
+    		JOptionPane.showMessageDialog(null, "在您未进行'积分与消费 额'设置前，\n系统将默认设置此值为100%！");
+    	}
     	if(proPO==null){
     		JOptionPane.showMessageDialog(null, "您尚未进行促销手段设置！");
     	}
@@ -862,8 +870,6 @@ public class GeneralManagerView extends JFrame implements ActionListener {
     		
     	}
     	else{
-    		equivalentList=proPO.getEquivalentList();
-    		couponRateList=proPO.getCouponrateList();
     		
     		 String [] columnNames={"等价券额度/元","最低消费/元"}; 
 	         String [][] tableValue=new String[line][2];
@@ -985,7 +991,7 @@ private void checkPresent(){
 	    	  //private String equivalent[][]=new String [line][column4];
 	    	  //10组,每组分别表示:等价券额度，张数，有效截止日期，最低消费 
 	    	  if( present_EquivalentList!= null && present_EquivalentList.size()!=0 ){
-	    		  showPresentTextArea.append("**********等价券**********\n");
+	    		  showPresentTextArea.append("                         ********************等价券********************\n");
 	    		  for(int i=0;i<present_EquivalentList.size(); i++){
 	    			  present_Equivalent=present_EquivalentList.get(i);
 	    			  showPresentTextArea.append("会员等级:"+present_Equivalent.getVIPRank_String() 
@@ -994,9 +1000,10 @@ private void checkPresent(){
 	    			  +"张  "+"有效截止日期:"+CalToStr(present_Equivalent.getEndDate()) +"\n"
 	    			  );			  
 	    		  }	  
+	    		  showPresentTextArea.append("\n");
 	    	  }
 	    	  if( present_CouponList!= null && present_CouponList.size()!=0 ){
-	    		  showPresentTextArea.append("**********打折券**********\n");
+	    		  showPresentTextArea.append("                         ********************打折券********************\n");
 	    		  for(int j=0;j<present_CouponList.size(); j++){
 	    			  present_Coupon=present_CouponList.get(j);
 	    			  showPresentTextArea.append("会员等级:"+present_Coupon.getVIPRank_String()
