@@ -928,14 +928,17 @@ public class MainView extends JFrame implements ActionListener{
                           bookPublishYearField.getText(), (String)typeComboBox.getSelectedItem(),
                           Double.parseDouble(bookPriceTextField.getText()), Integer.parseInt(bookNumberTextField.getText())
                        );
-	    	   if( mainViewController.changeBookPO(bookPO) ==ResultMessage.SUCCEED){
-	    		   JOptionPane.showMessageDialog(null, "修改图书成功！");
-	    	   }else{
-	    		   JOptionPane.showMessageDialog(null, "修改图书失败！");
-	    	   }
-	    		
-    			confirmChangeBookButton.setEnabled(false);
-    			bookIDTextField.setEditable(true);
+	    		  
+	    		  confirmChangeBookButton.setEnabled(false);
+	    		  bookIDTextField.setEditable(true);
+	    	     
+	    		  ResultMessage resultMessage = mainViewController.changeBookPO(bookPO);
+	    		  if(resultMessage==ResultMessage.SUCCEED){
+	    			  JOptionPane.showMessageDialog(null, "修改成功！");
+	    		  }else{
+	    			  JOptionPane.showMessageDialog(null, "系统异常，请重试！");
+	    		  }
+	    	    
 	    	}
 	       
 //查看顾客信息
