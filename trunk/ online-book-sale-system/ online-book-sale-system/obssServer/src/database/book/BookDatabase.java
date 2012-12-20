@@ -127,7 +127,7 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
     		bookList.get(index).setType(bookPO.getType());
     		return writeFile(bookList);
 		}else{
-			return ResultMessage.NOTEXIST;
+			return ResultMessage.FAILED;
 		}
        
 	}
