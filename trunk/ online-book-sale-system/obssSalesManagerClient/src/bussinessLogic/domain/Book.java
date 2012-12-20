@@ -11,7 +11,7 @@ import po.ResultMessage;
 //尤佳琪
 
 public class Book{
-	private BookPO bookPO;
+	
 	private BookDatabaseService bookDatabase;
 	
 	public Book(){
@@ -80,36 +80,29 @@ public class Book{
 		}
 	}
 	
+	//修改图书
 	public ResultMessage modifyBook(BookPO b,String isbn){
  	    try {
-			BookPO bookPO = bookDatabase.findThroughISBN(isbn);
-			
-			if(bookPO==null){
-				return ResultMessage.FAILED;
-			}else{
-				return bookDatabase.update(bookPO);
-			}
-				
-		} catch (RemoteException e) {
+		    return bookDatabase.update(b);
+        } catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ResultMessage.FAILED;	//RMI出现异常
 		}
 	}
 	
-
+    //用于购买之后的更新库存
 	public ResultMessage updateBook(ArrayList<LineItemPO> salesList){
 		  ArrayList<ResultMessage> resultList = new ArrayList<ResultMessage>();
 		  ResultMessage result = ResultMessage.SUCCEED;
 		  
 		  for(int i=0;i<salesList.size();i++){
-			  bookPO = salesList.get(i).getBook();
+			  BookPO bookPO = salesList.get(i).getBook();
 			  bookPO.setNumOfBook(bookPO.getNumOfBook()-salesList.get(i).getNumber());
 			  
 			  try {
 				  resultList.add( bookDatabase.update(bookPO));
 			  } catch (RemoteException e) {
-				 
 				  e.printStackTrace();
 				  resultList.add( ResultMessage.FAILED);	//RMI出现异常
 			  }
