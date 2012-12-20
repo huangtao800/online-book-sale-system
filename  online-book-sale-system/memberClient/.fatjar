@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Sun Dec 16 21:20:28 CST 2012
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=true
+jarname=F\:\\workspace\\memberClient\\memberClient_fat.jar
+manifest.mergeall=true
+manifest.mainclass=start.ClientStart
+manifest.file=<createnew>
+jarname.isextern=true
+onejar.expand=
+excludes=
+includes=
