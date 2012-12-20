@@ -128,6 +128,11 @@ public class InitMemberData {
 			objoutput=new ObjectOutputStream(outputStream);
 			
 			objoutput.writeObject(idPO);
+			
+			outputStream=new FileOutputStream("OrderNumber.ser");
+			objoutput=new ObjectOutputStream(outputStream);
+			
+			objoutput.writeObject((long)0);
 		
 			outputStream.close();
 			objoutput.close();
