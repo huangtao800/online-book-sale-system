@@ -1,11 +1,9 @@
 package presentationController.GeneralManagerView;
 
 import java.util.ArrayList;
-import bussinessLogic.controller.GeneralManagerController;
 import bussinessLogic.controller.PresentController;
 import bussinessLogic.controller.PromotionController;
 import bussinessLogic.controller.UserController;
-import bussinessLogicService.GeneralManagerBLService;
 import bussinessLogicService.PresentBLService;
 import bussinessLogicService.PromotionBLService;
 import bussinessLogicService.UserBLService;
