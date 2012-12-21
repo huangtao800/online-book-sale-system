@@ -104,33 +104,6 @@ public class MemberDatabase extends UnicastRemoteObject implements
 
 
 	@Override
-	public ResultMessage changeName(String newName, MemberPO memberPO)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-
-		for (int i = 0; i < memberPOList.size(); i++) {
-			if (newName.equals(memberPOList.get(i).getUserName())) {
-				return ResultMessage.EXIST;
-			}
-		}
-
-		memberPO.setUserName(newName);
-		return update(memberPO);
-
-	}
-
-	@Override
-	public ResultMessage changePassword(String password, MemberPO memberPO)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-
-		memberPO.setUserPassword(password);
-
-		return update(memberPO);
-
-	}
-
-	@Override
 	public ResultMessage changeOrder(String memberID, long orderID,
 			OrderState orderState) throws RemoteException {
 		// TODO Auto-generated method stub
