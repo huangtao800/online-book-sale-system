@@ -96,9 +96,15 @@ public class CustomerController implements CustomerBLService{
 	}
 
 	@Override
-	public ResultMessage putInCart(LineItemPO lineItemPO) {
+	public ResultMessage putInCart(BookPO bookPO, int number) {
 		// TODO Auto-generated method stub
-		return customer.putInCart(lineItemPO);
+		int save=bookPO.getNumOfBook();
+		if(number>save){
+			return ResultMessage.NOTPREPARED;
+		}
+		
+		LineItemPO newItemPO =new LineItemPO(bookPO,number);
+		return customer.putInCart(newItemPO);
 	}
 
 	@Override

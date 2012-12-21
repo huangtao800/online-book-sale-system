@@ -89,8 +89,8 @@ public class CustomerViewController implements CustomerViewService{
 	public ResultMessage putInCart(int selectedRow,int number) {
 		// TODO Auto-generated method stub
 		BookPO bookPO=customerPO.getFavority().getFavorities().get(selectedRow);
-		LineItemPO lineItemPO=new LineItemPO(bookPO, number);
-		return memberController.putInCart(lineItemPO);
+//		LineItemPO lineItemPO=new LineItemPO(bookPO, number);
+		return memberController.putInCart(bookPO,number);
 	}
 
 	@Override

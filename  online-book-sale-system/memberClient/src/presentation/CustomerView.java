@@ -275,6 +275,9 @@ public class CustomerView extends JFrame {
 					int number = 0;
 					try {
 						number = Integer.parseInt(numberString);
+						if(number==0){
+							return;
+						}
 					} catch (Exception ex) {
 						// TODO: handle exception
 						JOptionPane.showMessageDialog(null, " ‰»Î¥ÌŒÛ£°");

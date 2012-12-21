@@ -9,7 +9,7 @@ public interface SalesViewService {
 	public void initCartView();
 	public void initPayFrame();
 	public void initOrderView(OrderVO orderVO);
-	public ResultMessage putInCart(String isbn, int number);
+//	public ResultMessage putInCart(String isbn, int number);
 	public ResultMessage removeFromCart(int index);
 	public ResultMessage addFavorities(int index);
 	public double getSpecialPrice(int i);

@@ -23,7 +23,7 @@ public interface CustomerBLService {
 	public ResultMessage changeName(String newName);//修改用户名
 	public ResultMessage changePassword(String password);//修改密码
 	
-	public ResultMessage putInCart(LineItemPO lineItemPO);//添加到购物车
+	public ResultMessage putInCart(BookPO bookPO,int number);//添加到购物车
 	public ResultMessage removeFromCart(int index);	//从购物车中删除
 	
 	public ResultMessage deleteEquivalent(EquivalentPO equivalentPO);	//删除等价券

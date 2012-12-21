@@ -8,7 +8,7 @@ import po.ResultMessage;
 import presentationController.Sales.OrderVO;
 
 public interface SalesBLService {
-	public ResultMessage putInCart(String isbn, int number);
+//	public ResultMessage putInCart(String isbn, int number);
 	public ResultMessage removeFrromCart(int index);
 	public ResultMessage addFavorities(LineItemPO lineItemPO);//添加到收藏夹
 	public double getTotalPrice();//得到购物车商品的总价（原价）
