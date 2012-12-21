@@ -5,18 +5,18 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import bussinessObject.Customer;
+import bussinessObject.CustomerBusiness;
 
 import databaseService.customer.CustomerDatabaseService;
 
 import po.*;
 
 
-public class Member {
+public class Customer {
 	private CustomerPO customerPO;
 	private CustomerDatabaseService memberDatabase;
 
-	public Member(CustomerPO customerPO) {
+	public Customer(CustomerPO customerPO) {
 		this.customerPO = customerPO;
 		try {
 			memberDatabase=(CustomerDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/MemberDatabase");
@@ -36,8 +36,8 @@ public class Member {
 	
 	//想收藏夹中添加图书
 	public ResultMessage addFavorities(BookPO bookPO){
-		Customer customer=new Customer(this.customerPO);
-		ResultMessage resultMessage=customer.addFavority(bookPO);
+		CustomerBusiness customerBusiness=new CustomerBusiness(this.customerPO);
+		ResultMessage resultMessage=customerBusiness.addFavority(bookPO);
 		
 		if(resultMessage==ResultMessage.FULL){
 			return resultMessage;
@@ -54,8 +54,8 @@ public class Member {
 	
 	//从收藏夹中删除图书
 	public ResultMessage removeFavorities(BookPO bookPO){
-		Customer customer=new Customer(this.customerPO);
-		ResultMessage resultMessage=customer.removeFavority(bookPO);
+		CustomerBusiness customerBusiness=new CustomerBusiness(this.customerPO);
+		ResultMessage resultMessage=customerBusiness.removeFavority(bookPO);
 		
 		if(resultMessage!=ResultMessage.SUCCEED){
 			return resultMessage;
@@ -90,8 +90,8 @@ public class Member {
 	
 	//检查顾客所有的订单是否都已签收
 	private boolean checkIsOrderSigned(){
-		Customer customer=new Customer(this.customerPO);
-		return customer.checkIsOrderSigned();
+		CustomerBusiness customerBusiness=new CustomerBusiness(this.customerPO);
+		return customerBusiness.checkIsOrderSigned();
 		
 	}
 	
@@ -107,8 +107,8 @@ public class Member {
 	
 	//增加一条订单记录
 	public ResultMessage addOrder(OrderPO order){
-		Customer customer=new Customer(this.customerPO);
-		customer.addOrder(order);
+		CustomerBusiness customerBusiness=new CustomerBusiness(this.customerPO);
+		customerBusiness.addOrder(order);
 
 		try {
 			return memberDatabase.update(this.customerPO);
