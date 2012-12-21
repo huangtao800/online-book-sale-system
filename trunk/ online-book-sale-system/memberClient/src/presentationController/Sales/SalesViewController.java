@@ -2,6 +2,8 @@ package presentationController.Sales;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import po.LineItemPO;
 import po.ResultMessage;
 import presentation.CartView;
@@ -38,7 +40,9 @@ public class SalesViewController implements SalesViewService{
 		cartView.setVisible(true);
 	}
 //初始化结账界面	
-	public void initPayFrame(){
+	public ResultMessage initPayFrame(){
+		if(checkSave() == ResultMessage.FAILED)
+			return ResultMessage.FAILED;
 		payView = new PayView(this);
 		double commonPrice = salesController.getTotalPrice();
 		payView.setCommonPrice(commonPrice);
@@ -50,6 +54,7 @@ public class SalesViewController implements SalesViewService{
 		payView.setLocation(400, 100);
 		payView.setSize(500, 450);
 		payView.setVisible(true);
+		return ResultMessage.SUCCEED;
 	}
 //初始化订单
 	public void initOrderView(OrderVO orderVO){
@@ -62,16 +67,6 @@ public class SalesViewController implements SalesViewService{
 		orderView.setVisible(true);
 	}
 	
-//	public ResultMessage putInCart(String isbn, int number){
-//		ResultMessage resultMessage;
-//		if((isbn != null) && (number != 0)){
-//			resultMessage = salesController.putInCart(isbn, number);
-//			cartView.refreshCartList();
-//			cartView.refreshTotalPrice(salesController.getTotalPrice());
-//			return resultMessage;
-//		}
-//		return ResultMessage.FAILED;	
-//	}
 
 	public ResultMessage removeFromCart(int index) {
 		ResultMessage resultMessage = ResultMessage.FAILED;
@@ -84,6 +79,22 @@ public class SalesViewController implements SalesViewService{
 			resultMessage = salesController.removeFrromCart(index);
 			cartView.refreshCartList();
 			cartView.refreshTotalPrice(salesController.getTotalPrice());
+		}
+		return resultMessage;
+	}
+	
+	@Override
+	public ResultMessage changeNumber(int index, int number) {
+		ResultMessage resultMessage = ResultMessage.FAILED;
+		if(number == 0){
+			removeFromCart(index);
+			return ResultMessage.SUCCEED;
+		}
+		else{
+			salesController.changeBookNum(index, number);
+			cartView.refreshCartList();
+			cartView.refreshTotalPrice(salesController.getTotalPrice());
+			resultMessage = ResultMessage.SUCCEED;
 		}
 		return resultMessage;
 	}
@@ -123,5 +134,24 @@ public class SalesViewController implements SalesViewService{
 	public ArrayList<LineItemPO> getCartList() {
 		return salesController.getCartList();
 	}
+	
+	private ResultMessage checkSave() {
+		ArrayList<LineItemPO> cartList = getCartList();
+		for(int i = 0; i < cartList.size(); i ++){
+			LineItemPO lineItemPO = cartList.get(i);
+			String isbn = lineItemPO.getBook().getISBN();
+			int save = salesController.getSaveByISBN(isbn);
+			if(save == 0){
+				JOptionPane.showMessageDialog(null, "第" + i + 1 + "行图书已经下架");
+				return ResultMessage.FAILED;
+			}
+			if(save < cartList.get(i).getNumber()){
+				JOptionPane.showMessageDialog(null, "第" + i + 1 + "行图书库存不足，请修改数量");
+				return ResultMessage.FAILED;
+			}
+		}
+		return ResultMessage.SUCCEED;
+	}
+
 	
 }
