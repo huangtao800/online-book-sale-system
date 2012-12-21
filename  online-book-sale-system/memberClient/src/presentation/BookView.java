@@ -404,6 +404,7 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
     		bookViewController.enterCart();
     		
     	}else if(doIndex==4){      //添加到收藏夹
+    		
     		if(jTable1.getSelectedRow()==-1){
 				JOptionPane.showMessageDialog(null, "请选择一本图书！");
 			}else{
