@@ -7,6 +7,7 @@ import javax.swing.UIManager;
 import org.pushingpixels.substance.api.skin.SubstanceBusinessLookAndFeel;
 import org.pushingpixels.substance.api.skin.SubstanceDustCoffeeLookAndFeel;
 
+import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
 import com.jtattoo.plaf.mcwin.McWinLookAndFeel;
 
 import presentationController.start.StartController;
@@ -23,7 +24,7 @@ public class SalesManagerStart {
 			public void run() {
 				try {
 //					UIManager.setLookAndFeel(new SubstanceBusinessLookAndFeel());
-					UIManager.setLookAndFeel(new McWinLookAndFeel());
+					UIManager.setLookAndFeel(new AluminiumLookAndFeel());
 					StartBLService startController=new StartController();
 					
 				} catch (Exception e) {
