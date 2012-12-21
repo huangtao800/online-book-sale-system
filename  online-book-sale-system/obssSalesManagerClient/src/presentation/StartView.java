@@ -12,6 +12,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 
+import org.pushingpixels.substance.api.skin.SubstanceBusinessLookAndFeel;
 import org.pushingpixels.substance.api.skin.SubstanceDustCoffeeLookAndFeel;
 
 import po.UserRole;
@@ -38,7 +39,7 @@ public class StartView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UIManager.setLookAndFeel(new SubstanceDustCoffeeLookAndFeel());
+					UIManager.setLookAndFeel(new SubstanceBusinessLookAndFeel());
 					StartView frame = new StartView();
 					frame.setVisible(true);
 				} catch (Exception e) {
