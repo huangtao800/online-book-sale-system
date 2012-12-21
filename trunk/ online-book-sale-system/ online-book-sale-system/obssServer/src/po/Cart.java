@@ -23,7 +23,10 @@ public class Cart implements  PO{
 		cartList.remove(index);
 		return ResultMessage.SUCCEED;
 	}
-	
+	public ResultMessage changeNumber(int index, int number){
+		cartList.get(index).setNumber(number);
+		return ResultMessage.SUCCEED;
+	}
 	public double getTotalPrice() {
 		double commonPrice = 0;
 		for(int i = 0; i < cartList.size(); i ++)
