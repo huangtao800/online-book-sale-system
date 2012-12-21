@@ -98,6 +98,11 @@ public class RegistryView extends JFrame {
 				
 				String address=addressField.getText();
 				
+				if(name==null||name.equals("")||password==null||password.equals("")){
+					JOptionPane.showMessageDialog(null, "抱歉！注册信息不完整！");
+					return;
+				}
+				
 				if(!isPassWordValid(password, passwordConfirm)){
 					JOptionPane.showMessageDialog(null, "密码输入不一致！");
 				}else {

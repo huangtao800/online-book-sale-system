@@ -162,6 +162,12 @@ public class CustomerController implements CustomerBLService{
 		return BookController.getInstance().getBookType();
 	}
 
+	@Override
+	public ResultMessage changeLineItemNumber(int index, int newNumber) {
+		// TODO Auto-generated method stub
+		return customer.changeLineItemNumber(index,newNumber);
+	}
+
 	
 
 }

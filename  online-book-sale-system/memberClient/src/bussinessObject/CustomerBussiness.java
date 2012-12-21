@@ -33,6 +33,10 @@ public class CustomerBussiness {
 		return customerPO.getFavority().removeBook(bookPO);
 	}
 	
+	public void changeLineItemNumber(int index,int newNumber){
+		customerPO.getCart().changeNumber(index, newNumber);
+	}
+	
 	public boolean checkIsOrderSigned(){
 		for(int i=0;i<customerPO.getOrderList().size();i++){
 			if(customerPO.getOrderList().get(i).getOrderState()!=OrderState.SIGNED){

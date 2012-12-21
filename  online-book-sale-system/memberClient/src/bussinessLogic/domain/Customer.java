@@ -270,5 +270,18 @@ public class Customer {
 		}
 	}
 
+	public ResultMessage changeLineItemNumber(int index, int newNumber) {
+		// TODO Auto-generated method stub
+		CustomerBussiness customerBussiness=new CustomerBussiness(customerPO);
+		try {
+			memberDatabase.update(customerPO);
+			return ResultMessage.SUCCEED;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+	}
+
 
 }
