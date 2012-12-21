@@ -1,15 +1,9 @@
 package start;
 
 import java.awt.EventQueue;
-
 import javax.swing.UIManager;
-
-import org.pushingpixels.substance.api.skin.SubstanceDustCoffeeLookAndFeel;
-
 import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
-
 import presentationController.strat.StartController;
-
 import bussinessLogicService.StartBLService;
 
 public class GeneralManagerStart {
@@ -20,6 +14,7 @@ public class GeneralManagerStart {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		EventQueue.invokeLater(new Runnable() {
+			@SuppressWarnings("unused")
 			public void run() {
 				try {
 					UIManager.setLookAndFeel(new AluminiumLookAndFeel());
