@@ -9,7 +9,7 @@ import bussinessLogicService.BookBLService;
 import bussinessLogicService.PresentBLService;
 import bussinessLogicService.SalesManagerService;
 import po.BookPO;
-import po.MemberPO;
+import po.CustomerPO;
 import po.OrderPO;
 import po.OrderState;
 import po.Present_Coupon;
@@ -81,7 +81,7 @@ public class MainViewController implements MainViewControllerInterface{
     }
 
     // //传入顾客ID，获取此顾客对象
-    public MemberPO getMemberPO(String s){
+    public CustomerPO getMemberPO(String s){
     	return salesManagerController.getMemberPO(s);
     }
     

@@ -1,15 +1,15 @@
 package bussinessObject;
 
 import po.BookPO;
-import po.MemberPO;
+import po.CustomerPO;
 import po.OrderPO;
 import po.OrderState;
 import po.ResultMessage;
 
 public class Customer {
-	private MemberPO memberPO;
+	private CustomerPO customerPO;
 	
-	public Customer(MemberPO po){
+	public Customer(CustomerPO po){
 		setMemberPO(po);
 	}
 
@@ -17,7 +17,7 @@ public class Customer {
 		if(isFavorityFull()){
 			return ResultMessage.FULL;
 		}else {
-			memberPO.getFavority().addBook(bookPO);
+			customerPO.getFavority().addBook(bookPO);
 			return ResultMessage.SUCCEED;
 		}
 	}
@@ -27,12 +27,12 @@ public class Customer {
 			return ResultMessage.EMPTY;
 		}
 		
-		return memberPO.getFavority().removeBook(bookPO);
+		return customerPO.getFavority().removeBook(bookPO);
 	}
 	
 	public boolean checkIsOrderSigned(){
-		for(int i=0;i<memberPO.getOrderList().size();i++){
-			if(memberPO.getOrderList().get(i).getOrderState()!=OrderState.SIGNED){
+		for(int i=0;i<customerPO.getOrderList().size();i++){
+			if(customerPO.getOrderList().get(i).getOrderState()!=OrderState.SIGNED){
 				return false;
 			}
 		}
@@ -41,22 +41,22 @@ public class Customer {
 	}
 	
 	public void addOrder(OrderPO order){
-		memberPO.getOrderList().add(order);
+		customerPO.getOrderList().add(order);
 	}
 	
-	public MemberPO getMemberPO() {
-		return memberPO;
+	public CustomerPO getMemberPO() {
+		return customerPO;
 	}
 
-	public void setMemberPO(MemberPO memberPO) {
-		this.memberPO = memberPO;
+	public void setMemberPO(CustomerPO customerPO) {
+		this.customerPO = customerPO;
 	}
 	
 	private boolean isFavorityFull(){
-		return memberPO.getFavority().judgeFull();
+		return customerPO.getFavority().judgeFull();
 	}
 	
 	private boolean isFavorityEmpty(){
-		return memberPO.getFavority().isEmpty();
+		return customerPO.getFavority().isEmpty();
 	}
 }

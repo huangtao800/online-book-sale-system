@@ -2,7 +2,7 @@ package bussinessLogic.controller;
 
 import java.util.ArrayList;
 
-import po.MemberPO;
+import po.CustomerPO;
 import po.OrderPO;
 import po.OrderState;
 import po.ResultMessage;
@@ -25,7 +25,7 @@ public class SalesManagerController implements SalesManagerService {
 		return salesManagerController;
 	}
 	
-	public MemberPO getMemberPO(String MemID){
+	public CustomerPO getMemberPO(String MemID){
 		return salesManager.getMemberPO(MemID);
 	}
 	

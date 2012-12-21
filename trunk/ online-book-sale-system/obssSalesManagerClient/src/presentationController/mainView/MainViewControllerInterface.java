@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import po.BookPO;
 //import po.GeneralManagerPO;
-import po.MemberPO;
+import po.CustomerPO;
 import po.OrderPO;
 import po.OrderState;
 import po.Present_Coupon;
@@ -23,7 +23,7 @@ public interface MainViewControllerInterface {
     public ResultMessage deleteBook(String s);
     public BookPO getBookPO(String s);
     public ResultMessage changeBookPO(BookPO bookPO);
-    public MemberPO getMemberPO(String s);
+    public CustomerPO getMemberPO(String s);
     public ArrayList<OrderPO> getUncompletedOrderPOList();
     public ResultMessage writeUncompletedOrderPOList(OrderPO orderPO);
     public ResultMessage updateMember_Order(String memberID,OrderState state,long orderNum);
