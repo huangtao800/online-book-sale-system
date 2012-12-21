@@ -132,14 +132,6 @@ public class MemberView extends JFrame {
 //		bookNameField.requestFocus();
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public MemberView() {
-
-		initComponents();
-	}
-
 	private void initComponents() {
 		jTabbedPane1 = new javax.swing.JTabbedPane();
 		jPanel6 = new javax.swing.JPanel();
