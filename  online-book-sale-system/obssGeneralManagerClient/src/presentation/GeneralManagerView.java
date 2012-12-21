@@ -28,13 +28,14 @@ import presentationController.changeUserNameView.changeUserNameController;
 import presentationController.changeUserNameView.changeUserNameControllerInterface;
 
 public class GeneralManagerView extends JFrame implements ActionListener {
-	   private static final int line=20;//presentTable 20行
+	   private static final int line1=40;//等价券设置40行
+	   private static final int line2=20;//打折券设置表格20行
 	   private GeneralManagerPO userpo;
 	    PromotionPO proPO;
 	    private ArrayList<ArrayList<Double>> equivalentList=new ArrayList<ArrayList<Double>>();
 		private ArrayList<Double> couponRateList=new ArrayList<Double>();
-		private  String[] equi=new String[line];
-		private String[] cou=new String[line];
+		private  String[] equi=new String[line1];
+		private String[] cou=new String[line2];
 	  
 	   private DefaultTableModel equivalentTableModel;  
 	   private DefaultTableModel couponTableModel;  
@@ -266,7 +267,7 @@ public class GeneralManagerView extends JFrame implements ActionListener {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("            首页             ", jPanel1);
+        jTabbedPane1.addTab("             首页              ", jPanel1);
 
         jLabel7.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
@@ -287,6 +288,26 @@ public class GeneralManagerView extends JFrame implements ActionListener {
 
         setEqualityTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
                 {null, null},
                 {null, null},
                 {null, null},
@@ -872,12 +893,12 @@ public class GeneralManagerView extends JFrame implements ActionListener {
     	else{
     		
     		 String [] columnNames={"等价券额度/元","最低消费/元"}; 
-	         String [][] tableValue=new String[line][2];
+	         String [][] tableValue=new String[line1][2];
 	         equivalentTableModel=new DefaultTableModel(tableValue,columnNames); 
 	         setEqualityTable.setModel(equivalentTableModel);
 	         
 	         String [] name={"打折率(如:0.8即表八折)"};
-	         String[][] value=new String[line][1];
+	         String[][] value=new String[line2][1];
 	         couponTableModel=new DefaultTableModel(value, name);
 	         setCouponTable.setModel(couponTableModel);
 	         
@@ -933,7 +954,7 @@ public class GeneralManagerView extends JFrame implements ActionListener {
 			if(setEquTableIsEmpty()){
 				
 			}else{
-			     for(int i=0;i<line;i++){
+			     for(int i=0;i<line1;i++){
 			    	 if(setEqualityTable.getValueAt(i, 0)==null){
 			    		 continue;
 			    	 }
@@ -949,7 +970,7 @@ public class GeneralManagerView extends JFrame implements ActionListener {
 			if(setCouTableIsEmpty()){
 				
 			}else{
-				  for(int i=0;i<line;i++){
+				  for(int i=0;i<line2;i++){
 				    	 if(setCouponTable.getValueAt(i, 0)==null){
 				    		 continue;
 				    	 }
@@ -1028,6 +1049,19 @@ private void checkPresent(){
 		   return ;
 	   }
 	   else{
+		   if( ! StringToInt(amountOfEquivalentTextField.getText())){
+			   JOptionPane.showMessageDialog(null, "您设置的等价券数量有误！");
+			   return;
+		   }
+		   if( !  stringToCalendar(endDateOfEqivalentTextField.getText())){
+			   JOptionPane.showMessageDialog(null, "您设置的等价券的有效截止日期有误！");
+			   return;
+		   }
+		   if( sendEquivalentComboBox.getSelectedIndex()==-1){
+			   JOptionPane.showMessageDialog(null, "请先选择一张等价券！");
+			   return;
+		   }
+		   
 		   if(StringToInt(amountOfEquivalentTextField.getText()) && 
 				                 stringToCalendar(endDateOfEqivalentTextField.getText()) &&
 				                 sendEquivalentComboBox.getSelectedIndex()!=-1)
@@ -1090,6 +1124,19 @@ private void checkPresent(){
 		   return ;
 	   }
 
+	   if( ! StringToInt(amountOfCouponTextField.getText())){
+		   JOptionPane.showMessageDialog(null, "您设置的打折券数量有误！");
+		   return;
+	   }
+	   if( !  stringToCalendar(endDateOfCouponTextField.getText())){
+		   JOptionPane.showMessageDialog(null, "您设置的打折券的有效截止日期有误！");
+		   return;
+	   }
+	   if( sendCouponComboBox.getSelectedIndex()==-1){
+		   JOptionPane.showMessageDialog(null, "请先选择一张打折券！");
+		   return;
+	   }
+	   
 		   if(  StringToInt(amountOfCouponTextField.getText()) &&
 				   stringToCalendar(endDateOfCouponTextField.getText()) && 
 				   sendCouponComboBox.getSelectedIndex()!=-1)
@@ -1139,13 +1186,13 @@ private void checkPresent(){
    
    //等价券table清空
     private void cleanEquiTable(){
-    	for(int i=0;i<line;i++)
+    	for(int i=0;i<line1;i++)
     		for (int j=0;j<2;j++)
     	        setEqualityTable.setValueAt(null, i, j);
     }
     //打折券Table清空
     private void cleanConTable(){
-    	for(int i=0;i<line;i++)
+    	for(int i=0;i<line2;i++)
     		setCouponTable.setValueAt(null, i, 0);
     }
 
@@ -1163,7 +1210,7 @@ private void checkPresent(){
     }
     //setEquivalentTable是否为空
     private boolean setEquTableIsEmpty(){
-    	for(int i=0;i<line;i++){
+    	for(int i=0;i<line1;i++){
     		for(int j=0;j<2;j++){
     			if(   (setEqualityTable.getValueAt(i, j)!= null) && 
     					!setEqualityTable.getValueAt(i, j).toString().trim().equals("") 
@@ -1176,7 +1223,7 @@ private void checkPresent(){
     }
     //setCouponTable是否为空
     private boolean setCouTableIsEmpty(){
-    	for(int i=0;i<line;i++){
+    	for(int i=0;i<line2;i++){
     		if(setCouponTable.getValueAt(i, 0)!=null  && !setCouponTable.getValueAt(i, 0).toString().trim().equals("") )
     			return false;
     	}
@@ -1187,7 +1234,7 @@ private void checkPresent(){
     	  double d1,d2;
   	      //boolean boo=false;//判断表格是否为空
   	    try {
-  			for(int i=0;i<line;i++){
+  			for(int i=0;i<line1;i++){
   				if(setEqualityTable.getValueAt(i, 0)==null && setEqualityTable.getValueAt(i, 1)==null)
   					continue;//如果一行数据中，两个数都为空，则这一行数据无效
   				else{
@@ -1207,7 +1254,7 @@ private void checkPresent(){
     private boolean trueOfCouTable(){
     	double d;
     	try {
-    		for(int i=0;i<line;i++){
+    		for(int i=0;i<line2;i++){
     			if(setCouponTable.getValueAt(i, 0)==null)
     				continue;
     			else{
@@ -1236,10 +1283,18 @@ private void checkPresent(){
 		private boolean stringToCalendar(String s){
 			SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
 			try{
-				Date date=format.parse(s);
 				Calendar nowCalendar=Calendar.getInstance();
+				nowCalendar.set(Calendar.HOUR, 0);
+				nowCalendar.set(Calendar.MINUTE, 0);
+				nowCalendar.set(Calendar.SECOND, 0);
+				nowCalendar.set(Calendar.MILLISECOND, 0);
+				
+				Date date=format.parse(s);
 				Calendar cal=Calendar.getInstance();
 				cal.setTime(date);
+				
+				if(cal.compareTo(nowCalendar) <0)  
+					return false;
 				int year=cal.get(Calendar.YEAR);
 				int month=cal.get(Calendar.MONTH) +1;
 				int day=cal.get(Calendar.DATE);
@@ -1248,8 +1303,7 @@ private void checkPresent(){
 				
 				if(day<1 || day>31)       
 					return false;			 
-				if(cal.compareTo(nowCalendar) <0)  
-					return false;
+				
 				if (year % 4 == 0 && !(year % 100 == 0) || year % 400 == 0){             //闰年，2.29
 					if(month==2 && day>29)  
 						return false;
