@@ -256,7 +256,7 @@ public class MainView extends JFrame implements ActionListener{
 
 	        mainViewTabbedPane.addTab("          首页          ", homePagePanel);
 
-	        checkMemberInforButton.setBackground(new java.awt.Color(0, 255, 255));
+	        checkMemberInforButton.setBackground(new java.awt.Color(255, 255, 255));
 	        checkMemberInforButton.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
 	        checkMemberInforButton.setForeground(new java.awt.Color(0, 51, 102));
 	        checkMemberInforButton.setText("查看顾客信息");
@@ -332,16 +332,15 @@ public class MainView extends JFrame implements ActionListener{
 
 	        mainViewTabbedPane.addTab("    顾客信息查询    ", memberPanel);
 
-	        checkPresentButton.setBackground(new java.awt.Color(0, 153, 153));
+	        checkPresentButton.setBackground(new java.awt.Color(255, 255, 255));
 	        checkPresentButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        checkPresentButton.setForeground(new java.awt.Color(255, 102, 102));
 	        checkPresentButton.setText("查看礼券赠送信息");
 
-	        sendPresentButton.setBackground(new java.awt.Color(0, 204, 204));
+	        sendPresentButton.setBackground(new java.awt.Color(255, 255, 255));
 	        sendPresentButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        sendPresentButton.setForeground(new java.awt.Color(255, 0, 0));
 	        sendPresentButton.setText("确认赠送");
-
 	        showPresentTextArea.setColumns(20);
 	        showPresentTextArea.setRows(5);
 	        jScrollPane2.setViewportView(showPresentTextArea);
@@ -412,7 +411,7 @@ public class MainView extends JFrame implements ActionListener{
 	        });
 	        jScrollPane3.setViewportView(orderTable);
 
-	        updateOrderButton.setBackground(new java.awt.Color(0, 204, 204));
+	        updateOrderButton.setBackground(new java.awt.Color(255, 255, 255));
 	        updateOrderButton.setFont(new java.awt.Font("幼圆", 1, 20)); // NOI18N
 	        updateOrderButton.setForeground(new java.awt.Color(102, 102, 102));
 	        updateOrderButton.setText("更新未完成的订单");
@@ -436,7 +435,7 @@ public class MainView extends JFrame implements ActionListener{
 	        jLabel7.setFont(new java.awt.Font("宋体", 2, 14)); // NOI18N
 	        jLabel7.setText("订单状态：");
 
-	        changeOrderButton.setBackground(new java.awt.Color(255, 102, 102));
+	        changeOrderButton.setBackground(new java.awt.Color(255, 255, 255));
 	        changeOrderButton.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
 	        changeOrderButton.setForeground(new java.awt.Color(0, 102, 102));
 	        changeOrderButton.setText("修改订单状态");
@@ -490,15 +489,15 @@ public class MainView extends JFrame implements ActionListener{
 
 	        mainViewTabbedPane.addTab("      订单管理      ", orderPanel);
 
-//	        addBookButton.setBackground(new java.awt.Color(0, 204, 204));
+	        addBookButton.setBackground(new java.awt.Color(255, 255, 255));
 	        addBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        addBookButton.setText("添加图书");
 
-//	        deleteBookButton.setBackground(new java.awt.Color(0, 204, 204));
+	        deleteBookButton.setBackground(new java.awt.Color(255, 255, 255));
 	        deleteBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        deleteBookButton.setText("删除图书");
 
-//	        changeBookButton.setBackground(new java.awt.Color(0, 204, 204));
+	        changeBookButton.setBackground(new java.awt.Color(255, 255, 255));
 	        changeBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        changeBookButton.setText("修改图书");
 
@@ -520,7 +519,7 @@ public class MainView extends JFrame implements ActionListener{
 	        jLabel6.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
 	        jLabel6.setText("图书类别：");
 
-//	        confirmChangeBookButton.setBackground(new java.awt.Color(0, 204, 204));
+	        confirmChangeBookButton.setBackground(new java.awt.Color(255, 255, 255));
 	        confirmChangeBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        confirmChangeBookButton.setForeground(new java.awt.Color(255, 0, 0));
 	        confirmChangeBookButton.setText("确认修改");
@@ -533,7 +532,7 @@ public class MainView extends JFrame implements ActionListener{
 
 	        typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-//	        checkAllBookButton.setBackground(new java.awt.Color(0, 204, 204));
+	        checkAllBookButton.setBackground(new java.awt.Color(255, 255, 255));
 	        checkAllBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        checkAllBookButton.setText("浏览图书");
 
@@ -658,15 +657,15 @@ public class MainView extends JFrame implements ActionListener{
 
 	        jScrollPane6.setViewportView(jScrollPane1);
 
-	        jButton1.setBackground(new java.awt.Color(153, 255, 0));
+	        jButton1.setBackground(new java.awt.Color(255, 255, 255));
 	        jButton1.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
 	        jButton1.setText("增加图书类别");
 
-	        jButton2.setBackground(new java.awt.Color(153, 255, 0));
+	        jButton2.setBackground(new java.awt.Color(255, 255, 255));
 	        jButton2.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
 	        jButton2.setText("删除图书类别");
 
-	        jButton3.setBackground(new java.awt.Color(153, 255, 0));
+	        jButton3.setBackground(new java.awt.Color(255, 255, 255));
 	        jButton3.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
 	        jButton3.setText("修改图书类别");
 
@@ -875,10 +874,50 @@ public class MainView extends JFrame implements ActionListener{
 	    		if(isbn2==null){
 	    			
 	    		}else{
-	    		if(mainViewController.deleteBook(isbn2) ==ResultMessage.SUCCEED)
-	    			JOptionPane.showMessageDialog(null, "删除成功！");
-	    		else  	
-	    			JOptionPane.showMessageDialog(null, "您要删除的图书不存在！");
+	    			BookPO  bookPO=null;
+	    			bookPO=mainViewController.getBookPO(isbn2);
+	    			if(bookPO==null){
+	    				JOptionPane.showMessageDialog(null, "您要删除的图书不存在！");
+	    			}else{
+	    				bookAutherTextField.setText(bookPO.getAuthor());			
+		    			int typeIndex=findTypeIndex(bookPO.getType());
+		    			if(typeIndex!=-1){
+		    				typeComboBox.setSelectedIndex(typeIndex);
+		    			}
+		    			bookIDTextField.setText(bookPO.getISBN());
+		    			bookNameTextField.setText(bookPO.getBookName());
+		    			bookPriceTextField.setText(""+bookPO.getPrice());
+		    			bookNumberTextField.setText(""+bookPO.getNumOfBook());
+		    			bookPublishHouseTextField.setText(bookPO.getPress());
+		    			bookPublishYearField.setText(bookPO.getPublishDate());
+		    			
+	    				 int choice=JOptionPane.showConfirmDialog(null, "您确定要删除此书吗？");
+	    				 if(choice==JOptionPane.YES_OPTION){
+		    					bookAutherTextField.setText("");
+				    			typeComboBox.setSelectedIndex(0);
+				    			bookIDTextField.setText("");
+				    			bookNameTextField.setText("");
+				    			bookPriceTextField.setText("");
+				    			bookNumberTextField.setText("");
+				    			bookPublishHouseTextField.setText("");
+				    			bookPublishYearField.setText("");
+				 
+				    			if(mainViewController.deleteBook(isbn2) ==ResultMessage.SUCCEED){
+				    				 JOptionPane.showMessageDialog(null, "删除成功！");
+				    			}else{
+				    				JOptionPane.showMessageDialog(null, "删除失败！");
+				    			}
+	    				 }else{
+		    					bookAutherTextField.setText("");
+				    			typeComboBox.setSelectedIndex(0);
+				    			bookIDTextField.setText("");
+				    			bookNameTextField.setText("");
+				    			bookPriceTextField.setText("");
+				    			bookNumberTextField.setText("");
+				    			bookPublishHouseTextField.setText("");
+				    			bookPublishYearField.setText("");
+	    				 }
+	    			}  				    			
 	    		}
 	    	}
 	       
@@ -1055,6 +1094,9 @@ public class MainView extends JFrame implements ActionListener{
 			else if(event.getSource()==jButton1){
 				String newType=JOptionPane.showInputDialog("请输入新的图书类别：");
 				if(newType==null){
+					return;
+				}else if(newType=="" || newType==" "){
+					JOptionPane.showMessageDialog(null, "图书类别不能为空！");
 					return;
 				}
 				ResultMessage result=mainViewController.addBookType(newType);
