@@ -95,9 +95,16 @@ public class Book{
 	public ResultMessage updateBook(ArrayList<LineItemPO> salesList){
 		  ArrayList<ResultMessage> resultList = new ArrayList<ResultMessage>();
 		  ResultMessage result = ResultMessage.SUCCEED;
-		  
+		
 		  for(int i=0;i<salesList.size();i++){
-			  BookPO bookPO = salesList.get(i).getBook();
+			  String isbn = salesList.get(i).getBook().getISBN();
+			  BookPO bookPO = null;
+			  try {
+				bookPO = bookDatabase.findThroughISBN(isbn);
+			  } catch (Exception e) {
+				e.printStackTrace();
+			  }
+			 
 			  bookPO.setNumOfBook(bookPO.getNumOfBook()-salesList.get(i).getNumber());
 			  
 			  try {
