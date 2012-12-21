@@ -1,14 +1,8 @@
 package start;
 
 import java.awt.EventQueue;
-
 import javax.swing.UIManager;
-
-
-
 import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
-
-
 import presentationController.start.StartController;
 import bussinessLogicService.StartBLService;
 
