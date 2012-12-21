@@ -125,6 +125,12 @@ public class CustomerController implements MemberBLService{
 		return customer.getCartList();
 	}
 
+	@Override
+	public ResultMessage changeLineItemNumber(int index, int newNumber) {
+		// TODO Auto-generated method stub
+		return customer.changeLineItemNumber(index,newNumber);
+	}
+
 	
 
 }
