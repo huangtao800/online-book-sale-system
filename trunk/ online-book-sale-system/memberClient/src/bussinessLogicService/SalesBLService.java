@@ -18,5 +18,7 @@ public interface SalesBLService {
 	public ArrayList<LineItemPO> getCartList();//得到商品列表
 	public void endSale();//得到订单的VO,并更新数据
 	public String getAddress();//得到原地址
+	public int getSaveByISBN(String isbn);
+	public void changeBookNum(int index, int number);
 	
 }
