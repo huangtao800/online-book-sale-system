@@ -56,15 +56,14 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		int index = isExist(bookPO, bookList);
 		
 		if(index!=-1){     //图书存在
-			int oldNum = bookList.get(index).getNumOfBook();
-			int newNum = oldNum + bookPO.getNumOfBook();
-			bookList.get(index).setNumOfBook(newNum);
+			return ResultMessage.EXIST;
 		}else{             //图书不存在
 		    bookList.add(bookPO);
+		    return writeFile(bookList);
 		}
 		
 		
-		return writeFile(bookList);
+		
 
 	}
 
