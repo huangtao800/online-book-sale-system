@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import databaseService.init.InitDatabaseService;
 
 import po.GeneralManagerPO;
-import po.MemberPO;
+import po.CustomerPO;
 import po.ResultMessage;
 import po.UserPO;
 import po.UserRole;
