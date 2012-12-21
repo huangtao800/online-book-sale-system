@@ -6,10 +6,10 @@ import po.OrderPO;
 import po.OrderState;
 import po.ResultMessage;
 
-public class CustomerBusiness {
+public class CustomerBussiness {
 	private CustomerPO customerPO;
 	
-	public CustomerBusiness(CustomerPO po){
+	public CustomerBussiness(CustomerPO po){
 		setMemberPO(po);
 	}
 

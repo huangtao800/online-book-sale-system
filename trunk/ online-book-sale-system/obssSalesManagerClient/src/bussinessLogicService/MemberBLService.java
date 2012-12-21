@@ -24,6 +24,7 @@ public interface MemberBLService {
 	
 	public ResultMessage putInCart(LineItemPO lineItemPO);//添加到购物车
 	public ResultMessage removeFromCart(int index);	//从购物车中删除
+	public ResultMessage changeLineItemNumber(int index,int newNumber);//更改购物车中商品的数量
 	
 	public ResultMessage deleteEquivalent(EquivalentPO equivalentPO);	//删除等价券
 	public ResultMessage deleteCouponPO(CouponPO couponPO);		//删除打折券

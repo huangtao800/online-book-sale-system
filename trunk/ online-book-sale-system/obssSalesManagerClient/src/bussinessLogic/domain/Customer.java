@@ -5,7 +5,7 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import bussinessObject.CustomerBusiness;
+import bussinessObject.CustomerBussiness;
 
 import databaseService.customer.CustomerDatabaseService;
 
@@ -36,8 +36,8 @@ public class Customer {
 	
 	//想收藏夹中添加图书
 	public ResultMessage addFavorities(BookPO bookPO){
-		CustomerBusiness customerBusiness=new CustomerBusiness(this.customerPO);
-		ResultMessage resultMessage=customerBusiness.addFavority(bookPO);
+		CustomerBussiness customerBussiness=new CustomerBussiness(this.customerPO);
+		ResultMessage resultMessage=customerBussiness.addFavority(bookPO);
 		
 		if(resultMessage==ResultMessage.FULL){
 			return resultMessage;
@@ -54,8 +54,8 @@ public class Customer {
 	
 	//从收藏夹中删除图书
 	public ResultMessage removeFavorities(BookPO bookPO){
-		CustomerBusiness customerBusiness=new CustomerBusiness(this.customerPO);
-		ResultMessage resultMessage=customerBusiness.removeFavority(bookPO);
+		CustomerBussiness customerBussiness=new CustomerBussiness(this.customerPO);
+		ResultMessage resultMessage=customerBussiness.removeFavority(bookPO);
 		
 		if(resultMessage!=ResultMessage.SUCCEED){
 			return resultMessage;
@@ -90,8 +90,8 @@ public class Customer {
 	
 	//检查顾客所有的订单是否都已签收
 	private boolean checkIsOrderSigned(){
-		CustomerBusiness customerBusiness=new CustomerBusiness(this.customerPO);
-		return customerBusiness.checkIsOrderSigned();
+		CustomerBussiness customerBussiness=new CustomerBussiness(this.customerPO);
+		return customerBussiness.checkIsOrderSigned();
 		
 	}
 	
@@ -107,8 +107,8 @@ public class Customer {
 	
 	//增加一条订单记录
 	public ResultMessage addOrder(OrderPO order){
-		CustomerBusiness customerBusiness=new CustomerBusiness(this.customerPO);
-		customerBusiness.addOrder(order);
+		CustomerBussiness customerBussiness=new CustomerBussiness(this.customerPO);
+		customerBussiness.addOrder(order);
 
 		try {
 			return memberDatabase.update(this.customerPO);
@@ -224,6 +224,19 @@ public class Customer {
 	public ArrayList<LineItemPO> getCartList() {
 		// TODO Auto-generated method stub
 		return customerPO.getCart().getCartList();
+	}
+
+	public ResultMessage changeLineItemNumber(int index, int newNumber) {
+		// TODO Auto-generated method stub
+		CustomerBussiness customerBussiness=new CustomerBussiness(this.customerPO);
+		try {
+			memberDatabase.update(customerPO);
+			return ResultMessage.SUCCEED;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
 	}
 
 
