@@ -73,7 +73,7 @@ public class User {
 	
 	
 	public ArrayList<UserPO> getAllUser(){
-		ArrayList<UserPO> userList = new ArrayList<>();
+		ArrayList<UserPO> userList = new ArrayList<UserPO>();
 		try{
 		     userList = userDatabase.getAllUser();
 		     
