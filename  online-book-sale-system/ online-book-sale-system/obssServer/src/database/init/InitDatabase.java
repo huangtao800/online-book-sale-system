@@ -9,7 +9,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import po.AdministratorPO;
 import po.GeneralManagerPO;
-import po.MemberPO;
+import po.CustomerPO;
 //import po.PromotionPO;
 import po.ResultMessage;
 import po.SalesManagerPO;
@@ -20,7 +20,7 @@ import databaseService.init.InitDatabaseService;
 
 public class InitDatabase extends UnicastRemoteObject implements
 		InitDatabaseService {
-	private static ArrayList<MemberPO> memberPOList;
+	private static ArrayList<CustomerPO> memberPOList;
 	private static ArrayList<SalesManagerPO> salesManagerPOList;
 	private static ArrayList<GeneralManagerPO> generalManagerList;
 	private static ArrayList<AdministratorPO> adminstratorList;
@@ -33,7 +33,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static ArrayList<MemberPO> getMemberPOList(){
+	public static ArrayList<CustomerPO> getMemberPOList(){
 		return memberPOList;
 	}
 	
@@ -65,7 +65,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 			ObjectInputStream objectInputStream = new ObjectInputStream(
 					inputStream);
 
-			memberPOList = (ArrayList<MemberPO>) objectInputStream.readObject();
+			memberPOList = (ArrayList<CustomerPO>) objectInputStream.readObject();
 			
 			inputStream.close();
 			objectInputStream.close();
@@ -215,8 +215,8 @@ public class InitDatabase extends UnicastRemoteObject implements
 		
 	}
 
-	private MemberPO searchMember(String name,String password){
-		MemberPO resultPo=null;
+	private CustomerPO searchMember(String name,String password){
+		CustomerPO resultPo=null;
 		for(int i=0;i<memberPOList.size();i++){
 			if(name.equals(memberPOList.get(i).getUserName())
 					&&password.equals(memberPOList.get(i).getUserPassword())){
@@ -282,8 +282,8 @@ public class InitDatabase extends UnicastRemoteObject implements
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		if(role==UserRole.Member){
-			MemberPO memberPO=(MemberPO) userPO;
-			return updateMemberPO(memberPO);
+			CustomerPO customerPO=(CustomerPO) userPO;
+			return updateMemberPO(customerPO);
 		}else if (role==UserRole.GeneralManager) {
 			GeneralManagerPO generalManagerPO=(GeneralManagerPO) userPO;
 			return updateGeneralManagerPO(generalManagerPO);
@@ -297,14 +297,14 @@ public class InitDatabase extends UnicastRemoteObject implements
 
 	} 
 	
-	private ResultMessage updateMemberPO(MemberPO memberPO){
-		int index=serachIndexOfMember(memberPO);
+	private ResultMessage updateMemberPO(CustomerPO customerPO){
+		int index=serachIndexOfMember(customerPO);
 		
 		if(index==-1){
 			return ResultMessage.NOTEXIST;
 		}
 		
-		memberPOList.set(index, memberPO);
+		memberPOList.set(index, customerPO);
 		return ResultMessage.SUCCEED;
 	}
 	
@@ -377,8 +377,8 @@ public class InitDatabase extends UnicastRemoteObject implements
 		return -1;
 	}
 	
-	private int serachIndexOfMember(MemberPO memberPO){
-		String id=memberPO.getUserID();
+	private int serachIndexOfMember(CustomerPO customerPO){
+		String id=customerPO.getUserID();
 		
 		for(int i=0;i<memberPOList.size();i++){
 			if(id.equals(memberPOList.get(i).getUserID())){
@@ -390,7 +390,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 	}
 
 	@Override
-	public MemberPO registry(String name, String password,String address)
+	public CustomerPO registry(String name, String password,String address)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		if(!isNameValid(name)){
@@ -398,7 +398,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 		}
 		
 		String newId=generateNewID();
-		MemberPO newMemberPO=new MemberPO(newId, name, password,address);
+		CustomerPO newMemberPO=new CustomerPO(newId, name, password,address);
 		memberPOList.add(newMemberPO);
 		
 		saveMember();

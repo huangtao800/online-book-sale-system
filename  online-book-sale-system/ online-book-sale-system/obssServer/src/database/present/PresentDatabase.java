@@ -15,7 +15,7 @@ import java.util.Date;
 import po.CouponPO;
 import po.EquivalentPO;
 import po.IdPO;
-import po.MemberPO;
+import po.CustomerPO;
 import po.PO;
 import po.Present_Coupon;
 import po.Present_Equivalent;
@@ -32,7 +32,7 @@ public class PresentDatabase extends UnicastRemoteObject implements  PresentData
 	private static PresentDatabase presentDatabase;
 	private static ArrayList<Present_Equivalent> present_equivalentList=new ArrayList<Present_Equivalent>();
 	private static ArrayList<Present_Coupon> present_couponList=new ArrayList<Present_Coupon>();
-	private static ArrayList<MemberPO> memberPOList=new ArrayList<MemberPO>() ;
+	private static ArrayList<CustomerPO> memberPOList=new ArrayList<CustomerPO>() ;
 	private static final String IdPO_ser="idPO.ser";
 	private static  IdPO idPO=new IdPO(0);
 	private static  long presentID;
