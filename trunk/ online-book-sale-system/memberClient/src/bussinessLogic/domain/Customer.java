@@ -14,12 +14,12 @@ import po.*;
 
 public class Customer {
 	private CustomerPO customerPO;
-	private CustomerDatabaseService memberDatabase;
+	private CustomerDatabaseService customerDatabase;
 
 	public Customer(CustomerPO customerPO) {
 		this.customerPO = customerPO;
 		try {
-			memberDatabase=(CustomerDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/MemberDatabase");
+			customerDatabase=(CustomerDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/MemberDatabase");
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -44,7 +44,7 @@ public class Customer {
 		}
 		
 		try {
-			return memberDatabase.update(this.customerPO);
+			return customerDatabase.update(this.customerPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,7 +62,7 @@ public class Customer {
 		}
 		
 		try {
-			return memberDatabase.update(this.customerPO);
+			return customerDatabase.update(this.customerPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -80,7 +80,7 @@ public class Customer {
 		}
 		
 		try {
-			return memberDatabase.delete(customerPO);
+			return customerDatabase.delete(customerPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -111,7 +111,7 @@ public class Customer {
 		customerBussiness.addOrder(order);
 
 		try {
-			return memberDatabase.update(this.customerPO);
+			return customerDatabase.update(this.customerPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -129,7 +129,7 @@ public class Customer {
 		}else {
 			customerPO.setUserName(newName);
 			try {
-				return memberDatabase.update(customerPO);
+				return customerDatabase.update(customerPO);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -141,7 +141,7 @@ public class Customer {
 	public ResultMessage changePassword(String password){
 		try {
 			customerPO.setUserPassword(password);
-			return memberDatabase.update(customerPO);
+			return customerDatabase.update(customerPO);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -152,7 +152,7 @@ public class Customer {
 	public ResultMessage putInCart(LineItemPO lineItemPO){
 		customerPO.getCart().putInCart(lineItemPO);
 		try {
-			return memberDatabase.update(customerPO);
+			return customerDatabase.update(customerPO);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -164,7 +164,7 @@ public class Customer {
 		customerPO.getCart().removeFromCart(index);
 		
 		try {
-			return memberDatabase.update(customerPO);
+			return customerDatabase.update(customerPO);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -180,7 +180,7 @@ public class Customer {
 		
 		customerPO.getEquivalentList().remove(index);
 		try {
-			return memberDatabase.update(customerPO);
+			return customerDatabase.update(customerPO);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -196,7 +196,7 @@ public class Customer {
 		
 		customerPO.getCouponList().remove(index);
 		try {
-			return memberDatabase.update(customerPO);
+			return customerDatabase.update(customerPO);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -237,7 +237,7 @@ public class Customer {
 		// TODO Auto-generated method stub
 		customerPO.setAddress(newAddress);
 		try {
-			return memberDatabase.update(customerPO);
+			return customerDatabase.update(customerPO);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -249,7 +249,7 @@ public class Customer {
 		// TODO Auto-generated method stub
 		customerPO.getCart().clear();
 		try {
-			return memberDatabase.update(customerPO);
+			return customerDatabase.update(customerPO);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -260,7 +260,7 @@ public class Customer {
 	public CustomerPO freshMemberPO(String memberID) {
 		// TODO Auto-generated method stub
 		try {
-			CustomerPO newMemberPO= memberDatabase.freshMemberPO(memberID);
+			CustomerPO newMemberPO= customerDatabase.freshMemberPO(memberID);
 			this.customerPO=newMemberPO;
 			return newMemberPO;
 		} catch (RemoteException e) {
@@ -274,7 +274,7 @@ public class Customer {
 		// TODO Auto-generated method stub
 		CustomerBussiness customerBussiness=new CustomerBussiness(customerPO);
 		try {
-			memberDatabase.update(customerPO);
+			customerDatabase.update(customerPO);
 			return ResultMessage.SUCCEED;
 		} catch (Exception e) {
 			// TODO: handle exception
