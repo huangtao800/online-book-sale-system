@@ -444,6 +444,10 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
 				ResultMessage result= bookViewController.putIntoCart(bookPO,number);
 				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
+			    }else if(result==ResultMessage.NOTPREPARED){
+			    	JOptionPane.showMessageDialog(null, "购买本数超过库存！");
+			    }else{
+			    	JOptionPane.showMessageDialog(null, "系统错误，请稍后重试！");
 			    }
 			}
     		
@@ -487,6 +491,10 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
 				ResultMessage result= bookViewController.putIntoCart(bookPO,number);
 				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
+			    }else if(result==ResultMessage.NOTPREPARED){
+			    	JOptionPane.showMessageDialog(null, "购买本数超过库存！");
+			    }else{
+			    	JOptionPane.showMessageDialog(null, "系统错误，请稍后重试！");
 			    }
 			}
     	}
