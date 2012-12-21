@@ -11,7 +11,7 @@ import po.AdministratorPO;
 import po.BookPO;
 import po.GeneralManagerPO;
 import po.IdPO;
-import po.MemberPO;
+import po.CustomerPO;
 import po.Present_Coupon;
 import po.Present_Equivalent;
 import po.OrderPO;
@@ -25,7 +25,7 @@ public class InitMemberData {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		MemberPO memberPO=new MemberPO("m1", "huang", "111111","江苏南通");
+		CustomerPO customerPO=new CustomerPO("m1", "huang", "111111","江苏南通");
 		
 		BookPO bookPO=new BookPO("Java","11111",  "计算机","中国", "hjuang",  "2011", 10, 5);
 		BookPO bookPO2=new BookPO("JavaCode","11112",  "计算机","中国", "gr",  "2012", 10, 5);
@@ -40,11 +40,11 @@ public class InitMemberData {
 		bookTypeList.add("经济");
 		bookTypeList.add("其他");
 		
-		memberPO.getFavority().getFavorities().add(bookPO);
+		customerPO.getFavority().getFavorities().add(bookPO);
 		
-		MemberPO m2=new MemberPO("m2", "hu", "000000","江苏南通");
-		ArrayList<MemberPO> list=new ArrayList<MemberPO>();
-		list.add(memberPO);
+		CustomerPO m2=new CustomerPO("m2", "hu", "000000","江苏南通");
+		ArrayList<CustomerPO> list=new ArrayList<CustomerPO>();
+		list.add(customerPO);
 		list.add(m2);
 		
 		
