@@ -55,7 +55,7 @@ public class ClientStart {
 			public void run() {
 				try {
 					
-					UIManager.setLookAndFeel(new NapkinLookAndFeel());
+					UIManager.setLookAndFeel(new BernsteinLookAndFeel());
 					StartBLService startController=new StartController();
 
 				} catch (Exception e) {

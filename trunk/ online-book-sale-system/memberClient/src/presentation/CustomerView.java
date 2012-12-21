@@ -1240,6 +1240,7 @@ public class CustomerView extends JFrame {
 										Short.MAX_VALUE)));
 		getContentPane().setLayout(layout);
 
+		bookNameField.requestFocus();
 		pack();
 		bookNameField.requestFocus();
 	}
