@@ -25,14 +25,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
 
 /**
- *
  * @author YJQ
  */
 public class BookView extends javax.swing.JFrame implements ActionListener{
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	public BookView() {
