@@ -5,8 +5,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-import napkin.NapkinLookAndFeel;
-
 import org.pushingpixels.substance.api.skin.SubstanceAutumnLookAndFeel;
 import org.pushingpixels.substance.api.skin.SubstanceBusinessBlackSteelLookAndFeel;
 import org.pushingpixels.substance.api.skin.SubstanceBusinessLookAndFeel;
