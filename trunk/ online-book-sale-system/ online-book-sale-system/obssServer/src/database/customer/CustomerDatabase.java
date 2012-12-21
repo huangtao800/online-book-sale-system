@@ -1,11 +1,11 @@
-package database.member;
+package database.customer;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import po.MemberPO;
+import po.CustomerPO;
 import po.OrderPO;
 import po.OrderState;
 import po.PO;
@@ -14,29 +14,29 @@ import po.ResultMessage;
 import po.UserRole;
 import database.init.InitDatabase;
 import database.promotion.PromotionDatabase;
+import databaseService.customer.CustomerDatabaseService;
 import databaseService.init.InitDatabaseService;
-import databaseService.member.MemberDatabaseService;
 import databaseService.promotion.PromotionDatabaseService;
 
 @SuppressWarnings("serial")
-public class MemberDatabase extends UnicastRemoteObject implements
-		MemberDatabaseService {
+public class CustomerDatabase extends UnicastRemoteObject implements
+		CustomerDatabaseService {
 	private InitDatabaseService initDatabase;
-	private ArrayList<MemberPO> memberPOList;
-	private static MemberDatabase instance = null;
+	private ArrayList<CustomerPO> memberPOList;
+	private static CustomerDatabase instance = null;
 	private static PromotionDatabaseService promotionDatabase;
 
-	protected MemberDatabase() throws RemoteException {
+	protected CustomerDatabase() throws RemoteException {
 		super();
 		initDatabase = InitDatabase.getInstance();
 		promotionDatabase =PromotionDatabase.getInstance();
 		memberPOList = InitDatabase.getMemberPOList();
 	}
 
-	public static MemberDatabase getInstance() {
+	public static CustomerDatabase getInstance() {
 		if (instance == null) {
 			try {
-				instance = new MemberDatabase();
+				instance = new CustomerDatabase();
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -55,8 +55,8 @@ public class MemberDatabase extends UnicastRemoteObject implements
 	@Override
 	public ResultMessage delete(PO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		MemberPO memberPO=(MemberPO) po;
-		int index=serachIndexOfMember(memberPO);
+		CustomerPO customerPO=(CustomerPO) po;
+		int index=serachIndexOfMember(customerPO);
 		if(index==-1){
 			return ResultMessage.NOTEXIST;
 		}
@@ -82,8 +82,8 @@ public class MemberDatabase extends UnicastRemoteObject implements
 		}
 	}
 	
-	private int serachIndexOfMember(MemberPO memberPO){
-		String id=memberPO.getUserID();
+	private int serachIndexOfMember(CustomerPO customerPO){
+		String id=customerPO.getUserID();
 		
 		for(int i=0;i<memberPOList.size();i++){
 			if(id.equals(memberPOList.get(i).getUserID())){
@@ -97,9 +97,9 @@ public class MemberDatabase extends UnicastRemoteObject implements
 	@Override
 	public ResultMessage update(PO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		MemberPO memberPO = (MemberPO) po;
+		CustomerPO customerPO = (CustomerPO) po;
 
-		return initDatabase.updateUserPO(memberPO, UserRole.Member);
+		return initDatabase.updateUserPO(customerPO, UserRole.Member);
 	}
 
 
@@ -113,17 +113,17 @@ public class MemberDatabase extends UnicastRemoteObject implements
 			return ResultMessage.NOTEXIST;
 		}
 		
-		MemberPO memberPO=memberPOList.get(index);
-		int orderIndex=searchOrderIndex(memberPO.getOrderList(), orderID);
+		CustomerPO customerPO=memberPOList.get(index);
+		int orderIndex=searchOrderIndex(customerPO.getOrderList(), orderID);
 		
-		OrderPO orderPO=memberPO.getOrderList().get(orderIndex);
+		OrderPO orderPO=customerPO.getOrderList().get(orderIndex);
 		orderPO.setOrderState(orderState);
 		
 		if(orderState==OrderState.SIGNED){
 			return addPoint(memberID, orderPO.getTotalPrice());
 		}
 		
-		return update(memberPO);
+		return update(customerPO);
 	}
 	
 	private int searchMemberIndex(String memberID){
@@ -147,7 +147,7 @@ public class MemberDatabase extends UnicastRemoteObject implements
 	}
 
 	@Override
-	public MemberPO searchMemberPO(String memberID) throws RemoteException {
+	public CustomerPO searchMemberPO(String memberID) throws RemoteException {
 		// TODO Auto-generated method stub
 		int index=searchMemberIndex(memberID);
 		if(index==-1)
@@ -159,21 +159,21 @@ public class MemberDatabase extends UnicastRemoteObject implements
 	public ResultMessage addPoint(String memberID, double sum)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		MemberPO memberPO=searchMemberPO(memberID);
-		if(memberPO==null){
+		CustomerPO customerPO=searchMemberPO(memberID);
+		if(customerPO==null){
 			return ResultMessage.NOTEXIST;
 		}
 		
 		PromotionPO po=promotionDatabase.promotionPORead();
 		int point=(int)(sum*(po.getExchangeOfScore())/100);
 		
-		memberPO.setPoints(memberPO.getPoints()+point);
+		customerPO.setPoints(customerPO.getPoints()+point);
 		
-		return update(memberPO);
+		return update(customerPO);
 	}
 
 	@Override
-	public MemberPO freshMemberPO(String memberID) throws RemoteException {
+	public CustomerPO freshMemberPO(String memberID) throws RemoteException {
 		// TODO Auto-generated method stub
 		memberPOList=InitDatabase.getMemberPOList();
 		int index=searchMemberIndex(memberID);

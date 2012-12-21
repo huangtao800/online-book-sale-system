@@ -15,8 +15,8 @@ import po.UserPO;
 import po.UserRole;
 
 import database.book.BookDatabase;
+import database.customer.CustomerDatabase;
 import database.init.InitDatabase;
-import database.member.MemberDatabase;
 import databaseService.init.InitDatabaseService;
 import databaseService.user.UserDatabaseService;
 

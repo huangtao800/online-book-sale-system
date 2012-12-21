@@ -4,15 +4,15 @@ import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 
 import database.book.BookDatabase;
+import database.customer.CustomerDatabase;
 import database.init.InitDatabase;
-import database.member.MemberDatabase;
 import database.present.PresentDatabase;
 import database.promotion.PromotionDatabase;
 import database.sales.OrderDatabase;
 import database.user.UserDatabase;
 import databaseService.book.BookDatabaseService;
+import databaseService.customer.CustomerDatabaseService;
 import databaseService.init.InitDatabaseService;
-import databaseService.member.MemberDatabaseService;
 import databaseService.present.PresentDatabaseService;
 import databaseService.promotion.PromotionDatabaseService;
 import databaseService.sales.OrderDatabaseService;
@@ -30,7 +30,7 @@ public class DatabaseStart {
 			InitDatabaseService initDatabase=InitDatabase.getInstance();
 			Naming.rebind("rmi://127.0.0.1:5000/InitDatabase", initDatabase);
 			
-			MemberDatabaseService memberDatabase=MemberDatabase.getInstance();
+			CustomerDatabaseService memberDatabase=CustomerDatabase.getInstance();
 			Naming.rebind("rmi://127.0.0.1:5000/MemberDatabase", memberDatabase);
 			
 			OrderDatabaseService orderDatabase = OrderDatabase.getInstance();
