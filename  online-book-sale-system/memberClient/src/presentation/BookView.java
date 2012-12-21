@@ -414,6 +414,10 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
 				ResultMessage result= bookViewController.putIntoFavorities(bookPO);
 				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
+				}else if(result==ResultMessage.FULL){
+                    JOptionPane.showMessageDialog(null,"收藏夹已满！");
+				}else{
+					JOptionPane.showMessageDialog(null,"系统错误，请稍后重试！");
 				}
 			}
     		
@@ -443,6 +447,10 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
 				ResultMessage result= bookViewController.putIntoFavorities(bookPO);
 				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
+				}else if(result==ResultMessage.FULL){
+                    JOptionPane.showMessageDialog(null,"收藏夹已满！");
+				}else{
+					JOptionPane.showMessageDialog(null,"系统错误，请稍后重试！");
 				}
 			}
     		
