@@ -30,12 +30,10 @@ import presentationController.searchBookView.SearchBookViewController;
 public class MainView extends JFrame implements ActionListener{
 	   MainViewControllerInterface mainViewController;
 	   private int lineOfUncompletedOrder=11;//初始为11
-//	   private JTable orderTable;
 	   private DefaultTableModel tableModel;
 	   private SalesManagerPO userpo;
 	   private ArrayList<OrderPO> uncompletedOrderList;
 	   private boolean hasUpdateUncompleteOrder= false;
-//	   SalesManagerModelInterface model;
 	
 	    private javax.swing.JButton addBookButton;
 	    private javax.swing.JTextField bookAutherTextField;
@@ -492,15 +490,15 @@ public class MainView extends JFrame implements ActionListener{
 
 	        mainViewTabbedPane.addTab("      订单管理      ", orderPanel);
 
-	        addBookButton.setBackground(new java.awt.Color(0, 204, 204));
+//	        addBookButton.setBackground(new java.awt.Color(0, 204, 204));
 	        addBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        addBookButton.setText("添加图书");
 
-	        deleteBookButton.setBackground(new java.awt.Color(0, 204, 204));
+//	        deleteBookButton.setBackground(new java.awt.Color(0, 204, 204));
 	        deleteBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        deleteBookButton.setText("删除图书");
 
-	        changeBookButton.setBackground(new java.awt.Color(0, 204, 204));
+//	        changeBookButton.setBackground(new java.awt.Color(0, 204, 204));
 	        changeBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        changeBookButton.setText("修改图书");
 
@@ -522,7 +520,7 @@ public class MainView extends JFrame implements ActionListener{
 	        jLabel6.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
 	        jLabel6.setText("图书类别：");
 
-	        confirmChangeBookButton.setBackground(new java.awt.Color(0, 204, 204));
+//	        confirmChangeBookButton.setBackground(new java.awt.Color(0, 204, 204));
 	        confirmChangeBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        confirmChangeBookButton.setForeground(new java.awt.Color(255, 0, 0));
 	        confirmChangeBookButton.setText("确认修改");
@@ -535,7 +533,7 @@ public class MainView extends JFrame implements ActionListener{
 
 	        typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-	        checkAllBookButton.setBackground(new java.awt.Color(0, 204, 204));
+//	        checkAllBookButton.setBackground(new java.awt.Color(0, 204, 204));
 	        checkAllBookButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
 	        checkAllBookButton.setText("浏览图书");
 
@@ -860,8 +858,10 @@ public class MainView extends JFrame implements ActionListener{
 	    		    		                                         Double.parseDouble(bookPriceTextField.getText()),
 	    		    		                                         Integer.parseInt(bookNumberTextField.getText())
 	    		    		                                      );
-	    		     if( mainViewController.addBook(bookPO) == ResultMessage.FAILED ){
-	    		    	 JOptionPane.showMessageDialog(null, "您输入的图书ISBM已经存在，请另行设置！");
+	    		     if( mainViewController.addBook(bookPO) == ResultMessage.EXIST){
+	    		    	 JOptionPane.showMessageDialog(null, "您输入的图书ISBN已经存在，请另行设置！");
+	    		     }else if(mainViewController.addBook(bookPO)==ResultMessage.FAILED){
+	    		    	 JOptionPane.showMessageDialog(null, "系统异常请稍后重试！");
 	    		     }else{
 	    		    	 JOptionPane.showMessageDialog(null, "添加图书成功！");
 	    		     }
