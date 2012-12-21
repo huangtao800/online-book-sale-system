@@ -4,7 +4,7 @@ package bussinessLogicService;
 import java.util.ArrayList;
 import po.*;
 
-public interface MemberBLService {
+public interface CustomerBLService {
 	public String getMemberName();//获得会员名称
 	public String getMemberID();//获得会员ID
 	public String getAddress();//获得地址
@@ -36,5 +36,5 @@ public interface MemberBLService {
 	
 	public ArrayList<String> getBookType();//获得所有图书分类
 	
-	public MemberPO freshMemberPO(String memberID);
+	public CustomerPO freshMemberPO(String memberID);
 }

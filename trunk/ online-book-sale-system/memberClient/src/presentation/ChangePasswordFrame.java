@@ -13,8 +13,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
 import po.ResultMessage;
-import presentationController.Member.MemberViewController;
-import presentationController.Member.MemberViewService;
+import presentationController.customer.CustomerViewController;
+import presentationController.customer.CustomerViewService;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -24,9 +25,9 @@ public class ChangePasswordFrame extends JFrame {
 	private JPasswordField oldPasswordField;
 	private JPasswordField newPasswordField1;
 	private JPasswordField newPasswordField2;
-	private MemberViewService memberViewController;
+	private CustomerViewService memberViewController;
 	
-	public ChangePasswordFrame(MemberViewService memberViewController){
+	public ChangePasswordFrame(CustomerViewService memberViewController){
 		this();
 		this.memberViewController=memberViewController;
 	}

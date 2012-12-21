@@ -1,39 +1,39 @@
-package presentationController.Member;
+package presentationController.customer;
 
 
 import java.util.ArrayList;
 
-import bussinessLogic.controller.MemberController;
-import bussinessLogicService.MemberBLService;
+import bussinessLogic.controller.CustomerController;
+import bussinessLogicService.CustomerBLService;
 import po.BookPO;
 import po.LineItemPO;
-import po.MemberPO;
+import po.CustomerPO;
 import po.ResultMessage;
-import presentation.MemberView;
+import presentation.CustomerView;
 import presentationController.Sales.SalesViewController;
 import presentationController.book.BookViewController;
 import presentationController.book.BookViewService;
 import vo.KeywordVO;
-import vo.MemberVO;
+import vo.CustomerVO;
 
 
-public class MemberViewController implements MemberViewService{
+public class CustomerViewController implements CustomerViewService{
 	
-	private MemberView memberView;
-	private static MemberViewService instance;
-	private MemberPO memberPO;
-	private MemberVO memberVO;
-	private MemberBLService memberController;
+	private CustomerView customerView;
+	private static CustomerViewService instance;
+	private CustomerPO customerPO;
+	private CustomerVO customerVO;
+	private CustomerBLService memberController;
 	
-	private MemberViewController(MemberPO memberPO){
+	private CustomerViewController(CustomerPO customerPO){
 
-		this.memberPO=memberPO;
-		this.memberVO=new MemberVO(memberPO);
+		this.customerPO=customerPO;
+		this.customerVO=new CustomerVO(customerPO);
 		
-		MemberController.setMember(memberPO);
-		this.memberController=MemberController.getInstance();
-		memberView=new MemberView(this,memberVO,memberPO);
-		memberView.setVisible(true);
+		CustomerController.setMember(customerPO);
+		this.memberController=CustomerController.getInstance();
+		customerView=new CustomerView(this,customerVO,customerPO);
+		customerView.setVisible(true);
 	}
 
 	@Override
@@ -42,9 +42,9 @@ public class MemberViewController implements MemberViewService{
 		BookViewService bookViewController=new BookViewController(keywordVO, null);
 	}
 
-	public static MemberViewService getInstance(MemberPO memberPO){
+	public static CustomerViewService getInstance(CustomerPO customerPO){
 		if(instance==null){
-			instance=new MemberViewController(memberPO);
+			instance=new CustomerViewController(customerPO);
 		}
 		
 		return instance;
@@ -57,13 +57,13 @@ public class MemberViewController implements MemberViewService{
 	}
 	
 	public void setViewVisible(){
-		memberView.setVisible(true);
+		customerView.setVisible(true);
 	}
 
 	@Override
 	public ResultMessage removeFavority(int selectedRow) {
 		// TODO Auto-generated method stub
-		BookPO bookPO=memberPO.getFavority().getFavorities().get(selectedRow);
+		BookPO bookPO=customerPO.getFavority().getFavorities().get(selectedRow);
 		return memberController.removeFavorities(bookPO);
 	}
 
@@ -76,7 +76,7 @@ public class MemberViewController implements MemberViewService{
 	@Override
 	public boolean checkPassword(String password) {
 		// TODO Auto-generated method stub
-		return this.memberPO.getUserPassword().equals(password);
+		return this.customerPO.getUserPassword().equals(password);
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class MemberViewController implements MemberViewService{
 	@Override
 	public ResultMessage putInCart(int selectedRow,int number) {
 		// TODO Auto-generated method stub
-		BookPO bookPO=memberPO.getFavority().getFavorities().get(selectedRow);
+		BookPO bookPO=customerPO.getFavority().getFavorities().get(selectedRow);
 		LineItemPO lineItemPO=new LineItemPO(bookPO, number);
 		return memberController.putInCart(lineItemPO);
 	}
@@ -113,11 +113,11 @@ public class MemberViewController implements MemberViewService{
 	}
 
 	@Override
-	public MemberPO freshMemberPO(String memberID) {
+	public CustomerPO freshMemberPO(String memberID) {
 		// TODO Auto-generated method stub
-		MemberPO newMemberPO = memberController.freshMemberPO(memberID);
-		this.memberPO=newMemberPO;
-		this.memberVO=new MemberVO(newMemberPO);
+		CustomerPO newMemberPO = memberController.freshMemberPO(memberID);
+		this.customerPO=newMemberPO;
+		this.customerVO=new CustomerVO(newMemberPO);
 		
 		freshMemberVO();
 		return newMemberPO;
@@ -132,7 +132,7 @@ public class MemberViewController implements MemberViewService{
 	@Override
 	public void freshMemberVO() {
 		// TODO Auto-generated method stub
-		memberView.setMemberVO(new MemberVO(memberPO));
+		customerView.setMemberVO(new CustomerVO(customerPO));
 	}
 	
 }

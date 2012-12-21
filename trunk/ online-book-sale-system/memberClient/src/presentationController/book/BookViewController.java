@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 
 import bussinessLogic.controller.BookController;
-import bussinessLogic.controller.MemberController;
+import bussinessLogic.controller.CustomerController;
 import bussinessLogicService.BookBLService;
-import bussinessLogicService.MemberBLService;
+import bussinessLogicService.CustomerBLService;
 
 import po.BookPO;
 import po.LineItemPO;
@@ -22,11 +22,11 @@ public class BookViewController implements BookViewService{
 	 private BookBLService bookController;
 	 private KeywordVO keywordVO;
 	 private String type;
-	 private MemberBLService memberController;
+	 private CustomerBLService memberController;
 	
 	 public BookViewController (KeywordVO keywordVO,String type){
 		 bookController = BookController.getInstance();
-		 memberController = MemberController.getInstance();
+		 memberController = CustomerController.getInstance();
 		
 		 if(keywordVO==null){
 			 bookView = new BookView(null,type,this);

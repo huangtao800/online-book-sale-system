@@ -6,12 +6,12 @@ import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
 
 import databaseService.init.InitDatabaseService;
-import po.MemberPO;
+import po.CustomerPO;
 import po.ResultMessage;
 import po.UserRole;
 import presentation.RegistryView;
-import presentationController.Member.MemberViewController;
-import presentationController.Member.MemberViewService;
+import presentationController.customer.CustomerViewController;
+import presentationController.customer.CustomerViewService;
 import bussinessLogic.controller.UserController;
 import bussinessLogicService.RegistryBLService;
 import bussinessLogicService.StartBLService;
@@ -22,7 +22,7 @@ public class RegistryController implements RegistryBLService {
 	private RegistryView registryView;
 	private StartBLService startController;
 	private InitDatabaseService initDatabase;
-	private MemberViewService memberViewController;		//跳转至Member主界面的Controller
+	private CustomerViewService memberViewController;		//跳转至Member主界面的Controller
 
 	public RegistryController(StartBLService startController) {
 		this.startController = startController;
@@ -42,7 +42,7 @@ public class RegistryController implements RegistryBLService {
 	@Override
 	public void registry(String name, String password,String address) {
 		// TODO Auto-generated method stub
-		MemberPO newMemberPO = null;
+		CustomerPO newMemberPO = null;
 		try {
 			newMemberPO = initDatabase.registry(name, password,address);
 
@@ -62,8 +62,8 @@ public class RegistryController implements RegistryBLService {
 		}
 	}
 
-	private void enterMemberView(MemberPO memberPO) {
-		memberViewController=MemberViewController.getInstance(memberPO);
+	private void enterMemberView(CustomerPO customerPO) {
+		memberViewController=CustomerViewController.getInstance(customerPO);
 		
 	}
 }

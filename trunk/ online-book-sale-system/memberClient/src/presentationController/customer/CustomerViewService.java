@@ -1,13 +1,13 @@
-package presentationController.Member;
+package presentationController.customer;
 
 import java.util.ArrayList;
 
 import po.BookPO;
-import po.MemberPO;
+import po.CustomerPO;
 import po.ResultMessage;
 import vo.KeywordVO;
 
-public interface MemberViewService {
+public interface CustomerViewService {
 	public void searchKeyword(KeywordVO keywordVO);
 	public void searchType(String type);
 	public ResultMessage removeFavority(int selectedRow);
@@ -19,7 +19,7 @@ public interface MemberViewService {
 	public void enterCart();	//进入购物车
 	public ResultMessage changeAddress(String newAddress);
 	public ResultMessage cancel(String password);
-	public MemberPO freshMemberPO(String memberID);
+	public CustomerPO freshMemberPO(String memberID);
 	
 	public void freshMemberVO();
 	public ArrayList<String> getBookType();

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import bussinessLogic.domain.Sales;
 import bussinessLogicService.BookBLService;
-import bussinessLogicService.MemberBLService;
+import bussinessLogicService.CustomerBLService;
 import bussinessLogicService.SalesBLService;
 
 import po.BookPO;
@@ -17,7 +17,7 @@ import po.ResultMessage;
 import presentationController.Sales.OrderVO;
 
 public class SalesController implements SalesBLService {
-	private MemberBLService memberController = MemberController.getInstance();
+	private CustomerBLService memberController = CustomerController.getInstance();
 	private BookBLService bookController = BookController.getInstance(); // ¸Ä³Éµ¥¼ü
 	private Sales sales;
 

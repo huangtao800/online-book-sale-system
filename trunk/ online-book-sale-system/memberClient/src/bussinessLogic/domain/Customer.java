@@ -5,21 +5,21 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import bussinessObject.Customer;
+import bussinessObject.CustomerBussiness;
 
-import databaseService.member.MemberDatabaseService;
+import databaseService.customer.CustomerDatabaseService;
 
 import po.*;
 
 
-public class Member {
-	private MemberPO memberPO;
-	private MemberDatabaseService memberDatabase;
+public class Customer {
+	private CustomerPO customerPO;
+	private CustomerDatabaseService memberDatabase;
 
-	public Member(MemberPO memberPO) {
-		this.memberPO = memberPO;
+	public Customer(CustomerPO customerPO) {
+		this.customerPO = customerPO;
 		try {
-			memberDatabase=(MemberDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/MemberDatabase");
+			memberDatabase=(CustomerDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/MemberDatabase");
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -27,24 +27,24 @@ public class Member {
 	}
 
 	public String getMemberName(){
-		return memberPO.getUserName();
+		return customerPO.getUserName();
 	}
 	
 	public String getMemberID(){
-		return memberPO.getUserID();
+		return customerPO.getUserID();
 	}
 	
 	//想收藏夹中添加图书
 	public ResultMessage addFavorities(BookPO bookPO){
-		Customer customer=new Customer(this.memberPO);
-		ResultMessage resultMessage=customer.addFavority(bookPO);
+		CustomerBussiness customerBussiness=new CustomerBussiness(this.customerPO);
+		ResultMessage resultMessage=customerBussiness.addFavority(bookPO);
 		
 		if(resultMessage==ResultMessage.FULL){
 			return resultMessage;
 		}
 		
 		try {
-			return memberDatabase.update(this.memberPO);
+			return memberDatabase.update(this.customerPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,15 +54,15 @@ public class Member {
 	
 	//从收藏夹中删除图书
 	public ResultMessage removeFavorities(BookPO bookPO){
-		Customer customer=new Customer(this.memberPO);
-		ResultMessage resultMessage=customer.removeFavority(bookPO);
+		CustomerBussiness customerBussiness=new CustomerBussiness(this.customerPO);
+		ResultMessage resultMessage=customerBussiness.removeFavority(bookPO);
 		
 		if(resultMessage!=ResultMessage.SUCCEED){
 			return resultMessage;
 		}
 		
 		try {
-			return memberDatabase.update(this.memberPO);
+			return memberDatabase.update(this.customerPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,7 +72,7 @@ public class Member {
 	
 
 	public ResultMessage cancel(String password){
-		if(!password.equals(memberPO.getUserPassword())){
+		if(!password.equals(customerPO.getUserPassword())){
 			return ResultMessage.ERROR;		//密码输入错误
 		}
 		if(!checkIsOrderSigned()){
@@ -80,7 +80,7 @@ public class Member {
 		}
 		
 		try {
-			return memberDatabase.delete(memberPO);
+			return memberDatabase.delete(customerPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,28 +90,28 @@ public class Member {
 	
 	//检查顾客所有的订单是否都已签收
 	private boolean checkIsOrderSigned(){
-		Customer customer=new Customer(this.memberPO);
-		return customer.checkIsOrderSigned();
+		CustomerBussiness customerBussiness=new CustomerBussiness(this.customerPO);
+		return customerBussiness.checkIsOrderSigned();
 		
 	}
 	
 	//返回持有的打折券列表
 	public ArrayList<CouponPO> getCouponList(){
-		return memberPO.getCouponList();
+		return customerPO.getCouponList();
 	}
 	
 	//返回持有的等价券列表
 	public ArrayList<EquivalentPO> getEquivalentList(){
-		return memberPO.getEquivalentList();
+		return customerPO.getEquivalentList();
 	}
 	
 	//增加一条订单记录
 	public ResultMessage addOrder(OrderPO order){
-		Customer customer=new Customer(this.memberPO);
-		customer.addOrder(order);
+		CustomerBussiness customerBussiness=new CustomerBussiness(this.customerPO);
+		customerBussiness.addOrder(order);
 
 		try {
-			return memberDatabase.update(this.memberPO);
+			return memberDatabase.update(this.customerPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -120,16 +120,16 @@ public class Member {
 	}
 	
 	public ArrayList<OrderPO> getOrderRecord(){
-		return memberPO.getOrderList();
+		return customerPO.getOrderList();
 	}
 	
 	public ResultMessage changeName(String newName){
-		if(newName.equals(memberPO.getUserName())){
+		if(newName.equals(customerPO.getUserName())){
 			return ResultMessage.SUCCEED;
 		}else {
-			memberPO.setUserName(newName);
+			customerPO.setUserName(newName);
 			try {
-				return memberDatabase.update(memberPO);
+				return memberDatabase.update(customerPO);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -140,8 +140,8 @@ public class Member {
 	
 	public ResultMessage changePassword(String password){
 		try {
-			memberPO.setUserPassword(password);
-			return memberDatabase.update(memberPO);
+			customerPO.setUserPassword(password);
+			return memberDatabase.update(customerPO);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -150,9 +150,9 @@ public class Member {
 	}
 	
 	public ResultMessage putInCart(LineItemPO lineItemPO){
-		memberPO.getCart().putInCart(lineItemPO);
+		customerPO.getCart().putInCart(lineItemPO);
 		try {
-			return memberDatabase.update(memberPO);
+			return memberDatabase.update(customerPO);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -161,10 +161,10 @@ public class Member {
 	}
 	
 	public ResultMessage removeFromCart(int index){
-		memberPO.getCart().removeFromCart(index);
+		customerPO.getCart().removeFromCart(index);
 		
 		try {
-			return memberDatabase.update(memberPO);
+			return memberDatabase.update(customerPO);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -178,9 +178,9 @@ public class Member {
 			return ResultMessage.NOTEXIST;
 		}
 		
-		memberPO.getEquivalentList().remove(index);
+		customerPO.getEquivalentList().remove(index);
 		try {
-			return memberDatabase.update(memberPO);
+			return memberDatabase.update(customerPO);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -194,9 +194,9 @@ public class Member {
 			return ResultMessage.NOTEXIST;
 		}
 		
-		memberPO.getCouponList().remove(index);
+		customerPO.getCouponList().remove(index);
 		try {
-			return memberDatabase.update(memberPO);
+			return memberDatabase.update(customerPO);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -205,8 +205,8 @@ public class Member {
 	}
 	
 	private int searchCoupon(CouponPO couponPO){
-		for(int i=0;i<memberPO.getCouponList().size();i++){
-			if(couponPO.getID()==memberPO.getCouponList().get(i).getID()){
+		for(int i=0;i<customerPO.getCouponList().size();i++){
+			if(couponPO.getID()==customerPO.getCouponList().get(i).getID()){
 				return i;
 			}
 		}
@@ -215,8 +215,8 @@ public class Member {
 	}
 	
 	private int searchEquivalentIndex(EquivalentPO equivalentPO){
-		for(int i=0;i<memberPO.getEquivalentList().size();i++){
-			if(equivalentPO.getID()==memberPO.getEquivalentList().get(i).getID()){
+		for(int i=0;i<customerPO.getEquivalentList().size();i++){
+			if(equivalentPO.getID()==customerPO.getEquivalentList().get(i).getID()){
 				return i;
 			}
 		}
@@ -225,19 +225,19 @@ public class Member {
 
 	public ArrayList<LineItemPO> getCartList() {
 		// TODO Auto-generated method stub
-		return memberPO.getCart().getCartList();
+		return customerPO.getCart().getCartList();
 	}
 
 	public String getAddress() {
 		// TODO Auto-generated method stub
-		return memberPO.getAddress();
+		return customerPO.getAddress();
 	}
 
 	public ResultMessage changeAddress(String newAddress) {
 		// TODO Auto-generated method stub
-		memberPO.setAddress(newAddress);
+		customerPO.setAddress(newAddress);
 		try {
-			return memberDatabase.update(memberPO);
+			return memberDatabase.update(customerPO);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -247,9 +247,9 @@ public class Member {
 
 	public ResultMessage clearCart() {
 		// TODO Auto-generated method stub
-		memberPO.getCart().clear();
+		customerPO.getCart().clear();
 		try {
-			return memberDatabase.update(memberPO);
+			return memberDatabase.update(customerPO);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -257,11 +257,11 @@ public class Member {
 		}
 	}
 
-	public MemberPO freshMemberPO(String memberID) {
+	public CustomerPO freshMemberPO(String memberID) {
 		// TODO Auto-generated method stub
 		try {
-			MemberPO newMemberPO= memberDatabase.freshMemberPO(memberID);
-			this.memberPO=newMemberPO;
+			CustomerPO newMemberPO= memberDatabase.freshMemberPO(memberID);
+			this.customerPO=newMemberPO;
 			return newMemberPO;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
