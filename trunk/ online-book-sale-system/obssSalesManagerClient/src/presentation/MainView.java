@@ -256,7 +256,7 @@ public class MainView extends JFrame implements ActionListener{
 	                .addGap(34, 34, 34))
 	        );
 
-	        mainViewTabbedPane.addTab("        首页        ", homePagePanel);
+	        mainViewTabbedPane.addTab("          首页          ", homePagePanel);
 
 	        checkMemberInforButton.setBackground(new java.awt.Color(0, 255, 255));
 	        checkMemberInforButton.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
@@ -837,15 +837,15 @@ public class MainView extends JFrame implements ActionListener{
 	    	else if(event.getSource()==sendPresentButton){	 
 	    		ResultMessage result= mainViewController.sendPresent();
 	    		if(result== ResultMessage.NOTEXIST){
-	    	        JOptionPane.showMessageDialog(null, "总经理未制定礼券 或 礼券已经赠送完毕！");
-	    	        showPresentTextArea.setText("尚无礼券！");
+	    			 showPresentTextArea.setText("尚无礼券！");
+	    	         JOptionPane.showMessageDialog(null, "总经理未制定礼券 或 礼券已经赠送完毕！");       
 	    		}
 	    		else if(result ==ResultMessage.OVORTIME){
-	    		   JOptionPane.showMessageDialog(null, "礼券赠送完毕！且已将过期的礼券删除！");
-	    		   showPresentTextArea.setText("礼券赠送完毕！");
+	    			 showPresentTextArea.setText("礼券赠送完毕！");
+	    		     JOptionPane.showMessageDialog(null, "礼券赠送完毕！且已将过期的礼券删除！");		  
 	    		}else if(result== ResultMessage.SUCCEED){
-	    		   JOptionPane.showMessageDialog(null, "礼券赠送完毕！");
-	    		   showPresentTextArea.setText("礼券赠送完毕！");
+	    			showPresentTextArea.setText("礼券赠送完毕！");
+	    		    JOptionPane.showMessageDialog(null, "礼券赠送完毕！");
 	    		}
 	    	}
 	    	
