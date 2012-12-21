@@ -6,6 +6,8 @@ import javax.swing.UIManager;
 
 import org.pushingpixels.substance.api.skin.SubstanceDustCoffeeLookAndFeel;
 
+import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
+
 import presentationController.strat.StartController;
 
 import bussinessLogicService.StartBLService;
@@ -20,7 +22,7 @@ public class GeneralManagerStart {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UIManager.setLookAndFeel(new SubstanceDustCoffeeLookAndFeel());
+					UIManager.setLookAndFeel(new AluminiumLookAndFeel());
 					StartBLService startController=new StartController();
 					
 				} catch (Exception e) {
