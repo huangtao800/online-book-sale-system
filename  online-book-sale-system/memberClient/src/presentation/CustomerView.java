@@ -11,19 +11,19 @@ import po.BookPO;
 import po.CouponPO;
 import po.EquivalentPO;
 import po.FavorityPO;
-import po.MemberPO;
+import po.CustomerPO;
 import po.OrderPO;
 import po.ResultMessage;
-import presentationController.Member.MemberViewService;
 import presentationController.Sales.OrderVO;
+import presentationController.customer.CustomerViewService;
 import vo.CouponVO;
 import vo.EquivalentVO;
 import vo.FavorityVO;
 import vo.KeywordVO;
-import vo.MemberVO;
+import vo.CustomerVO;
 import vo.NewOrderVO;
 
-import bussinessLogicService.MemberManagerBLService;
+
 import bussinessLogic.controller.*;
 import javax.swing.JTabbedPane;
 import java.awt.event.ActionListener;
@@ -46,13 +46,13 @@ import java.util.Calendar;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
-public class MemberView extends JFrame {
+public class CustomerView extends JFrame {
 
 //	private MemberPO memberPO;
-	private MemberVO memberVO;
+	private CustomerVO customerVO;
 
-	public void setMemberVO(MemberVO memberVO) {
-		this.memberVO = memberVO;
+	public void setMemberVO(CustomerVO customerVO) {
+		this.customerVO = customerVO;
 	}
 
 	private javax.swing.JButton changeAddressButton;
@@ -98,7 +98,7 @@ public class MemberView extends JFrame {
 	private javax.swing.JTextField publisherField;
 	private javax.swing.JTextField publisherYearField;
 
-	private MemberViewService memberViewController;
+	private CustomerViewService memberViewController;
 	private JTable couponTable;
 	private JButton enterCartButton;
 	private JButton freshOrderButton;
@@ -123,11 +123,11 @@ public class MemberView extends JFrame {
 	// });
 	// }
 
-	public MemberView(MemberViewService memberViewController,
-			MemberVO memberVO, MemberPO memberPO) {
+	public CustomerView(CustomerViewService memberViewController,
+			CustomerVO customerVO, CustomerPO customerPO) {
 		this.memberViewController = memberViewController;
 //		this.memberPO = memberPO;
-		this.memberVO = new MemberVO(memberPO);
+		this.customerVO = new CustomerVO(customerPO);
 		initComponents();
 //		bookNameField.requestFocus();
 	}
@@ -206,7 +206,7 @@ public class MemberView extends JFrame {
 				if (message == ResultMessage.SUCCEED) {
 					JOptionPane.showMessageDialog(null, "修改成功！");
 					nameLabel.setText(newName);
-					memberVO.userName = newName;
+					customerVO.userName = newName;
 				} else {
 					JOptionPane.showMessageDialog(null, "抱歉！该用户名已被使用！");
 				}
@@ -227,7 +227,7 @@ public class MemberView extends JFrame {
 
 				if (result == ResultMessage.SUCCEED) {
 					JOptionPane.showMessageDialog(null, "修改成功！");
-					memberVO.address = newAddress;
+					customerVO.address = newAddress;
 					addressLabel.setText(newAddress);
 				}
 			}
@@ -552,22 +552,22 @@ public class MemberView extends JFrame {
 		idLabel.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
 		// idLabel.setText("XXX");
 //		idLabel.setText(memberPO.getUserID());
-		idLabel.setText(memberVO.userID);
+		idLabel.setText(customerVO.userID);
 
 		nameLabel.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
 		// nameLabel.setText("XXX");
 //		nameLabel.setText(memberPO.getUserName());
-		nameLabel.setText(memberVO.userName);
+		nameLabel.setText(customerVO.userName);
 
 		pointLabel.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
 		// pointLabel.setText("XXX");
 //		pointLabel.setText(memberPO.getPoints() + "");
-		pointLabel.setText(memberVO.points + "");
+		pointLabel.setText(customerVO.points + "");
 
 		rankLabel.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
 		// rankLabel.setText("XXX");
 //		rankLabel.setText(memberPO.getRank().toString());
-		rankLabel.setText(memberVO.rank);
+		rankLabel.setText(customerVO.rank);
 
 		changeNameButton.setText("\u4FEE\u6539\u540D\u79F0");
 
@@ -577,7 +577,7 @@ public class MemberView extends JFrame {
 		addressLabel.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
 		// addressLabel.setText("XXX");
 //		addressLabel.setText(memberPO.getAddress());
-		addressLabel.setText(memberVO.address);
+		addressLabel.setText(customerVO.address);
 
 		changeAddressButton.setText("修改地址");
 
@@ -644,9 +644,9 @@ public class MemberView extends JFrame {
 		JButton freshPointButton = new JButton("\u5237\u65B0\u79EF\u5206");
 		freshPointButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				freshMemberPO(memberVO.userID);
+				freshMemberPO(customerVO.userID);
 //				pointLabel.setText("" + memberPO.getPoints());
-				pointLabel.setText("" + memberVO.points);
+				pointLabel.setText("" + customerVO.points);
 			}
 		});
 
@@ -1059,7 +1059,7 @@ public class MemberView extends JFrame {
 		JButton freshButton = new JButton("\u5237\u65B0\u5217\u8868");
 		freshButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				freshMemberPO(memberVO.userID);
+				freshMemberPO(customerVO.userID);
 				couponTable.setModel(new CouponVOTableModel());
 				equivalentTable.setModel(new EquivalentVOTableModel());
 			}
@@ -1123,7 +1123,7 @@ public class MemberView extends JFrame {
 		freshOrderButton = new JButton("\u5237\u65B0\u5217\u8868");
 		freshOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				freshMemberPO(memberVO.userID);
+				freshMemberPO(customerVO.userID);
 				freshOrderTable(orderTable);
 			}
 		});
@@ -1137,7 +1137,7 @@ public class MemberView extends JFrame {
 					JOptionPane.showMessageDialog(null, "请选择一条订单！");
 					return;
 				}
-				OrderDetailView orderDetailView = new OrderDetailView(memberVO
+				OrderDetailView orderDetailView = new OrderDetailView(customerVO
 						.orderVOList.get(index));
 				orderDetailView.setVisible(true);
 			}
@@ -1260,7 +1260,7 @@ public class MemberView extends JFrame {
 	}
 
 	class FavorityVOTableModel extends AbstractTableModel {
-		FavorityVO favorityVO = memberVO.favorityVO;
+		FavorityVO favorityVO = customerVO.favorityVO;
 
 		@Override
 		public int getRowCount() {
@@ -1371,7 +1371,7 @@ public class MemberView extends JFrame {
 
 	class EquivalentVOTableModel extends AbstractTableModel {
 
-		ArrayList<EquivalentVO> equivalentVOList = memberVO.equivalentVOList;
+		ArrayList<EquivalentVO> equivalentVOList = customerVO.equivalentVOList;
 
 		@Override
 		public int getRowCount() {
@@ -1467,7 +1467,7 @@ public class MemberView extends JFrame {
 
 	class CouponVOTableModel extends AbstractTableModel {
 
-		ArrayList<CouponVO> couponVOList = memberVO.couponVOList;
+		ArrayList<CouponVO> couponVOList = customerVO.couponVOList;
 
 		@Override
 		public int getRowCount() {
@@ -1552,7 +1552,7 @@ public class MemberView extends JFrame {
 	// }
 
 	class OrderVOTableModel extends AbstractTableModel {
-		ArrayList<NewOrderVO> orderVOList = memberVO.orderVOList;
+		ArrayList<NewOrderVO> orderVOList = customerVO.orderVOList;
 
 		@Override
 		public int getRowCount() {

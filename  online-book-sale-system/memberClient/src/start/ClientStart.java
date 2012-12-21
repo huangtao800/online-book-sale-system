@@ -1,7 +1,11 @@
 package start;
 
 import java.awt.EventQueue;
+
+import javax.swing.JFrame;
 import javax.swing.UIManager;
+
+import napkin.NapkinLookAndFeel;
 
 import org.pushingpixels.substance.api.skin.SubstanceAutumnLookAndFeel;
 import org.pushingpixels.substance.api.skin.SubstanceBusinessBlackSteelLookAndFeel;
@@ -23,6 +27,18 @@ import org.pushingpixels.substance.api.skin.SubstanceRavenLookAndFeel;
 import org.pushingpixels.substance.api.skin.SubstanceSaharaLookAndFeel;
 import org.pushingpixels.substance.api.skin.SubstanceTwilightLookAndFeel;
 
+import com.jtattoo.plaf.AbstractBorderFactory;
+import com.jtattoo.plaf.AbstractIconFactory;
+import com.jtattoo.plaf.AbstractLookAndFeel;
+import com.jtattoo.plaf.aero.AeroLookAndFeel;
+import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
+import com.jtattoo.plaf.bernstein.BernsteinLookAndFeel;
+import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
+import com.jtattoo.plaf.luna.LunaLookAndFeel;
+import com.jtattoo.plaf.mint.MintLookAndFeel;
+import com.jtattoo.plaf.noire.NoireLookAndFeel;
+import com.jtattoo.plaf.smart.SmartLookAndFeel;
+
 
 import bussinessLogicService.StartBLService;
 
@@ -38,7 +54,8 @@ public class ClientStart {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UIManager.setLookAndFeel(new SubstanceBusinessLookAndFeel());
+					
+					UIManager.setLookAndFeel(new NapkinLookAndFeel());
 					StartBLService startController=new StartController();
 
 				} catch (Exception e) {

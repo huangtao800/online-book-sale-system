@@ -10,7 +10,11 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+import napkin.NapkinLookAndFeel;
 
 import org.pushingpixels.substance.api.skin.SubstanceDustCoffeeLookAndFeel;
 
