@@ -26,6 +26,8 @@ import java.awt.Font;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class StartView extends JFrame {
 
@@ -79,13 +81,22 @@ public class StartView extends JFrame {
 		nameField.setBounds(152, 78, 180, 36);
 		contentPane.add(nameField);
 		nameField.setColumns(10);
+		nameField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e){
+				char c=e.getKeyChar();
+				if(c=='\n'){
+					passwordField.requestFocus();
+				}
+			}
+		});
 		
 		JLabel passwordLabel = new JLabel("\u5BC6\u7801\uFF1A");
 		passwordLabel.setFont(new Font("华文行楷", Font.PLAIN, 15));
 		passwordLabel.setBounds(64, 129, 78, 33);
 		contentPane.add(passwordLabel);
 		
-		JButton logButton = new JButton("\u767B\u5F55");
+		final JButton logButton = new JButton("\u767B\u5F55");
 		
 		//logButton的ActionListener
 		logButton.addActionListener(new ActionListener() {
@@ -116,6 +127,16 @@ public class StartView extends JFrame {
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(152, 129, 180, 33);
+		passwordField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e){
+				char c=e.getKeyChar();
+				if(c=='\n'){
+					logButton.doClick();
+				}
+			}
+		});
+		
 		contentPane.add(passwordField);
 		
 		JButton registryButton = new JButton("\u6CE8\u518C\u65B0\u7528\u6237");
