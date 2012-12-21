@@ -1095,7 +1095,10 @@ public class MainView extends JFrame implements ActionListener{
 				String newType=JOptionPane.showInputDialog("请输入新的图书类别：");
 				if(newType==null){
 					return;
-				}else if(newType=="" || newType==" "){
+				}else if(newType.equals("") || newType.equals(" ") || newType .equals("  ") || newType.equals("   ")
+						|| newType.equals("    ")|| newType.equals("     ")|| newType.equals("      ")|| newType.equals("       ")
+						|| newType.equals("        ")|| newType.equals("         ")|| newType.equals("          ")
+						){
 					JOptionPane.showMessageDialog(null, "图书类别不能为空！");
 					return;
 				}
