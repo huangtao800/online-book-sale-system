@@ -4,7 +4,10 @@ import java.awt.EventQueue;
 
 import javax.swing.UIManager;
 
+import org.pushingpixels.substance.api.skin.SubstanceBusinessLookAndFeel;
 import org.pushingpixels.substance.api.skin.SubstanceDustCoffeeLookAndFeel;
+
+import com.jtattoo.plaf.mcwin.McWinLookAndFeel;
 
 import presentationController.start.StartController;
 import bussinessLogicService.StartBLService;
@@ -19,7 +22,8 @@ public class SalesManagerStart {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UIManager.setLookAndFeel(new SubstanceDustCoffeeLookAndFeel());
+//					UIManager.setLookAndFeel(new SubstanceBusinessLookAndFeel());
+					UIManager.setLookAndFeel(new McWinLookAndFeel());
 					StartBLService startController=new StartController();
 					
 				} catch (Exception e) {
