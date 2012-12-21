@@ -127,8 +127,9 @@ public class Member {
 		if(newName.equals(memberPO.getUserName())){
 			return ResultMessage.SUCCEED;
 		}else {
+			memberPO.setUserName(newName);
 			try {
-				return memberDatabase.changeName(newName,memberPO);
+				return memberDatabase.update(memberPO);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -139,7 +140,8 @@ public class Member {
 	
 	public ResultMessage changePassword(String password){
 		try {
-			return memberDatabase.changePassword(password, memberPO);
+			memberPO.setUserPassword(password);
+			return memberDatabase.update(memberPO);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
