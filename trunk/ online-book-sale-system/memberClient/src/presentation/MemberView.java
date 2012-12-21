@@ -129,6 +129,7 @@ public class MemberView extends JFrame {
 //		this.memberPO = memberPO;
 		this.memberVO = new MemberVO(memberPO);
 		initComponents();
+//		bookNameField.requestFocus();
 	}
 
 	/**
@@ -1248,6 +1249,7 @@ public class MemberView extends JFrame {
 		getContentPane().setLayout(layout);
 
 		pack();
+		bookNameField.requestFocus();
 	}
 
 	// 刷新收藏夹列表
