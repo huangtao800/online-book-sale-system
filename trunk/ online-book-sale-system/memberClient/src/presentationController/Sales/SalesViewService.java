@@ -7,7 +7,7 @@ import po.ResultMessage;
 
 public interface SalesViewService {
 	public void initCartView();
-	public void initPayFrame();
+	public ResultMessage initPayFrame();
 	public void initOrderView(OrderVO orderVO);
 //	public ResultMessage putInCart(String isbn, int number);
 	public ResultMessage removeFromCart(int index);
@@ -16,5 +16,6 @@ public interface SalesViewService {
 	public void pay(String address,int index);
 	public void endSale();
 	public ArrayList<LineItemPO> getCartList();
+	public ResultMessage changeNumber(int i, int number);
 
 }
