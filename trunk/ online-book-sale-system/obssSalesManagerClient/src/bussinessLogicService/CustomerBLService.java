@@ -4,7 +4,7 @@ package bussinessLogicService;
 import java.util.ArrayList;
 import po.*;
 
-public interface MemberBLService {
+public interface CustomerBLService {
 	public String getMemberName();//获得会员名称
 	public String getMemberID();//获得会员ID
 	

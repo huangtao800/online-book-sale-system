@@ -7,12 +7,12 @@ import po.*;
 import bussinessLogicService.*;
 import bussinessLogic.domain.*;
 
-public class CustomerController implements MemberBLService{
+public class CustomerController implements CustomerBLService{
 	private static Customer customer;
 	
-	private static MemberBLService instance;
+	private static CustomerBLService instance;
 	
-	public static MemberBLService getInstance(){
+	public static CustomerBLService getInstance(){
 		if(instance==null){
 			instance=new CustomerController();
 		}

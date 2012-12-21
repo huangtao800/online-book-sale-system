@@ -7,7 +7,7 @@ import po.OrderPO;
 import po.OrderState;
 import po.ResultMessage;
 import bussinessLogic.domain.SalesManager;
-import bussinessLogicService.MemberBLService;
+import bussinessLogicService.CustomerBLService;
 import bussinessLogicService.SalesManagerService;
 
 public class SalesManagerController implements SalesManagerService {
