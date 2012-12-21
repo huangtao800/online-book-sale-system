@@ -289,6 +289,8 @@ public class CustomerView extends JFrame {
 
 					if (result == ResultMessage.SUCCEED) {
 						JOptionPane.showMessageDialog(null, "添加成功！");
+					}else if(result==ResultMessage.NOTPREPARED){
+						JOptionPane.showMessageDialog(null, "抱歉！您购买的数量已超出本站库存！");
 					}
 				}
 			}
@@ -1275,7 +1277,7 @@ public class CustomerView extends JFrame {
 		@Override
 		public int getColumnCount() {
 			// TODO Auto-generated method stub
-			return 5;
+			return 6;
 		}
 
 		@Override
@@ -1291,8 +1293,10 @@ public class CustomerView extends JFrame {
 			case 3:
 				return favorityVO.bookVOList.get(rowIndex).press;
 
-			default:
+			case 4:
 				return favorityVO.bookVOList.get(rowIndex).publishDate;
+			default:
+				return favorityVO.bookVOList.get(rowIndex).numOfBook;
 			}
 		}
 
@@ -1300,16 +1304,18 @@ public class CustomerView extends JFrame {
 
 			switch (c) {
 			case 0:
-				return "\u56FE\u4E66\u540D\u79F0";
+				return "图书名称";
 			case 1:
-				return "\u4F5C\u8005";
+				return "作者";
 			case 2:
 				return "ISBN";
 			case 3:
-				return "\u51FA\u7248\u793E";
+				return "出版社";
 
+			case 4:
+				return "出版年份";
 			default:
-				return "\u51FA\u7248\u5E74\u4EFD";
+				return "现有库存";
 			}
 		}
 
