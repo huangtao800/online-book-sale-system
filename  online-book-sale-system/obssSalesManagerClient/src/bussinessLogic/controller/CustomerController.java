@@ -7,24 +7,24 @@ import po.*;
 import bussinessLogicService.*;
 import bussinessLogic.domain.*;
 
-public class MemberController implements MemberBLService{
+public class CustomerController implements MemberBLService{
 	private static Member member;
 	
 	private static MemberBLService instance;
 	
 	public static MemberBLService getInstance(){
 		if(instance==null){
-			instance=new MemberController();
+			instance=new CustomerController();
 		}
 		return instance;
 	}
 	
-	private MemberController(){
+	private CustomerController(){
 
 	}
 	
-	public static void setMember(MemberPO memberPO){
-		member=new Member(memberPO);
+	public static void setMember(CustomerPO customerPO){
+		member=new Member(customerPO);
 	}
 
 	@Override

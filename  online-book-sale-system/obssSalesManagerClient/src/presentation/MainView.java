@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import po.BookPO;
-import po.MemberPO;
+import po.CustomerPO;
 import po.OrderPO;
 import po.OrderState;
 import po.Present_Coupon;
@@ -948,26 +948,26 @@ public class MainView extends JFrame implements ActionListener{
 	    		if(memberIDTextField.getText().equals("")){
 	    			JOptionPane.showMessageDialog(null, "请先输入顾客的ID！");
 	    		}else{
-	    		      MemberPO memberPO= mainViewController.getMemberPO(memberIDTextField.getText());
-	    		      if(memberPO == null){
+	    		      CustomerPO customerPO= mainViewController.getMemberPO(memberIDTextField.getText());
+	    		      if(customerPO == null){
 	    		    	  JOptionPane.showMessageDialog(null, "对不起，您要查看的顾客不存在！");
 	    		      }else{
-	    		    	  memberInforTextArea.append("编号: "+memberPO.getUserID()+
-	    		    			                                          "\n名称: "+memberPO.getUserName()+
-	    		    			                                          "\n积分: "+memberPO.getPoints()+
-	    		    			                                          "\n等级: "+memberPO.getRank()
+	    		    	  memberInforTextArea.append("编号: "+customerPO.getUserID()+
+	    		    			                                          "\n名称: "+customerPO.getUserName()+
+	    		    			                                          "\n积分: "+customerPO.getPoints()+
+	    		    			                                          "\n等级: "+customerPO.getRank()
 	    		    			                                           );
-	    		    	  for(int i=0;i<memberPO.getEquivalentList().size(); i++){
-	    		    		  memberInforTextArea.append("拥有等价券:  "+memberPO.getEquivalentList().get(i).toString());
+	    		    	  for(int i=0;i<customerPO.getEquivalentList().size(); i++){
+	    		    		  memberInforTextArea.append("拥有等价券:  "+customerPO.getEquivalentList().get(i).toString());
 	    		    	  }
-	    		    	  for(int j=0;j<memberPO.getCouponList().size(); j++){
-	    		    		  memberInforTextArea.append("拥有打折券:  "+memberPO.getCouponList().get(j).toString());
+	    		    	  for(int j=0;j<customerPO.getCouponList().size(); j++){
+	    		    		  memberInforTextArea.append("拥有打折券:  "+customerPO.getCouponList().get(j).toString());
 	    		    	  }
-	    		    	  if(memberPO.getOrderList().size()== 0){
+	    		    	  if(customerPO.getOrderList().size()== 0){
 	    		    		  memberOrderTextArea.append("该顾客尚未进行任何购买活动！");
 	    		    	  }else{
-	    		    	           for(int k=0;k<memberPO.getOrderList().size(); k++){
-	    		    	                memberOrderTextArea.append(memberPO.getOrderList().get(k).toString()+"\n");
+	    		    	           for(int k=0;k<customerPO.getOrderList().size(); k++){
+	    		    	                memberOrderTextArea.append(customerPO.getOrderList().get(k).toString()+"\n");
 	    		    	            }
 	    		    	  }
 	    		      }    		      

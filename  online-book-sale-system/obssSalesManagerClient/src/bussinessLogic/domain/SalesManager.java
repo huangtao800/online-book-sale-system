@@ -3,7 +3,7 @@ package bussinessLogic.domain;
 import java.rmi.Naming;
 import java.util.ArrayList;
 
-import po.MemberPO;
+import po.CustomerPO;
 import po.OrderPO;
 import po.OrderState;
 import po.ResultMessage;
@@ -11,18 +11,18 @@ import po.UserPO;
 import po.UserRole;
 import sun.org.mozilla.javascript.internal.ast.TryStatement;
 
+import databaseService.customer.CustomerDatabaseService;
 import databaseService.init.InitDatabaseService;
-import databaseService.member.MemberDatabaseService;
 import databaseService.sales.OrderDatabaseService;
 
 public class SalesManager {
-	private MemberDatabaseService memberDatabase;
+	private CustomerDatabaseService memberDatabase;
 	private OrderDatabaseService orderDatabase;
 	private InitDatabaseService initDatabase;
 
 	public SalesManager(){
 		try {
-			memberDatabase=(MemberDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/MemberDatabase");
+			memberDatabase=(CustomerDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/MemberDatabase");
 			orderDatabase=(OrderDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/OrderDatabase");
 			initDatabase=(InitDatabaseService) Naming.lookup("rmi://127.0.0.1:5000/InitDatabase");
 		} catch (Exception e) {
@@ -31,7 +31,7 @@ public class SalesManager {
 		}
 	}
 
-	public MemberPO getMemberPO(String MemID){
+	public CustomerPO getMemberPO(String MemID){
 		try {
 			return memberDatabase.searchMemberPO(MemID);
 		} catch (Exception e) {

@@ -1,24 +1,24 @@
 //黄涛
-package databaseService.member;
+package databaseService.customer;
 
 import java.rmi.RemoteException;
 
 
 import po.BookPO;
 import po.LineItemPO;
-import po.MemberPO;
+import po.CustomerPO;
 import po.OrderState;
 import po.ResultMessage;
 import databaseService.DatabaseService;
 
-public interface MemberDatabaseService extends DatabaseService{
+public interface CustomerDatabaseService extends DatabaseService{
 //	public ResultMessage updateMember(MemberPO memberPO) throws RemoteException;
-	public ResultMessage cancel(MemberPO memberPO) throws RemoteException;
-	public ResultMessage changeName(String newName,MemberPO memberPO) throws RemoteException;
-	public ResultMessage changePassword(String password,MemberPO memberPO) throws RemoteException;
+	public ResultMessage cancel(CustomerPO customerPO) throws RemoteException;
+	public ResultMessage changeName(String newName,CustomerPO customerPO) throws RemoteException;
+	public ResultMessage changePassword(String password,CustomerPO customerPO) throws RemoteException;
 	
 	//供销售经理使用
 		public ResultMessage changeOrder(String memberID,long orderID,OrderState orderState) throws RemoteException;
-		public MemberPO searchMemberPO(String memberID) throws RemoteException;
+		public CustomerPO searchMemberPO(String memberID) throws RemoteException;
 		public ResultMessage addPoint(String memberID,double sum) throws RemoteException;
 }
