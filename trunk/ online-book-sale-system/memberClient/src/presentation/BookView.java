@@ -428,10 +428,20 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
 				bookList = bookViewController.findByKeyword(name, author, press, publishDate);
 	    	    
 				BookPO bookPO = bookList.get(jTable1.getSelectedRow());
-				int number = Integer.parseInt(JOptionPane.showInputDialog("请输入购买本数："));
-	    		lineItemPO = new LineItemPO(bookPO, number);
+				int number=0;
+				try{
+					number = Integer.parseInt(JOptionPane.showInputDialog("请输入购买本数："));
+				}catch (Exception e) {
+					// TODO: handle exception
+					JOptionPane.showMessageDialog(null, "输入错误！");
+				}
+				
+				if(number==0){
+					return;
+				}
+//	    		lineItemPO = new LineItemPO(bookPO, number);
 	    		
-				ResultMessage result= bookViewController.putIntoCart(lineItemPO);
+				ResultMessage result= bookViewController.putIntoCart(bookPO,number);
 				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
 			    }
@@ -461,13 +471,23 @@ public class BookView extends javax.swing.JFrame implements ActionListener{
 				String t = jComboBox1.getSelectedItem().toString();
 				bookList = bookViewController.fineByType(t);
 				BookPO bookPO = bookList.get(jTable2.getSelectedRow());
-				int number = Integer.parseInt(JOptionPane.showInputDialog("购买本书："));
-	    		lineItemPO = new LineItemPO(bookPO, number);
+				int number=0;
+				try{
+					number = Integer.parseInt(JOptionPane.showInputDialog("请输入购买本数："));
+				}catch (Exception e) {
+					// TODO: handle exception
+					JOptionPane.showMessageDialog(null, "输入错误！");
+				}
+				
+				if(number==0){
+					return;
+				}
+//	    		lineItemPO = new LineItemPO(bookPO, number);
 	    		
-				ResultMessage result= bookViewController.putIntoCart(lineItemPO);
+				ResultMessage result= bookViewController.putIntoCart(bookPO,number);
 				if(result==ResultMessage.SUCCEED){
 					JOptionPane.showMessageDialog(null, "添加成功！");
-				}
+			    }
 			}
     	}
     	

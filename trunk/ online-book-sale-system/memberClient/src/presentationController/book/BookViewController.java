@@ -41,8 +41,8 @@ public class BookViewController implements BookViewService{
 	 }
 
 	//添加到购物车
-	 public ResultMessage putIntoCart(LineItemPO lineItemPO){
-		 return memberController.putInCart(lineItemPO);
+	 public ResultMessage putIntoCart(BookPO bookPO,int number){
+		 return memberController.putInCart(bookPO,number);
 	 }
 	 
 	//添加到收藏夹

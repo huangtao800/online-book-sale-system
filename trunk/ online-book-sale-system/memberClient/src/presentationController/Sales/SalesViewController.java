@@ -62,16 +62,16 @@ public class SalesViewController implements SalesViewService{
 		orderView.setVisible(true);
 	}
 	
-	public ResultMessage putInCart(String isbn, int number){
-		ResultMessage resultMessage;
-		if((isbn != null) && (number != 0)){
-			resultMessage = salesController.putInCart(isbn, number);
-			cartView.refreshCartList();
-			cartView.refreshTotalPrice(salesController.getTotalPrice());
-			return resultMessage;
-		}
-		return ResultMessage.FAILED;	
-	}
+//	public ResultMessage putInCart(String isbn, int number){
+//		ResultMessage resultMessage;
+//		if((isbn != null) && (number != 0)){
+//			resultMessage = salesController.putInCart(isbn, number);
+//			cartView.refreshCartList();
+//			cartView.refreshTotalPrice(salesController.getTotalPrice());
+//			return resultMessage;
+//		}
+//		return ResultMessage.FAILED;	
+//	}
 
 	public ResultMessage removeFromCart(int index) {
 		ResultMessage resultMessage = ResultMessage.FAILED;

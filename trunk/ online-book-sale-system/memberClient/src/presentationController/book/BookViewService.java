@@ -7,7 +7,7 @@ import po.LineItemPO;
 import po.ResultMessage;
 
 public interface BookViewService {
-    public ResultMessage putIntoCart(LineItemPO lineItemPO);//添加到购物车
+    public ResultMessage putIntoCart(BookPO bookPO,int number);//添加到购物车
     public ResultMessage putIntoFavorities(BookPO bookPO);//添加到收藏夹
     public void enterCart();
     //查找图书

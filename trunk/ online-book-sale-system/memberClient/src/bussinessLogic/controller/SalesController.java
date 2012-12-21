@@ -34,15 +34,15 @@ public class SalesController implements SalesBLService {
 		return uniqueInstance;
 	}
 
-	@Override
-	public ResultMessage putInCart(String isbn, int number) {
-		BookPO bookPO = bookController.findByISBN(isbn);
-		if (bookPO == null)
-			return ResultMessage.FAILED;
-		LineItemPO lineItemPO = new LineItemPO(bookPO, number);
-		ResultMessage result = memberController.putInCart(lineItemPO);
-		return result;
-	}
+//	@Override
+//	public ResultMessage putInCart(String isbn, int number) {
+//		BookPO bookPO = bookController.findByISBN(isbn);
+//		if (bookPO == null)
+//			return ResultMessage.FAILED;
+//		LineItemPO lineItemPO = new LineItemPO(bookPO, number);
+//		ResultMessage result = memberController.putInCart(lineItemPO);
+//		return result;
+//	}
 
 	@Override
 	public ResultMessage removeFrromCart(int index) {
