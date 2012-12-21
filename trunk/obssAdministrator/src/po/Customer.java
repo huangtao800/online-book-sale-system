@@ -3,7 +3,7 @@ package po;
 import java.util.*;
 
 
-public class MemberPO extends UserPO{
+public class Customer extends UserPO{
 
 	private ArrayList<OrderPO> orderList;
 	private FavorityPO favority;
@@ -15,7 +15,7 @@ public class MemberPO extends UserPO{
 	private VIPRank rank;
 	private int[] pointBorder={1000,2000,3000,4000,5000};
 
-	public MemberPO(String id,String name,String password,String address){
+	public Customer(String id,String name,String password,String address){
 		super(id, name, password, UserRole.Member);
 		setAddress(address);
 		this.orderList=new ArrayList<OrderPO>();
