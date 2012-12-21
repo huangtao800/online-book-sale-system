@@ -3,7 +3,7 @@ package po;
 import java.util.*;
 
 
-public class MemberPO extends UserPO{
+public class CustomerPO extends UserPO{
 
 //	private ArrayList<OrderPO> orderList;
 //	private FavorityPO favority;
