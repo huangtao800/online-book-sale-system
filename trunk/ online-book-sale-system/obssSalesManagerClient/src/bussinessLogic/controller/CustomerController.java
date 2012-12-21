@@ -8,7 +8,7 @@ import bussinessLogicService.*;
 import bussinessLogic.domain.*;
 
 public class CustomerController implements MemberBLService{
-	private static Member member;
+	private static Customer customer;
 	
 	private static MemberBLService instance;
 	
@@ -24,105 +24,105 @@ public class CustomerController implements MemberBLService{
 	}
 	
 	public static void setMember(CustomerPO customerPO){
-		member=new Member(customerPO);
+		customer=new Customer(customerPO);
 	}
 
 	@Override
 	public String getMemberName() {
 		// TODO Auto-generated method stub
-		return member.getMemberName();
+		return customer.getMemberName();
 	}
 
 	@Override
 	public String getMemberID() {
 		// TODO Auto-generated method stub
-		return member.getMemberID();
+		return customer.getMemberID();
 	}
 
 
 	@Override
 	public ResultMessage cancel(String password) {
 		// TODO Auto-generated method stub
-		return member.cancel(password); 
+		return customer.cancel(password); 
 	}
 
 	@Override
 	public ArrayList<OrderPO> getOrderRecord() {
 		// TODO Auto-generated method stub
-		return member.getOrderRecord();
+		return customer.getOrderRecord();
 	}
 
 	@Override
 	public ArrayList<CouponPO> getCouponList() {
 		// TODO Auto-generated method stub
-		return member.getCouponList();
+		return customer.getCouponList();
 	}
 
 	@Override
 	public ArrayList<EquivalentPO> getEquivalentList() {
 		// TODO Auto-generated method stub
-		return member.getEquivalentList();
+		return customer.getEquivalentList();
 	}
 
 
 	@Override
 	public ResultMessage addFavorities(BookPO bookPO) {
 		// TODO Auto-generated method stub
-		return member.addFavorities(bookPO);
+		return customer.addFavorities(bookPO);
 	}
 
 	@Override
 	public ResultMessage removeFavorities(BookPO bookPO) {
 		// TODO Auto-generated method stub
-		return member.removeFavorities(bookPO);
+		return customer.removeFavorities(bookPO);
 	}
 
 	@Override
 	public ResultMessage addOrder(OrderPO order) {
 		// TODO Auto-generated method stub
-		return member.addOrder(order);
+		return customer.addOrder(order);
 	}
 
 	@Override
 	public ResultMessage changeName(String newName) {
 		// TODO Auto-generated method stub
-		return member.changeName(newName);
+		return customer.changeName(newName);
 	}
 
 	@Override
 	public ResultMessage changePassword(String password) {
 		// TODO Auto-generated method stub
-		return member.changePassword(password);
+		return customer.changePassword(password);
 	}
 
 	@Override
 	public ResultMessage putInCart(LineItemPO lineItemPO) {
 		// TODO Auto-generated method stub
-		return member.putInCart(lineItemPO);
+		return customer.putInCart(lineItemPO);
 	}
 
 	@Override
 	public ResultMessage removeFromCart(int index) {
 		// TODO Auto-generated method stub
-		return member.removeFromCart(index);
+		return customer.removeFromCart(index);
 	}
 
 	@Override
 	public ResultMessage deleteEquivalent(EquivalentPO equivalentPO) {
 		// TODO Auto-generated method stub
-		return member.deleteEquivalenet(equivalentPO);
+		return customer.deleteEquivalenet(equivalentPO);
 	}
 
 	@Override
 	public ResultMessage deleteCouponPO(CouponPO couponPO) {
 		// TODO Auto-generated method stub
-		return member.deleteCoupon(couponPO);
+		return customer.deleteCoupon(couponPO);
 	}
 
 	@Override
 	public ArrayList<LineItemPO> getCartList() {
 		// TODO Auto-generated method stub
-		return member.getCartList();
+		return customer.getCartList();
 	}
 
 	
