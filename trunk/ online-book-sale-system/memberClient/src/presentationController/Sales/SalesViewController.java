@@ -114,6 +114,11 @@ public class SalesViewController implements SalesViewService{
 		return resultMessage;
 	}
 	
+	public void refreshCartList() {
+		cartView.refreshCartList();
+		cartView.refreshTotalPrice(salesController.getTotalPrice());	
+	}
+	
 	
 	public double getSpecialPrice(int i){
 		if(i == -1)
@@ -152,6 +157,8 @@ public class SalesViewController implements SalesViewService{
 		}
 		return ResultMessage.SUCCEED;
 	}
+
+
 
 	
 }
