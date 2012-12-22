@@ -38,4 +38,5 @@ public interface CustomerBLService {
 	public ArrayList<String> getBookType();//获得所有图书分类
 	
 	public CustomerPO freshMemberPO(String memberID);
+	public ResultMessage freshBookNumber();
 }
