@@ -24,5 +24,8 @@ public class LineItemPO implements PO {
 	public double getSumPrice(){
 		return book.getPrice() * number;
 	}
+	public void addNumber(int number) {
+		this.number += number;
+	}
 
 }
