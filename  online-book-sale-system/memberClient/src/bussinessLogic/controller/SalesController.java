@@ -149,7 +149,7 @@ public class SalesController implements SalesBLService {
 		bookController.updateBook(salesList);
 		sales.updateSale();
 		customerController.clearCart();
-		
+		customerController.freshBookNumber();
 	}
 
 	@Override
