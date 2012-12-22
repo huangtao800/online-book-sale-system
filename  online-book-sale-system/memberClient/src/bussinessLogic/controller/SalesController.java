@@ -17,8 +17,8 @@ import po.ResultMessage;
 import presentationController.Sales.OrderVO;
 
 public class SalesController implements SalesBLService {
-	private CustomerBLService memberController = CustomerController.getInstance();
-	private BookBLService bookController = BookController.getInstance(); // 改成单键
+	private CustomerBLService customerController = CustomerController.getInstance();
+	private BookBLService bookController = BookController.getInstance(); 
 	private Sales sales;
 
 	private static SalesController uniqueInstance;
@@ -34,26 +34,16 @@ public class SalesController implements SalesBLService {
 		return uniqueInstance;
 	}
 
-//	@Override
-//	public ResultMessage putInCart(String isbn, int number) {
-//		BookPO bookPO = bookController.findByISBN(isbn);
-//		if (bookPO == null)
-//			return ResultMessage.FAILED;
-//		LineItemPO lineItemPO = new LineItemPO(bookPO, number);
-//		ResultMessage result = memberController.putInCart(lineItemPO);
-//		return result;
-//	}
-
 	@Override
 	public ResultMessage removeFrromCart(int index) {
-		ResultMessage result = memberController.removeFromCart(index);
+		ResultMessage result = customerController.removeFromCart(index);
 		return result;
 	}
 
 	@Override
 	public ResultMessage addFavorities(LineItemPO lineItemPO) {
 		BookPO bookPO = lineItemPO.getBook();
-		return memberController.addFavorities(bookPO);
+		return customerController.addFavorities(bookPO);
 	}
 
 	@Override
@@ -66,9 +56,9 @@ public class SalesController implements SalesBLService {
 	}
 
 	@Override
-	public ArrayList<String> showSpecial(double commonPrice) {// 需要修改
-		ArrayList<CouponPO> couponList = memberController.getCouponList();
-		ArrayList<EquivalentPO> equivalentList = memberController
+	public ArrayList<String> showSpecial(double commonPrice) {
+		ArrayList<CouponPO> couponList = customerController.getCouponList();
+		ArrayList<EquivalentPO> equivalentList = customerController
 				.getEquivalentList();
 		ArrayList<String> voList = new ArrayList<String>();
 
@@ -103,18 +93,18 @@ public class SalesController implements SalesBLService {
 	public OrderVO pay(double price, String address, int index) {
 		ArrayList<LineItemPO> cartList = getCartList();
 		OrderPO orderPO = sales.creareOrderPO(cartList,
-				memberController.getMemberID(), price, address);
+				customerController.getMemberID(), price, address);
 		if (index != -1) {
 			PO special = getSpecialList().get(index);
 			if (special instanceof EquivalentPO) {
 				EquivalentPO equivalentPO = (EquivalentPO) special;
-				memberController.deleteEquivalent(equivalentPO);
+				customerController.deleteEquivalent(equivalentPO);
 			} else if (special instanceof CouponPO) {
 				CouponPO couponPO = (CouponPO) special;
-				memberController.deleteCouponPO(couponPO);
+				customerController.deleteCouponPO(couponPO);
 			}
 		}
-		memberController.addOrder(orderPO);
+		customerController.addOrder(orderPO);
 		sales.addOrder(orderPO);
 		OrderVO orderVO = new OrderVO(orderPO);
 		return orderVO;
@@ -122,14 +112,13 @@ public class SalesController implements SalesBLService {
 
 	@Override
 	public ArrayList<LineItemPO> getCartList() {
-		return memberController.getCartList();
+		return customerController.getCartList();
 	}
 
 	private ArrayList<PO> getSpecialList() {
-		// 优惠券要不要做继承？
 		ArrayList<PO> specialList = new ArrayList<PO>();
-		ArrayList<CouponPO> couponList = memberController.getCouponList();
-		ArrayList<EquivalentPO> equivalentList = memberController
+		ArrayList<CouponPO> couponList = customerController.getCouponList();
+		ArrayList<EquivalentPO> equivalentList = customerController
 				.getEquivalentList();
 		for (int i = 0; i < couponList.size(); i++) {
 			specialList.add(couponList.get(i));
@@ -159,12 +148,24 @@ public class SalesController implements SalesBLService {
 		ArrayList<LineItemPO> salesList = getCartList();
 		bookController.updateBook(salesList);
 		sales.updateSale();
-		memberController.clearCart();
+		customerController.clearCart();
+		
 	}
 
 	@Override
 	public String getAddress() {
-		return memberController.getAddress();
+		return customerController.getAddress();
 	}
+	
+	public int getSaveByISBN(String isbn){
+		BookPO bookPO = bookController.findByISBN(isbn);
+		return bookPO.getNumOfBook();	
+	}
+
+	@Override
+	public ResultMessage changeLineItemNumber(int index, int number) {
+		return customerController.changeLineItemNumber(index, number);
+	}
+	
 
 }
