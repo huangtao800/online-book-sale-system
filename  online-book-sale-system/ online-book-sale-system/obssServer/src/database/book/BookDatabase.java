@@ -131,11 +131,24 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
        
 	}
 	
+	
 	public BookPO findThroughISBN(String isbn) {
 		ArrayList<BookPO> bookList = readFile();
 	    BookPO bookPO = null;
 	    for(int i=0;i<bookList.size();i++){
 	    	if(bookList.get(i).getISBN().equals(isbn)&&(bookList.get(i).getNumOfBook()!=0)){
+	    		bookPO = bookList.get(i);
+	    	}
+	    }
+	    
+		return bookPO;
+	}
+	
+	public BookPO findThroughISBNforSalesManager(String isbn) {
+		ArrayList<BookPO> bookList = readFile();
+	    BookPO bookPO = null;
+	    for(int i=0;i<bookList.size();i++){
+	    	if(bookList.get(i).getISBN().equals(isbn)){
 	    		bookPO = bookList.get(i);
 	    	}
 	    }
