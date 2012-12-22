@@ -40,7 +40,7 @@ public class SalesManagerView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     public void createSalesManagerView() {
-
+    	buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JTabbedPane();
         jPanel8 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -200,7 +200,7 @@ public class SalesManagerView extends javax.swing.JFrame {
                 .addGap(139, 139, 139))
         );
 
-        jPanel1.addTab(" 首页    ", jPanel8);
+        jPanel1.addTab("首页         ", jPanel8);
 
         jLabel13.setText("顾客ID：");
 
@@ -359,7 +359,7 @@ public class SalesManagerView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.addTab("礼券赠送  ", jPanel10);
+        jPanel1.addTab("礼券赠送     ", jPanel10);
 
         updateOrderButton.setText("更新未完成的订单");
         updateOrderButton.addActionListener(new java.awt.event.ActionListener() {
@@ -406,13 +406,13 @@ public class SalesManagerView extends javax.swing.JFrame {
         jLabel24.setText("订单状态：");
 
         orderedRadioButton.setText("刚下单");
-
+        buttonGroup1.add(orderedRadioButton);
         distributionRadioButton.setText("仓库配货");
-
+        buttonGroup1.add(distributionRadioButton);
         transportRadioButton.setText("物流配送");
-        
+        buttonGroup1.add(transportRadioButton);
         signedRadioButton.setText("已签收");
-
+        buttonGroup1.add(signedRadioButton);
         changeOrderButton.setText("修改订单状态");
         changeOrderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -515,7 +515,7 @@ public class SalesManagerView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.addTab("订单管理  ", orderPanel);
+        jPanel1.addTab("订单管理     ", orderPanel);
 
         jLabel2.setText("图书编号：");
 
@@ -772,7 +772,7 @@ public class SalesManagerView extends javax.swing.JFrame {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        jPanel1.addTab("图书管理  ", jPanel12);
+        jPanel1.addTab("图书管理     ", jPanel12);
 
 
         bookTypeList.setModel(new javax.swing.AbstractListModel() {
@@ -789,21 +789,29 @@ public class SalesManagerView extends javax.swing.JFrame {
         addBookTypeButton.setText("增加图书类别");
         addBookTypeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	String newType=JOptionPane.showInputDialog("请输入新的图书类别：");
+            	
+            	String newType=JOptionPane.showInputDialog("请输入新的图书类别：").trim();
+            
 				if(newType==null){
 					return;
 				}
-				ResultMessage result=salesManagerViewController.addBookType(newType);
-				if(result==ResultMessage.SUCCEED){
-					bookTypeList.setModel(new TypeListModel());
-					setTypeComboxModel();
-					JOptionPane.showMessageDialog(null, "添加成功！");
-				
-				}else if(result==ResultMessage.EXIST){
-					JOptionPane.showMessageDialog(null, "该类型已经存在！");
+				if(newType.equals("")){
+					JOptionPane.showMessageDialog(null, "输入不能为空，请重新输入！");
 				}else{
-					JOptionPane.showMessageDialog(null, "添加失败！");
+					ResultMessage result=salesManagerViewController.addBookType(newType);
+					if(result==ResultMessage.SUCCEED){
+						bookTypeList.setModel(new TypeListModel());
+						setTypeComboxModel();
+						JOptionPane.showMessageDialog(null, "添加成功！");
+					
+					}else if(result==ResultMessage.EXIST){
+						JOptionPane.showMessageDialog(null, "该类型已经存在！");
+					}else{
+						JOptionPane.showMessageDialog(null, "添加失败！");
+					}
 				}
+				
+				
             }
         });
 
@@ -893,7 +901,7 @@ public class SalesManagerView extends javax.swing.JFrame {
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
-        jPanel1.addTab(" 设置图书类别", bookTypejPanel);
+        jPanel1.addTab("设置图书类别", bookTypejPanel);
 
         jLabel3.setText("销售经理客户端");
 
@@ -925,6 +933,27 @@ public class SalesManagerView extends javax.swing.JFrame {
         );
 
         pack();
+        
+        //
+        //presentPanel
+        showPresentTextArea.setEditable(false);   
+        //bookPanel
+        confirmChangeBookButton.setEnabled(false);
+        // orderPanel
+        orderTable.setEnabled(false);
+        //memberPanel
+        memberOrderTextArea.setEditable(false);
+        memberInfoTextArea.setEditable(false);
+        
+        ArrayList<Present_Equivalent> present_EquivalentList=salesManagerViewController.getPresent_EquivalentList();
+	    ArrayList<Present_Coupon> present_CouponList=salesManagerViewController.getPresent_CouponList();  	        
+	    if(   (present_EquivalentList!=null && present_EquivalentList.size() !=0)  ||
+	    		(present_CouponList !=null && present_CouponList.size() !=0)     )
+	    {
+	    	JOptionPane.showMessageDialog(null, "总经理已制定了大范围促销规则,您可以为您的顾客赠送礼券！");
+	    }
+        
+
     }// </editor-fold>
 
     
@@ -1180,7 +1209,7 @@ public class SalesManagerView extends javax.swing.JFrame {
     private javax.swing.JTextArea memberInfoTextArea;
     private javax.swing.JTextArea memberOrderTextArea;
     private javax.swing.JTextArea showPresentTextArea;
-    
+    private javax.swing.ButtonGroup buttonGroup1;
     private SalesManagerViewService salesManagerViewController;
 	private int lineOfUncompletedOrder=11;//初始为11
 	private DefaultTableModel tableModel;
