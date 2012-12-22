@@ -235,14 +235,14 @@ public class CartView extends javax.swing.JFrame {
 					if(i == -1)
 						JOptionPane.showMessageDialog(null, "请选中要修改数量的商品");
 					else{
-						int number=0;
+						int number = -1;
 						try{
 							number = Integer.parseInt(JOptionPane.showInputDialog("请输入修改后本数："));
+							if(salesViewController.changeLineItemNumber(i, number) == ResultMessage.FAILED)
+								JOptionPane.showMessageDialog(null, "修改错误！");
 						}catch (Exception e1) {
 							JOptionPane.showMessageDialog(null, "输入错误！");
 						}
-						if(salesViewController.changeNumber(i, number) == ResultMessage.FAILED)
-							JOptionPane.showMessageDialog(null, "修改错误！");
 						freshTableModel(jTable1);
 					}	
 				}

@@ -46,7 +46,7 @@ public class OrderVO {
 	}
 	
 	public void setDate(Calendar calendar) {
-		this.date = "下单时间"+ calendar.get(Calendar.YEAR)+"年"
+		this.date = "下单时间："+ calendar.get(Calendar.YEAR)+"年"
 				+calendar.get(Calendar.MONTH)+"月"
 				+calendar.get(Calendar.DAY_OF_MONTH)+"日";
 	}

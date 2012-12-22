@@ -273,6 +273,7 @@ public class Customer {
 	public ResultMessage changeLineItemNumber(int index, int newNumber) {
 		// TODO Auto-generated method stub
 		CustomerBussiness customerBussiness=new CustomerBussiness(customerPO);
+		customerPO.getCart().changeNumber(index, newNumber);
 		try {
 			customerDatabase.update(customerPO);
 			return ResultMessage.SUCCEED;

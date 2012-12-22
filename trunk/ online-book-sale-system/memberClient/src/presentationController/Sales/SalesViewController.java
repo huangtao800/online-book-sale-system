@@ -84,17 +84,17 @@ public class SalesViewController implements SalesViewService{
 	}
 	
 	@Override
-	public ResultMessage changeNumber(int index, int number) {
+	public ResultMessage changeLineItemNumber(int index, int number) {
 		ResultMessage resultMessage = ResultMessage.FAILED;
 		if(number == 0){
 			removeFromCart(index);
 			return ResultMessage.SUCCEED;
 		}
 		else{
-			salesController.changeBookNum(index, number);
+			resultMessage = salesController.changeLineItemNumber(index, number);
 			cartView.refreshCartList();
 			cartView.refreshTotalPrice(salesController.getTotalPrice());
-			resultMessage = ResultMessage.SUCCEED;
+			
 		}
 		return resultMessage;
 	}
@@ -142,11 +142,11 @@ public class SalesViewController implements SalesViewService{
 			String isbn = lineItemPO.getBook().getISBN();
 			int save = salesController.getSaveByISBN(isbn);
 			if(save == 0){
-				JOptionPane.showMessageDialog(null, "第" + i + 1 + "行图书已经下架");
+				JOptionPane.showMessageDialog(null, "第" + (i+1)  + "行图书已经下架");
 				return ResultMessage.FAILED;
 			}
 			if(save < cartList.get(i).getNumber()){
-				JOptionPane.showMessageDialog(null, "第" + i + 1 + "行图书库存不足，请修改数量");
+				JOptionPane.showMessageDialog(null, "第" + (i + 1) + "行图书库存不足，请修改数量");
 				return ResultMessage.FAILED;
 			}
 		}

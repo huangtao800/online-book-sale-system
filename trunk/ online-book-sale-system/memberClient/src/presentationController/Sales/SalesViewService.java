@@ -16,6 +16,6 @@ public interface SalesViewService {
 	public void pay(String address,int index);
 	public void endSale();
 	public ArrayList<LineItemPO> getCartList();
-	public ResultMessage changeNumber(int i, int number);
+	public ResultMessage changeLineItemNumber(int i, int number);
 
 }

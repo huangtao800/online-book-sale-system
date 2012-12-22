@@ -366,7 +366,7 @@ public class PayView extends javax.swing.JFrame {
 		});
 		jButton2.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("³·Ïú");
+				salesViewController.initCartView();
 				setVisible(false);
 			}
 		});
