@@ -13,9 +13,8 @@ import po.SalesManagerPO;
 import po.UserPO;
 import po.UserRole;
 import presentation.StartView;
-import presentationController.mainView.MainViewController;
-import presentationController.mainView.MainViewControllerInterface;
-
+import presentationController.SalesManagerView.SalesManagerViewController;
+import presentationController.SalesManagerView.SalesManagerViewService;
 import bussinessLogicService.RegistryBLService;
 import bussinessLogicService.StartBLService;
 import bussinessLogicService.UserBLService;
@@ -64,7 +63,7 @@ public class StartController implements StartBLService {
 		// TODO Auto-generated method stub
 		SalesManagerPO salesManagerPO=(SalesManagerPO) userPO;
 		
-		MainViewControllerInterface mainViewController=new MainViewController(salesManagerPO);
+		SalesManagerViewService salesManagerViewController=new SalesManagerViewController(salesManagerPO);
 		
 	}
 
