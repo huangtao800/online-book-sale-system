@@ -98,6 +98,7 @@ public class Book{
 		
 		  for(int i=0;i<salesList.size();i++){
 			  String isbn = salesList.get(i).getBook().getISBN();
+			  
 			  BookPO bookPO = null;
 			  try {
 				bookPO = bookDatabase.findThroughISBN(isbn);
