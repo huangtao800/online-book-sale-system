@@ -284,5 +284,38 @@ public class Customer {
 		}
 	}
 
+	public ResultMessage freshBookNumber() {
+		// TODO Auto-generated method stub
+		ArrayList<BookPO> favority=customerPO.getFavority().getFavorities();
+		ArrayList<LineItemPO> saleList=customerPO.getCart().getCartList();
+		
+		for(int i=0;i<saleList.size();i++){
+			int index=searchIndexInFavority(saleList.get(i).getBook().getISBN());
+			if(index!=-1){
+				int oldNumber=saleList.get(index).getBook().getNumOfBook();
+				int saleNumber=saleList.get(index).getNumber();
+				saleList.get(index).getBook().setNumOfBook(oldNumber-saleNumber);
+			}
+		}
+		
+		try {
+			return customerDatabase.update(customerPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+	}
+	
+	private int searchIndexInFavority(String isbn){
+		ArrayList<BookPO> favority=customerPO.getFavority().getFavorities();
+		for(int i=0;i<favority.size();i++){
+			if(isbn.equals(favority.get(i).getISBN())){
+				return i;
+			}
+		}
+		return -1;
+	}
+
 
 }

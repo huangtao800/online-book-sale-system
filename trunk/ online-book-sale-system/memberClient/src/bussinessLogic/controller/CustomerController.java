@@ -168,6 +168,8 @@ public class CustomerController implements CustomerBLService{
 		return customer.changeLineItemNumber(index,newNumber);
 	}
 
-	
+	public ResultMessage freshBookNumber(){
+		return customer.freshBookNumber();
+	}
 
 }
