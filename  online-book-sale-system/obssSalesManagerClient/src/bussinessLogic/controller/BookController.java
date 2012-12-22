@@ -70,5 +70,9 @@ public class BookController implements BookBLService{
 	public ArrayList<BookPO> getAllBook(){
         return book.getAllBook();
 	}
+	
+	public BookPO findThroughISBNforSalesManager(String isbn){
+		return book.findThroughISBNforSalesManager(isbn);
+	}
 
 }
