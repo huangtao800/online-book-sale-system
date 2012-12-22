@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 import po.LineItemPO;
-import presentationController.Sales.SalesViewController;
-import presentationController.Sales.SalesViewService;
 
 public class OrderView extends javax.swing.JFrame {
 	
@@ -186,14 +184,13 @@ public class OrderView extends javax.swing.JFrame {
 		jButton1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				setVisible(false);
-				salesViewController.endSale();
 			}
 		});
 	}
 
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    	
     }
     public void initText(String orderNum, String memberID, String date, 
     		String orderState, String totalPrice, String address){
@@ -215,6 +212,5 @@ public class OrderView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;// ’ªıµÿ÷∑
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private SalesViewService salesViewController = SalesViewController.getInstance();
     // End of variables declaration
 }

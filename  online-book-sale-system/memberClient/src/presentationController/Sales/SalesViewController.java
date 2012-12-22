@@ -66,60 +66,50 @@ public class SalesViewController implements SalesViewService{
 		orderView.setSize(600, 500);
 		orderView.setVisible(true);
 	}
-	
 
+//In CartView
+	@Override
 	public ResultMessage removeFromCart(int index) {
 		ResultMessage resultMessage = ResultMessage.FAILED;
-		if(index == -1)
-			return resultMessage;
 		LineItemPO lineItemPO = salesController.getCartList().get(index);
 		if(lineItemPO == null)
-			return resultMessage;
-		else{
-			resultMessage = salesController.removeFrromCart(index);
-			cartView.refreshCartList();
-			cartView.refreshTotalPrice(salesController.getTotalPrice());
-		}
+			return resultMessage;	
+		resultMessage = salesController.removeFrromCart(index);
+		refreshCartList();
 		return resultMessage;
 	}
 	
 	@Override
 	public ResultMessage changeLineItemNumber(int index, int number) {
 		ResultMessage resultMessage = ResultMessage.FAILED;
-		if(number == 0){
-			removeFromCart(index);
-			return ResultMessage.SUCCEED;
-		}
+		if(number == 0)
+			return removeFromCart(index);
 		else{
 			resultMessage = salesController.changeLineItemNumber(index, number);
-			cartView.refreshCartList();
-			cartView.refreshTotalPrice(salesController.getTotalPrice());
-			
+			refreshCartList();		
 		}
 		return resultMessage;
 	}
 	
+	@Override
 	public ResultMessage addFavorities(int index) {
 		ResultMessage resultMessage = ResultMessage.FAILED;
-		if(index == -1)
-			return resultMessage;
 		LineItemPO lineItemPO = salesController.getCartList().get(index);
 		if(lineItemPO == null)
 			return resultMessage;
-		else{
-			resultMessage = salesController.addFavorities(lineItemPO);
-			cartView.refreshCartList();
-			cartView.refreshTotalPrice(salesController.getTotalPrice());
-		}
+		resultMessage = salesController.addFavorities(lineItemPO);
+		refreshCartList();
 		return resultMessage;
 	}
 	
+	@Override
 	public void refreshCartList() {
 		cartView.refreshCartList();
 		cartView.refreshTotalPrice(salesController.getTotalPrice());	
 	}
 	
-	
+//In payView
+	@Override
 	public double getSpecialPrice(int i){
 		if(i == -1)
 			priceBuffer = salesController.getTotalPrice();
@@ -130,12 +120,11 @@ public class SalesViewController implements SalesViewService{
 	
 	public void pay(String address, int index){
 		OrderVO orderVO = salesController.pay(priceBuffer,address,index);
+		salesController.endSale();
 		initOrderView(orderVO);
 	}
-	public void endSale(){
-		salesController.endSale();
-	}
 
+//share
 	public ArrayList<LineItemPO> getCartList() {
 		return salesController.getCartList();
 	}
@@ -158,7 +147,4 @@ public class SalesViewController implements SalesViewService{
 		return ResultMessage.SUCCEED;
 	}
 
-
-
-	
 }

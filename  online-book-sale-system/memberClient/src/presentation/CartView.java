@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
 import po.LineItemPO;
@@ -121,11 +119,7 @@ public class CartView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>    
 	
-//刷新购物车列表
-	private void freshTableModel(JTable table){
-		table.setModel(new CartTableModel());
-	}
-
+//Table Model
 	class CartTableModel extends AbstractTableModel {
 		private static final long serialVersionUID = 1L;
 		ArrayList<LineItemPO> cartList;
@@ -192,6 +186,7 @@ public class CartView extends javax.swing.JFrame {
 		}
 	}
 
+//Listener
     private void addListener() {
 		// TODO Auto-generated method stub
 		jButton1.addMouseListener(new MouseAdapter() {
@@ -199,11 +194,15 @@ public class CartView extends javax.swing.JFrame {
 				if(salesViewController.getCartList().size() == 0)
 					JOptionPane.showMessageDialog(null, "购物车为空");
 				else{
-					int i = getSeclectedLine();
-				    if(salesViewController.addFavorities(i) == ResultMessage.SUCCEED)
-				    	JOptionPane.showMessageDialog(null, "添加成功");
-				    else
-					    JOptionPane.showMessageDialog(null, "请选中要加入收藏夹的商品");
+					int i = jTable1.getSelectedRow();
+					if(i == -1)
+						JOptionPane.showMessageDialog(null, "请选中要加入收藏夹的商品");
+					else {
+						if(salesViewController.addFavorities(i) == ResultMessage.SUCCEED)
+					    	JOptionPane.showMessageDialog(null, "添加成功");
+						else
+							JOptionPane.showMessageDialog(null, "添加失败");
+					}   
 				}
 			}
 		});
@@ -212,11 +211,15 @@ public class CartView extends javax.swing.JFrame {
 				if(salesViewController.getCartList().size() == 0)
 					JOptionPane.showMessageDialog(null, "购物车为空");
 				else{
-					int i = getSeclectedLine();
-				    if(salesViewController.removeFromCart(i) == ResultMessage.SUCCEED)
-					    freshTableModel(jTable1);
-				    else
-				    	JOptionPane.showMessageDialog(null, "请选中要删除的商品");
+					int i = jTable1.getSelectedRow();
+					if(i == -1)
+						JOptionPane.showMessageDialog(null, "请选中要加入删除的商品");
+					else {
+						if(salesViewController.removeFromCart(i) == ResultMessage.SUCCEED)
+					    	JOptionPane.showMessageDialog(null, "删除成功");
+						else
+							JOptionPane.showMessageDialog(null, "删除失败");
+					}   
 				}
 			}
 		});
@@ -267,23 +270,16 @@ public class CartView extends javax.swing.JFrame {
     public void refreshCartList(){
     	freshTableModel(jTable1);
     }
-    
-	public int getSeclectedLine(){
-		jTable1.getSelectionModel().addListSelectionListener(
-				new ListSelectionListener() {
-					public void valueChanged(ListSelectionEvent e) {
-						int j = jTable1.getSelectedRow();
-						index = j;
-					}
-				});
-		return index;
-	}
 
 	public void refreshTotalPrice(double totalPrice) {
 		jLabel2.setText("商品总价：" + totalPrice + "元");
 		setVisible(true);	
 	}
-    
+	
+//refresh table
+	private void freshTableModel(JTable table){
+		table.setModel(new CartTableModel());
+	}
     
 // Variables declaration - do not modify
 	private static final long serialVersionUID = 1L;
@@ -298,7 +294,6 @@ public class CartView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private SalesViewService salesViewController;
-    private int index;
     // End of variables declaration
 
 }
