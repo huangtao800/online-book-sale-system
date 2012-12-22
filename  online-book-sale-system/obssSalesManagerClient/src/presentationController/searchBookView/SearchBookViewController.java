@@ -32,8 +32,8 @@ public class SearchBookViewController implements SearchBookService {
 		searchBookView.setVisible(true);
 	}
 	
-	public BookPO searchBook(String ISBN){
-		return bookController.findByISBN(ISBN);
+	public BookPO searchBook(String isbn){
+		return bookController.findThroughISBNforSalesManager(isbn);
 	}
 	
 	public ArrayList<BookPO> getAllBook(){
