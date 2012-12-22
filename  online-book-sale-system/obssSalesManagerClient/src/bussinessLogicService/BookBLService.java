@@ -23,4 +23,5 @@ public interface BookBLService {
 	public ResultMessage addBookType(String type);
 	public ResultMessage changeBookType(String beforeType,String afterType);
 	public ArrayList<BookPO> getAllBook() ;
+	public BookPO findThroughISBNforSalesManager(String isbn);
 }
