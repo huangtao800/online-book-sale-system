@@ -3,6 +3,7 @@ package presentation;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -42,20 +43,34 @@ public class SearchBookView extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 String isbn = jTextField1.getText().trim();
-                BookPO bookPO = searchBookController.searchBook(isbn);
-                rowData = new Vector<Vector>();
-                Vector<String> row = new Vector<String>();
-                row.add(bookPO.getBookName());
-                row.add(bookPO.getISBN());
-                row.add(bookPO.getType());
-                row.add(bookPO.getPress());
-                row.add(bookPO.getAuthor());
-                row.add(bookPO.getPublishDate());
-                row.add(String.valueOf(bookPO.getPrice()));
-                row.add(String.valueOf(bookPO.getNumOfBook()));
-                rowData.add(row);
-                DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
-                jTable1.setModel(dtm);
+                
+                if(isbn.equals("")){
+                	JOptionPane.showMessageDialog(null, "请输入图书ISBN！");
+                }else{
+                	BookPO bookPO = searchBookController.searchBook(isbn);
+                	if(bookPO==null){
+                		rowData = new Vector<Vector>();
+            			DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
+                        jTable1.setModel(dtm);
+            			JOptionPane.showMessageDialog(null, "未找到相应图书！");
+                	}else{
+                		rowData = new Vector<Vector>();
+                        Vector<String> row = new Vector<String>();
+                        row.add(bookPO.getBookName());
+                        row.add(bookPO.getISBN());
+                        row.add(bookPO.getType());
+                        row.add(bookPO.getPress());
+                        row.add(bookPO.getAuthor());
+                        row.add(bookPO.getPublishDate());
+                        row.add(String.valueOf(bookPO.getPrice()));
+                        row.add(String.valueOf(bookPO.getNumOfBook()));
+                        rowData.add(row);
+                        DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
+                        jTable1.setModel(dtm);
+                	}
+                    
+                }
+                
             }
         });
 
