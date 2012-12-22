@@ -148,8 +148,9 @@ public class SalesController implements SalesBLService {
 		ArrayList<LineItemPO> salesList = getCartList();
 		bookController.updateBook(salesList);
 		sales.updateSale();
-		customerController.clearCart();
 		customerController.freshBookNumber();
+		customerController.clearCart();
+		
 	}
 
 	@Override
