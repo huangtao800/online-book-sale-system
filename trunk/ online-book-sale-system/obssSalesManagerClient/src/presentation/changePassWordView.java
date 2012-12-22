@@ -10,6 +10,9 @@ import po.ResultMessage;
 import po.SalesManagerPO;
 import po.UserPO;
 import presentationController.changePasswordView.changePasswordControllerInterface;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.GroupLayout;
 
 public class changePassWordView extends JFrame implements ActionListener{
 	    changePasswordControllerInterface controller;
@@ -45,76 +48,68 @@ public class changePassWordView extends JFrame implements ActionListener{
 
 //	        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-	        jLabel2.setFont(new java.awt.Font("方正舒体", 0, 18)); // NOI18N
 	        jLabel2.setText("请输入原密码：");
 
-	        jLabel3.setFont(new java.awt.Font("方正舒体", 0, 18)); // NOI18N
 	        jLabel3.setText("请输入新密码：");
 
-	        changePWButton.setBackground(new java.awt.Color(0, 255, 255));
-	        changePWButton.setFont(new java.awt.Font("方正舒体", 1, 24)); // NOI18N
 	        changePWButton.setText("确定");
-
-	        cancelButton.setBackground(new java.awt.Color(204, 51, 0));
-	        cancelButton.setFont(new java.awt.Font("方正舒体", 1, 24)); // NOI18N
 	        cancelButton.setText("退出");
 
-	        jLabel5.setFont(new java.awt.Font("方正舒体", 0, 16)); // NOI18N
 	        jLabel5.setText("再次输入新密码：");
 
 	        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-	        getContentPane().setLayout(layout);
 	        layout.setHorizontalGroup(
-	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-	                .addGap(0, 0, Short.MAX_VALUE)
-	                .addComponent(userIDLabel)
-	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-	                    .addComponent(newPWTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-	                    .addComponent(newPWagainTextField)
-	                    .addComponent(oldPWTextField))
-	                .addGap(34, 34, 34))
-	            .addGroup(layout.createSequentialGroup()
-	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-	                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-	                            .addComponent(jLabel3)
-	                            .addComponent(jLabel5)
-	                            .addComponent(jLabel2))
-	                        .addGroup(layout.createSequentialGroup()
-	                            .addGap(125, 125, 125)
-	                            .addComponent(changePWButton))))
-	                .addContainerGap(142, Short.MAX_VALUE))
+	        	layout.createParallelGroup(Alignment.TRAILING)
+	        		.addGroup(layout.createSequentialGroup()
+	        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+	        				.addGroup(layout.createSequentialGroup()
+	        					.addContainerGap()
+	        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+	        						.addComponent(changePWButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	        						.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+	        							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+	        								.addGroup(layout.createSequentialGroup()
+	        									.addComponent(userIDLabel)
+	        									.addPreferredGap(ComponentPlacement.RELATED)
+	        									.addComponent(jLabel2))
+	        								.addGroup(layout.createParallelGroup(Alignment.LEADING)
+	        									.addComponent(jLabel3)
+	        									.addComponent(jLabel5)))
+	        							.addGap(24)))
+	        					.addGap(18)
+	        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+	        						.addComponent(oldPWTextField, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+	        						.addComponent(newPWagainTextField, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+	        						.addComponent(newPWTextField, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)))
+	        				.addComponent(cancelButton, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))
+	        			.addContainerGap())
 	        );
 	        layout.setVerticalGroup(
-	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(layout.createSequentialGroup()
-	                .addGap(19, 19, 19)
-	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-	                    .addGroup(layout.createSequentialGroup()
-	                        .addComponent(userIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(0, 0, 0)
-	                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                    .addComponent(oldPWTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                .addGap(39, 39, 39)
-	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-	                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                    .addComponent(newPWTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addGroup(layout.createSequentialGroup()
-	                        .addGap(52, 52, 52)
-	                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                    .addGroup(layout.createSequentialGroup()
-	                        .addGap(38, 38, 38)
-	                        .addComponent(newPWagainTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-	                .addComponent(changePWButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                .addGap(32, 32, 32)
-	                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                .addGap(33, 33, 33))
+	        	layout.createParallelGroup(Alignment.LEADING)
+	        		.addGroup(layout.createSequentialGroup()
+	        			.addGap(19)
+	        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+	        				.addGroup(layout.createSequentialGroup()
+	        					.addComponent(userIDLabel, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+	        					.addGap(27))
+	        				.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+	        					.addComponent(oldPWTextField, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+	        					.addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)))
+	        			.addGap(39)
+	        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+	        				.addComponent(newPWTextField, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+	        				.addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+	        			.addGap(38)
+	        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+	        				.addComponent(newPWagainTextField, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+	        				.addComponent(jLabel5, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+	        			.addPreferredGap(ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+	        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+	        				.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+	        				.addComponent(changePWButton, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+	        			.addGap(118))
 	        );
+	        getContentPane().setLayout(layout);
 
 	        pack();
 	        
