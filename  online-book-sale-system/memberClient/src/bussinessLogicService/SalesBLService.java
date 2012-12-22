@@ -19,6 +19,6 @@ public interface SalesBLService {
 	public void endSale();//得到订单的VO,并更新数据
 	public String getAddress();//得到原地址
 	public int getSaveByISBN(String isbn);
-	public void changeBookNum(int index, int number);
+	public ResultMessage changeLineItemNumber(int index, int number);
 	
 }
