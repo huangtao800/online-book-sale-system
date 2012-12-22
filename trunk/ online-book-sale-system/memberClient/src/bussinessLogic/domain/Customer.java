@@ -292,8 +292,8 @@ public class Customer {
 		for(int i=0;i<saleList.size();i++){
 			int index=searchIndexInFavority(saleList.get(i).getBook().getISBN());
 			if(index!=-1){
-				int oldNumber=saleList.get(index).getBook().getNumOfBook();
-				int saleNumber=saleList.get(index).getNumber();
+				int oldNumber=favority.get(index).getNumOfBook();
+				int saleNumber=saleList.get(i).getNumber();
 				saleList.get(index).getBook().setNumOfBook(oldNumber-saleNumber);
 			}
 		}
