@@ -165,4 +165,15 @@ public class Book{
 			return null;
 		}
 	}
+	
+	public BookPO findThroughISBNforSalesManager(String isbn){
+		BookPO bookPO = new BookPO();
+		try {
+			bookPO= bookDatabase.findThroughISBNforSalesManager(isbn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return bookPO;
+	}
 }
