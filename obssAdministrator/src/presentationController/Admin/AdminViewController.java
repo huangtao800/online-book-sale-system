@@ -42,8 +42,8 @@ public class AdminViewController implements AdminViewService{
     	return userController.changeUser(beforeUserPO,afterUserPO);
      }
      
-     public ResultMessage update(UserPO userPO){
-    	 return userController.update(userPO);
+     public ResultMessage changePassword(UserPO userPO){
+    	 return userController.changePassword(userPO);
      }
      
      public ResultMessage delete(UserPO userPO,UserRole userRole){
