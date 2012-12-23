@@ -43,14 +43,16 @@ public class UserController implements UserBLService, Serializable {
             return user.findUserThroughName(name,userRole);
 	}
 	
-	//顾客，总经理，销售经理（密码） , 管理员
+	//用于用户名修改了的用户修改
 	public ResultMessage changeUser(UserPO beforeUserPO,UserPO afterUserPO) {
 	      return user.changeUser(beforeUserPO, afterUserPO);
 	}
-
-	public ResultMessage update(UserPO userPO){
-		return user.update(userPO);
+ 
+	//修改密码
+	public ResultMessage changePassword(UserPO userPO){
+		return user.changePassword(userPO);
 	}
+	
 	public ArrayList<UserPO> getAllUser(){
 		return user.getAllUser();
 	}
