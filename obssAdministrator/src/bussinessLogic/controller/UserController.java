@@ -48,6 +48,9 @@ public class UserController implements UserBLService, Serializable {
 	      return user.changeUser(beforeUserPO, afterUserPO);
 	}
 
+	public ResultMessage update(UserPO userPO){
+		return user.update(userPO);
+	}
 	public ArrayList<UserPO> getAllUser(){
 		return user.getAllUser();
 	}
