@@ -190,36 +190,36 @@ public class GeneralManagerView extends JFrame implements ActionListener {
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
-        jLabel13.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+//        jLabel13.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
         jLabel13.setText("等价券赠送");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel19.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 0, 0));
+//        jLabel19.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
+//        jLabel19.setForeground(new java.awt.Color(255, 0, 0));
         jLabel19.setText("欢迎进入网上图书销售系统 ");
 
-        jLabel27.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(102, 102, 102));
+//        jLabel27.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
+//        jLabel27.setForeground(new java.awt.Color(102, 102, 102));
         jLabel27.setText("设置促销手段");
 
-        jLabel29.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(102, 102, 102));
+//        jLabel29.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
+//        jLabel29.setForeground(new java.awt.Color(102, 102, 102));
         jLabel29.setText("查看大范围促销");
-
-        jLabel30.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(102, 102, 102));
+//
+//        jLabel30.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
+//        jLabel30.setForeground(new java.awt.Color(102, 102, 102));
         jLabel30.setText("修改个人信息");
-
-        jLabel32.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(255, 0, 0));
+//
+//        jLabel32.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
+//        jLabel32.setForeground(new java.awt.Color(255, 0, 0));
         jLabel32.setText("总经理客户端");
 
-        jLabel34.setFont(new java.awt.Font("幼圆", 0, 16)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(102, 102, 102));
+//        jLabel34.setFont(new java.awt.Font("幼圆", 0, 16)); // NOI18N
+//        jLabel34.setForeground(new java.awt.Color(102, 102, 102));
         jLabel34.setText("大范围促销");
 
-        jLabel5.setFont(new java.awt.Font("幼圆", 0, 18)); // NOI18N
+//        jLabel5.setFont(new java.awt.Font("幼圆", 0, 18)); // NOI18N
         jLabel5.setText("您可以进行：");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -269,21 +269,21 @@ public class GeneralManagerView extends JFrame implements ActionListener {
 
         jTabbedPane1.addTab("             首页              ", jPanel1);
 
-        jLabel7.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+//        jLabel7.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+//        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("积分与消费额");
 
-        setExchangeRateTextField.setFont(new java.awt.Font("宋体", 1, 14)); // NOI18N
+//        setExchangeRateTextField.setFont(new java.awt.Font("宋体", 1, 14)); // NOI18N
  
-        jLabel8.setFont(new java.awt.Font("宋体", 3, 24)); // NOI18N
+//        jLabel8.setFont(new java.awt.Font("宋体", 3, 24)); // NOI18N
         jLabel8.setText("%");
 
-        jLabel9.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
+//        jLabel9.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+//        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
         jLabel9.setText("等价券:");
 
-        jLabel10.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+//        jLabel10.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+//        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("打折券：");
 
         setEqualityTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -348,16 +348,16 @@ public class GeneralManagerView extends JFrame implements ActionListener {
         setEqualityTable.getColumnModel().getColumn(0).setResizable(false);
         setEqualityTable.getColumnModel().getColumn(1).setResizable(false);
 
-        setPromotionButton.setFont(new java.awt.Font("宋体", 1, 24)); // NOI18N
-        setPromotionButton.setForeground(new java.awt.Color(255, 0, 51));
+//        setPromotionButton.setFont(new java.awt.Font("宋体", 1, 24)); // NOI18N
+//        setPromotionButton.setForeground(new java.awt.Color(255, 0, 51));
         setPromotionButton.setText("保存设置");
 
-        cancelPromotionButton.setFont(new java.awt.Font("宋体", 1, 24)); // NOI18N
-        cancelPromotionButton.setForeground(new java.awt.Color(0, 153, 153));
+//        cancelPromotionButton.setFont(new java.awt.Font("宋体", 1, 24)); // NOI18N
+//        cancelPromotionButton.setForeground(new java.awt.Color(0, 153, 153));
         cancelPromotionButton.setText("取  消");
 
-        checkPromotionButton.setFont(new java.awt.Font("宋体", 1, 24)); // NOI18N
-        checkPromotionButton.setForeground(new java.awt.Color(204, 204, 0));
+//        checkPromotionButton.setFont(new java.awt.Font("宋体", 1, 24)); // NOI18N
+//        checkPromotionButton.setForeground(new java.awt.Color(204, 204, 0));
         checkPromotionButton.setText("查  看");
 
         setCouponTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -393,8 +393,8 @@ public class GeneralManagerView extends JFrame implements ActionListener {
         setCouponTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         setCouponTable.getColumnModel().getColumn(0).setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+//        jLabel1.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+//        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("的兑换比例：");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -470,74 +470,74 @@ public class GeneralManagerView extends JFrame implements ActionListener {
 
         vip5CheckBox.setText("VIP5");
 
-        jLabel12.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
+//        jLabel12.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+//        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
         jLabel12.setText("选择会员等级");
 
-        jLabel15.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 51, 153));
+//        jLabel15.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
+//        jLabel15.setForeground(new java.awt.Color(0, 51, 153));
         jLabel15.setText("打 折 券 赠 送");
 
-        jLabel18.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 0, 102));
+//        jLabel18.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
+//        jLabel18.setForeground(new java.awt.Color(255, 0, 102));
         jLabel18.setText("提示：日期格式为YYYY/MM/DD，如：2013/01/20");
 
-        sendEquivalentButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
-        sendEquivalentButton.setForeground(new java.awt.Color(102, 0, 102));
+//        sendEquivalentButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
+//        sendEquivalentButton.setForeground(new java.awt.Color(102, 0, 102));
         sendEquivalentButton.setText("赠送等价券");
 
-        cancelSendCouponButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
-        cancelSendCouponButton.setForeground(new java.awt.Color(0, 51, 153));
+//        cancelSendCouponButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
+//        cancelSendCouponButton.setForeground(new java.awt.Color(0, 51, 153));
         cancelSendCouponButton.setText(" 取  消 ");
 
-        jLabel14.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(102, 0, 102));
+//        jLabel14.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
+//        jLabel14.setForeground(new java.awt.Color(102, 0, 102));
         jLabel14.setText("等 价 券 赠 送");
 
-        sendCouponComboBox.setFont(new java.awt.Font("幼圆", 0, 12)); // NOI18N
+//        sendCouponComboBox.setFont(new java.awt.Font("幼圆", 0, 12)); // NOI18N
         sendCouponComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "尚无打折券" }));
 
-        sendEquivalentComboBox.setFont(new java.awt.Font("幼圆", 0, 12)); // NOI18N
+//        sendEquivalentComboBox.setFont(new java.awt.Font("幼圆", 0, 12)); // NOI18N
         sendEquivalentComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "尚无等价券" }));
 
-        jLabel4.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+//        jLabel4.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+//        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("数量：");
 
-        jLabel11.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
+//        jLabel11.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+//        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
         jLabel11.setText("张");
 
-        sendCouponButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
-        sendCouponButton.setForeground(new java.awt.Color(0, 51, 153));
+//        sendCouponButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
+//        sendCouponButton.setForeground(new java.awt.Color(0, 51, 153));
         sendCouponButton.setText("赠送打折券");
 
-        cancelSendEquiButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
-        cancelSendEquiButton.setForeground(new java.awt.Color(102, 0, 102));
+//        cancelSendEquiButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
+//        cancelSendEquiButton.setForeground(new java.awt.Color(102, 0, 102));
         cancelSendEquiButton.setText("取  消");
 
-        jLabel17.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(102, 102, 102));
+//        jLabel17.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+//        jLabel17.setForeground(new java.awt.Color(102, 102, 102));
         jLabel17.setText("有效截止日期：");
 
-        jLabel21.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(102, 102, 102));
+//        jLabel21.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+//        jLabel21.setForeground(new java.awt.Color(102, 102, 102));
         jLabel21.setText("类别：");
-
-        jLabel22.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(102, 102, 102));
+//
+//        jLabel22.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+//        jLabel22.setForeground(new java.awt.Color(102, 102, 102));
         jLabel22.setText("类别：");
 
-        jLabel23.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(102, 102, 102));
+//        jLabel23.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+//        jLabel23.setForeground(new java.awt.Color(102, 102, 102));
         jLabel23.setText("张");
-
-        jLabel2.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+//
+//        jLabel2.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+//        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("数量：");
-
-        jLabel3.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+//
+//        jLabel3.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+//        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("有效截止日期：");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -671,8 +671,8 @@ public class GeneralManagerView extends JFrame implements ActionListener {
 
         jTabbedPane1.addTab("          大范围促销           ", jPanel4);
 
-        checkPresentButton.setFont(new java.awt.Font("幼圆", 3, 20)); // NOI18N
-        checkPresentButton.setForeground(new java.awt.Color(0, 51, 153));
+//        checkPresentButton.setFont(new java.awt.Font("幼圆", 3, 20)); // NOI18N
+//        checkPresentButton.setForeground(new java.awt.Color(0, 51, 153));
         checkPresentButton.setText("查看大范围促销信息");
 
         showPresentTextArea.setColumns(20);
@@ -705,16 +705,16 @@ public class GeneralManagerView extends JFrame implements ActionListener {
 
         jTabbedPane1.addTab("       查看大范围促销       ", jPanel5);
 
-        jLabel28.setFont(new java.awt.Font("幼圆", 2, 14)); // NOI18N
+//        jLabel28.setFont(new java.awt.Font("幼圆", 2, 14)); // NOI18N
         jLabel28.setText("用户名");
 
-        changeUserNameButton1.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
+//        changeUserNameButton1.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
         changeUserNameButton1.setText("修改用户名");
 
-        changeUserPasswordButton1.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
+//        changeUserPasswordButton1.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
         changeUserPasswordButton1.setText("修改密码");
 
-        exitButton.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
+//        exitButton.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
         exitButton.setText("退  出");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
