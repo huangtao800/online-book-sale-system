@@ -16,4 +16,5 @@ public interface UserDatabaseService extends DatabaseService{
 	public ArrayList<UserPO> getAllUser()throws RemoteException;
 	public ResultMessage modify(UserPO beforeUserPO,UserPO after)throws RemoteException;
 	public String autoGetUserId(UserRole userRole)throws RemoteException;
+	
 }
