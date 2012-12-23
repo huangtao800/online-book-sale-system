@@ -294,7 +294,7 @@ public class Customer {
 			if(index!=-1){
 				int oldNumber=favority.get(index).getNumOfBook();
 				int saleNumber=saleList.get(i).getNumber();
-				saleList.get(index).getBook().setNumOfBook(oldNumber-saleNumber);
+				favority.get(index).setNumOfBook(oldNumber-saleNumber);
 			}
 		}
 		

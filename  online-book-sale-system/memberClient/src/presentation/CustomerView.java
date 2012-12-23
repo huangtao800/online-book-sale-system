@@ -201,6 +201,10 @@ public class CustomerView extends JFrame {
 				if (newName == null) {
 					return;
 				}
+				if(newName.equals("")){
+					JOptionPane.showMessageDialog(null, "名称不能为空！");
+					return;
+				}
 				ResultMessage message = memberViewController
 						.changeName(newName);
 				if (message == ResultMessage.SUCCEED) {
