@@ -23,7 +23,7 @@ public class changePasswordController implements changePasswordControllerInterfa
       }
 	
 	  public ResultMessage  changeUser(UserPO old,UserPO newpo){		  
-		  ResultMessage resultMessage= userController.changeUser(old,newpo);
+		  ResultMessage resultMessage= userController.changePassword(newpo);
 		  if(resultMessage==ResultMessage.SUCCEED){
 			  mainViewController.freshPassword(newpo.getUserPassword());
 		  }
