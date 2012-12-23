@@ -57,7 +57,7 @@ public class User {
 		
 	}
 	
-	public ResultMessage update(UserPO userPO){
+	public ResultMessage changePassword(UserPO userPO){
 	       
         try{
 			return userDatabase.update(userPO);
