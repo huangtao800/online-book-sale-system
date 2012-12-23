@@ -20,7 +20,6 @@ public interface CustomerViewService {
 	public ResultMessage changeAddress(String newAddress);
 	public ResultMessage cancel(String password);
 	public CustomerPO freshMemberPO(String memberID);
-	
-	public void freshMemberVO();
+
 	public ArrayList<String> getBookType();
 }

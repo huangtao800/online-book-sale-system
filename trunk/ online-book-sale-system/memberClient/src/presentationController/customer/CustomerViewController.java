@@ -129,8 +129,7 @@ public class CustomerViewController implements CustomerViewService{
 		return memberController.getBookType();
 	}
 
-	@Override
-	public void freshMemberVO() {
+	private void freshMemberVO() {
 		// TODO Auto-generated method stub
 		customerView.setMemberVO(new CustomerVO(customerPO));
 	}
