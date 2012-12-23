@@ -9,6 +9,9 @@ import po.GeneralManagerPO;
 import po.ResultMessage;
 import po.UserPO;
 import presentationController.changeUserNameView.changeUserNameControllerInterface;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class changeUserNameView extends JFrame implements ActionListener{
 	   private GeneralManagerPO userpo;
@@ -40,61 +43,55 @@ public class changeUserNameView extends JFrame implements ActionListener{
 
 //	        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-	        jLabel2.setFont(new java.awt.Font("方正舒体", 0, 18)); // NOI18N
+//	        jLabel2.setFont(new java.awt.Font("方正舒体", 0, 18)); // NOI18N
 	        jLabel2.setText("原用户名：");
 
-	        jLabel3.setFont(new java.awt.Font("方正舒体", 0, 18)); // NOI18N
+//	        jLabel3.setFont(new java.awt.Font("方正舒体", 0, 18)); // NOI18N
 	        jLabel3.setText("新用户名：");
 
-	        changeUserNameButton.setBackground(new java.awt.Color(0, 204, 204));
-	        changeUserNameButton.setFont(new java.awt.Font("方正舒体", 1, 24)); // NOI18N
+//	        changeUserNameButton.setBackground(new java.awt.Color(0, 204, 204));
+//	        changeUserNameButton.setFont(new java.awt.Font("方正舒体", 1, 24)); // NOI18N
 	        changeUserNameButton.setText("确定");
 
-	        cancelButton.setBackground(new java.awt.Color(204, 51, 0));
-	        cancelButton.setFont(new java.awt.Font("方正舒体", 1, 24)); // NOI18N
+//	        cancelButton.setBackground(new java.awt.Color(204, 51, 0));
+//	        cancelButton.setFont(new java.awt.Font("方正舒体", 1, 24)); // NOI18N
 	        cancelButton.setText("退出");
 
-	        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-	        jPanel1.setLayout(jPanel1Layout);
-	        jPanel1Layout.setHorizontalGroup(
-	            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(jPanel1Layout.createSequentialGroup()
-	                .addGap(28, 28, 28)
-	                .addComponent(jLabel2)
-	                .addGap(43, 43, 43)
-	                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-	                    .addComponent(oldUserNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                    .addComponent(newUserNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
-	                .addGap(0, 0, Short.MAX_VALUE))
-	            .addGroup(jPanel1Layout.createSequentialGroup()
-	                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-	                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                        .addGroup(jPanel1Layout.createSequentialGroup()
-	                            .addGap(20, 20, 20)
-	                            .addComponent(jLabel3))
-	                        .addGroup(jPanel1Layout.createSequentialGroup()
-	                            .addGap(126, 126, 126)
-	                            .addComponent(changeUserNameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
-	                .addContainerGap(138, Short.MAX_VALUE))
+	        javax.swing.GroupLayout gl_jPanel1 = new javax.swing.GroupLayout(jPanel1);
+	        gl_jPanel1.setHorizontalGroup(
+	        	gl_jPanel1.createParallelGroup(Alignment.LEADING)
+	        		.addGroup(gl_jPanel1.createSequentialGroup()
+	        			.addGap(28)
+	        			.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING)
+	        				.addComponent(jLabel2)
+	        				.addComponent(jLabel3)
+	        				.addComponent(changeUserNameButton, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE))
+	        			.addPreferredGap(ComponentPlacement.RELATED)
+	        			.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING)
+	        				.addComponent(oldUserNameLabel)
+	        				.addGroup(gl_jPanel1.createParallelGroup(Alignment.TRAILING)
+	        					.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
+	        					.addComponent(newUserNameTextField, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE)))
+	        			.addContainerGap(19, Short.MAX_VALUE))
 	        );
-	        jPanel1Layout.setVerticalGroup(
-	            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(jPanel1Layout.createSequentialGroup()
-	                .addGap(46, 46, 46)
-	                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-	                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                    .addComponent(oldUserNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                .addGap(64, 64, 64)
-	                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                    .addComponent(newUserNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-	                .addComponent(changeUserNameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                .addGap(53, 53, 53)
-	                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                .addGap(27, 27, 27))
+	        gl_jPanel1.setVerticalGroup(
+	        	gl_jPanel1.createParallelGroup(Alignment.LEADING)
+	        		.addGroup(gl_jPanel1.createSequentialGroup()
+	        			.addGap(46)
+	        			.addGroup(gl_jPanel1.createParallelGroup(Alignment.TRAILING)
+	        				.addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+	        				.addComponent(oldUserNameLabel, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
+	        			.addGap(64)
+	        			.addGroup(gl_jPanel1.createParallelGroup(Alignment.BASELINE)
+	        				.addComponent(newUserNameTextField, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+	        				.addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
+	        			.addGap(78)
+	        			.addGroup(gl_jPanel1.createParallelGroup(Alignment.BASELINE)
+	        				.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+	        				.addComponent(changeUserNameButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))
+	        			.addContainerGap())
 	        );
+	        jPanel1.setLayout(gl_jPanel1);
 
 	        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 	        getContentPane().setLayout(layout);
@@ -120,7 +117,7 @@ public class changeUserNameView extends JFrame implements ActionListener{
 	    
 	    public void actionPerformed(ActionEvent event){
 	    	if(event.getSource()==changeUserNameButton ){
-	    		if(newUserNameTextField.getText().equals("")){
+	    		if(newUserNameTextField.getText().trim().equals("")){
 	    			JOptionPane.showMessageDialog(null, "新用户名不能为空！");
 	    		}else{
 	    			UserPO newuserpo=new UserPO(userpo.getUserID(),newUserNameTextField.getText(),
