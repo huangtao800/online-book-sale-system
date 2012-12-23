@@ -12,7 +12,7 @@ public interface UserBLService {
 	public ResultMessage deleteUser(UserPO userPO,UserRole userRole);
 	//管理员修改用户信息
 	public ResultMessage changeUser(UserPO beforeUserPO,UserPO afterUserPO) ;
-	public ResultMessage update(UserPO userPO);
+	public ResultMessage changePassword(UserPO userPO);
 	
 	public UserPO findUser(String name,UserRole userRole);
     public ArrayList<UserPO> getAllUser();
