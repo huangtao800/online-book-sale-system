@@ -57,6 +57,18 @@ public class User {
 		
 	}
 	
+	public ResultMessage update(UserPO userPO){
+	       
+        try{
+			return userDatabase.update(userPO);
+		}catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+		
+		
+	}
+	
 	
 	public  UserPO findUserThroughName(String name,UserRole userRole){
 		UserPO userPO = null;
