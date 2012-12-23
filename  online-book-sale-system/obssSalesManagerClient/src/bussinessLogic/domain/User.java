@@ -57,6 +57,18 @@ public class User {
 		
 	}
 	
+	public ResultMessage changePassword(UserPO userPO){
+	       
+        try{
+			return userDatabase.update(userPO);
+		}catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+		
+		
+	}
+	
 	
 	public  UserPO findUserThroughName(String name,UserRole userRole){
 		UserPO userPO = null;
@@ -84,14 +96,17 @@ public class User {
 		
 	}
 	
-	public ResultMessage changePassword(String name,String beforePassword,String afterPassword,UserRole userRole){
+	
+	
+	public String autoGetUserId(UserRole userRole) {
 		try{
-		    return userDatabase.changePassword(name, beforePassword, afterPassword, userRole);
+	       return userDatabase.autoGetUserId(userRole);
 		     
 		}catch (RemoteException e) {
 			e.printStackTrace();
-			return ResultMessage.FAILED;
+			return null;
 		}
+		
 		
 	}
 
