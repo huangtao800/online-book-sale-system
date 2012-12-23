@@ -101,15 +101,9 @@ public class Book{
 			  
 			  BookPO bookPO = null;
 			  try {
-				bookPO = bookDatabase.findThroughISBN(isbn);
-			  } catch (Exception e) {
-				e.printStackTrace();
-			  }
-			 
-			  bookPO.setNumOfBook(bookPO.getNumOfBook()-salesList.get(i).getNumber());
-			  
-			  try {
-				  resultList.add( bookDatabase.update(bookPO));
+				 bookPO = bookDatabase.findThroughISBN(isbn);
+			     bookPO.setNumOfBook(bookPO.getNumOfBook()-salesList.get(i).getNumber());
+			     resultList.add( bookDatabase.update(bookPO));
 			  } catch (RemoteException e) {
 				  e.printStackTrace();
 				  resultList.add( ResultMessage.FAILED);	//RMI出现异常
@@ -121,9 +115,7 @@ public class Book{
 				  result = ResultMessage.FAILED;
 		  }
 		  
-		  return result;
-		   
-		
+		  return result;	
 	}
 	
 	//对图书类别的处理
