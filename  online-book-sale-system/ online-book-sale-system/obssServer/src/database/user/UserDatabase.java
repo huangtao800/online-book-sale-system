@@ -150,9 +150,20 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 	@Override
 	//修改用户信息
 	public ResultMessage update(PO po) throws RemoteException {
-		return ResultMessage.SUCCEED;
+		UserPO userPO1 = (UserPO)po;
+		UserRole userRole = userPO1.getUserRole();
+		ArrayList<UserPO> userList=readFileByRole(userRole);
+		UserPO userPO2 = findUserThroughID(userPO1.getUserID(), userRole);
+		int index = getIsExistIndex(userPO2, userList);
+		userList.get(index).setUserID(userPO1.getUserID());
+		userList.get(index).setUserName(userPO1.getUserName());
+		userList.get(index).setUserPassword(userPO1.getUserPassword());
+		userList.get(index).setUserRole(userPO1.getUserRole());
+		return writeFileByRole(userList, userRole);
+		
 	}
 	
+	//修用户名有变得用户
 	public ResultMessage modify(UserPO beforeUserPO,UserPO afterUserPO)throws RemoteException{
 		ArrayList<UserPO> userList = readFileByRole(beforeUserPO.getUserRole());
 		String afterName = afterUserPO.getUserName();
