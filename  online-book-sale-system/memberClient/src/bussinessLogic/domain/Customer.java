@@ -34,6 +34,16 @@ public class Customer {
 		return customerPO.getUserID();
 	}
 	
+	public ResultMessage updateMemberPO(){
+		try {
+			return customerDatabase.update(customerPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+	}
+	
 	//想收藏夹中添加图书
 	public ResultMessage addFavorities(BookPO bookPO){
 		CustomerBussiness customerBussiness=new CustomerBussiness(this.customerPO);
