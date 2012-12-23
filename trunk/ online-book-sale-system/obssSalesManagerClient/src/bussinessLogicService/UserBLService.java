@@ -1,5 +1,5 @@
 package bussinessLogicService;
-//尤佳琪
+//youjiaqi
 import java.util.ArrayList;
 
 import po.*;
@@ -12,10 +12,10 @@ public interface UserBLService {
 	public ResultMessage deleteUser(UserPO userPO,UserRole userRole);
 	//管理员修改用户信息
 	public ResultMessage changeUser(UserPO beforeUserPO,UserPO afterUserPO) ;
+	public ResultMessage changePassword(UserPO userPO);
 	
 	public UserPO findUser(String name,UserRole userRole);
     public ArrayList<UserPO> getAllUser();
-    
-    public ResultMessage changePassword(String name,String beforePassword,String afterPassword,UserRole userRole);
-
+   
+    public String autoGetUserId(UserRole userRole);
 }
