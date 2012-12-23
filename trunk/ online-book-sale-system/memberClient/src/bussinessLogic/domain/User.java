@@ -57,6 +57,18 @@ public class User {
 		
 	}
 	
+	public ResultMessage changePassword(UserPO userPO){
+	       
+        try{
+			return userDatabase.update(userPO);
+		}catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+		
+		
+	}
+	
 	
 	public  UserPO findUserThroughName(String name,UserRole userRole){
 		UserPO userPO = null;
@@ -73,7 +85,7 @@ public class User {
 	
 	
 	public ArrayList<UserPO> getAllUser(){
-		ArrayList<UserPO> userList = new ArrayList<UserPO>();
+		ArrayList<UserPO> userList = new ArrayList<>();
 		try{
 		     userList = userDatabase.getAllUser();
 		     
