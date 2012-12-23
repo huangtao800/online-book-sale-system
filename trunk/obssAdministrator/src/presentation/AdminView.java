@@ -256,7 +256,7 @@ public class AdminView extends javax.swing.JFrame {
             		           &&password1.equals(password2)){ //Ö»ÐÞ¸ÄÃÜÂë
             	   afterPassword = password1;
             	   UserPO beforeUserPO = new UserPO(id, beforeName, afterPassword, userRole);
-            	   resultMessage = adminViewController.update(beforeUserPO);
+            	   resultMessage = adminViewController.changePassword(beforeUserPO);
                }
                
                if(resultMessage==ResultMessage.SUCCEED){
