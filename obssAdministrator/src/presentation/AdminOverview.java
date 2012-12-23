@@ -39,7 +39,7 @@ public class AdminOverview extends javax.swing.JFrame {
        jButton4 = new javax.swing.JButton();
        jButton5 = new javax.swing.JButton();
        jButton6 = new javax.swing.JButton();
-
+       
        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
        jLabel1.setText("用户名：");
@@ -53,23 +53,32 @@ public class AdminOverview extends javax.swing.JFrame {
            public void actionPerformed(java.awt.event.ActionEvent evt) {
               String name = jTextField1.getText().trim();
               UserRole userRole = (UserRole)jComboBox1.getSelectedItem();
-              UserPO userPO = adminOverviewController.findUser(name, userRole);
-              if(userPO==null){
-            	   rowData = new Vector<Vector>();
-            	   DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
-                   jTable1.setModel(dtm);
-            	   JOptionPane.showMessageDialog(null, "用户不存在，请重新查找");
+              
+              if(name.equals("")){
+            	  JOptionPane.showMessageDialog(null, "请输入用户名！");
               }else{
-                  rowData = new Vector<Vector>();
-                  Vector<String> row = new Vector<String>();
-                  row.add(userPO.getUserName());
-                  row.add(userPO.getUserID());
-                  row.add(userPO.getUserPassword());
-                  row.add(userPO.getUserRole().toString());
-                  rowData.add(row);
-                  DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
-                  jTable1.setModel(dtm);
+            	  UserPO userPO = adminOverviewController.findUser(name, userRole);
+            	  if(userPO==null){
+               	      rowData = new Vector<Vector>();
+               	      DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
+                      jTable1.setModel(dtm);
+                      
+               	      JOptionPane.showMessageDialog(null, "用户不存在，请重新查找");
+                  }else{
+                     rowData = new Vector<Vector>();
+                     Vector<String> row = new Vector<String>();
+                     row.add(userPO.getUserName());
+                     row.add(userPO.getUserID());
+                     row.add(userPO.getUserPassword());
+                     row.add(userPO.getUserRole().toString());
+                     rowData.add(row);
+                     DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
+                     jTable1.setModel(dtm);
+                     jTable1.setEnabled(false);
+                  }
               }
+             
+              
            }
        });
 
@@ -90,6 +99,7 @@ public class AdminOverview extends javax.swing.JFrame {
               	
               	    DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
                     jTable1.setModel(dtm);
+                    jTable1.setEnabled(false);
                 }else{
             	   JOptionPane.showMessageDialog(null, "该系统不存在用户！");
                 }
@@ -142,6 +152,7 @@ public class AdminOverview extends javax.swing.JFrame {
               	
               	    DefaultTableModel dtm=new DefaultTableModel(rowData, columnNames);
                     jTable1.setModel(dtm);
+                    jTable1.setEnabled(false);
                }else{
             	   JOptionPane.showMessageDialog(null, "该系统不存在用户！");
                }
