@@ -153,6 +153,15 @@ public class CustomerController implements CustomerBLService{
 	public CustomerPO freshMemberPO(String memberID) {
 		// TODO Auto-generated method stub
 		CustomerPO newMemberPO= customer.freshMemberPO(memberID);
+		FavorityPO oldFavorityPO=newMemberPO.getFavority();
+		
+		BookBLService bookController=BookController.getInstance();
+		for(int i=0;i<oldFavorityPO.getFavorities().size();i++){
+			BookPO newBookPO=bookController.findByISBN(oldFavorityPO.getFavorities().get(i).getISBN());
+			oldFavorityPO.getFavorities().set(i, newBookPO);
+		}
+		
+		customer.updateMemberPO();
 		return newMemberPO;
 	}
 

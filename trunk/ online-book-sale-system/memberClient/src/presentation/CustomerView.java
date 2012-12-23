@@ -1256,7 +1256,7 @@ public class CustomerView extends JFrame {
 
 	// 刷新收藏夹列表
 	private void freshTableModel(JTable table) {
-		memberViewController.freshMemberVO();
+		memberViewController.freshMemberPO(customerVO.userID);
 		table.setModel(new FavorityVOTableModel());
 	}
 
