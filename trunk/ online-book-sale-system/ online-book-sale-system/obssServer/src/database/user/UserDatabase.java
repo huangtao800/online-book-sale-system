@@ -66,23 +66,82 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 	
 	//根据UserRole打开相应序列化文件
 	private ArrayList<UserPO> readFileByRole(UserRole userRole){
+		ArrayList<UserPO> userList=null;
+		if(userRole==UserRole.Member){
+				userList = readMember();
+		}else if(userRole==UserRole.GeneralManager){
+				userList = readGeneralManager();
+		}else if(userRole==UserRole.SalesManager){
+				userList = readSalesManager();
+		}else{
+			    userList = readAdmin();
+		}
+				
+		return userList;
+	}
+	
+	public ArrayList<UserPO> readAdmin(){
 		FileInputStream inputStream;
 		ArrayList<UserPO> userList=null;
 		
 		try {
-			if(userRole==UserRole.Member){
-				inputStream=new FileInputStream("member.ser");
-			}else if(userRole==UserRole.GeneralManager){
-				inputStream=new FileInputStream("generalManager.ser");
-			}else if(userRole==UserRole.SalesManager){
-				inputStream=new FileInputStream("salesManager.ser");
-			}else{
-				inputStream=new FileInputStream("administrator.ser");
-			}
-			
+			inputStream=new FileInputStream("administrator.ser");
+		    ObjectInputStream objInput=new ObjectInputStream(inputStream);	
+			userList=(ArrayList<UserPO>)objInput.readObject();
+		    inputStream.close();
+			objInput.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return userList;
+	}
+	
+	public ArrayList<UserPO> readGeneralManager(){
+		FileInputStream inputStream;
+		ArrayList<UserPO> userList=null;
+		
+		try {
+			inputStream=new FileInputStream("generalManager.ser");
 			ObjectInputStream objInput=new ObjectInputStream(inputStream);	
 			userList=(ArrayList<UserPO>)objInput.readObject();
-			
+			inputStream.close();
+			objInput.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return userList;
+	}
+	
+	public  ArrayList<UserPO> readMember(){
+		FileInputStream inputStream;
+		ArrayList<UserPO> userList=null;
+		
+		try{
+		    inputStream=new FileInputStream("member.ser");
+			ObjectInputStream objInput=new ObjectInputStream(inputStream);	
+			userList=(ArrayList<UserPO>)objInput.readObject();
+			inputStream.close();
+			objInput.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return userList;
+	}
+	
+	public ArrayList<UserPO> readSalesManager(){
+		FileInputStream inputStream;
+		ArrayList<UserPO> userList=null;
+		
+		try {
+			inputStream=new FileInputStream("salesManager.ser");
+		    ObjectInputStream objInput=new ObjectInputStream(inputStream);	
+			userList=(ArrayList<UserPO>)objInput.readObject();
 			inputStream.close();
 			objInput.close();
 		} catch (Exception e) {
@@ -148,7 +207,7 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 	}
 
 	@Override
-	//修改用户信息
+	//修改用户的密码
 	public ResultMessage update(PO po) throws RemoteException {
 		UserPO userPO1 = (UserPO)po;
 		UserRole userRole = userPO1.getUserRole();
@@ -163,7 +222,7 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		
 	}
 	
-	//修用户名有变得用户
+	//修用户名有变的用户
 	public ResultMessage modify(UserPO beforeUserPO,UserPO afterUserPO)throws RemoteException{
 		ArrayList<UserPO> userList = readFileByRole(beforeUserPO.getUserRole());
 		String afterName = afterUserPO.getUserName();
@@ -218,23 +277,82 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 	}
 	
 	private ResultMessage writeFileByRole(ArrayList<UserPO> arrayList,UserRole userRole){
-		FileOutputStream fileOutputStream;
-	
-		try {
+		
 			if(userRole==UserRole.Member){
-				fileOutputStream=new FileOutputStream("member.ser");
+				return writeMember(arrayList);
 			}else if(userRole==UserRole.GeneralManager){
-				fileOutputStream=new FileOutputStream("generalManager.ser");
+				return writeGeneralManager(arrayList);
 			}else if(userRole==UserRole.SalesManager){
-				fileOutputStream=new FileOutputStream("salesManager.ser");
+				return writeSalesManager(arrayList);
 			}else{
-				fileOutputStream=new FileOutputStream("administrator.ser");
+			    return writeAdmin(arrayList);
 			}
 			
+			
+	}
+	
+	public ResultMessage writeAdmin(ArrayList<UserPO> arrayList){
+		FileOutputStream fileOutputStream;
+	
+		try{
+			fileOutputStream=new FileOutputStream("administrator.ser");
 			ObjectOutputStream objectOutputStream=new ObjectOutputStream(fileOutputStream);	
 			objectOutputStream.writeObject(arrayList);
-			
-			fileOutputStream.close();
+		    fileOutputStream.close();
+			objectOutputStream.close();
+			return ResultMessage.SUCCEED;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+		
+	}
+	
+	public ResultMessage writeMember(ArrayList<UserPO> arrayList){
+		FileOutputStream fileOutputStream;
+	
+		try{
+			fileOutputStream=new FileOutputStream("member.ser");
+			ObjectOutputStream objectOutputStream=new ObjectOutputStream(fileOutputStream);	
+			objectOutputStream.writeObject(arrayList);
+		    fileOutputStream.close();
+			objectOutputStream.close();
+			return ResultMessage.SUCCEED;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+		
+	}
+	
+	public ResultMessage writeSalesManager(ArrayList<UserPO> arrayList){
+		FileOutputStream fileOutputStream;
+	
+		try{
+			fileOutputStream=new FileOutputStream("salesManager.ser");
+			ObjectOutputStream objectOutputStream=new ObjectOutputStream(fileOutputStream);	
+			objectOutputStream.writeObject(arrayList);
+		    fileOutputStream.close();
+			objectOutputStream.close();
+			return ResultMessage.SUCCEED;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+		
+	}
+	
+	public ResultMessage writeGeneralManager(ArrayList<UserPO> arrayList){
+		FileOutputStream fileOutputStream;
+	
+		try{
+			fileOutputStream=new FileOutputStream("generalManager.ser");
+			ObjectOutputStream objectOutputStream=new ObjectOutputStream(fileOutputStream);	
+			objectOutputStream.writeObject(arrayList);
+		    fileOutputStream.close();
 			objectOutputStream.close();
 			return ResultMessage.SUCCEED;
 		} catch (Exception e) {
