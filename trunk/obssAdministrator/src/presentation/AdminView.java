@@ -238,22 +238,34 @@ public class AdminView extends javax.swing.JFrame {
                String password1 = jTextField9.getText().trim();
                String password2 = jTextField10.getText().trim();
                String afterPassword = "";
-               if(!password1.equals("")&&password1.equals(password2)){
+               ResultMessage resultMessage=ResultMessage.SUCCEED;
+             //id和用户类型不能被修改 1.只修改密码 2.只修改用户名  3.都修改
+               if(password1.equals("")){        //只修改用户名
+            	   UserPO beforeUserPO = new UserPO(id, beforeName, beforePassword, userRole);
+                   UserPO afterUserPO = new UserPO(id, afterName, beforePassword, userRole);
+                  resultMessage = adminViewController.change(beforeUserPO,afterUserPO);
+               }else if((!beforeName.equals(afterName))&&!password1.equals("")
+            		           &&password1.equals(password2)){  //都修改
             	   afterPassword = password1;
-            	   //id和用户类型没有被修改
-                   UserPO beforeUserPO = new UserPO(id, beforeName, beforePassword, userRole);
+            	   UserPO beforeUserPO = new UserPO(id, beforeName, beforePassword, userRole);
                    UserPO afterUserPO = new UserPO(id, afterName, afterPassword, userRole);
-                   ResultMessage resultMessage = adminViewController.change(beforeUserPO,afterUserPO);
-                   if(resultMessage==ResultMessage.SUCCEED){
-                	   JOptionPane.showMessageDialog(null, "修改成功！");
-                   }else if(resultMessage==ResultMessage.EXIST){
-                	   JOptionPane.showMessageDialog(null, "该用户名已经存在，请重新输入用户名！");
-                   }else{
-                	   JOptionPane.showMessageDialog(null, "系统异常，请重试！");
-                   }
-               }else{
+                   resultMessage = adminViewController.change(beforeUserPO,afterUserPO);
+               }else if(!password1.equals(password2)){
             	   JOptionPane.showMessageDialog(null, "两次密码输入不一致，请重新输入！");
+               }else if(beforeName.equals(afterName)&&!password1.equals("")
+            		           &&password1.equals(password2)){ //只修改密码
+            	   afterPassword = password1;
+            	   UserPO beforeUserPO = new UserPO(id, beforeName, afterPassword, userRole);
+            	   resultMessage = adminViewController.update(beforeUserPO);
                }
+               
+               if(resultMessage==ResultMessage.SUCCEED){
+            	   JOptionPane.showMessageDialog(null, "修改成功！");
+               }else if(resultMessage==ResultMessage.EXIST){
+            	   JOptionPane.showMessageDialog(null, "该用户名已经存在，请重新输入用户名！");
+               }else{
+            	   JOptionPane.showMessageDialog(null, "系统异常，请重试！");
+               }   
                
            }
        });
