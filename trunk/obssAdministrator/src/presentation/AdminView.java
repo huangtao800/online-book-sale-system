@@ -199,6 +199,7 @@ public class AdminView extends javax.swing.JFrame {
         		   jTextField6.setText(userPO.getUserID());
         		   jTextField7.setText(userPO.getUserName());
         		   jTextField8.setText(userPO.getUserPassword());
+        		   jTextField6.setEditable(false);
         	   }
            }
        });
@@ -240,6 +241,8 @@ public class AdminView extends javax.swing.JFrame {
                    ResultMessage resultMessage = adminViewController.change(beforeUserPO,afterUserPO);
                    if(resultMessage==ResultMessage.SUCCEED){
                 	   JOptionPane.showMessageDialog(null, "修改成功！");
+                   }else if(resultMessage==ResultMessage.EXIST){
+                	   JOptionPane.showMessageDialog(null, "该用户名已经存在，请重新输入用户名！");
                    }else{
                 	   JOptionPane.showMessageDialog(null, "系统异常，请重试！");
                    }
@@ -372,6 +375,7 @@ public class AdminView extends javax.swing.JFrame {
         		   jTextField12.setText(userPO.getUserID());
         		   jTextField13.setText(userPO.getUserName());
         		   jTextField14.setText(userPO.getUserPassword());
+        		  
         	   }
            }
        });
@@ -395,6 +399,9 @@ public class AdminView extends javax.swing.JFrame {
         	   
                  ResultMessage resultMessage = adminViewController.delete(userPO, userRole);
                  if(resultMessage==ResultMessage.SUCCEED){
+                	 jTextField12.setText("");
+                     jTextField13.setText("");
+                     jTextField14.setText("");
                 	 JOptionPane.showMessageDialog(null, "删除成功！");
                  }else{
                 	 JOptionPane.showMessageDialog(null, "系统异常，请重试！");
