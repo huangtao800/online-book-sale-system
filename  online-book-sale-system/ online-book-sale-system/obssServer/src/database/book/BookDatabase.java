@@ -260,21 +260,22 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		int oldIndex = isBookTypeExist(typeList, beforeType);
 		int newIndex = isBookTypeExist(typeList,afterType);
 		
+		for(int i=0;i<bookList.size();i++){
+			if(bookList.get(i).getType().equals(beforeType)){
+			      bookList.get(i).setType(afterType);
+			}
+		}
+		writeFile(bookList);
+		
 		//原来就存在afterType图书类型
 		if(newIndex!=-1){
-		   for(int i=0;i<bookList.size();i++){
-			   if(bookList.get(i).getType().equals(beforeType)){
-				   bookList.get(i).setType(afterType);
-			   }
-		   }
 		   typeList.remove(oldIndex);
-		   writeFile(bookList);
-		   return writeBookType(typeList);
-	    }else{     //不存在afterType类型的图书
+		}else{     //不存在afterType类型的图书
 	    	typeList.remove(oldIndex);
 			typeList.add(afterType);
-			return writeBookType(typeList);
 		}
+		
+		return writeBookType(typeList);
 	}
 	
 	//判断原类型是否存在
