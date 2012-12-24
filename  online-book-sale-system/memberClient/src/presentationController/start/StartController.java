@@ -28,11 +28,11 @@ public class StartController implements StartBLService {
 	// 构造函数应传入Model
 	public StartController() {
 		try {
-			initDatabase = (InitDatabaseService) Naming
-					.lookup("rmi://127.0.0.1:5000/InitDatabase");
+			String ip = JOptionPane.showInputDialog(null, "请输入服务器IP地址", "XXX.XXX.XXX.XXX");
+			initDatabase = (InitDatabaseService) Naming.lookup("rmi://"+ip+":5000/InitDatabase");
 		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "ip地址错误或服务器未开启！系统将自动关闭。");
+			System.exit(1);
 		}
 		startView = new StartView(this);
 		startView.setVisible(true);
