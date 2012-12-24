@@ -45,8 +45,8 @@ public class AdminView extends javax.swing.JFrame {
        jComboBox1 = new javax.swing.JComboBox();
     
        jTextField2 = new javax.swing.JTextField();
-       jTextField3 = new javax.swing.JTextField();
-       jTextField4 = new javax.swing.JTextField();
+       jTextField3 = new javax.swing.JPasswordField();
+       jTextField4 = new javax.swing.JPasswordField();
        jButton1 = new javax.swing.JButton();
        jButton2 = new javax.swing.JButton();
        jPanel2 = new javax.swing.JPanel();
@@ -61,9 +61,9 @@ public class AdminView extends javax.swing.JFrame {
        jLabel11 = new javax.swing.JLabel();
        jTextField6 = new javax.swing.JTextField();
        jTextField7 = new javax.swing.JTextField();
-       jTextField8 = new javax.swing.JTextField();
-       jTextField9 = new javax.swing.JTextField();
-       jTextField10 = new javax.swing.JTextField();
+       jTextField8 = new javax.swing.JPasswordField();
+       jTextField9 = new javax.swing.JPasswordField();
+       jTextField10 = new javax.swing.JPasswordField();
        jButton4 = new javax.swing.JButton();
        jButton5 = new javax.swing.JButton();
        jButton9 = new javax.swing.JButton();
@@ -78,7 +78,7 @@ public class AdminView extends javax.swing.JFrame {
        jLabel15 = new javax.swing.JLabel();
        jTextField12 = new javax.swing.JTextField();
        jTextField13 = new javax.swing.JTextField();
-       jTextField14 = new javax.swing.JTextField();
+       jTextField14 = new javax.swing.JPasswordField();
        jComboBox3 = new javax.swing.JComboBox();
        jButton7 = new javax.swing.JButton();
        jButton8 = new javax.swing.JButton();
@@ -110,12 +110,12 @@ public class AdminView extends javax.swing.JFrame {
         	  UserRole role = (UserRole) jComboBox1.getSelectedItem();
               String id = adminViewController.autoGetUserId(role);
               String name = jTextField2.getText().trim();
-              String password1 = jTextField3.getText().trim();
-              String password2 = jTextField4.getText().trim();
+              String password1 = (new String(jTextField3.getPassword())).trim();
+              String password2 =  (new String(jTextField4.getPassword())).trim();
               String password = "";
               
               if(!password1.equals("")&&password1.equals(password2)){
-            	  password = jTextField3.getText().trim();
+            	  password =  (new String(jTextField3.getPassword())).trim();
             	  ResultMessage resultMessage = adminViewController.add(name,id,password,role);
                   
                   if(resultMessage==ResultMessage.SUCCEED){
@@ -206,6 +206,7 @@ public class AdminView extends javax.swing.JFrame {
             		   jTextField7.setText(userPO.getUserName());
             		   jTextField8.setText(userPO.getUserPassword());
             		   jTextField6.setEditable(false);
+            		   jTextField8.setEditable(false);
             	   }
         	   }
         	  
@@ -237,9 +238,9 @@ public class AdminView extends javax.swing.JFrame {
         	
         	   String id = jTextField6.getText().trim();
         	   String afterName = jTextField7.getText().trim();
-        	   String beforePassword = jTextField8.getText().trim();
-               String password1 = jTextField9.getText().trim();
-               String password2 = jTextField10.getText().trim();
+        	   String beforePassword = (new String (jTextField8.getPassword())).trim();
+               String password1 = (new String (jTextField9.getPassword())).trim();
+               String password2 = (new String (jTextField10.getPassword())).trim();
                String afterPassword = "";
                ResultMessage resultMessage=ResultMessage.SUCCEED;
              //id和用户类型不能被修改 1.只修改密码 2.只修改用户名  3.都修改
@@ -587,19 +588,19 @@ public class AdminView extends javax.swing.JFrame {
    private javax.swing.JSeparator jSeparator2;
    private javax.swing.JTabbedPane jTabbedPane1;
   
-   private javax.swing.JTextField jTextField10;
+   private javax.swing.JPasswordField jTextField10;
    private javax.swing.JTextField jTextField11;
    private javax.swing.JTextField jTextField12;
    private javax.swing.JTextField jTextField13;
-   private javax.swing.JTextField jTextField14;
+   private javax.swing.JPasswordField jTextField14;
    private javax.swing.JTextField jTextField2;
-   private javax.swing.JTextField jTextField3;
-   private javax.swing.JTextField jTextField4;
+   private javax.swing.JPasswordField jTextField3;
+   private javax.swing.JPasswordField jTextField4;
    private javax.swing.JTextField jTextField5;
    private javax.swing.JTextField jTextField6;
    private javax.swing.JTextField jTextField7;
-   private javax.swing.JTextField jTextField8;
-   private javax.swing.JTextField jTextField9;
+   private javax.swing.JPasswordField jTextField8;
+   private javax.swing.JPasswordField jTextField9;
    private AdminViewService adminViewController;
    private int index;
 }
