@@ -29,17 +29,19 @@ import databaseService.user.UserDatabaseService;
 
 public class UserDatabase extends UnicastRemoteObject implements UserDatabaseService{
 	private UserDatabaseService userDatabase;
+	private InitDatabaseService initDatabase;
 	private static UserDatabase instance=null;
-	private ArrayList<UserPO> customerList;
-	private ArrayList<UserPO> salesManagerList;
-	private ArrayList<UserPO> generalManagerList;
-	private ArrayList<UserPO> administratorList;
+	private ArrayList<CustomerPO> customerList;
+	private ArrayList<SalesManagerPO> salesManagerList;
+	private ArrayList<GeneralManagerPO> generalManagerList;
+	private ArrayList<AdministratorPO> administratorList;
 
 	protected UserDatabase() throws RemoteException{
-		readAdmin();
-		readGeneralManager();
-		readMember();
-		readSalesManager();
+		initDatabase = InitDatabase.getInstance();
+		customerList = InitDatabase.getMemberPOList();
+		salesManagerList = InitDatabase.getSalesManagerList();
+		generalManagerList = InitDatabase.getGeneralManagerList();
+		administratorList = InitDatabase.getAdministratorList();
 	}
 
 	
@@ -56,145 +58,40 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		return instance;
 	}
 	
-	@Override
-	public UserPO isExisit(String userName, String password, UserRole userRole) {
-		UserPO result=null;
-		ArrayList<UserPO> userList=readFileByRole(userRole);
-		result=searchUser(userName, password, userList);
-	    return result;
-	}
-	
-	private int getIsExistIndex(UserPO userPO ,ArrayList<UserPO> arrayList){
+
+	private int getIsExistIndex(UserPO userPO){
         int index = -1;
-        for(int i=0;i<arrayList.size();i++){
-        	if(userPO.getUserID().equals(arrayList.get(i).getUserID())){
-        		index = i;
-        	}
+        if(userPO.getUserRole()==UserRole.Administrator){
+        	 for(int i=0;i<administratorList.size();i++){
+             	if(userPO.getUserID().equals(administratorList.get(i).getUserID())){
+             		index = i;
+             	}
+             }
+        }else if(userPO.getUserRole()==UserRole.SalesManager){
+        	 for(int i=0;i<salesManagerList.size();i++){
+             	if(userPO.getUserID().equals(salesManagerList.get(i).getUserID())){
+             		index = i;
+             	}
+             }
+        }else if(userPO.getUserRole()==UserRole.GeneralManager){
+        	 for(int i=0;i<generalManagerList.size();i++){
+             	if(userPO.getUserID().equals(generalManagerList.get(i).getUserID())){
+             		index = i;
+             	}
+             }
+        }else{
+        	 for(int i=0;i<customerList.size();i++){
+             	if(userPO.getUserID().equals(customerList.get(i).getUserID())){
+             		index = i;
+             	}
+             }
         }
+       
         
         return index;
 	}
 	
 	
-	@SuppressWarnings("unchecked")
-	
-	//根据UserRole打开相应序列化文件
-	private ArrayList<UserPO> readFileByRole(UserRole userRole){
-		ArrayList<UserPO> userList=null;
-		if(userRole==UserRole.Member){
-				userList = readMember();
-		}else if(userRole==UserRole.GeneralManager){
-				userList = readGeneralManager();
-		}else if(userRole==UserRole.SalesManager){
-				userList = readSalesManager();
-		}else{
-			    userList = readAdmin();
-		}
-				
-		return userList;
-	}
-	
-	private ArrayList<UserPO> readAdmin(){
-		FileInputStream inputStream;
-//		ArrayList<UserPO> userList=null;
-		
-		try {
-			inputStream=new FileInputStream("administrator.ser");
-		    ObjectInputStream objInput=new ObjectInputStream(inputStream);	
-			administratorList=(ArrayList<UserPO>)objInput.readObject();
-		    inputStream.close();
-			objInput.close();
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		
-		return administratorList;
-	}
-	
-	private ArrayList<UserPO> readGeneralManager(){
-		FileInputStream inputStream;
-//		ArrayList<UserPO> userList=null;
-		
-		try {
-			inputStream=new FileInputStream("generalManager.ser");
-			ObjectInputStream objInput=new ObjectInputStream(inputStream);	
-			generalManagerList=(ArrayList<UserPO>)objInput.readObject();
-			inputStream.close();
-			objInput.close();
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		
-		return generalManagerList;
-	}
-	
-	private  ArrayList<UserPO> readMember(){
-		FileInputStream inputStream;
-//		ArrayList<UserPO> userList=null;
-		
-		try{
-		    inputStream=new FileInputStream("member.ser");
-			ObjectInputStream objInput=new ObjectInputStream(inputStream);	
-			customerList=(ArrayList<UserPO>)objInput.readObject();
-			inputStream.close();
-			objInput.close();
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		
-		return customerList;
-	}
-	
-	private ArrayList<UserPO> readSalesManager(){
-		FileInputStream inputStream;
-//		ArrayList<UserPO> userList=null;
-		
-		try {
-			inputStream=new FileInputStream("salesManager.ser");
-		    ObjectInputStream objInput=new ObjectInputStream(inputStream);	
-			salesManagerList=(ArrayList<UserPO>)objInput.readObject();
-			inputStream.close();
-			objInput.close();
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		
-		return salesManagerList;
-	}
-	
-	public ArrayList<AdministratorPO> getAdmin(){
-		ArrayList<AdministratorPO> newAdministratorPOs=new ArrayList<AdministratorPO>();
-		for(int i=0;i<administratorList.size();i++){
-			newAdministratorPOs.add((AdministratorPO)administratorList.get(i));
-		}
-		return newAdministratorPOs;
-	}
-    public ArrayList<GeneralManagerPO> getGeneralManager(){
-    	ArrayList<GeneralManagerPO> newGeneralManagerPOs=new ArrayList<GeneralManagerPO>();
-    	for(int i=0;i<generalManagerList.size();i++){
-    		newGeneralManagerPOs.add((GeneralManagerPO)generalManagerList.get(i));
-    	}
-    	return newGeneralManagerPOs;
-    }
-	public ArrayList<CustomerPO> getMember(){
-		ArrayList<CustomerPO> newCustomerPOs=new ArrayList<CustomerPO>();
-		for(int i=0;i<customerList.size();i++){
-			newCustomerPOs.add((CustomerPO)customerList.get(i));
-		}
-		
-		return newCustomerPOs;
-	}
-	public ArrayList<SalesManagerPO> getSalesManager(){
-		ArrayList<SalesManagerPO> newSalesManagerPOs=new ArrayList<SalesManagerPO>();
-		for(int i=0;i<salesManagerList.size();i++){
-			newSalesManagerPOs.add((SalesManagerPO)salesManagerList.get(i));
-		}
-		return newSalesManagerPOs;
-	}
 	//用来查找某个存在的用户
 	private UserPO searchUser(String name, String password,ArrayList<UserPO> userList){
 		for(int i=0;i<userList.size();i++){
@@ -213,25 +110,73 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		UserPO userPO = (UserPO)po;
 		UserRole userRole = userPO.getUserRole();
 		String name = userPO.getUserName();
-		ArrayList<UserPO> userList=readFileByRole(userRole);
-		ResultMessage resultMessage= isNameExist(name, userList);
+		ResultMessage resultMessage= isNameExist(name, userRole);
 		
 		if(resultMessage==ResultMessage.EXIST){      //该用户已经存在了
 			return ResultMessage.EXIST;
-		}else{           //用户不存在则添加
-			userList.add(userPO);
-			return writeFileByRole(userList, userRole);
+		}else{           //用户不存在则添加\
+			if(userRole==UserRole.Administrator){
+				String id = userPO.getUserID();
+				String nameString = userPO.getUserName();
+				String password = userPO.getUserPassword();
+				AdministratorPO administratorPO = new AdministratorPO(id, nameString, password);
+				administratorList.add(administratorPO);
+				return writeAdmin();
+			}else if(userRole==UserRole.SalesManager){
+				String id = userPO.getUserID();
+				String nameString = userPO.getUserName();
+				String password = userPO.getUserPassword();
+				SalesManagerPO salesManagerPO = new SalesManagerPO(id, nameString, password);
+				salesManagerList.add(salesManagerPO);
+				return writeSalesManager();
+			}else if(userRole==UserRole.GeneralManager){
+				String id = userPO.getUserID();
+				String nameString = userPO.getUserName();
+				String password = userPO.getUserPassword();
+				GeneralManagerPO generalManagerPO = new GeneralManagerPO(id, nameString, password);
+				generalManagerList.add(generalManagerPO);
+				return writeGeneralManager();
+			}else{
+				String id = userPO.getUserID();
+				String nameString = userPO.getUserName();
+				String password = userPO.getUserPassword();
+				CustomerPO customerPO = new CustomerPO(id, nameString, password, "暂无常用地址");
+				customerList.add(customerPO);
+				return writeMember();
+			}
+		
 		}
 	 }
 	
 	//判断用户名是否存在
-	 private ResultMessage isNameExist(String name,ArrayList<UserPO> userList){
+	 private ResultMessage isNameExist(String name,UserRole userRole){
 		 int i = -1;
-		 for(int j=0;j<userList.size();j++){
-			 if(userList.get(j).getUserName().equals(name)){
-				 i=j;
+		 if(userRole==UserRole.Member){
+			 for(int j=0;j<customerList.size();j++){
+				 if(customerList.get(j).getUserName().equals(name)){
+					 i=j;
+				 }
+			 }
+		 }else if(userRole==UserRole.Administrator){
+			 for(int j=0;j<administratorList.size();j++){
+				 if(administratorList.get(j).getUserName().equals(name)){
+					 i=j;
+				 }
+			 }
+		 }else if(userRole==UserRole.SalesManager){
+			 for(int j=0;j<salesManagerList.size();j++){
+				 if(salesManagerList.get(j).getUserName().equals(name)){
+					 i=j;
+				 }
+			 }
+		 }else{
+			 for(int j=0;j<generalManagerList.size();j++){
+				 if(generalManagerList.get(j).getUserName().equals(name)){
+					 i=j;
+				 }
 			 }
 		 }
+		 
 		 if(i==-1){
 			 return ResultMessage.NOTEXIST;
 		 }else{
@@ -242,43 +187,95 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 	public ResultMessage delete(PO po) throws RemoteException {
 		UserPO userPO = (UserPO)po;
 		UserRole userRole = userPO.getUserRole();
-		ArrayList<UserPO> userList=readFileByRole(userRole);
-		int index = getIsExistIndex(userPO, userList);
-		userList.remove(index);
-        return writeFileByRole(userList, userRole);
-		
+		int index = getIsExistIndex(userPO);
+		if(userRole==UserRole.Administrator){
+			administratorList.remove(index);
+			return writeAdmin();
+		}else if(userRole==UserRole.SalesManager){
+			salesManagerList.remove(index);
+			return writeSalesManager();
+		}else if(userRole==UserRole.GeneralManager){
+			generalManagerList.remove(index);
+			return writeGeneralManager();
+		}else{
+			customerList.remove(index);
+			return writeMember();
+		}
 	}
 
 	@Override
 	//修改用户的密码
 	public ResultMessage update(PO po) throws RemoteException {
-		UserPO userPO1 = (UserPO)po;
-		UserRole userRole = userPO1.getUserRole();
-		ArrayList<UserPO> userList=readFileByRole(userRole);
-		UserPO userPO2 = findUserThroughID(userPO1.getUserID(), userRole);
-		int index = getIsExistIndex(userPO2, userList);
-		userList.get(index).setUserID(userPO1.getUserID());
-		userList.get(index).setUserName(userPO1.getUserName());
-		userList.get(index).setUserPassword(userPO1.getUserPassword());
-		userList.get(index).setUserRole(userPO1.getUserRole());
-		return writeFileByRole(userList, userRole);
+		UserPO newUserPO = (UserPO)po;
+		UserRole userRole = newUserPO.getUserRole();
+	    UserPO oldUserPO = findUserThroughID(newUserPO.getUserID(), userRole);
+		int index = getIsExistIndex(oldUserPO);
+		if(userRole==UserRole.Administrator){
+			administratorList.get(index).setUserPassword(newUserPO.getUserPassword());
+			return writeAdmin();
+		}else if(userRole==UserRole.SalesManager){
+			salesManagerList.get(index).setUserPassword(newUserPO.getUserPassword());
+			return writeSalesManager();
+		}else if(userRole==UserRole.GeneralManager){
+			generalManagerList.get(index).setUserPassword(newUserPO.getUserPassword());
+			return writeGeneralManager();
+		}else{
+			customerList.get(index).setUserPassword(newUserPO.getUserPassword());
+			return writeMember();
+		}
+		
 		
 	}
 	
-	//修用户名有变的用户
+	//修用户名有变的用户(只改变了用户名，或者改变了用户名或者密码)
 	public ResultMessage modify(UserPO beforeUserPO,UserPO afterUserPO)throws RemoteException{
-		ArrayList<UserPO> userList = readFileByRole(beforeUserPO.getUserRole());
+		UserRole userRole = beforeUserPO.getUserRole();
 		String afterName = afterUserPO.getUserName();
-		ResultMessage resultMessage = isNameExist(afterName, userList);
+		ResultMessage resultMessage = isNameExist(afterName, userRole);
 		if(resultMessage==ResultMessage.EXIST){
 			return ResultMessage.EXIST;
 		}else{
 			if(beforeUserPO!=null){
 				//用户ID和用户类型不可修改，只有用户密码和用户名可以修改
-				int index = getIsExistIndex(beforeUserPO, userList);
-				userList.remove(index);
-				userList.add(afterUserPO);
-				return writeFileByRole(userList, afterUserPO.getUserRole());
+				int index = getIsExistIndex(beforeUserPO);
+				if(userRole==UserRole.Administrator){
+					administratorList.remove(index);
+					
+					String id = afterUserPO.getUserID();
+					String nameString = afterUserPO.getUserName();
+					String password = afterUserPO.getUserPassword();
+					AdministratorPO administratorPO = new AdministratorPO(id, nameString, password);
+					administratorList.add(administratorPO);
+					return writeAdmin();
+				}else if(userRole==UserRole.SalesManager){
+					salesManagerList.remove(index);
+					
+					String id = afterUserPO.getUserID();
+					String nameString = afterUserPO.getUserName();
+					String password = afterUserPO.getUserPassword();
+					SalesManagerPO salesManagerPO = new SalesManagerPO(id, nameString, password);
+					salesManagerList.add(salesManagerPO);
+					return writeSalesManager();
+				}else if(userRole==UserRole.GeneralManager){
+					generalManagerList.remove(index);
+					
+					String id = afterUserPO.getUserID();
+					String nameString = afterUserPO.getUserName();
+					String password = afterUserPO.getUserPassword();
+					GeneralManagerPO generalManagerPO = new GeneralManagerPO(id, nameString, password);
+					generalManagerList.add(generalManagerPO);
+					return writeGeneralManager();
+				}else{
+					customerList.remove(index);
+					
+					String id = afterUserPO.getUserID();
+					String nameString = afterUserPO.getUserName();
+					String password = afterUserPO.getUserPassword();
+					CustomerPO customerPO = new CustomerPO(id, nameString, password, "暂无常用地址");
+					customerList.add(customerPO);
+					return writeMember();
+				}
+				
 			}else{
 				return ResultMessage.FAILED;
 			}
@@ -288,95 +285,122 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 	}
 	
 	public UserPO findUserThroughName(String name,UserRole userRole) throws RemoteException{
-		ArrayList<UserPO> userList = readFileByRole(userRole);
 		UserPO userPO = null;
-		for(int i=0;i<userList.size();i++){
-			if(userList.get(i).getUserName().equals(name)){
-				userPO = userList.get(i);
+		if(userRole==UserRole.Administrator){
+			for(int i=0;i<administratorList.size();i++){
+				if(administratorList.get(i).getUserName().equals(name)){
+					userPO = administratorList.get(i);
+				}
+			}
+		}else if(userRole==UserRole.SalesManager){
+			for(int i=0;i<salesManagerList.size();i++){
+				if(salesManagerList.get(i).getUserName().equals(name)){
+					userPO = salesManagerList.get(i);
+				}
+			}
+		}else if(userRole==UserRole.GeneralManager){
+			for(int i=0;i<generalManagerList.size();i++){
+				if(generalManagerList.get(i).getUserName().equals(name)){
+					userPO = generalManagerList.get(i);
+				}
+			}
+		}else{
+			for(int i=0;i<customerList.size();i++){
+				if(customerList.get(i).getUserName().equals(name)){
+					userPO = customerList.get(i);
+				}
 			}
 		}
+		
 		return userPO;
 	}
 	
 	private UserPO findUserThroughID(String id,UserRole userRole)throws RemoteException{
-		ArrayList<UserPO> userList = readFileByRole(userRole);
 		UserPO userPO = null;
-		for(int i=0;i<userList.size();i++){
-			if(userList.get(i).getUserID().equals(id)){
-				userPO = userList.get(i);
+		if(userRole==UserRole.Administrator){
+			for(int i=0;i<administratorList.size();i++){
+				if(administratorList.get(i).getUserID().equals(id)){
+					userPO = administratorList.get(i);
+				}
+			}
+		}else if(userRole==UserRole.SalesManager){
+			for(int i=0;i<salesManagerList.size();i++){
+				if(salesManagerList.get(i).getUserID().equals(id)){
+					userPO = salesManagerList.get(i);
+				}
+			}
+		}else if(userRole==UserRole.GeneralManager){
+			for(int i=0;i<generalManagerList.size();i++){
+				if(generalManagerList.get(i).getUserID().equals(id)){
+					userPO = generalManagerList.get(i);
+				}
+			}
+		}else{
+			for(int i=0;i<customerList.size();i++){
+				if(customerList.get(i).getUserID().equals(id)){
+					userPO = customerList.get(i);
+				}
 			}
 		}
+		
 		return userPO;
 	}
 	
 	@SuppressWarnings("null")
 	public ArrayList<UserPO> getAllUser() throws RemoteException{
-		ArrayList<UserPO> userList = readFileByRole(UserRole.Administrator);
-		userList.addAll(readFileByRole(UserRole.SalesManager));
-		userList.addAll(readFileByRole(UserRole.Member));
-		userList.addAll(readFileByRole(UserRole.GeneralManager));
+		ArrayList<UserPO> userList = new ArrayList<UserPO>();
+		userList.addAll(administratorList);
+		userList.addAll(customerList);
+		userList.addAll(generalManagerList);
+		userList.addAll(salesManagerList);
 		return userList;
 	
 	}
 	
-	private ResultMessage writeFileByRole(ArrayList<UserPO> arrayList,UserRole userRole){
-		
-			if(userRole==UserRole.Member){
-				return writeMember(arrayList);
-			}else if(userRole==UserRole.GeneralManager){
-				return writeGeneralManager(arrayList);
-			}else if(userRole==UserRole.SalesManager){
-				return writeSalesManager(arrayList);
-			}else{
-			    return writeAdmin(arrayList);
-			}
-			
-			
-	}
-	
-	public ResultMessage writeAdmin(ArrayList<UserPO> arrayList){
+
+	private ResultMessage writeAdmin(){
 		FileOutputStream fileOutputStream;
 	
 		try{
 			fileOutputStream=new FileOutputStream("administrator.ser");
 			ObjectOutputStream objectOutputStream=new ObjectOutputStream(fileOutputStream);	
-			objectOutputStream.writeObject(arrayList);
+			objectOutputStream.writeObject(administratorList);
 		    fileOutputStream.close();
 			objectOutputStream.close();
 			return ResultMessage.SUCCEED;
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			e.printStackTrace();
 			return ResultMessage.FAILED;
 		}
 		
 	}
 	
-	public ResultMessage writeMember(ArrayList<UserPO> arrayList){
+	private ResultMessage writeMember(){
 		FileOutputStream fileOutputStream;
 	
 		try{
 			fileOutputStream=new FileOutputStream("member.ser");
 			ObjectOutputStream objectOutputStream=new ObjectOutputStream(fileOutputStream);	
-			objectOutputStream.writeObject(arrayList);
+			objectOutputStream.writeObject(customerList);
 		    fileOutputStream.close();
 			objectOutputStream.close();
 			return ResultMessage.SUCCEED;
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			e.printStackTrace();
 			return ResultMessage.FAILED;
 		}
 		
 	}
 	
-	public ResultMessage writeSalesManager(ArrayList<UserPO> arrayList){
+	private ResultMessage writeSalesManager(){
 		FileOutputStream fileOutputStream;
 	
 		try{
 			fileOutputStream=new FileOutputStream("salesManager.ser");
 			ObjectOutputStream objectOutputStream=new ObjectOutputStream(fileOutputStream);	
-			objectOutputStream.writeObject(arrayList);
+			objectOutputStream.writeObject(salesManagerList);
 		    fileOutputStream.close();
 			objectOutputStream.close();
 			return ResultMessage.SUCCEED;
@@ -388,13 +412,13 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		
 	}
 	
-	public ResultMessage writeGeneralManager(ArrayList<UserPO> arrayList){
+	private ResultMessage writeGeneralManager(){
 		FileOutputStream fileOutputStream;
 	
 		try{
 			fileOutputStream=new FileOutputStream("generalManager.ser");
 			ObjectOutputStream objectOutputStream=new ObjectOutputStream(fileOutputStream);	
-			objectOutputStream.writeObject(arrayList);
+			objectOutputStream.writeObject(generalManagerList);
 		    fileOutputStream.close();
 			objectOutputStream.close();
 			return ResultMessage.SUCCEED;
@@ -408,21 +432,36 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 	
 	@Override
 	public String autoGetUserId(UserRole userRole) throws RemoteException{
-			ArrayList<UserPO> userList = readFileByRole(userRole);
-			UserPO userPO = userList.get(userList.size()-1);
-			String maxId = userPO.getUserID();
-			maxId = maxId.substring(1);
-			String max = ""+(Integer.parseInt(maxId)+1);
+			
 			if(userRole==UserRole.Administrator){
+				AdministratorPO administratorPO = administratorList.get(administratorList.size()-1);
+				String maxId = administratorPO.getUserID();
+				maxId = maxId.substring(1);
+				String max = ""+(Integer.parseInt(maxId)+1);
 				return "a"+max;
 			}else if(userRole==UserRole.SalesManager){
+				SalesManagerPO salesManagerPO = salesManagerList.get(salesManagerList.size()-1);
+				String maxId = salesManagerPO.getUserID();
+				maxId = maxId.substring(1);
+				String max = ""+(Integer.parseInt(maxId)+1);
 				return "s"+max;
 			}else if(userRole==UserRole.GeneralManager){
+				GeneralManagerPO generalManagerPO = generalManagerList.get(generalManagerList.size()-1);
+				String maxId = generalManagerPO.getUserID();
+				maxId = maxId.substring(1);
+				String max = ""+(Integer.parseInt(maxId)+1);
 				return "g"+max;
 			}else{
+				CustomerPO customerPO = customerList.get(customerList.size()-1);
+				String maxId = customerPO.getUserID();
+				maxId = maxId.substring(1);
+				String max = ""+(Integer.parseInt(maxId)+1);
 				return "m"+max;
 			}
 		
 	}
+
+
 	
+
 }
