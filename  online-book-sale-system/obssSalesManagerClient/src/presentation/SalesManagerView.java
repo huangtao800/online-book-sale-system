@@ -115,7 +115,7 @@ public class SalesManagerView extends javax.swing.JFrame {
         userpo=salesManagerViewController.getUserPO();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+       
         jLabel4.setText("用户名：");
 
         userNameLabel.setText(userpo.getUserName());
@@ -934,7 +934,7 @@ public class SalesManagerView extends javax.swing.JFrame {
 
         pack();
         
-        //
+        this.setVisible(true);
         //presentPanel
         showPresentTextArea.setEditable(false);   
         //bookPanel
@@ -952,8 +952,8 @@ public class SalesManagerView extends javax.swing.JFrame {
 	    {
 	    	JOptionPane.showMessageDialog(null, "总经理已制定了大范围促销规则,您可以为您的顾客赠送礼券！");
 	    }
-        
 
+ 
     }// </editor-fold>
 
     
