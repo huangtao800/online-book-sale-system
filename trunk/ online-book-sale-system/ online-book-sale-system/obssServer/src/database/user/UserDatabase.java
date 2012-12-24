@@ -80,7 +80,7 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		return userList;
 	}
 	
-	public ArrayList<UserPO> readAdmin(){
+	private ArrayList<UserPO> readAdmin(){
 		FileInputStream inputStream;
 		ArrayList<UserPO> userList=null;
 		
@@ -98,7 +98,7 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		return userList;
 	}
 	
-	public ArrayList<UserPO> readGeneralManager(){
+	private ArrayList<UserPO> readGeneralManager(){
 		FileInputStream inputStream;
 		ArrayList<UserPO> userList=null;
 		
@@ -116,7 +116,7 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		return userList;
 	}
 	
-	public  ArrayList<UserPO> readMember(){
+	private  ArrayList<UserPO> readMember(){
 		FileInputStream inputStream;
 		ArrayList<UserPO> userList=null;
 		
@@ -134,7 +134,7 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		return userList;
 	}
 	
-	public ArrayList<UserPO> readSalesManager(){
+	private ArrayList<UserPO> readSalesManager(){
 		FileInputStream inputStream;
 		ArrayList<UserPO> userList=null;
 		
@@ -152,6 +152,18 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 		return userList;
 	}
 	
+	public ArrayList<UserPO> getAdmin(){
+		return readAdmin();
+	}
+    public ArrayList<UserPO> getGeneralManager(){
+    	return readGeneralManager();
+    }
+	public ArrayList<UserPO> getMember(){
+		return readMember();
+	}
+	public ArrayList<UserPO> getSalesManager(){
+		return readSalesManager();
+	}
 	//用来查找某个存在的用户
 	private UserPO searchUser(String name, String password,ArrayList<UserPO> userList){
 		for(int i=0;i<userList.size();i++){
