@@ -33,7 +33,6 @@ public class SalesManagerViewController implements SalesManagerViewService {
 	    	this.userPO=userPO;
 	    	salesManagerView=new SalesManagerView(this);
 	    	salesManagerView.createSalesManagerView();
-	    	salesManagerView.setVisible(true);
 	    }
 	    
 	//从数据层获取礼券赠送信息列表
