@@ -183,4 +183,15 @@ public class CustomerDatabase extends UnicastRemoteObject implements
 			return memberPOList.get(index);
 		}
 	}
+
+	@Override
+	public boolean isNameExit(String name) throws RemoteException {
+		// TODO Auto-generated method stub
+		for(int i=0;i<memberPOList.size();i++){
+			if(name.equals(memberPOList.get(i).getUserName())){
+				return true;
+			}
+		}
+		return false;
+	}
 }
