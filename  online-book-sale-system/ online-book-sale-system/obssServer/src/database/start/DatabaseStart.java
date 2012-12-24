@@ -33,8 +33,6 @@ public class DatabaseStart {
 			InitDatabaseService initDatabase=InitDatabase.getInstance();
 			InetAddress addr = InetAddress.getLocalHost();
 		    String ip=addr.getHostAddress();
-		    
-	//		String ip = JOptionPane.showInputDialog(null, "请输入服务器IP地址", "XXX.XXX.XXX.XXX");
 			if(ip == null){
 				JOptionPane.showMessageDialog(null, "输入错误！");
 				System.exit(1);
