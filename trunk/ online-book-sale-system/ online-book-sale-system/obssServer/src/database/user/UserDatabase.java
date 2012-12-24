@@ -4,13 +4,20 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import javax.print.attribute.standard.Sides;
+
+import po.AdministratorPO;
 import po.BookPO;
+import po.CustomerPO;
+import po.GeneralManagerPO;
 import po.PO;
 import po.ResultMessage;
+import po.SalesManagerPO;
 import po.UserPO;
 import po.UserRole;
 
@@ -23,9 +30,16 @@ import databaseService.user.UserDatabaseService;
 public class UserDatabase extends UnicastRemoteObject implements UserDatabaseService{
 	private UserDatabaseService userDatabase;
 	private static UserDatabase instance=null;
+	private ArrayList<UserPO> customerList;
+	private ArrayList<UserPO> salesManagerList;
+	private ArrayList<UserPO> generalManagerList;
+	private ArrayList<UserPO> administratorList;
 
 	protected UserDatabase() throws RemoteException{
-
+		readAdmin();
+		readGeneralManager();
+		readMember();
+		readSalesManager();
 	}
 
 	
@@ -82,12 +96,12 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 	
 	private ArrayList<UserPO> readAdmin(){
 		FileInputStream inputStream;
-		ArrayList<UserPO> userList=null;
+//		ArrayList<UserPO> userList=null;
 		
 		try {
 			inputStream=new FileInputStream("administrator.ser");
 		    ObjectInputStream objInput=new ObjectInputStream(inputStream);	
-			userList=(ArrayList<UserPO>)objInput.readObject();
+			administratorList=(ArrayList<UserPO>)objInput.readObject();
 		    inputStream.close();
 			objInput.close();
 		} catch (Exception e) {
@@ -95,17 +109,17 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 			e.printStackTrace();
 		}
 		
-		return userList;
+		return administratorList;
 	}
 	
 	private ArrayList<UserPO> readGeneralManager(){
 		FileInputStream inputStream;
-		ArrayList<UserPO> userList=null;
+//		ArrayList<UserPO> userList=null;
 		
 		try {
 			inputStream=new FileInputStream("generalManager.ser");
 			ObjectInputStream objInput=new ObjectInputStream(inputStream);	
-			userList=(ArrayList<UserPO>)objInput.readObject();
+			generalManagerList=(ArrayList<UserPO>)objInput.readObject();
 			inputStream.close();
 			objInput.close();
 		} catch (Exception e) {
@@ -113,17 +127,17 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 			e.printStackTrace();
 		}
 		
-		return userList;
+		return generalManagerList;
 	}
 	
 	private  ArrayList<UserPO> readMember(){
 		FileInputStream inputStream;
-		ArrayList<UserPO> userList=null;
+//		ArrayList<UserPO> userList=null;
 		
 		try{
 		    inputStream=new FileInputStream("member.ser");
 			ObjectInputStream objInput=new ObjectInputStream(inputStream);	
-			userList=(ArrayList<UserPO>)objInput.readObject();
+			customerList=(ArrayList<UserPO>)objInput.readObject();
 			inputStream.close();
 			objInput.close();
 		} catch (Exception e) {
@@ -131,17 +145,17 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 			e.printStackTrace();
 		}
 		
-		return userList;
+		return customerList;
 	}
 	
 	private ArrayList<UserPO> readSalesManager(){
 		FileInputStream inputStream;
-		ArrayList<UserPO> userList=null;
+//		ArrayList<UserPO> userList=null;
 		
 		try {
 			inputStream=new FileInputStream("salesManager.ser");
 		    ObjectInputStream objInput=new ObjectInputStream(inputStream);	
-			userList=(ArrayList<UserPO>)objInput.readObject();
+			salesManagerList=(ArrayList<UserPO>)objInput.readObject();
 			inputStream.close();
 			objInput.close();
 		} catch (Exception e) {
@@ -149,20 +163,37 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 			e.printStackTrace();
 		}
 		
-		return userList;
+		return salesManagerList;
 	}
 	
-	public ArrayList<UserPO> getAdmin(){
-		return readAdmin();
+	public ArrayList<AdministratorPO> getAdmin(){
+		ArrayList<AdministratorPO> newAdministratorPOs=new ArrayList<AdministratorPO>();
+		for(int i=0;i<administratorList.size();i++){
+			newAdministratorPOs.add((AdministratorPO)administratorList.get(i));
+		}
+		return newAdministratorPOs;
 	}
-    public ArrayList<UserPO> getGeneralManager(){
-    	return readGeneralManager();
+    public ArrayList<GeneralManagerPO> getGeneralManager(){
+    	ArrayList<GeneralManagerPO> newGeneralManagerPOs=new ArrayList<GeneralManagerPO>();
+    	for(int i=0;i<generalManagerList.size();i++){
+    		newGeneralManagerPOs.add((GeneralManagerPO)generalManagerList.get(i));
+    	}
+    	return newGeneralManagerPOs;
     }
-	public ArrayList<UserPO> getMember(){
-		return readMember();
+	public ArrayList<CustomerPO> getMember(){
+		ArrayList<CustomerPO> newCustomerPOs=new ArrayList<CustomerPO>();
+		for(int i=0;i<customerList.size();i++){
+			newCustomerPOs.add((CustomerPO)customerList.get(i));
+		}
+		
+		return newCustomerPOs;
 	}
-	public ArrayList<UserPO> getSalesManager(){
-		return readSalesManager();
+	public ArrayList<SalesManagerPO> getSalesManager(){
+		ArrayList<SalesManagerPO> newSalesManagerPOs=new ArrayList<SalesManagerPO>();
+		for(int i=0;i<salesManagerList.size();i++){
+			newSalesManagerPOs.add((SalesManagerPO)salesManagerList.get(i));
+		}
+		return newSalesManagerPOs;
 	}
 	//用来查找某个存在的用户
 	private UserPO searchUser(String name, String password,ArrayList<UserPO> userList){
