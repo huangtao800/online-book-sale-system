@@ -36,7 +36,7 @@ public class SalesViewController implements SalesViewService{
 		cartView.refreshTotalPrice(salesController.getTotalPrice());	
 		cartView.setTitle("Cart");
 		cartView.setLocation(400, 100);
-		cartView.setSize(680, 500);
+		cartView.setSize(680, 520);
 		cartView.setVisible(true);
 	}
 //初始化结账界面	
@@ -52,7 +52,7 @@ public class SalesViewController implements SalesViewService{
 		payView.setAddress(address);
 		payView.setTitle("Pay");
 		payView.setLocation(400, 100);
-		payView.setSize(500, 450);
+		payView.setSize(620, 450);
 		payView.setVisible(true);
 		return ResultMessage.SUCCEED;
 	}
@@ -63,7 +63,7 @@ public class SalesViewController implements SalesViewService{
 				orderVO.getOrderState(),orderVO.getTotalPrice(),orderVO.getAddres());
 		orderView.setTitle("订单详情");
 		orderView.setLocation(400, 100);
-		orderView.setSize(600, 500);
+		orderView.setSize(660, 500);
 		orderView.setVisible(true);
 	}
 
