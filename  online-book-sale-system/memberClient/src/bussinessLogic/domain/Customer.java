@@ -137,6 +137,16 @@ public class Customer {
 		if(newName.equals(customerPO.getUserName())){
 			return ResultMessage.SUCCEED;
 		}else {
+			try {
+				if(customerDatabase.isNameExit(newName)){
+					return ResultMessage.EXIST;
+				}
+			} catch (RemoteException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				return ResultMessage.FAILED;
+			}
+			
 			customerPO.setUserName(newName);
 			try {
 				return customerDatabase.update(customerPO);
