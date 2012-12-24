@@ -17,7 +17,7 @@ public class OrderVO {
 		this.setOrderNum("订单编号：" + orderPO.getOrderNum());
 		this.setMemberID("会员编号：" + orderPO.getMemberID());
 		this.setDate(orderPO.getDate());
-		this.setTotalPrice("商品总价：" + orderPO.getTotalPrice()+"");
+		this.setTotalPrice("商品总价：" + orderPO.getTotalPrice()+"元");
 		if(orderPO.getOrderState() == OrderState.ORDERDED)
 			this.setOrderState("订单状态：已下单");
 		else if(orderPO.getOrderState() == OrderState.DISTRIBUTION)
