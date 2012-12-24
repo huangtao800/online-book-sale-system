@@ -142,7 +142,6 @@ public class InitDatabase extends UnicastRemoteObject implements
 		}
 	}
 	
-	@SuppressWarnings("unused")
 	private void saveGeneralManager(){
 		try {
 			FileOutputStream outputStream=new FileOutputStream("generalManager.ser");
@@ -157,8 +156,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 			e.printStackTrace();
 		}
 	}
-	
-	@SuppressWarnings("unused")
+
 	private void saveSalesManager(){
 		try {
 			FileOutputStream outputStream=new FileOutputStream("salesManager.ser");
@@ -174,7 +172,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 		}
 	}
 	
-	@SuppressWarnings("unused")
+
 	private void saveAdminstrator(){
 		try {
 			FileOutputStream outputStream=new FileOutputStream("administrator.ser");
@@ -305,6 +303,13 @@ public class InitDatabase extends UnicastRemoteObject implements
 		}
 		
 		memberPOList.set(index, customerPO);
+		try {
+			saveMember();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage.SUCCEED;
+		}
 		return ResultMessage.SUCCEED;
 	}
 	
@@ -316,6 +321,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 		}
 		
 		generalManagerList.set(index, generalManagerPO);
+		saveGeneralManager();
 		return ResultMessage.SUCCEED;
 	}
 	
@@ -327,6 +333,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 		}
 		
 		adminstratorList.set(index, administratorPO);
+		saveAdminstrator();
 		return ResultMessage.SUCCEED;
 	}
 	
@@ -338,6 +345,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 		}
 		
 		salesManagerPOList.set(index, salesManagerPO);
+		saveSalesManager();
 		return ResultMessage.SUCCEED;
 	}
 	
