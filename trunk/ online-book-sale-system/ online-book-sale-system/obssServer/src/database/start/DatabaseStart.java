@@ -57,7 +57,7 @@ public class DatabaseStart {
 			PromotionDatabaseService promotionDatabase=PromotionDatabase.getInstance();
 			Naming.rebind("rmi://"+ ip+ ":5000/PromotionDatabase", promotionDatabase);
 			
-			JOptionPane.showMessageDialog(null, "服务器已开启！");
+			JOptionPane.showMessageDialog(null, "服务器已开启！\nip地址为：" + ip);
 			
 			
 		} catch (Exception e) {
