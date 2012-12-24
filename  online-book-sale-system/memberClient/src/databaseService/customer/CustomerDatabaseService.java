@@ -20,5 +20,5 @@ public interface CustomerDatabaseService extends DatabaseService{
 	public ResultMessage changeOrder(String memberID,long orderID,OrderState orderState) throws RemoteException;
 	public CustomerPO searchMemberPO(String memberID) throws RemoteException;
 	public ResultMessage addPoint(String memberID,double sum) throws RemoteException;
-	
+	public boolean isNameExit(String name) throws RemoteException;
 }
