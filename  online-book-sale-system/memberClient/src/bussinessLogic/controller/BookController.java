@@ -34,7 +34,6 @@ public class BookController implements BookBLService{
  	public BookPO findByISBN(String isbn){      //输入图书ISBN，返回相应的图书列表
 		   return book.findByISBN(isbn);
 	}
-
 	
 	//管理图书（增，删，改）
 	public ResultMessage addBook(BookPO b){
