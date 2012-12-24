@@ -1,7 +1,10 @@
 package database.start;
 
+import java.net.InetAddress;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
+
+import javax.swing.JOptionPane;
 
 import database.book.BookDatabase;
 import database.customer.CustomerDatabase;
@@ -28,25 +31,35 @@ public class DatabaseStart {
 		try {
 			LocateRegistry.createRegistry(5000);
 			InitDatabaseService initDatabase=InitDatabase.getInstance();
-			Naming.rebind("rmi://127.0.0.1:5000/InitDatabase", initDatabase);
+			InetAddress addr = InetAddress.getLocalHost();
+		    String ip=addr.getHostAddress();
+		    
+	//		String ip = JOptionPane.showInputDialog(null, "请输入服务器IP地址", "XXX.XXX.XXX.XXX");
+			if(ip == null){
+				JOptionPane.showMessageDialog(null, "输入错误！");
+				System.exit(1);
+			}
+			Naming.rebind("rmi://"+ ip+ ":5000/InitDatabase", initDatabase);
 			
 			CustomerDatabaseService memberDatabase=CustomerDatabase.getInstance();
-			Naming.rebind("rmi://127.0.0.1:5000/MemberDatabase", memberDatabase);
+			Naming.rebind("rmi://"+ ip+ ":5000/MemberDatabase", memberDatabase);
 			
 			OrderDatabaseService orderDatabase = OrderDatabase.getInstance();
-			Naming.rebind("rmi://127.0.0.1:5000/OrderDatabase", orderDatabase);
+			Naming.rebind("rmi://"+ ip+ ":5000/OrderDatabase", orderDatabase);
 			
 			BookDatabaseService bookDatabase = BookDatabase.getInstance();
-			Naming.rebind("rmi://127.0.0.1:5000/BookDatabase", bookDatabase);
+			Naming.rebind("rmi://"+ ip+ ":5000/BookDatabase", bookDatabase);
 			
 			UserDatabaseService userDatabase = UserDatabase.getInstance();
-			Naming.rebind("rmi://127.0.0.1:5000/UserDatabase", userDatabase);
+			Naming.rebind("rmi://"+ ip+ ":5000/UserDatabase", userDatabase);
 			
 			PresentDatabaseService presentDatabase=PresentDatabase.getInstance();
-			Naming.rebind("rmi://127.0.0.1:5000/PresentDatabase",presentDatabase);
+			Naming.rebind("rmi://"+ ip+ ":5000/PresentDatabase",presentDatabase);
 			
 			PromotionDatabaseService promotionDatabase=PromotionDatabase.getInstance();
-			Naming.rebind("rmi://127.0.0.1:5000/PromotionDatabase", promotionDatabase);
+			Naming.rebind("rmi://"+ ip+ ":5000/PromotionDatabase", promotionDatabase);
+			
+			JOptionPane.showMessageDialog(null, "服务器已开启！");
 			
 			
 		} catch (Exception e) {
