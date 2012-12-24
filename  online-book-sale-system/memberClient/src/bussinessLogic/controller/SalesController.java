@@ -69,7 +69,7 @@ public class SalesController implements SalesBLService {
 		for (int i = 0; i < equivalentList.size(); i++) {
 			EquivalentPO equivalentPO = equivalentList.get(i);
 			if (commonPrice < equivalentPO.getMin())
-				break;
+				continue;
 			String s = equivalentPO.toString();
 			voList.add(s);
 		}
