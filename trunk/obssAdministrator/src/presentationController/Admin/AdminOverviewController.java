@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import bussinessLogic.controller.UserController;
 import bussinessLogicService.UserBLService;
 
+import po.AdministratorPO;
 import po.ResultMessage;
 import po.UserPO;
 import po.UserRole;
@@ -14,11 +15,14 @@ public class AdminOverviewController implements AdminOverviewService {
 	private static AdminOverviewService uniqueInstance;
 	private AdminOverview adminOverview;
 	private AdminViewService adminViewController;
+	private AdministratorPO administratorPO;
 	
-	public AdminOverviewController(){
-		adminViewController = AdminViewController.getInstance();
+	
+	public AdminOverviewController(AdministratorPO administratorPO){
 		
-		adminOverview = new AdminOverview(this);
+	    this.administratorPO  = administratorPO; 
+	    adminViewController = AdminViewController.getInstance();
+		adminOverview = new AdminOverview(this,administratorPO);
 		adminOverview.setVisible(true);
 	}
 	
@@ -35,5 +39,17 @@ public class AdminOverviewController implements AdminOverviewService {
 	 public void initAdminView(int index){
 		 adminViewController.init(index);
 	 }
+	 
+	 public ResultMessage changePassword(UserPO userPO){
+		 return adminViewController.changePassword(userPO);
+	 }
 
+	 public ResultMessage changeName(UserPO beforeUserPO,UserPO afterUserPO){
+		 return adminViewController.change(beforeUserPO, afterUserPO);
+	 }
+	 
+	 public void changeToAnotherUser(){
+		 adminOverview.setVisible(false);
+	}
+	 
 }
