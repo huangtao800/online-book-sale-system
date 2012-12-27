@@ -9,7 +9,7 @@ import po.*;
 
 //ÓÈ¼Ñç÷
 public class User {
-	private User user;
+	
 	private UserDatabaseService userDatabase;
 	
 	public User(){
