@@ -12,4 +12,10 @@ public interface AdminOverviewService {
 	 public UserPO findUser(String name,UserRole userRole);
 
 	 public void initAdminView(int index);
+	 
+	 public ResultMessage changePassword(UserPO userPO);
+
+	 public ResultMessage changeName(UserPO beforeUserPO,UserPO afterUserPO);
+	 
+	 public void changeToAnotherUser();
 }
