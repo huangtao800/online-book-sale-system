@@ -76,9 +76,11 @@ public class AdminView extends javax.swing.JFrame {
        jLabel13 = new javax.swing.JLabel();
        jLabel14 = new javax.swing.JLabel();
        jLabel15 = new javax.swing.JLabel();
+       jLabel18 = new javax.swing.JLabel();
        jTextField12 = new javax.swing.JTextField();
        jTextField13 = new javax.swing.JTextField();
        jTextField14 = new javax.swing.JPasswordField();
+       jTextField15 = new javax.swing.JTextField();
        jComboBox3 = new javax.swing.JComboBox();
        jButton7 = new javax.swing.JButton();
        jButton8 = new javax.swing.JButton();
@@ -294,6 +296,7 @@ public class AdminView extends javax.swing.JFrame {
        });
 
        jLabel16.setText("用户姓名：");
+       jLabel18.setText("新用户名：");
 
        javax.swing.GroupLayout gl_jPanel2 = new javax.swing.GroupLayout(jPanel2);
        jPanel2.setLayout(gl_jPanel2);
@@ -305,35 +308,33 @@ public class AdminView extends javax.swing.JFrame {
            .addGroup(gl_jPanel2.createSequentialGroup()
                .addGap(59, 59, 59)
                .addGroup(gl_jPanel2.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                   .addComponent(jLabel6)
+                   .addComponent(jLabel9)
+                   .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                   .addComponent(jLabel10)
+                   .addComponent(jLabel11)
+                   .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                   .addComponent(jLabel7)
+                   .addComponent(jLabel16)
+                   .addComponent(jLabel18)
+                   .addComponent(jLabel8))
+               .addGap(66, 66, 66)
+               .addGroup(gl_jPanel2.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                    .addGroup(gl_jPanel2.createSequentialGroup()
-                       .addComponent(jLabel8)
+                       .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                        .addGap(0, 0, Short.MAX_VALUE))
                    .addGroup(gl_jPanel2.createSequentialGroup()
-                       .addGroup(gl_jPanel2.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                           .addComponent(jLabel6)
-                           .addComponent(jLabel9)
-                           .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                           .addComponent(jLabel10)
-                           .addComponent(jLabel11)
-                           .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                           .addComponent(jLabel7)
-                           .addComponent(jLabel16))
-                       .addGap(66, 66, 66)
-                       .addGroup(gl_jPanel2.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                           .addGroup(gl_jPanel2.createSequentialGroup()
-                               .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                               .addGap(0, 0, Short.MAX_VALUE))
-                           .addGroup(gl_jPanel2.createSequentialGroup()
-                               .addGroup(gl_jPanel2.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                   .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                   .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                   .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                   .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                   .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                   .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                   .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                   .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                               .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                       .addGroup(gl_jPanel2.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                           .addComponent(jTextField15)
+                           .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                           .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                           .addComponent(jComboBox2, 0, 229, Short.MAX_VALUE)
+                           .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                           .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                           .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                           .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                           .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
+                       .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
        );
        gl_jPanel2.setVerticalGroup(
            gl_jPanel2.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,6 +366,10 @@ public class AdminView extends javax.swing.JFrame {
                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGap(30, 30, 30)
                .addGroup(gl_jPanel2.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                   .addComponent(jLabel18)
+                   .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addGap(30, 30, 30)
+               .addGroup(gl_jPanel2.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                    .addComponent(jLabel9)
                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGap(30, 30, 30)
@@ -372,14 +377,14 @@ public class AdminView extends javax.swing.JFrame {
                    .addComponent(jLabel10)
                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGap(30, 30, 30)
-               .addGroup(gl_jPanel2.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addGroup(gl_jPanel2.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                    .addComponent(jLabel11)
                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                .addGroup(gl_jPanel2.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                    .addComponent(jButton4)
                    .addComponent(jButton5))
-               .addGap(43, 43, 43))
+               .addContainerGap())
        );
 
        jTabbedPane1.addTab("修改用户", jPanel2);
@@ -573,6 +578,7 @@ public class AdminView extends javax.swing.JFrame {
    private javax.swing.JLabel jLabel15;
    private javax.swing.JLabel jLabel16;
    private javax.swing.JLabel jLabel17;
+   private javax.swing.JLabel jLabel18;
    private javax.swing.JLabel jLabel2;
    private javax.swing.JLabel jLabel3;
    private javax.swing.JLabel jLabel4;
@@ -593,6 +599,7 @@ public class AdminView extends javax.swing.JFrame {
    private javax.swing.JTextField jTextField12;
    private javax.swing.JTextField jTextField13;
    private javax.swing.JPasswordField jTextField14;
+   private javax.swing.JTextField jTextField15;
    private javax.swing.JTextField jTextField2;
    private javax.swing.JPasswordField jTextField3;
    private javax.swing.JPasswordField jTextField4;
