@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import databaseService.init.InitDatabaseService;
 
 
+import po.AdministratorPO;
 import po.ResultMessage;
 import po.UserPO;
 import po.UserRole;
@@ -62,7 +63,8 @@ public class StartController implements StartBLService {
 
 	@Override
 	public void enterMainView(UserRole role,UserPO userPO) {
-		AdminOverviewService adminOverviewController = new AdminOverviewController();
+		AdministratorPO administratorPO = (AdministratorPO)userPO;
+		AdminOverviewService adminOverviewController = new AdminOverviewController(administratorPO);
 	}
 
 	@Override
