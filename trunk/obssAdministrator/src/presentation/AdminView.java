@@ -16,6 +16,8 @@ import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextArea;
 
+import com.jtattoo.plaf.fast.FastLookAndFeel;
+
 /**
 *
 * @author ÓÈ¼Ñç÷
@@ -208,6 +210,7 @@ public class AdminView extends javax.swing.JFrame {
             		   jTextField7.setText(userPO.getUserName());
             		   jTextField8.setText(userPO.getUserPassword());
             		   jTextField6.setEditable(false);
+            		   jTextField7.setEditable(false);
             		   jTextField8.setEditable(false);
             	   }
         	   }
