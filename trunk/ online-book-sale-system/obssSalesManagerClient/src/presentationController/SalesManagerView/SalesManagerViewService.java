@@ -33,4 +33,5 @@ public interface SalesManagerViewService {
 	
 	public void freshName(String name);
 	public void freshPassword(String newPW);
+	public void changeToAnotherUser();
 }
