@@ -31,12 +31,13 @@ public class DatabaseStart {
 		try {
 			LocateRegistry.createRegistry(5000);
 			InitDatabaseService initDatabase=InitDatabase.getInstance();
-			InetAddress addr = InetAddress.getLocalHost();
-		    String ip=addr.getHostAddress();
-			if(ip == null){
-				JOptionPane.showMessageDialog(null, " ‰»Î¥ÌŒÛ£°");
-				System.exit(1);
-			}
+//			InetAddress addr = InetAddress.getLocalHost();
+//		    String ip=addr.getHostAddress();
+			String ip="127.0.0.1";
+//			if(ip == null){
+//				JOptionPane.showMessageDialog(null, " ‰»Î¥ÌŒÛ£°");
+//				System.exit(1);
+//			}
 			Naming.rebind("rmi://"+ ip+ ":5000/InitDatabase", initDatabase);
 			
 			CustomerDatabaseService memberDatabase=CustomerDatabase.getInstance();
