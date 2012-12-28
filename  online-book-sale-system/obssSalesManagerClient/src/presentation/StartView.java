@@ -135,6 +135,11 @@ public class StartView extends JFrame {
 		
 		contentPane.add(passwordField);
 		
+		JLabel lblObss = new JLabel("obss\u56FE\u4E66\u9500\u552E\u7CFB\u7EDF");
+		lblObss.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD | Font.ITALIC, 23));
+		lblObss.setBounds(129, 21, 246, 46);
+		contentPane.add(lblObss);
+		
 		
 		
 	}
