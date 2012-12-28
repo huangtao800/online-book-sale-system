@@ -23,9 +23,9 @@ public class changePassWordView extends JFrame implements ActionListener{
 	    private javax.swing.JLabel jLabel2;
 	    private javax.swing.JLabel jLabel3;
 	    private javax.swing.JLabel jLabel5;
-	    private javax.swing.JTextField newPWTextField;
-	    private javax.swing.JTextField newPWagainTextField;
-	    private javax.swing.JTextField oldPWTextField;
+	    private javax.swing.JPasswordField newPWTextField;
+	    private javax.swing.JPasswordField newPWagainTextField;
+	    private javax.swing.JPasswordField oldPWTextField;
 	    private javax.swing.JLabel userIDLabel;
 	    
 	    public changePassWordView(changePasswordControllerInterface controller,SalesManagerPO userpo){
@@ -42,9 +42,9 @@ public class changePassWordView extends JFrame implements ActionListener{
 	        cancelButton = new javax.swing.JButton();
 	        userIDLabel = new javax.swing.JLabel();
 	        jLabel5 = new javax.swing.JLabel();
-	        oldPWTextField = new javax.swing.JTextField();
-	        newPWTextField = new javax.swing.JTextField();
-	        newPWagainTextField = new javax.swing.JTextField();
+	        oldPWTextField = new javax.swing.JPasswordField();
+	        newPWTextField = new javax.swing.JPasswordField();
+	        newPWagainTextField = new javax.swing.JPasswordField();
 
 //	        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,24 +121,26 @@ public class changePassWordView extends JFrame implements ActionListener{
 	    
 	    public void actionPerformed(ActionEvent event){
 	    	if(event.getSource()==changePWButton ){
-	    		if(! oldPWTextField.getText().equals("")){
-	    			if( ! oldPWTextField.getText().equals(userpo.getUserPassword())){
+	    		if(!(new String( oldPWTextField.getPassword())).trim().equals("")){
+	    			if( !(new String( oldPWTextField.getPassword())).trim().equals(userpo.getUserPassword())){
 	    				JOptionPane.showMessageDialog(null, "原密码不正确！");
 	    			}else{
-	    				if(newPWTextField.getText().equals("")){
+	    				if((new String(newPWTextField.getPassword())).trim().equals("")){
 	    					JOptionPane.showMessageDialog(null, "新密码不能为空！");
 	    				}else{
-	    					if(newPWagainTextField.getText().equals("")){
+	    					if((new String(newPWagainTextField.getPassword())).trim().equals("")){
 	    						JOptionPane.showMessageDialog(null, "请再次输入新密码！");
 	    					}else{
-	    						if( ! newPWTextField.getText().equals(newPWagainTextField.getText())){
+	    						if( ! (new String(newPWTextField.getPassword())).trim()
+	    								.equals((new String(newPWagainTextField.getPassword())).trim())){
 	    							JOptionPane.showMessageDialog(null, "请确认两次输入的新密码相同！");
 	    						}else{
-	    							UserPO newuserpo=new UserPO(userpo.getUserID(),userpo.getUserName(),newPWTextField.getText(),
+	    							UserPO newuserpo=new UserPO(userpo.getUserID(),userpo.getUserName()
+	    									,(new String(newPWTextField.getPassword())).trim(),
 	    			    					userpo.getUserRole());
 	    							if(controller.changeUser(userpo,newuserpo)== ResultMessage.SUCCEED)
 	    							{
-	    								userpo.setUserPassword(newPWTextField.getText());
+	    								userpo.setUserPassword((new String(newPWTextField.getPassword())).trim());
 	    								JOptionPane.showMessageDialog(null, "密码修改成功！");
 	    								
 	    							}else{
