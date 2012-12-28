@@ -133,4 +133,8 @@ public class SalesManagerViewController implements SalesManagerViewService {
 		public void freshPassword(String newPW){
 			salesManagerView.freshPassword(newPW);
 		}
+		
+		public void changeToAnotherUser(){
+			salesManagerView.setVisible(false);
+		}
 }
