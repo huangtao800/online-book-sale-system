@@ -147,8 +147,12 @@ public class StartView extends JFrame {
 		registryButton.setBounds(342, 78, 111, 33);
 		contentPane.add(registryButton);
 		
+		JLabel lblObss = new JLabel("OBSS\u56FE\u4E66\u9500\u552E\u7CFB\u7EDF");
+		lblObss.setFont(new Font("»ªÎÄ²ÊÔÆ", Font.ITALIC, 23));
+		lblObss.setBounds(141, 24, 199, 25);
+		contentPane.add(lblObss);
+		
 		
 		
 	}
-	
 }
