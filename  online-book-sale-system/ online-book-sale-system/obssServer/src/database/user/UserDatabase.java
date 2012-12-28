@@ -64,31 +64,31 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
         if(userPO.getUserRole()==UserRole.Administrator){
         	 for(int i=0;i<administratorList.size();i++){
              	if(userPO.getUserID().equals(administratorList.get(i).getUserID())){
-             		index = i;
+             		return i;
              	}
              }
         }else if(userPO.getUserRole()==UserRole.SalesManager){
         	 for(int i=0;i<salesManagerList.size();i++){
              	if(userPO.getUserID().equals(salesManagerList.get(i).getUserID())){
-             		index = i;
+             		return i;
              	}
              }
         }else if(userPO.getUserRole()==UserRole.GeneralManager){
         	 for(int i=0;i<generalManagerList.size();i++){
              	if(userPO.getUserID().equals(generalManagerList.get(i).getUserID())){
-             		index = i;
+             		return i;
              	}
              }
         }else{
         	 for(int i=0;i<customerList.size();i++){
              	if(userPO.getUserID().equals(customerList.get(i).getUserID())){
-             		index = i;
+             		return i;
              	}
              }
         }
        
         
-        return index;
+        return -1;
 	}
 	
 	
@@ -239,40 +239,47 @@ public class UserDatabase extends UnicastRemoteObject implements UserDatabaseSer
 				//用户ID和用户类型不可修改，只有用户密码和用户名可以修改
 				int index = getIsExistIndex(beforeUserPO);
 				if(userRole==UserRole.Administrator){
-					administratorList.remove(index);
+//					administratorList.remove(index);
 					
 					String id = afterUserPO.getUserID();
 					String nameString = afterUserPO.getUserName();
 					String password = afterUserPO.getUserPassword();
-					AdministratorPO administratorPO = new AdministratorPO(id, nameString, password);
-					administratorList.add(administratorPO);
+//					AdministratorPO administratorPO = new AdministratorPO(id, nameString, password);
+					administratorList.get(index).setUserName(nameString);
+					administratorList.get(index).setUserPassword(password);
 					return writeAdmin();
 				}else if(userRole==UserRole.SalesManager){
-					salesManagerList.remove(index);
+//					salesManagerList.remove(index);
 					
 					String id = afterUserPO.getUserID();
 					String nameString = afterUserPO.getUserName();
 					String password = afterUserPO.getUserPassword();
-					SalesManagerPO salesManagerPO = new SalesManagerPO(id, nameString, password);
-					salesManagerList.add(salesManagerPO);
+//					SalesManagerPO salesManagerPO = new SalesManagerPO(id, nameString, password);
+//					salesManagerList.add(salesManagerPO);
+					salesManagerList.get(index).setUserName(nameString);
+					salesManagerList.get(index).setUserPassword(password);
 					return writeSalesManager();
 				}else if(userRole==UserRole.GeneralManager){
-					generalManagerList.remove(index);
+//					generalManagerList.remove(index);
 					
 					String id = afterUserPO.getUserID();
 					String nameString = afterUserPO.getUserName();
 					String password = afterUserPO.getUserPassword();
-					GeneralManagerPO generalManagerPO = new GeneralManagerPO(id, nameString, password);
-					generalManagerList.add(generalManagerPO);
+//					GeneralManagerPO generalManagerPO = new GeneralManagerPO(id, nameString, password);
+//					generalManagerList.add(generalManagerPO);
+					generalManagerList.get(index).setUserName(nameString);
+					generalManagerList.get(index).setUserPassword(password);
 					return writeGeneralManager();
 				}else{
-					customerList.remove(index);
+//					customerList.remove(index);
 					
 					String id = afterUserPO.getUserID();
 					String nameString = afterUserPO.getUserName();
 					String password = afterUserPO.getUserPassword();
-					CustomerPO customerPO = new CustomerPO(id, nameString, password, "暂无常用地址");
-					customerList.add(customerPO);
+//					CustomerPO customerPO = new CustomerPO(id, nameString, password, "暂无常用地址");
+					customerList.get(index).setUserName(nameString);
+					customerList.get(index).setUserPassword(password);
+//					customerList.add(customerPO);
 					return writeMember();
 				}
 				
