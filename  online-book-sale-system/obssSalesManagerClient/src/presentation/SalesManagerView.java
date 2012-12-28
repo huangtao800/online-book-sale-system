@@ -9,6 +9,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import bussinessLogicService.StartBLService;
+
 import po.BookPO;
 import po.CustomerPO;
 import po.OrderPO;
@@ -24,6 +26,7 @@ import presentationController.changeUserNameView.changeUserNameController;
 import presentationController.changeUserNameView.changeUserNameControllerInterface;
 import presentationController.searchBookView.SearchBookService;
 import presentationController.searchBookView.SearchBookViewController;
+import presentationController.start.StartController;
 
 
 /**
@@ -111,7 +114,7 @@ public class SalesManagerView extends javax.swing.JFrame {
         changeBookTypeButton = new javax.swing.JButton();
         deleteBookTypeButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        exitButton = new javax.swing.JButton();
+        changeToAnotherUser = new javax.swing.JButton();
         userpo=salesManagerViewController.getUserPO();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -905,12 +908,16 @@ public class SalesManagerView extends javax.swing.JFrame {
 
         jLabel3.setText("销售经理客户端");
 
-        exitButton.setText("退出");
-        exitButton.addActionListener(new java.awt.event.ActionListener() {
+        changeToAnotherUser.setText("切换用户登录");
+        changeToAnotherUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	System.exit(1);	
+            	salesManagerViewController.changeToAnotherUser();
+            	StartBLService startController=new StartController();
+            	
             }
         });
+        
+        
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -919,7 +926,7 @@ public class SalesManagerView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(exitButton))
+                .addComponent(changeToAnotherUser))
             .addComponent(jPanel1)
         );
         layout.setVerticalGroup(
@@ -927,7 +934,7 @@ public class SalesManagerView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(exitButton))
+                    .addComponent(changeToAnotherUser))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1))
         );
@@ -1158,7 +1165,7 @@ public class SalesManagerView extends javax.swing.JFrame {
     private javax.swing.JButton addBookButton;
     private javax.swing.JButton changeUserNameButton;
     private javax.swing.JButton changeUserPasswordButton;
-    private javax.swing.JButton exitButton;
+    private javax.swing.JButton changeToAnotherUser;
     private javax.swing.JButton checkMemberInfoButton;
     private javax.swing.JButton deleteBookButton ;
     private javax.swing.JButton confirmChangeBookButton;
