@@ -239,7 +239,7 @@ public class AdminView extends javax.swing.JFrame {
         	   UserRole userRole = (UserRole)jComboBox2.getSelectedItem();
         	
         	   String id = jTextField6.getText().trim();
-        	   String afterName = jTextField7.getText().trim();
+        	   String afterName = jTextField15.getText().trim();
         	   String beforePassword = (new String (jTextField8.getPassword())).trim();
                String password1 = (new String (jTextField9.getPassword())).trim();
                String password2 = (new String (jTextField10.getPassword())).trim();

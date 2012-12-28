@@ -24,6 +24,7 @@ public class AdminOverview extends javax.swing.JFrame {
 
    
 	public AdminOverview(AdminOverviewService adminOverviewController,AdministratorPO administratorPO) {
+		setTitle("\u7BA1\u7406\u5458\u5BA2\u6237\u7AEF");
 	       this.administratorPO = administratorPO;
 		   this.adminOverviewController = adminOverviewController;
 	       initComponents(this.administratorPO);
@@ -94,11 +95,11 @@ public class AdminOverview extends javax.swing.JFrame {
 
         
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout gl_jPanel1 = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(gl_jPanel1);
+        gl_jPanel1.setHorizontalGroup(
+            gl_jPanel1.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gl_jPanel1.createSequentialGroup()
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -106,20 +107,20 @@ public class AdminOverview extends javax.swing.JFrame {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jSeparator1)
             .addComponent(jScrollPane1)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(gl_jPanel1.createSequentialGroup()
                 .addComponent(jLabel3)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        gl_jPanel1.setVerticalGroup(
+            gl_jPanel1.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gl_jPanel1.createSequentialGroup()
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(gl_jPanel1.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(jButton5)
                     .addComponent(jButton3)))
