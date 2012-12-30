@@ -26,9 +26,10 @@ public class InitMemberData {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		CustomerPO customerPO=new CustomerPO("m1", "huang", "111111","江苏南通");
+		byte[] b = {'a','b'};
+		BookPO bookPO = new BookPO("111111", "Java", "hjuang","中国", "2011","计算机", 10, 5, b, "aa");
 		
-		BookPO bookPO=new BookPO("Java","11111",  "计算机","中国", "hjuang",  "2011", 10, 5);
-		BookPO bookPO2=new BookPO("JavaCode","11112",  "计算机","中国", "gr",  "2012", 10, 5);
+		BookPO bookPO2=new BookPO("111112", "JavaCode", "gf","中国", "2011","计算机", 10, 50, b, "bbb");
 		ArrayList<BookPO> bookList = new ArrayList<BookPO>();
 		bookList.add(bookPO);
 		bookList.add(bookPO2);
