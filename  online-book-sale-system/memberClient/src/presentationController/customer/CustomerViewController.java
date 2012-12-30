@@ -123,6 +123,10 @@ public class CustomerViewController implements CustomerViewService{
 		return newMemberPO;
 	}
 
+	public void changeToAnotherUser(){
+		customerView.setVisible(false);
+	}
+	
 	@Override
 	public ArrayList<String> getBookType() {
 		// TODO Auto-generated method stub
