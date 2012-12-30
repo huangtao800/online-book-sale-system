@@ -267,7 +267,7 @@ public class GeneralManagerView extends JFrame implements ActionListener {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("          首       页           ", jPanel1);
+        jTabbedPane1.addTab("           首      页            ", jPanel1);
 
         jLabel7.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
@@ -330,7 +330,7 @@ public class GeneralManagerView extends JFrame implements ActionListener {
                 {null, null}
             },
             new String [] {
-                "等价券额度/元", "最低消费/元"
+                "额度/元", "最低消费/元"
             }
         ) {
             Class[] types = new Class [] {
@@ -406,14 +406,14 @@ public class GeneralManagerView extends JFrame implements ActionListener {
                     .addComponent(jLabel9)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(setExchangeRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(setExchangeRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(143, 143, 143))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,7 +454,7 @@ public class GeneralManagerView extends JFrame implements ActionListener {
         vip1CheckBox.setText("VIP1");
 
         vip2CheckBox.setText("VIP2");
-
+ 
         vip3CheckBox.setText("VIP3");
 
         vip4CheckBox.setText("VIP4");
@@ -479,10 +479,10 @@ public class GeneralManagerView extends JFrame implements ActionListener {
         jLabel14.setText("等 价 券 赠 送");
 
         sendCouponComboBox.setFont(new java.awt.Font("幼圆", 0, 12)); // NOI18N
-        sendCouponComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "尚无打折券" }));
+        sendCouponComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         sendEquivalentComboBox.setFont(new java.awt.Font("幼圆", 0, 12)); // NOI18N
-        sendEquivalentComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "尚无等价券" }));
+        sendEquivalentComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel4.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
@@ -685,7 +685,7 @@ public class GeneralManagerView extends JFrame implements ActionListener {
         changeUserPasswordButton1.setText(" 修改密码 ");
 
         exitButton.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
-        exitButton.setText("注  销");
+        exitButton.setText(" 切换用户 ");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
