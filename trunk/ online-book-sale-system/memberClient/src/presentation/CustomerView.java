@@ -48,6 +48,8 @@ import java.util.Calendar;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class CustomerView extends JFrame {
 
@@ -319,8 +321,7 @@ public class CustomerView extends JFrame {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("会员");
 
-		jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(
-				javax.swing.BorderFactory.createEtchedBorder(), "关键字查询"));
+		jPanel7.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "\u5173\u952E\u5B57\u67E5\u8BE2", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		bookNameLabel.setText("书名：");
 
@@ -334,126 +335,53 @@ public class CustomerView extends JFrame {
 
 		javax.swing.GroupLayout gl_jPanel7 = new javax.swing.GroupLayout(
 				jPanel7);
-		gl_jPanel7
-				.setHorizontalGroup(gl_jPanel7
-						.createParallelGroup(Alignment.TRAILING)
-						.addGroup(
-								gl_jPanel7
-										.createSequentialGroup()
-										.addGap(49)
-										.addGroup(
-												gl_jPanel7
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																bookNameLabel)
-														.addComponent(
-																publisherLabel))
-										.addGap(31)
-										.addGroup(
-												gl_jPanel7
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																publisherField,
-																193, 193, 193)
-														.addComponent(
-																bookNameField,
-																193, 193, 193))
-										.addPreferredGap(
-												ComponentPlacement.RELATED,
-												183, Short.MAX_VALUE)
-										.addGroup(
-												gl_jPanel7
-														.createParallelGroup(
-																Alignment.TRAILING)
-														.addComponent(
-																publisherYearLabel,
-																GroupLayout.PREFERRED_SIZE,
-																69,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																authorLabel))
-										.addGap(18)
-										.addGroup(
-												gl_jPanel7
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																authorField,
-																GroupLayout.PREFERRED_SIZE,
-																178,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																publisherYearField,
-																GroupLayout.PREFERRED_SIZE,
-																180,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(44))
-						.addGroup(
-								gl_jPanel7
-										.createSequentialGroup()
-										.addContainerGap(381, Short.MAX_VALUE)
-										.addComponent(keywordSearchButton,
-												GroupLayout.PREFERRED_SIZE,
-												110, GroupLayout.PREFERRED_SIZE)
-										.addGap(324)));
-		gl_jPanel7
-				.setVerticalGroup(gl_jPanel7
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								gl_jPanel7
-										.createSequentialGroup()
-										.addGap(24)
-										.addGroup(
-												gl_jPanel7
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																authorLabel)
-														.addComponent(
-																authorField,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																bookNameLabel)
-														.addComponent(
-																bookNameField,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(37)
-										.addGroup(
-												gl_jPanel7
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																publisherYearLabel,
-																GroupLayout.PREFERRED_SIZE,
-																21,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																publisherYearField,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																publisherLabel)
-														.addComponent(
-																publisherField,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(18)
-										.addComponent(keywordSearchButton,
-												GroupLayout.PREFERRED_SIZE, 31,
-												GroupLayout.PREFERRED_SIZE)
-										.addContainerGap(20, Short.MAX_VALUE)));
+		gl_jPanel7.setHorizontalGroup(
+			gl_jPanel7.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_jPanel7.createSequentialGroup()
+					.addGap(49)
+					.addGroup(gl_jPanel7.createParallelGroup(Alignment.LEADING)
+						.addComponent(bookNameLabel)
+						.addComponent(publisherLabel))
+					.addGap(31)
+					.addGroup(gl_jPanel7.createParallelGroup(Alignment.LEADING)
+						.addComponent(publisherField, 193, 193, 193)
+						.addComponent(bookNameField, 193, 193, 193))
+					.addPreferredGap(ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+					.addGroup(gl_jPanel7.createParallelGroup(Alignment.TRAILING)
+						.addComponent(publisherYearLabel, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
+						.addComponent(authorLabel, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_jPanel7.createParallelGroup(Alignment.LEADING)
+						.addComponent(authorField, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+						.addComponent(publisherYearField, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE))
+					.addGap(44))
+				.addGroup(gl_jPanel7.createSequentialGroup()
+					.addContainerGap(409, Short.MAX_VALUE)
+					.addComponent(keywordSearchButton, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+					.addGap(324))
+		);
+		gl_jPanel7.setVerticalGroup(
+			gl_jPanel7.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_jPanel7.createSequentialGroup()
+					.addGap(24)
+					.addGroup(gl_jPanel7.createParallelGroup(Alignment.BASELINE)
+						.addComponent(authorLabel, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+						.addComponent(authorField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(bookNameLabel)
+						.addComponent(bookNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(37)
+					.addGroup(gl_jPanel7.createParallelGroup(Alignment.BASELINE)
+						.addComponent(publisherYearLabel, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+						.addComponent(publisherYearField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(publisherLabel)
+						.addComponent(publisherField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(keywordSearchButton, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(20, Short.MAX_VALUE))
+		);
 		jPanel7.setLayout(gl_jPanel7);
 
-		jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(
-				javax.swing.BorderFactory.createEtchedBorder(), "分类查询"));
+		jPanel8.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "\u5206\u7C7B\u67E5\u8BE2", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		ArrayList<String> typeList = memberViewController.getBookType();
 		String[] typeString = new String[typeList.size()];
@@ -514,12 +442,14 @@ public class CustomerView extends JFrame {
 				jPanel6);
 		gl_jPanel6.setHorizontalGroup(
 			gl_jPanel6.createParallelGroup(Alignment.LEADING)
-				.addComponent(jPanel7, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
 				.addComponent(jPanel8, GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
 				.addGroup(gl_jPanel6.createSequentialGroup()
 					.addGap(332)
 					.addComponent(enterCartButton, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(391, Short.MAX_VALUE))
+				.addGroup(gl_jPanel6.createSequentialGroup()
+					.addComponent(jPanel7, GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		gl_jPanel6.setVerticalGroup(
 			gl_jPanel6.createParallelGroup(Alignment.LEADING)
