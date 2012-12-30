@@ -120,13 +120,14 @@ public class changeUserNameView extends JFrame implements ActionListener{
 	    		if(newUserNameTextField.getText().trim().equals("")){
 	    			JOptionPane.showMessageDialog(null, "新用户名不能为空！");
 	    		}else{
-	    			UserPO newuserpo=new UserPO(userpo.getUserID(),newUserNameTextField.getText(),
+	    			UserPO newuserpo=new UserPO(userpo.getUserID(),newUserNameTextField.getText().trim(),
 	    					userpo.getUserPassword(),userpo.getUserRole());
 	    			if(  controller.changeUser(userpo,newuserpo) 
 	    			     ==ResultMessage.SUCCEED)
 	    			{
-	    				userpo.setUserName(newUserNameTextField.getText());
+	    				userpo.setUserName(newUserNameTextField.getText().trim());
 	    				JOptionPane.showMessageDialog(null, "修改用户名成功！");
+	    				dispose();
 	    			}else{
 	    				JOptionPane.showMessageDialog(null, "修改用户名失败！");
 	    			}
