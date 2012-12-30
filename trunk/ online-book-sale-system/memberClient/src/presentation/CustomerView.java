@@ -16,6 +16,7 @@ import po.OrderPO;
 import po.ResultMessage;
 import presentationController.Sales.OrderVO;
 import presentationController.customer.CustomerViewService;
+import presentationController.start.StartController;
 import vo.CouponVO;
 import vo.EquivalentVO;
 import vo.FavorityVO;
@@ -25,6 +26,8 @@ import vo.NewOrderVO;
 
 
 import bussinessLogic.controller.*;
+import bussinessLogicService.StartBLService;
+
 import javax.swing.JTabbedPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -103,7 +106,7 @@ public class CustomerView extends JFrame {
 	private JButton enterCartButton;
 	private JButton freshOrderButton;
 	private JButton orderDetailButton;
-	private JButton exitButton;
+	private JButton changeToAnotherCustomer;
 	private JButton button;
 
 	// /**
@@ -1194,13 +1197,14 @@ public class CustomerView extends JFrame {
 		jTabbedPane1.addTab("     \u6211\u7684\u8D2D\u4E70\u8BB0\u5F55     ",
 				jPanel5);
 
-		exitButton = new JButton("\u9000\u51FA");
-		exitButton.addActionListener(new ActionListener() {
+		changeToAnotherCustomer = new JButton("\u5207\u6362\u7528\u6237");
+		changeToAnotherCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				memberViewController.changeToAnotherUser();
+				StartBLService startController=new StartController();
 			}
 		});
-		exitButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+		changeToAnotherCustomer.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 
 		button = new JButton("\u8FDB\u5165\u8D2D\u7269\u8F66");
 		button.addActionListener(new ActionListener() {
@@ -1221,7 +1225,7 @@ public class CustomerView extends JFrame {
 										GroupLayout.PREFERRED_SIZE, 109,
 										GroupLayout.PREFERRED_SIZE)
 								.addGap(39)
-								.addComponent(exitButton,
+								.addComponent(changeToAnotherCustomer,
 										GroupLayout.PREFERRED_SIZE, 100,
 										GroupLayout.PREFERRED_SIZE).addGap(60))
 				.addComponent(jTabbedPane1, Alignment.LEADING,
@@ -1240,7 +1244,7 @@ public class CustomerView extends JFrame {
 														GroupLayout.DEFAULT_SIZE,
 														Short.MAX_VALUE)
 												.addComponent(
-														exitButton,
+														changeToAnotherCustomer,
 														GroupLayout.DEFAULT_SIZE,
 														31, Short.MAX_VALUE))
 								.addGap(13)
