@@ -25,7 +25,7 @@ public class ClientStart {
 				try {
 					
 					UIManager.setLookAndFeel(new net.sourceforge.napkinlaf.NapkinLookAndFeel());
-					setUIFont(new FontUIResource(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 17)));
+					setUIFont(new FontUIResource(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16)));
 					StartBLService startController=new StartController();
 
 				} catch (Exception e) {
