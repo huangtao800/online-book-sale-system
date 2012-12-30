@@ -50,6 +50,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import javax.swing.Box;
 
 public class CustomerView extends JFrame {
 
@@ -310,10 +311,7 @@ public class CustomerView extends JFrame {
 		jScrollPane2 = new javax.swing.JScrollPane();
 		equivalentTable = new javax.swing.JTable();
 		jPanel10 = new javax.swing.JPanel();
-		jPanel10.setBorder(new TitledBorder(new EtchedBorder(
-				EtchedBorder.LOWERED, null, null),
-				"  \u6211\u7684\u6253\u6298\u5238  ", TitledBorder.LEADING,
-				TitledBorder.TOP, null, null));
+		jPanel10.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "  \u6211\u7684\u6253\u6298\u5238  ", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		jPanel5 = new javax.swing.JPanel();
 		jScrollPane3 = new javax.swing.JScrollPane();
 		orderTable = new javax.swing.JTable();
@@ -460,7 +458,7 @@ public class CustomerView extends JFrame {
 					.addComponent(jPanel8, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
 					.addGap(27)
 					.addComponent(enterCartButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(71, Short.MAX_VALUE))
+					.addContainerGap(72, Short.MAX_VALUE))
 		);
 		jPanel6.setLayout(gl_jPanel6);
 
@@ -586,197 +584,80 @@ public class CustomerView extends JFrame {
 
 		javax.swing.GroupLayout gl_jPanel2 = new javax.swing.GroupLayout(
 				jPanel2);
-		gl_jPanel2
-				.setHorizontalGroup(gl_jPanel2
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								gl_jPanel2
-										.createSequentialGroup()
-										.addContainerGap(385, Short.MAX_VALUE)
-										.addComponent(cancelButton,
-												GroupLayout.PREFERRED_SIZE,
-												103, GroupLayout.PREFERRED_SIZE)
-										.addGap(327))
-						.addGroup(
-								gl_jPanel2
-										.createSequentialGroup()
-										.addGap(33)
-										.addGroup(
-												gl_jPanel2
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																changeAddressButton,
-																GroupLayout.PREFERRED_SIZE,
-																97,
-																GroupLayout.PREFERRED_SIZE)
-														.addGroup(
-																gl_jPanel2
-																		.createSequentialGroup()
-																		.addComponent(
-																				jLabel1)
-																		.addGap(18)
-																		.addComponent(
-																				addressLabel,
-																				GroupLayout.PREFERRED_SIZE,
-																				477,
-																				GroupLayout.PREFERRED_SIZE))
-														.addGroup(
-																gl_jPanel2
-																		.createSequentialGroup()
-																		.addGroup(
-																				gl_jPanel2
-																						.createParallelGroup(
-																								Alignment.LEADING,
-																								false)
-																						.addGroup(
-																								gl_jPanel2
-																										.createSequentialGroup()
-																										.addComponent(
-																												jLabel3)
-																										.addGap(18)
-																										.addComponent(
-																												nameLabel))
-																						.addGroup(
-																								gl_jPanel2
-																										.createSequentialGroup()
-																										.addComponent(
-																												ID,
-																												GroupLayout.PREFERRED_SIZE,
-																												46,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addPreferredGap(
-																												ComponentPlacement.RELATED,
-																												GroupLayout.DEFAULT_SIZE,
-																												Short.MAX_VALUE)
-																										.addComponent(
-																												idLabel)))
-																		.addGap(29)
-																		.addGroup(
-																				gl_jPanel2
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(
-																								changeNameButton,
-																								GroupLayout.DEFAULT_SIZE,
-																								106,
-																								Short.MAX_VALUE)
-																						.addComponent(
-																								changePasswordButton,
-																								GroupLayout.DEFAULT_SIZE,
-																								106,
-																								Short.MAX_VALUE))
-																		.addGap(149)
-																		.addGroup(
-																				gl_jPanel2
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(
-																								jLabel4,
-																								GroupLayout.PREFERRED_SIZE,
-																								61,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								jLabel5))
-																		.addGap(44)
-																		.addGroup(
-																				gl_jPanel2
-																						.createParallelGroup(
-																								Alignment.TRAILING,
-																								false)
-																						.addComponent(
-																								pointLabel,
-																								GroupLayout.DEFAULT_SIZE,
-																								GroupLayout.DEFAULT_SIZE,
-																								Short.MAX_VALUE)
-																						.addComponent(
-																								rankLabel,
-																								GroupLayout.DEFAULT_SIZE,
-																								GroupLayout.DEFAULT_SIZE,
-																								Short.MAX_VALUE))
-																		.addGap(27)
-																		.addComponent(
-																				freshPointButton,
-																				GroupLayout.PREFERRED_SIZE,
-																				122,
-																				GroupLayout.PREFERRED_SIZE)))
-										.addContainerGap()));
-		gl_jPanel2
-				.setVerticalGroup(gl_jPanel2
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								gl_jPanel2
-										.createSequentialGroup()
-										.addGap(13)
-										.addGroup(
-												gl_jPanel2
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																gl_jPanel2
-																		.createParallelGroup(
-																				Alignment.BASELINE)
-																		.addComponent(
-																				jLabel4,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				Short.MAX_VALUE)
-																		.addComponent(
-																				pointLabel))
-														.addGroup(
-																gl_jPanel2
-																		.createParallelGroup(
-																				Alignment.BASELINE)
-																		.addComponent(
-																				idLabel)
-																		.addComponent(
-																				ID)))
-										.addGap(57)
-										.addGroup(
-												gl_jPanel2
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(jLabel3)
-														.addComponent(nameLabel)
-														.addComponent(jLabel5)
-														.addComponent(rankLabel)
-														.addComponent(
-																changeNameButton,
-																GroupLayout.PREFERRED_SIZE,
-																34,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(37)
-										.addComponent(changePasswordButton,
-												GroupLayout.PREFERRED_SIZE, 36,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(29)
-										.addGroup(
-												gl_jPanel2
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(jLabel1)
-														.addComponent(
-																addressLabel,
-																GroupLayout.PREFERRED_SIZE,
-																34,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(18)
-										.addComponent(changeAddressButton,
-												GroupLayout.PREFERRED_SIZE, 35,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(46)
-										.addComponent(cancelButton,
-												GroupLayout.PREFERRED_SIZE, 34,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(37))
-						.addGroup(
-								gl_jPanel2
-										.createSequentialGroup()
-										.addContainerGap()
-										.addComponent(freshPointButton,
-												GroupLayout.PREFERRED_SIZE, 34,
-												GroupLayout.PREFERRED_SIZE)
-										.addContainerGap(387, Short.MAX_VALUE)));
+		gl_jPanel2.setHorizontalGroup(
+			gl_jPanel2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_jPanel2.createSequentialGroup()
+					.addContainerGap(413, Short.MAX_VALUE)
+					.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+					.addGap(327))
+				.addGroup(gl_jPanel2.createSequentialGroup()
+					.addGap(33)
+					.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING)
+						.addComponent(changeAddressButton, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_jPanel2.createSequentialGroup()
+							.addComponent(jLabel1)
+							.addGap(18)
+							.addComponent(addressLabel, GroupLayout.PREFERRED_SIZE, 477, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_jPanel2.createSequentialGroup()
+							.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING, false)
+								.addGroup(gl_jPanel2.createSequentialGroup()
+									.addComponent(jLabel3)
+									.addGap(18)
+									.addComponent(nameLabel))
+								.addGroup(gl_jPanel2.createSequentialGroup()
+									.addComponent(ID, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(idLabel)))
+							.addGap(29)
+							.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING)
+								.addComponent(changeNameButton, GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+								.addComponent(changePasswordButton, GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+							.addGap(149)
+							.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING)
+								.addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
+								.addComponent(jLabel5))
+							.addGap(44)
+							.addGroup(gl_jPanel2.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(pointLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(rankLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addGap(27)
+							.addComponent(freshPointButton, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
+		);
+		gl_jPanel2.setVerticalGroup(
+			gl_jPanel2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_jPanel2.createSequentialGroup()
+					.addGap(13)
+					.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_jPanel2.createParallelGroup(Alignment.BASELINE)
+							.addComponent(jLabel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(pointLabel))
+						.addGroup(gl_jPanel2.createParallelGroup(Alignment.BASELINE)
+							.addComponent(idLabel)
+							.addComponent(ID)))
+					.addGap(57)
+					.addGroup(gl_jPanel2.createParallelGroup(Alignment.BASELINE)
+						.addComponent(jLabel3)
+						.addComponent(nameLabel)
+						.addComponent(jLabel5)
+						.addComponent(rankLabel)
+						.addComponent(changeNameButton, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
+					.addGap(37)
+					.addComponent(changePasswordButton, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					.addGap(29)
+					.addGroup(gl_jPanel2.createParallelGroup(Alignment.BASELINE)
+						.addComponent(jLabel1)
+						.addComponent(addressLabel, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(changeAddressButton, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					.addGap(45)
+					.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addGap(37))
+				.addGroup(gl_jPanel2.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(freshPointButton, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(421, Short.MAX_VALUE))
+		);
 		jPanel2.setLayout(gl_jPanel2);
 
 		javax.swing.GroupLayout gl_jPanel1 = new javax.swing.GroupLayout(
@@ -917,8 +798,7 @@ public class CustomerView extends JFrame {
 
 		jTabbedPane1.addTab("      \u6536\u85CF\u5939      ", jPanel3);
 
-		jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(
-				javax.swing.BorderFactory.createEtchedBorder(), "  我的等价券  "));
+		jPanel9.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "\u6211\u7684\u7B49\u4EF7\u5238", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		equivalentTable.setModel(new DefaultTableModel(new Object[][] {
 				{ null, null, null, null }, { null, null, null, null },
@@ -1538,56 +1418,4 @@ public class CustomerView extends JFrame {
 		}
 
 	}
-
-//	class OrderTableModel extends AbstractTableModel {
-//		ArrayList<OrderPO> orderList = memberPO.getOrderList();
-//
-//		@Override
-//		public int getRowCount() {
-//			// TODO Auto-generated method stub
-//			return orderList.size();
-//		}
-//
-//		@Override
-//		public int getColumnCount() {
-//			// TODO Auto-generated method stub
-//			return 5;
-//		}
-//
-//		@Override
-//		public Object getValueAt(int rowIndex, int columnIndex) {
-//			// TODO Auto-generated method stub
-//			switch (columnIndex) {
-//			case 0:
-//				return orderList.get(rowIndex).getOrderNum();
-//			case 1:
-//				return orderList.get(rowIndex).getTotalPrice();
-//			case 2:
-//				return orderList.get(rowIndex).getOrderState();
-//			case 3:
-//				Calendar calendar = orderList.get(rowIndex).getDate();
-//				return calendar.get(Calendar.YEAR) + "年"
-//						+ calendar.get(Calendar.MONTH) + "月"
-//						+ calendar.get(Calendar.DAY_OF_MONTH) + "日";// 返回日期
-//			default:
-//				return orderList.get(rowIndex).getAddress();
-//			}
-//		}
-//
-//		public String getColumnName(int c) {
-//
-//			switch (c) {
-//			case 0:
-//				return "订单编号";
-//			case 1:
-//				return "订单总价";
-//			case 2:
-//				return "订单状态";
-//			case 3:
-//				return "下单日期";
-//			default:
-//				return "送货地址";
-//			}
-//		}
-//	}
 }
