@@ -72,7 +72,7 @@ public class StartView extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel nameLabel = new JLabel("\u7528\u6237\u540D\uFF1A");
-		nameLabel.setFont(new Font("华文行楷", Font.PLAIN, 15));
+		nameLabel.setFont(new Font("华文行楷", Font.PLAIN, 17));
 		nameLabel.setBounds(64, 78, 78, 33);
 		contentPane.add(nameLabel);
 		
@@ -91,11 +91,12 @@ public class StartView extends JFrame {
 		});
 		
 		JLabel passwordLabel = new JLabel("\u5BC6\u7801\uFF1A");
-		passwordLabel.setFont(new Font("华文行楷", Font.PLAIN, 15));
+		passwordLabel.setFont(new Font("华文行楷", Font.PLAIN, 17));
 		passwordLabel.setBounds(64, 129, 78, 33);
 		contentPane.add(passwordLabel);
 		
 		final JButton logButton = new JButton("\u767B\u5F55");
+		logButton.setFont(new Font("微软雅黑", Font.PLAIN, 17));
 		
 		//logButton的ActionListener
 		logButton.addActionListener(new ActionListener() {
@@ -113,6 +114,7 @@ public class StartView extends JFrame {
 		contentPane.add(logButton);
 		
 		JButton cancelButton = new JButton("\u9000\u51FA");
+		cancelButton.setFont(new Font("微软雅黑", Font.PLAIN, 17));
 		
 		//cancelButton的ActionListener
 		cancelButton.addActionListener(new ActionListener() {
@@ -139,6 +141,7 @@ public class StartView extends JFrame {
 		contentPane.add(passwordField);
 		
 		JButton registryButton = new JButton("\u6CE8\u518C\u65B0\u7528\u6237");
+		registryButton.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		registryButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				startController.startRegistry();

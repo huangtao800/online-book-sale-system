@@ -90,6 +90,7 @@ public class RegistryView extends JFrame {
 		contentPane.add(passwordConfirmField);
 		
 		JButton registryButton = new JButton("\u6CE8\u518C");
+		registryButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 17));
 		registryButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String name=nameField.getText();
@@ -118,6 +119,7 @@ public class RegistryView extends JFrame {
 		contentPane.add(registryButton);
 		
 		JButton cancelButton = new JButton("\u53D6\u6D88");
+		cancelButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 17));
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);

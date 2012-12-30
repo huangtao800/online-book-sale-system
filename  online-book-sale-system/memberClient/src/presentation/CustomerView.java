@@ -512,36 +512,26 @@ public class CustomerView extends JFrame {
 
 		javax.swing.GroupLayout gl_jPanel6 = new javax.swing.GroupLayout(
 				jPanel6);
-		gl_jPanel6.setHorizontalGroup(gl_jPanel6
-				.createParallelGroup(Alignment.LEADING)
-				.addComponent(jPanel7, Alignment.TRAILING,
-						GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
-				.addComponent(jPanel8, GroupLayout.DEFAULT_SIZE, 827,
-						Short.MAX_VALUE)
-				.addGroup(
-						gl_jPanel6
-								.createSequentialGroup()
-								.addGap(332)
-								.addComponent(enterCartButton,
-										GroupLayout.PREFERRED_SIZE, 110,
-										GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(385, Short.MAX_VALUE)));
-		gl_jPanel6.setVerticalGroup(gl_jPanel6.createParallelGroup(
-				Alignment.LEADING).addGroup(
-				gl_jPanel6
-						.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(jPanel7, GroupLayout.PREFERRED_SIZE,
-								GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(18)
-						.addComponent(jPanel8, GroupLayout.PREFERRED_SIZE, 129,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(27)
-						.addComponent(enterCartButton,
-								GroupLayout.PREFERRED_SIZE, 38,
-								GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(32, Short.MAX_VALUE)));
+		gl_jPanel6.setHorizontalGroup(
+			gl_jPanel6.createParallelGroup(Alignment.LEADING)
+				.addComponent(jPanel7, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
+				.addComponent(jPanel8, GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
+				.addGroup(gl_jPanel6.createSequentialGroup()
+					.addGap(332)
+					.addComponent(enterCartButton, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(391, Short.MAX_VALUE))
+		);
+		gl_jPanel6.setVerticalGroup(
+			gl_jPanel6.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_jPanel6.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(jPanel7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(jPanel8, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+					.addGap(27)
+					.addComponent(enterCartButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(71, Short.MAX_VALUE))
+		);
 		jPanel6.setLayout(gl_jPanel6);
 
 		jTabbedPane1.addTab("       \u9996\u9875       ", jPanel6);
