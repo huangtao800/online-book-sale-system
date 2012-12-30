@@ -162,7 +162,7 @@ public class BookDatabase extends UnicastRemoteObject implements BookDatabaseSer
 		ArrayList<BookPO> arrayList = readFile();
 		ArrayList<BookPO> bookList = new ArrayList<BookPO>();
 		for(int i=0;i<arrayList.size();i++){
-			if((arrayList.get(i).getBookName().contains(name)||name.equals(""))&&
+			if((arrayList.get(i).getBookName().toLowerCase().contains(name.toLowerCase())||name.equals(""))&&
 			   (arrayList.get(i).getAuthor().equals(author)||author.equals(""))&&
 			   (arrayList.get(i).getPress().equals(press)||press.equals(""))&&
 			   (arrayList.get(i).getPublishDate().equals(publishDate)||publishDate.equals(""))&&
