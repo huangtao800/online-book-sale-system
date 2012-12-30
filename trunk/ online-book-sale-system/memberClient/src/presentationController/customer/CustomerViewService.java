@@ -22,4 +22,5 @@ public interface CustomerViewService {
 	public CustomerPO freshMemberPO(String memberID);
 
 	public ArrayList<String> getBookType();
+	public void changeToAnotherUser();
 }
