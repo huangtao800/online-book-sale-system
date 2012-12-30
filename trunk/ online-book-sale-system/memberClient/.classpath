@@ -5,5 +5,7 @@
 	<classpathentry kind="lib" path="JTattoo.jar"/>
 	<classpathentry kind="lib" path="substance.jar"/>
 	<classpathentry kind="lib" path="trident.jar"/>
+	<classpathentry kind="lib" path="napkinlaf-swingset2.jar"/>
+	<classpathentry kind="lib" path="napkinlaf.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
