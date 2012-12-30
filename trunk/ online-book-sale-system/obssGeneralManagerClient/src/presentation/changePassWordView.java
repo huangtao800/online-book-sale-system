@@ -23,9 +23,9 @@ public class changePassWordView extends JFrame implements ActionListener{
 	    private javax.swing.JLabel jLabel2;
 	    private javax.swing.JLabel jLabel3;
 	    private javax.swing.JLabel jLabel5;
-	    private javax.swing.JTextField newPWTextField;
-	    private javax.swing.JTextField newPWagainTextField;
-	    private javax.swing.JTextField oldPWTextField;
+	    private javax.swing.JPasswordField newPWTextField;
+	    private javax.swing.JPasswordField newPWagainTextField;
+	    private javax.swing.JPasswordField oldPWTextField;
 	    private javax.swing.JLabel userIDLabel;
 	    
 	    public changePassWordView(changePasswordControllerInterface controller,GeneralManagerPO userpo){
@@ -42,9 +42,9 @@ public class changePassWordView extends JFrame implements ActionListener{
 	        cancelButton = new javax.swing.JButton();
 	        userIDLabel = new javax.swing.JLabel();
 	        jLabel5 = new javax.swing.JLabel();
-	        oldPWTextField = new javax.swing.JTextField();
-	        newPWTextField = new javax.swing.JTextField();
-	        newPWagainTextField = new javax.swing.JTextField();
+	        oldPWTextField = new javax.swing.JPasswordField();
+	        newPWTextField = new javax.swing.JPasswordField();
+	        newPWagainTextField = new javax.swing.JPasswordField();
 
 //	        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,6 +150,7 @@ public class changePassWordView extends JFrame implements ActionListener{
 	    							{
 	    								userpo.setUserPassword(newPWTextField.getText());
 	    								JOptionPane.showMessageDialog(null, "√‹¬Î–ﬁ∏ƒ≥…π¶£°");
+	    								dispose();
 	    								
 	    							}else{
 	    								JOptionPane.showMessageDialog(null, "√‹¬Î–ﬁ∏ƒ ß∞‹£°");
