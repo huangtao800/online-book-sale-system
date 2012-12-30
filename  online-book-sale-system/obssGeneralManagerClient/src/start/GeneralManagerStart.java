@@ -11,8 +11,7 @@ public class GeneralManagerStart {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static void run(){
 		EventQueue.invokeLater(new Runnable() {
 			@SuppressWarnings("unused")
 			public void run() {
@@ -25,6 +24,22 @@ public class GeneralManagerStart {
 				}
 			}
 		});
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		run();
+//		EventQueue.invokeLater(new Runnable() {
+//			@SuppressWarnings("unused")
+//			public void run() {
+//				try {
+//					UIManager.setLookAndFeel(new AluminiumLookAndFeel());
+//					StartBLService startController=new StartController();
+//					
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
 	}
 
 }

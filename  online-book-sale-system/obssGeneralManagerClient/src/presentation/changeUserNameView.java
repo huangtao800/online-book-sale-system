@@ -107,10 +107,10 @@ public class changeUserNameView extends JFrame implements ActionListener{
 	        );
 
 	        pack();
-	        
+	        this.setLocation(400, 200);
 	        this.setVisible(true);
 	        oldUserNameLabel.setText(userpo.getUserName());
-	        this.setLocation(300, 200);
+
 	        changeUserNameButton.addActionListener(this);
 	       cancelButton.addActionListener(this);
    }

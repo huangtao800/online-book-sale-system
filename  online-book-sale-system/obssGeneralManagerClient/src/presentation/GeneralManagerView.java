@@ -13,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import bussinessLogicService.StartBLService;
+
 import festival.News;
 
 import po.GeneralManagerPO;
@@ -26,6 +28,8 @@ import presentationController.changePasswordView.changePasswordController;
 import presentationController.changePasswordView.changePasswordControllerInterface;
 import presentationController.changeUserNameView.changeUserNameController;
 import presentationController.changeUserNameView.changeUserNameControllerInterface;
+import presentationController.strat.StartController;
+import start.GeneralManagerStart;
 
 public class GeneralManagerView extends JFrame implements ActionListener {
 	   private static final int line1=40;//等价券设置40行
@@ -42,9 +46,9 @@ public class GeneralManagerView extends JFrame implements ActionListener {
 
 	   private javax.swing.JTextField amountOfCouponTextField;
 	    private javax.swing.JTextField amountOfEquivalentTextField;
-	    private javax.swing.JButton cancelPromotionButton;
-	    private javax.swing.JButton cancelSendCouponButton;
-	    private javax.swing.JButton cancelSendEquiButton;
+//	    private javax.swing.JButton cancelPromotionButton;
+//	    private javax.swing.JButton cancelSendCouponButton;
+//	    private javax.swing.JButton cancelSendEquiButton;
 	    private javax.swing.JButton changeUserNameButton1;
 	    private javax.swing.JButton changeUserPasswordButton1;
 	    private javax.swing.JButton checkPresentButton;
@@ -117,6 +121,7 @@ public class GeneralManagerView extends JFrame implements ActionListener {
     }
     
     public void createView(){
+    	
         jLabel6 = new javax.swing.JLabel();
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jPopupMenu1 = new javax.swing.JPopupMenu();
@@ -140,7 +145,6 @@ public class GeneralManagerView extends JFrame implements ActionListener {
         jScrollPane2 = new javax.swing.JScrollPane();
         setEqualityTable = new javax.swing.JTable();
         setPromotionButton = new javax.swing.JButton();
-        cancelPromotionButton = new javax.swing.JButton();
         checkPromotionButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         setCouponTable = new javax.swing.JTable();
@@ -156,7 +160,6 @@ public class GeneralManagerView extends JFrame implements ActionListener {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel18 = new javax.swing.JLabel();
         sendEquivalentButton = new javax.swing.JButton();
-        cancelSendCouponButton = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         sendCouponComboBox = new javax.swing.JComboBox();
         endDateOfCouponTextField = new javax.swing.JTextField();
@@ -166,7 +169,6 @@ public class GeneralManagerView extends JFrame implements ActionListener {
         endDateOfEqivalentTextField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         sendCouponButton = new javax.swing.JButton();
-        cancelSendEquiButton = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -190,36 +192,34 @@ public class GeneralManagerView extends JFrame implements ActionListener {
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
-//        jLabel13.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
         jLabel13.setText("等价券赠送");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-//        jLabel19.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
-//        jLabel19.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel19.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
         jLabel19.setText("欢迎进入网上图书销售系统 ");
 
-//        jLabel27.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
-//        jLabel27.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel27.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(102, 102, 102));
         jLabel27.setText("设置促销手段");
 
-//        jLabel29.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
-//        jLabel29.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel29.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(102, 102, 102));
         jLabel29.setText("查看大范围促销");
-//
-//        jLabel30.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
-//        jLabel30.setForeground(new java.awt.Color(102, 102, 102));
+
+        jLabel30.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(102, 102, 102));
         jLabel30.setText("修改个人信息");
-//
-//        jLabel32.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
-//        jLabel32.setForeground(new java.awt.Color(255, 0, 0));
+
+        jLabel32.setFont(new java.awt.Font("幼圆", 1, 24)); // NOI18N
         jLabel32.setText("总经理客户端");
 
-//        jLabel34.setFont(new java.awt.Font("幼圆", 0, 16)); // NOI18N
-//        jLabel34.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel34.setFont(new java.awt.Font("幼圆", 0, 16)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(102, 102, 102));
         jLabel34.setText("大范围促销");
 
-//        jLabel5.setFont(new java.awt.Font("幼圆", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("幼圆", 0, 18)); // NOI18N
         jLabel5.setText("您可以进行：");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -267,23 +267,23 @@ public class GeneralManagerView extends JFrame implements ActionListener {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("             首页              ", jPanel1);
+        jTabbedPane1.addTab("          首       页           ", jPanel1);
 
-//        jLabel7.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-//        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("积分与消费额");
 
-//        setExchangeRateTextField.setFont(new java.awt.Font("宋体", 1, 14)); // NOI18N
- 
-//        jLabel8.setFont(new java.awt.Font("宋体", 3, 24)); // NOI18N
+        setExchangeRateTextField.setFont(new java.awt.Font("宋体", 1, 14)); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("宋体", 3, 24)); // NOI18N
         jLabel8.setText("%");
 
-//        jLabel9.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-//        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel9.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
         jLabel9.setText("等价券:");
 
-//        jLabel10.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-//        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel10.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("打折券：");
 
         setEqualityTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -348,16 +348,10 @@ public class GeneralManagerView extends JFrame implements ActionListener {
         setEqualityTable.getColumnModel().getColumn(0).setResizable(false);
         setEqualityTable.getColumnModel().getColumn(1).setResizable(false);
 
-//        setPromotionButton.setFont(new java.awt.Font("宋体", 1, 24)); // NOI18N
-//        setPromotionButton.setForeground(new java.awt.Color(255, 0, 51));
+        setPromotionButton.setFont(new java.awt.Font("宋体", 1, 24)); // NOI18N
         setPromotionButton.setText("保存设置");
 
-//        cancelPromotionButton.setFont(new java.awt.Font("宋体", 1, 24)); // NOI18N
-//        cancelPromotionButton.setForeground(new java.awt.Color(0, 153, 153));
-        cancelPromotionButton.setText("取  消");
-
-//        checkPromotionButton.setFont(new java.awt.Font("宋体", 1, 24)); // NOI18N
-//        checkPromotionButton.setForeground(new java.awt.Color(204, 204, 0));
+        checkPromotionButton.setFont(new java.awt.Font("宋体", 1, 24)); // NOI18N
         checkPromotionButton.setText("查  看");
 
         setCouponTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -393,8 +387,8 @@ public class GeneralManagerView extends JFrame implements ActionListener {
         setCouponTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         setCouponTable.getColumnModel().getColumn(0).setResizable(false);
 
-//        jLabel1.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-//        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("的兑换比例：");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -402,12 +396,11 @@ public class GeneralManagerView extends JFrame implements ActionListener {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(checkPromotionButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(setPromotionButton, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                    .addComponent(cancelPromotionButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(setPromotionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkPromotionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
@@ -430,17 +423,15 @@ public class GeneralManagerView extends JFrame implements ActionListener {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(89, 89, 89)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(190, 190, 190)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(checkPromotionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(83, 83, 83)
-                                .addComponent(setPromotionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(96, 96, 96)
-                                .addComponent(cancelPromotionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 126, Short.MAX_VALUE))
+                                .addGap(100, 100, 100)
+                                .addComponent(checkPromotionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(130, 130, 130)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(setPromotionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 159, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -463,81 +454,70 @@ public class GeneralManagerView extends JFrame implements ActionListener {
         vip1CheckBox.setText("VIP1");
 
         vip2CheckBox.setText("VIP2");
-  
+
         vip3CheckBox.setText("VIP3");
 
         vip4CheckBox.setText("VIP4");
 
         vip5CheckBox.setText("VIP5");
 
-//        jLabel12.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-//        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel12.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
         jLabel12.setText("选择会员等级");
 
-//        jLabel15.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
-//        jLabel15.setForeground(new java.awt.Color(0, 51, 153));
+        jLabel15.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
         jLabel15.setText("打 折 券 赠 送");
 
-//        jLabel18.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
-//        jLabel18.setForeground(new java.awt.Color(255, 0, 102));
+        jLabel18.setFont(new java.awt.Font("幼圆", 0, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 0, 102));
         jLabel18.setText("提示：日期格式为YYYY/MM/DD，如：2013/01/20");
 
-//        sendEquivalentButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
-//        sendEquivalentButton.setForeground(new java.awt.Color(102, 0, 102));
+        sendEquivalentButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
         sendEquivalentButton.setText("赠送等价券");
 
-//        cancelSendCouponButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
-//        cancelSendCouponButton.setForeground(new java.awt.Color(0, 51, 153));
-        cancelSendCouponButton.setText(" 取  消 ");
-
-//        jLabel14.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
-//        jLabel14.setForeground(new java.awt.Color(102, 0, 102));
+        jLabel14.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
         jLabel14.setText("等 价 券 赠 送");
 
-//        sendCouponComboBox.setFont(new java.awt.Font("幼圆", 0, 12)); // NOI18N
+        sendCouponComboBox.setFont(new java.awt.Font("幼圆", 0, 12)); // NOI18N
         sendCouponComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "尚无打折券" }));
 
-//        sendEquivalentComboBox.setFont(new java.awt.Font("幼圆", 0, 12)); // NOI18N
+        sendEquivalentComboBox.setFont(new java.awt.Font("幼圆", 0, 12)); // NOI18N
         sendEquivalentComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "尚无等价券" }));
 
-//        jLabel4.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-//        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("数量：");
 
-//        jLabel11.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-//        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel11.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
         jLabel11.setText("张");
 
-//        sendCouponButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
-//        sendCouponButton.setForeground(new java.awt.Color(0, 51, 153));
+        sendCouponButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
+        sendCouponButton.setForeground(new java.awt.Color(51, 51, 51));
         sendCouponButton.setText("赠送打折券");
 
-//        cancelSendEquiButton.setFont(new java.awt.Font("幼圆", 1, 18)); // NOI18N
-//        cancelSendEquiButton.setForeground(new java.awt.Color(102, 0, 102));
-        cancelSendEquiButton.setText("取  消");
-
-//        jLabel17.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-//        jLabel17.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel17.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(102, 102, 102));
         jLabel17.setText("有效截止日期：");
 
-//        jLabel21.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-//        jLabel21.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel21.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(102, 102, 102));
         jLabel21.setText("类别：");
-//
-//        jLabel22.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-//        jLabel22.setForeground(new java.awt.Color(102, 102, 102));
+
+        jLabel22.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(102, 102, 102));
         jLabel22.setText("类别：");
 
-//        jLabel23.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-//        jLabel23.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel23.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(102, 102, 102));
         jLabel23.setText("张");
-//
-//        jLabel2.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-//        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+
+        jLabel2.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("数量：");
-//
-//        jLabel3.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
-//        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+
+        jLabel3.setFont(new java.awt.Font("幼圆", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("有效截止日期：");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -568,24 +548,22 @@ public class GeneralManagerView extends JFrame implements ActionListener {
                                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel17)
-                                        .addComponent(jLabel22)
-                                        .addComponent(jLabel4))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(sendEquivalentComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel14)
-                                        .addComponent(amountOfEquivalentTextField)
-                                        .addComponent(endDateOfEqivalentTextField)))
-                                .addComponent(sendEquivalentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cancelSendEquiButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel22)
+                                    .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(sendEquivalentComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel14)
+                                    .addComponent(amountOfEquivalentTextField)
+                                    .addComponent(endDateOfEqivalentTextField)))
+                            .addComponent(sendEquivalentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(jLabel11)
@@ -606,12 +584,10 @@ public class GeneralManagerView extends JFrame implements ActionListener {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel23)))
                                 .addGap(104, 104, 104))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cancelSendCouponButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(sendCouponButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(143, 143, 143))))))
+                                .addComponent(sendCouponButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(119, 119, 119))))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -648,31 +624,25 @@ public class GeneralManagerView extends JFrame implements ActionListener {
                         .addGap(9, 9, 9)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(sendEquivalentComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(62, 62, 62)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(61, 61, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(endDateOfEqivalentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(endDateOfCouponTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(48, 48, 48)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sendEquivalentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sendCouponButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelSendEquiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelSendCouponButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26))
+                .addGap(56, 56, 56))
         );
 
         jTabbedPane1.addTab("          大范围促销           ", jPanel4);
 
-//        checkPresentButton.setFont(new java.awt.Font("幼圆", 3, 20)); // NOI18N
-//        checkPresentButton.setForeground(new java.awt.Color(0, 51, 153));
+        checkPresentButton.setFont(new java.awt.Font("幼圆", 1, 20)); // NOI18N
         checkPresentButton.setText("查看大范围促销信息");
 
         showPresentTextArea.setColumns(20);
@@ -705,17 +675,17 @@ public class GeneralManagerView extends JFrame implements ActionListener {
 
         jTabbedPane1.addTab("       查看大范围促销       ", jPanel5);
 
-//        jLabel28.setFont(new java.awt.Font("幼圆", 2, 14)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("幼圆", 2, 14)); // NOI18N
         jLabel28.setText("用户名");
 
-//        changeUserNameButton1.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
+        changeUserNameButton1.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
         changeUserNameButton1.setText("修改用户名");
 
-//        changeUserPasswordButton1.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
-        changeUserPasswordButton1.setText("修改密码");
+        changeUserPasswordButton1.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
+        changeUserPasswordButton1.setText(" 修改密码 ");
 
-//        exitButton.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
-        exitButton.setText("退  出");
+        exitButton.setFont(new java.awt.Font("幼圆", 2, 18)); // NOI18N
+        exitButton.setText("注  销");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -729,7 +699,7 @@ public class GeneralManagerView extends JFrame implements ActionListener {
                 .addGap(134, 134, 134)
                 .addComponent(changeUserNameButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(changeUserPasswordButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                .addComponent(changeUserPasswordButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -768,7 +738,7 @@ public class GeneralManagerView extends JFrame implements ActionListener {
 
         pack();
         //****************************************************************************************
-     
+        setLocation(300, 0);
         this.setVisible(true);
         //
         updateComBoBox();
@@ -783,12 +753,12 @@ public class GeneralManagerView extends JFrame implements ActionListener {
         //设置促销手段Panel
         checkPromotionButton.addActionListener(this);
         setPromotionButton.addActionListener(this);
-        cancelPromotionButton.addActionListener(this);
+//        cancelPromotionButton.addActionListener(this);
         //大范围促销Panel
         sendEquivalentButton.addActionListener(this);
         sendCouponButton.addActionListener(this);
-        cancelSendEquiButton.addActionListener(this);
-        cancelSendCouponButton.addActionListener(this);
+//        cancelSendEquiButton.addActionListener(this);
+//        cancelSendCouponButton.addActionListener(this);
         //查看大范围促销Panel
         checkPresentButton.addActionListener(this);
         showPresentTextArea.setEditable(false);
@@ -821,30 +791,30 @@ public class GeneralManagerView extends JFrame implements ActionListener {
     		updateComBoBox();
     	}
     	//取消设置促销手段
-    	else if(event.getSource()==cancelPromotionButton){
-    		updatePromotion();
-    		updateComBoBox();
-    	}
+//    	else if(event.getSource()==cancelPromotionButton){
+//    		updatePromotion();
+//    		updateComBoBox();
+//    	}
     	//赠送等价券
     	else if(event.getSource()==sendEquivalentButton){
     		sendEquivalent();
     	}
     	//取消赠送等价券
-    	else if(event.getSource()==cancelSendEquiButton){
-    		
-    		amountOfEquivalentTextField.setText("");
-    		endDateOfEqivalentTextField.setText("");
-    	}
+//    	else if(event.getSource()==cancelSendEquiButton){
+//    		
+//    		amountOfEquivalentTextField.setText("");
+//    		endDateOfEqivalentTextField.setText("");
+//    	}
     	//赠送打折券
     	else if(event.getSource()== sendCouponButton){
     		sendCoupon();
     	}
     	//取消赠送打折券
-    	else if(event.getSource()==cancelSendCouponButton){
-    		
-    		amountOfCouponTextField.setText("");
-    		endDateOfCouponTextField.setText("");
-    	}
+//    	else if(event.getSource()==cancelSendCouponButton){
+//    		
+//    		amountOfCouponTextField.setText("");
+//    		endDateOfCouponTextField.setText("");
+//    	}
     	//查看已设置的大范围促销手段
     	else if(event.getSource()==checkPresentButton){
     		checkPresent();
@@ -860,7 +830,12 @@ public class GeneralManagerView extends JFrame implements ActionListener {
     	}
     	//退出
     	else if(event.getSource()== exitButton){
-    		System.exit(1);
+//    		System.exit(1);
+//    		setVisible(false);
+    		GeneralManagerStart generalManagerStart=new GeneralManagerStart();
+    		generalManagerStart.run();
+    		dispose();	
+//    		setVisible(false);
     	}
     	
     }//事件结束
@@ -1101,8 +1076,11 @@ private void checkPresent(){
 			         }
                }
                
-               if(boo)
+               if(boo){
                             JOptionPane.showMessageDialog(null,"等价券赠送成功");
+                       		amountOfEquivalentTextField.setText("");
+                    		endDateOfEqivalentTextField.setText("");
+               }
 			 		   
 		   }else{
 			   JOptionPane.showMessageDialog(null, "您设置的等价券信息有误！");
@@ -1176,8 +1154,12 @@ private void checkPresent(){
 			         }
                }
                
-               if(boo)
+               if(boo){
                             JOptionPane.showMessageDialog(null,"打折券赠送成功");
+                       		amountOfCouponTextField.setText("");
+                    		endDateOfCouponTextField.setText("");
+                    	
+               }
 			   
 		   }else{
 			   JOptionPane.showMessageDialog(null, "您设置的打折券信息有误！");
@@ -1279,7 +1261,7 @@ private void checkPresent(){
 			   return "";
 		   }
 	   }
-	 //判断string是否可以转换成Calendar类型；且制定的日期不能小于当天；且不能出现诸如"2月30日"这样不合理的错误
+	 //判断string是否可以转换成Calendar类型；且制定的日期不能小于当天；//且不能出现诸如"2月30日"这样不合理的错误
 		private boolean stringToCalendar(String s){
 			SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
 			try{
@@ -1325,6 +1307,7 @@ private void checkPresent(){
 				else if(month==12 && day>31)   return false;
 
 				else return true;	
+
 			}catch(Exception e){
 				return false;
 			}	
