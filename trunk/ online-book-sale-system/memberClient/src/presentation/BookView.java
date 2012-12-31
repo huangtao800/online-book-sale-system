@@ -21,6 +21,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import org.pushingpixels.substance.internal.contrib.randelshofer.quaqua.colorchooser.ICC_CMYKColorSliderModel;
@@ -85,9 +87,7 @@ private static final long serialVersionUID = 1L;
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jButton9 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
@@ -101,7 +101,6 @@ private static final long serialVersionUID = 1L;
         jButton8 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jButton10 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jScrollPane6 = new javax.swing.JScrollPane();
 
@@ -135,6 +134,16 @@ private static final long serialVersionUID = 1L;
         rowData = new Vector<Vector>();
         jTable1 = new JTable(rowData, columnNames);
         jTable1.setRowHeight(30);
+        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getValueIsAdjusting())
+					actionDo(8);
+			}
+		});
+        
         jScrollPane1.setViewportView(jTable1);
 
         jButton5.setText("添加到收藏夹");
@@ -142,25 +151,10 @@ private static final long serialVersionUID = 1L;
 
         jButton6.setText("添加到购物车");
         jButton6.addActionListener(this);
-        
-       
-        javax.swing.GroupLayout gl_jPanel3 = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(gl_jPanel3);
-        gl_jPanel3.setHorizontalGroup(
-            gl_jPanel3.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        gl_jPanel3.setVerticalGroup(
-            gl_jPanel3.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 384, Short.MAX_VALUE)
-        );
-
-        jButton9.setText("查看详情");
-        jButton9.addActionListener(this);
 
         javax.swing.GroupLayout gl_jPanel1 = new javax.swing.GroupLayout(jPanel1);
         gl_jPanel1.setHorizontalGroup(
-        	gl_jPanel1.createParallelGroup(Alignment.LEADING)
+        	gl_jPanel1.createParallelGroup(Alignment.TRAILING)
         		.addGroup(gl_jPanel1.createSequentialGroup()
         			.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING)
         				.addComponent(jLabel2)
@@ -186,25 +180,25 @@ private static final long serialVersionUID = 1L;
         				.addComponent(jButton2, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
         			.addGap(59))
         		.addGroup(gl_jPanel1.createSequentialGroup()
-        			.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING)
-        				.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING, false)
-        					.addGroup(gl_jPanel1.createSequentialGroup()
-        						.addComponent(jButton5, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-        						.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        						.addComponent(jButton6, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
-        					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 609, GroupLayout.PREFERRED_SIZE)
-        					.addComponent(jLabel5))
-        				.addComponent(jSeparator1, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING)
-        				.addGroup(gl_jPanel1.createSequentialGroup()
-        					.addGap(0, 76, Short.MAX_VALUE)
-        					.addComponent(jButton9, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED))
-        				.addGroup(gl_jPanel1.createParallelGroup(Alignment.TRAILING, false)
-        					.addComponent(jScrollPane3, Alignment.LEADING)
-        					.addComponent(jScrollPane5, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)))
-        			.addComponent(jPanel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        			.addGroup(gl_jPanel1.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(Alignment.LEADING, gl_jPanel1.createSequentialGroup()
+        					.addComponent(jLabel5)
+        					.addGap(549))
+        				.addComponent(jSeparator1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
+        				.addGroup(Alignment.LEADING, gl_jPanel1.createSequentialGroup()
+        					.addGap(44)
+        					.addComponent(jButton5, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+        					.addGap(49)
+        					.addComponent(jButton6, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)))
+        			.addGap(303))
+        		.addGroup(gl_jPanel1.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 609, GroupLayout.PREFERRED_SIZE)
+        			.addGap(18)
+        			.addGroup(gl_jPanel1.createParallelGroup(Alignment.TRAILING)
+        				.addComponent(jScrollPane5, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+        				.addComponent(jScrollPane3, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))
+        			.addContainerGap())
         );
         gl_jPanel1.setVerticalGroup(
         	gl_jPanel1.createParallelGroup(Alignment.LEADING)
@@ -227,23 +221,19 @@ private static final long serialVersionUID = 1L;
         				.addComponent(jLabel2))
         			.addPreferredGap(ComponentPlacement.UNRELATED)
         			.addComponent(jSeparator1, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
         			.addComponent(jLabel5)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addGroup(gl_jPanel1.createParallelGroup(Alignment.TRAILING, false)
+        			.addGap(2)
+        			.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING)
         				.addGroup(gl_jPanel1.createSequentialGroup()
         					.addComponent(jScrollPane5, GroupLayout.PREFERRED_SIZE, 267, GroupLayout.PREFERRED_SIZE)
         					.addPreferredGap(ComponentPlacement.RELATED)
         					.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(gl_jPanel1.createSequentialGroup()
-        					.addComponent(jPanel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        					.addGap(0, 41, Short.MAX_VALUE))
         				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addGroup(gl_jPanel1.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jButton6)
         				.addComponent(jButton5)
-        				.addComponent(jButton9))
+        				.addComponent(jButton6))
         			.addGap(26))
         );
         
@@ -273,6 +263,17 @@ private static final long serialVersionUID = 1L;
         
         jTable2 = new JTable(rowData, columnNames);
         jTable2.setRowHeight(30);
+        
+        jTable2.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getValueIsAdjusting()){
+					actionDo(9);
+				}
+			}
+		});
         jScrollPane2.setViewportView(jTable2);
         
         jLabel7.setText("查找结果：");
@@ -284,9 +285,6 @@ private static final long serialVersionUID = 1L;
 
         jButton8.setText("添加到购物车");
         jButton8.addActionListener(this);
-
-        jButton10.setText("查看详情");
-        jButton10.addActionListener(this);
 
         javax.swing.GroupLayout gl_jPanel2 = new javax.swing.GroupLayout(jPanel2);
         gl_jPanel2.setHorizontalGroup(
@@ -307,19 +305,17 @@ private static final long serialVersionUID = 1L;
         					.addComponent(jLabel7)
         					.addGap(0, 892, Short.MAX_VALUE))
         				.addGroup(gl_jPanel2.createSequentialGroup()
-        					.addGroup(gl_jPanel2.createParallelGroup(Alignment.TRAILING, false)
-        						.addGroup(gl_jPanel2.createSequentialGroup()
-        							.addComponent(jButton7, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-        							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        							.addComponent(jButton8, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
-        						.addComponent(jScrollPane2, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 599, GroupLayout.PREFERRED_SIZE))
-        					.addPreferredGap(ComponentPlacement.RELATED)
         					.addGroup(gl_jPanel2.createParallelGroup(Alignment.LEADING)
-        						.addComponent(jScrollPane6, GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
         						.addGroup(gl_jPanel2.createSequentialGroup()
-        							.addGap(0, 97, Short.MAX_VALUE)
-        							.addComponent(jButton10, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
-        						.addComponent(jScrollPane4))))
+        							.addGap(34)
+        							.addComponent(jButton7, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+        							.addGap(38)
+        							.addComponent(jButton8, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
+        						.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 605, GroupLayout.PREFERRED_SIZE))
+        					.addPreferredGap(ComponentPlacement.UNRELATED)
+        					.addGroup(gl_jPanel2.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(jScrollPane6, GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+        						.addComponent(jScrollPane4, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE))))
         			.addContainerGap())
         );
         gl_jPanel2.setVerticalGroup(
@@ -335,18 +331,17 @@ private static final long serialVersionUID = 1L;
         			.addComponent(jSeparator2, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(jLabel7)
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addGroup(gl_jPanel2.createParallelGroup(Alignment.TRAILING, false)
-        				.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 454, GroupLayout.PREFERRED_SIZE)
         				.addGroup(gl_jPanel2.createSequentialGroup()
         					.addComponent(jScrollPane6)
         					.addPreferredGap(ComponentPlacement.UNRELATED)
-        					.addComponent(jScrollPane4, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)))
-        			.addPreferredGap(ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+        					.addComponent(jScrollPane4, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 454, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
         			.addGroup(gl_jPanel2.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jButton7)
-        				.addComponent(jButton8)
-        				.addComponent(jButton10))
+        				.addComponent(jButton8))
         			.addContainerGap())
         );
         
@@ -401,10 +396,6 @@ private static final long serialVersionUID = 1L;
     		actionDo(6);
         }else if(obj==jButton8){      //添加到购物车
     		actionDo(7);
-    	}else if(obj==jButton9){
-    		actionDo(8);
-    	}else if(obj==jButton10){
-    		actionDo(9);
     	}
     	
     }
@@ -658,7 +649,6 @@ private static final long serialVersionUID = 1L;
 
     // Variables declaration - do not modify
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -666,7 +656,6 @@ private static final long serialVersionUID = 1L;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -677,7 +666,6 @@ private static final long serialVersionUID = 1L;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
  
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
