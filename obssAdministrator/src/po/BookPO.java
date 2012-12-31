@@ -2,20 +2,22 @@ package po;
 //ÓÈ¼Ñç÷
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.text.BreakIterator;
 import java.util.Date;
 
 public class BookPO implements PO{
     private String ISBN,bookName,author,press,publishDate;
-    private String type;
+    private String type,briefIntroduction;
     private double price;
     private int numOfBook;
+    private byte[] image;
     
     public BookPO(){
     	
     }
     
-    public BookPO(String bookName,String ISBN,String type,String press,
-    		String author,String publishDate,double price,int numOfBook){
+    public BookPO(String ISBN,String bookName,String author,String press,
+    		String publishDate,String type,double price,int numOfBook,byte[] image,String briefIntroduction){
     	this.ISBN = ISBN;
     	this.bookName = bookName;
     	this.author = author;
@@ -24,6 +26,8 @@ public class BookPO implements PO{
     	this.type = type;
     	this.price = price;
     	this.numOfBook = numOfBook;
+    	this.image = image;
+    	this.briefIntroduction = briefIntroduction;
     }
     
     public int getNumOfBook(){
@@ -88,5 +92,21 @@ public class BookPO implements PO{
     
     public void setPrice(double m){
     	price = m;
+    }
+    
+    public String getBriefIntroduction(){
+    	return briefIntroduction;
+    }
+    
+    public void setBriefIntroduction(String bi){
+    	briefIntroduction = bi;
+    }
+    
+    public byte[] getImage(){
+    	return image;
+    }
+    
+    public void setImage(byte[] img){
+    	image = img;
     }
 }
