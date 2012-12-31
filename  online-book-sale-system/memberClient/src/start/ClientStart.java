@@ -30,7 +30,7 @@ public class ClientStart {
 			public void run() {
 				java.io.File file=null;
 				try {
-					file = new java.io.File(ClientStart.class.getResource("/resource/Font.ttf").toURI());
+					file = new java.io.File(ClientStart.class.getResource("/resource/Font11.ttf").toURI());
 				} catch (URISyntaxException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
