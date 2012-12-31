@@ -723,7 +723,7 @@ class MyCellRender extends JLabel implements ListCellRenderer {
 
          setIcon(icon);//…Ë÷√Õº∆¨   
          return this; 
-    }  
+     }  
 
 }  
  
