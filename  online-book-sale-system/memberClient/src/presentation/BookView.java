@@ -582,11 +582,18 @@ private static final long serialVersionUID = 1L;
 	    		}
 	    		
 	    	    BookPO bookPO = bookList.get(jTable1.getSelectedRow());
-	    	    getSpecificInfo(bookPO, 1);
+
+                getSpecificInfo(bookPO, 1); 
+	        		
 	    }else if(doIndex==9){
 	    		String t = jComboBox1.getSelectedItem().toString();
 				bookList = bookViewController.fineByType(t);
+				if(jTable2.getSelectedRow()==-1){
+	    			return ;
+	    		}
 				BookPO bookPO = bookList.get(jTable2.getSelectedRow());
+				
+	    		
 				getSpecificInfo(bookPO, 2);
 	    }
     }
@@ -604,7 +611,10 @@ private static final long serialVersionUID = 1L;
     	
     	return column;
     }
+  
     
+
+
   //index用来确认是哪个table
     private void getSpecificInfo(BookPO bookPO,int i){
     	ImageIcon icon = new ImageIcon(bookPO.getImage());
@@ -643,6 +653,7 @@ private static final long serialVersionUID = 1L;
     	}
     }
     
+
 
 
     // Variables declaration - do not modify
@@ -689,7 +700,6 @@ private static final long serialVersionUID = 1L;
     private KeywordVO keywordVO;
     private String type;
     private int index;//用于判断跳转到那个panel
-    private final Dimension deDimension  = new Dimension(210, 220);
     private JLabel imageLabel;
     private JTextArea textArea;
     private JTextArea bookTypeArea;
@@ -700,20 +710,27 @@ private static final long serialVersionUID = 1L;
 
 class MyCellRender extends JLabel implements ListCellRenderer {  
     Icon icon;  
-    public MyCellRender(){};  
-    public MyCellRender(Icon icon) {  
-        this.icon=icon;  
-    }  
-    @Override  
-    public Component getListCellRendererComponent(JList list, Object value,  
-    		int index, boolean isSelected, boolean cellHasFocus) {  
-         String s = value.toString();  
-         setText(s);  
-         setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));//加入宽度为5的空白边框  
-
-         setIcon(icon);//设置图片   
-         return this; 
-     }  
+    /*类CellRenderer继承JLabel并实作ListCellRenderer.由于我们利用JLabel易于插图的特性，因此CellRenderer继承了JLabel   
+     *可让JList中的每个项目都视为是一个JLabel.   
+     */   
+     public MyCellRender(Icon icon)  {   
+    	    this.icon = icon;
+             setOpaque(true);   
+     }   
+     
+     /*从这里到结束：实作getListCellRendererComponent()方法*/   
+     public   Component   getListCellRendererComponent(JList list,Object   value,   int   index,   
+             boolean   isSelected,   boolean   cellHasFocus)    {         
+             /*我们判断list.getModel().getElementAt(index)所返回的值是否为null,例如上个例子中，若JList的标题是"你玩过哪   
+               *些数据库软件"，则index>=4的项目值我们全都设为null.而在这个例子中，因为不会有null值，因此有没有加上这个判   
+               *断并没有关系.   
+               */   
+             if   (value   !=   null){   
+                   //  setText(value.toString());   
+                     setIcon(icon);   
+             }   
+             return   this;   
+     }           
 
 }  
  
