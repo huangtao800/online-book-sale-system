@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Fri Dec 28 17:25:50 CST 2012
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=true
+jarname=F\:\\workspace\\obssAdministrator\\obssAdministrator_fat.jar
+manifest.mergeall=true
+manifest.mainclass=startAdmin.AdminStart
+manifest.file=<createnew>
+jarname.isextern=true
+onejar.expand=
+excludes=
+includes=
