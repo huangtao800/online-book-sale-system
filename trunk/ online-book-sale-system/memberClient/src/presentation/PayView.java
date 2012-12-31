@@ -38,10 +38,10 @@ public class PayView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
+//        jLabel1.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
         jLabel1.setText("‘≠º€£∫");
 
-        jLabel2.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
+//        jLabel2.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
         jLabel2.setText("0.00‘™");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -65,10 +65,10 @@ public class PayView extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jLabel3.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
+//        jLabel3.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
         jLabel3.setText("«Î—°‘Ò”≈ª›∑Ω Ω:");
 
-        jComboBox1.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
+//        jComboBox1.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Œﬁ”≈ª›", "µ»º€»Ø£∫", "¥Ú’€»Ø£∫" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,13 +76,13 @@ public class PayView extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
+//        jButton3.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
         jButton3.setText("»∑»œ");
 
-        jLabel5.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
+//        jLabel5.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
         jLabel5.setText("0.00‘™");
 
-        jLabel4.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
+//        jLabel4.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
         jLabel4.setText("”≈ª›∫Ûº€∏Ò£∫");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -125,16 +125,16 @@ public class PayView extends javax.swing.JFrame {
                         .addGap(40, 40, 40))))
         );
 
-        jButton1.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
+//        jButton1.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
         jButton1.setText("Ã·Ωª");
 
-        jButton2.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
+//        jButton2.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
         jButton2.setText("≥∑œ˙");
 
-        jLabel6.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
+//        jLabel6.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
         jLabel6.setText(" ’ªıµÿ÷∑£∫");
 
-        jTextField1.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
+//        jTextField1.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -91,13 +91,13 @@ public class OrderDetailView extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JLabel label = new JLabel("\u8BA2\u5355\u603B\u4EF7\uFF1A");
-		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
+//		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
 		label.setBounds(57, 207, 113, 32);
 		contentPane.add(label);
 		
 		JLabel priceLabel = new JLabel("New label");
 		priceLabel.setText(""+orderVO.totalPrice);
-		priceLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
+//		priceLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
 		priceLabel.setBounds(180, 210, 86, 26);
 		contentPane.add(priceLabel);
 		
@@ -108,7 +108,7 @@ public class OrderDetailView extends JFrame {
 				dispose();
 			}
 		});
-		button.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
+//		button.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
 		button.setBounds(449, 208, 113, 30);
 		contentPane.add(button);
 	}
