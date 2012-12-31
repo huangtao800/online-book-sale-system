@@ -560,22 +560,28 @@ public class SalesManagerView extends javax.swing.JFrame {
         jLabel27.setText("简介：");
         
         // 查找图书图片
-        jButton18.setText("S");
+        jButton18.setText("选择文件");
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                  chooser=new JFileChooser();
            	     FileFilter filter;
-       	         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);//设置选择模式，既可以选择文件又可以选择文件夹
+       	         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);//设置选择模式，既可以选择文件又可以选择文件夹
        	         String extj[] = { "jpeg","jpg" };
        	         filter = new FileNameExtensionFilter( "JPEG Image",extj);
        	         chooser.setFileFilter(filter);//设置文件后缀过滤器
            	     chooser.setSelectedFile(new File("G:\\image"));
-       		     chooser.showDialog(null, "Selected");
+       		     int s=chooser.showDialog(null, "Selected");
        	
        		     String fileNameString="";
        	    
        		     try{
+       		    	 if(s==JFileChooser.CANCEL_OPTION){
+       		    		 return;
+       		    	 }
        			     fileNameString=chooser.getSelectedFile().getPath();
+       			     if(fileNameString==null||fileNameString.trim().equals("")||chooser.getSelectedFile()==null){
+       			    	 return;
+       			     }
        		     }catch (Exception e) {
        			     e.printStackTrace();
        		     }
@@ -594,6 +600,7 @@ public class SalesManagerView extends javax.swing.JFrame {
         setTypeComboxModel();
 
         addBookButton.setText("增加图书");
+//        addBookButton.setSize(addBookButton.getWidth()+200, addBookButton.getHeight()+50);
         addBookButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                      bookIDTextField.setEditable(true);
@@ -778,7 +785,7 @@ public class SalesManagerView extends javax.swing.JFrame {
                                         .addComponent(bookNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                                        
                                         .addGroup(jPanel12Layout.createSequentialGroup()
-                                        		 .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        		 .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                  .addGap(1, 1, 1)
                                                  .addComponent(jButton18))
                                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
