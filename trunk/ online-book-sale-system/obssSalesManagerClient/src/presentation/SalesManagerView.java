@@ -1,12 +1,22 @@
 package presentation;
 
+
+
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.imageio.ImageIO;
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 import bussinessLogicService.StartBLService;
@@ -43,6 +53,7 @@ public class SalesManagerView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     public void createSalesManagerView() {
+    	jTextArea2 = new javax.swing.JTextArea();
     	buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JTabbedPane();
         jPanel8 = new javax.swing.JPanel();
@@ -93,6 +104,8 @@ public class SalesManagerView extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
         bookIDTextField = new javax.swing.JTextField();
         bookNameTextField = new javax.swing.JTextField();
         bookAuthorTextField = new javax.swing.JTextField();
@@ -101,9 +114,12 @@ public class SalesManagerView extends javax.swing.JFrame {
         bookNumTextField = new javax.swing.JTextField();
         bookPriceTextField = new javax.swing.JTextField();
         typeComboBox = new javax.swing.JComboBox();
+        image = new javax.swing.JTextField();
+        jScrollPane6 = new javax.swing.JScrollPane();
         addBookButton = new javax.swing.JButton();
         deleteBookButton  = new javax.swing.JButton();
         confirmChangeBookButton = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
         checkAllBookButton = new javax.swing.JButton();
         changeBookButton = new javax.swing.JButton();
         bookTypejPanel = new javax.swing.JPanel();
@@ -162,46 +178,49 @@ public class SalesManagerView extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addGap(48, 48, 48)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel10)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel8)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel8Layout.createSequentialGroup()
+                            .addComponent(jLabel7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(changeUserPasswordButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(userNameLabel)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12))
-                        .addGap(91, 91, 91)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(changeUserNameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(changeUserPasswordButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jLabel7))
-                .addContainerGap(230, Short.MAX_VALUE))
+                            .addComponent(jLabel8)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(userNameLabel)
+                                .addGap(125, 125, 125)
+                                .addComponent(changeUserNameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(293, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(userNameLabel)
                     .addComponent(changeUserNameButton))
-                .addGap(35, 35, 35)
+                .addGap(53, 53, 53)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(changeUserPasswordButton)
                     .addComponent(jLabel7)
-                    .addComponent(changeUserPasswordButton))
-                .addGap(39, 39, 39)
+                    .addComponent(jLabel6))
+                .addGap(45, 45, 45)
                 .addComponent(jLabel8)
-                .addGap(28, 28, 28)
+                .addGap(45, 45, 45)
                 .addComponent(jLabel9)
-                .addGap(35, 35, 35)
+                .addGap(45, 45, 45)
                 .addComponent(jLabel10)
-                .addGap(29, 29, 29)
+                .addGap(45, 45, 45)
                 .addComponent(jLabel11)
-                .addGap(30, 30, 30)
+                .addGap(45, 45, 45)
                 .addComponent(jLabel12)
-                .addGap(139, 139, 139))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
+      
 
         jPanel1.addTab("首页         ", jPanel8);
 
@@ -290,11 +309,11 @@ public class SalesManagerView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -503,7 +522,7 @@ public class SalesManagerView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(orderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
@@ -535,7 +554,41 @@ public class SalesManagerView extends javax.swing.JFrame {
         jLabel21.setText("单价/元：");
 
         jLabel22.setText("图书类别：");
+        
+        jLabel26.setText("封面：");
 
+        jLabel27.setText("简介：");
+        
+        // 查找图书图片
+        jButton18.setText("S");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 chooser=new JFileChooser();
+           	     FileFilter filter;
+       	         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);//设置选择模式，既可以选择文件又可以选择文件夹
+       	         String extj[] = { "jpeg","jpg" };
+       	         filter = new FileNameExtensionFilter( "JPEG Image",extj);
+       	         chooser.setFileFilter(filter);//设置文件后缀过滤器
+           	     chooser.setSelectedFile(new File("G:\\image"));
+       		     chooser.showDialog(null, "Selected");
+       	
+       		     String fileNameString="";
+       	    
+       		     try{
+       			     fileNameString=chooser.getSelectedFile().getPath();
+       		     }catch (Exception e) {
+       			     e.printStackTrace();
+       		     }
+       		     
+       		     image.setText(fileNameString);
+       		
+       		     getImageArray(chooser);
+            }
+        });
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane6.setViewportView(jTextArea2);
 
         typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         setTypeComboxModel();
@@ -548,7 +601,8 @@ public class SalesManagerView extends javax.swing.JFrame {
 	    		          BookPO bookPO=new BookPO(bookIDTextField.getText().trim(), bookNameTextField.getText().trim(), 
 	    		    		          bookAuthorTextField.getText().trim(),bookPublishHouseTextField.getText().trim(),
                                       bookPublishYearField.getText().trim(), (String) (typeComboBox.getSelectedItem()),
-	    		    		          Double.parseDouble(bookPriceTextField.getText().trim()),Integer.parseInt(bookNumTextField.getText().trim()));
+	    		    		          Double.parseDouble(bookPriceTextField.getText().trim()),Integer.parseInt(bookNumTextField.getText().trim()),
+	    		    		          getImageArray(chooser),jTextArea2.getText().trim());
 	    		     
 	    		         if( salesManagerViewController.addBook(bookPO) == ResultMessage.EXIST){
 	    		    	         JOptionPane.showMessageDialog(null, "您输入的图书ISBN已经存在，请另行设置！");
@@ -633,8 +687,8 @@ public class SalesManagerView extends javax.swing.JFrame {
                 BookPO bookPO=new BookPO(bookIDTextField.getText().trim(), bookNameTextField.getText().trim(), 
                           bookAuthorTextField.getText().trim(),bookPublishHouseTextField.getText().trim(),
                           bookPublishYearField.getText().trim(), (String)typeComboBox.getSelectedItem(),
-                          Double.parseDouble(bookPriceTextField.getText().trim()), Integer.parseInt(bookNumTextField.getText().trim())
-                       );
+                          Double.parseDouble(bookPriceTextField.getText().trim()), Integer.parseInt(bookNumTextField.getText().trim()),
+                          getImageArray(chooser),jTextArea2.getText().trim());
 	    		  
 	    		 confirmChangeBookButton.setEnabled(false);
 	    		 bookIDTextField.setEditable(true);
@@ -689,47 +743,61 @@ public class SalesManagerView extends javax.swing.JFrame {
 	    		}
             }
         });
-
+        
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(addBookButton)
-                        .addGap(58,58,58)
-                        .addComponent(deleteBookButton )
-                        .addGap(58,58,58)
-                        .addComponent(changeBookButton)
-                        .addGap(58,58,58)
-                        .addComponent(confirmChangeBookButton)
-                        .addGap(58,58,58)
-                        .addComponent(checkAllBookButton))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel21)
-                            .addComponent(jLabel22))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bookNameTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bookIDTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bookAuthorTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bookPublishHouseTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bookPublishYearField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bookNumTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bookPriceTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(typeComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(35, 35, 35))
-        );
+                jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel12Layout.createSequentialGroup()
+                    .addGap(33, 33, 33)
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel12Layout.createSequentialGroup()
+                            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel16)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel17)
+                                .addComponent(jLabel18)
+                                .addComponent(jLabel19)
+                                .addComponent(jLabel20)
+                                .addComponent(jLabel21)
+                                .addComponent(jLabel22)
+                                .addComponent(jLabel26)
+                                .addComponent(jLabel27))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            		
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    	.addComponent(bookIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(bookPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(bookNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(bookPublishYearField, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(bookPublishHouseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(bookAuthorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(bookNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                       
+                                        .addGroup(jPanel12Layout.createSequentialGroup()
+                                        		 .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                 .addGap(1, 1, 1)
+                                                 .addComponent(jButton18))
+                                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(30, 30, 30))))
+                        
+                    .addGap(35, 35, 35)))
+                .addGroup(jPanel12Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(addBookButton)
+                    .addGap(65, 65, 65)
+                    .addComponent(deleteBookButton)
+                    .addGap(65, 65, 65)
+                    .addComponent(changeBookButton)
+                    .addGap(65, 65, 65)
+                    .addComponent(confirmChangeBookButton)
+                    .addGap(65, 65, 65)
+                    .addComponent(checkAllBookButton)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
@@ -740,7 +808,7 @@ public class SalesManagerView extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(bookNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bookNameTextField ,javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
@@ -757,23 +825,34 @@ public class SalesManagerView extends javax.swing.JFrame {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
                     .addComponent(bookNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
                     .addComponent(bookPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addBookButton)
-                    .addComponent(deleteBookButton )
-                    .addComponent(changeBookButton)
-                    .addComponent(confirmChangeBookButton)
-                    .addComponent(checkAllBookButton))
-                .addContainerGap(35, Short.MAX_VALUE))
+                    .addComponent(jLabel26)
+                    .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel27)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                		.addComponent(addBookButton)
+                        .addComponent(deleteBookButton )
+                        .addComponent(changeBookButton)
+                        .addComponent(confirmChangeBookButton)
+                        .addComponent(checkAllBookButton))
+                .addContainerGap())
         );
+        
+       
 
         jPanel1.addTab("图书管理     ", jPanel12);
 
@@ -1064,6 +1143,24 @@ public class SalesManagerView extends javax.swing.JFrame {
 		   return "已签收";
 	   }
       }
+     
+     private byte[] getImageArray(JFileChooser chooser){
+		 File file=chooser.getSelectedFile();
+		 byte[] imageArray=null;
+		 try {
+			BufferedImage image=ImageIO.read(file);
+			
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ImageIO.write(image, "jpg", baos);
+			imageArray=baos.toByteArray();
+			
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return imageArray;
+     }
    
       //   更新未完成的订单
       private void updateUncompletedOrder(){
@@ -1169,6 +1266,7 @@ public class SalesManagerView extends javax.swing.JFrame {
     private javax.swing.JButton checkMemberInfoButton;
     private javax.swing.JButton deleteBookButton ;
     private javax.swing.JButton confirmChangeBookButton;
+    private javax.swing.JButton jButton18;
     private javax.swing.JComboBox typeComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1195,6 +1293,8 @@ public class SalesManagerView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel orderPanel;
     private javax.swing.JPanel jPanel12;
@@ -1210,12 +1310,15 @@ public class SalesManagerView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable orderTable;
     private javax.swing.JList bookTypeList;
     private javax.swing.JTextField memberIDTextField;
     private javax.swing.JTextArea memberInfoTextArea;
     private javax.swing.JTextArea memberOrderTextArea;
     private javax.swing.JTextArea showPresentTextArea;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextField image;
     private javax.swing.ButtonGroup buttonGroup1;
     private SalesManagerViewService salesManagerViewController;
 	private int lineOfUncompletedOrder=11;//初始为11
@@ -1223,6 +1326,7 @@ public class SalesManagerView extends javax.swing.JFrame {
 	private SalesManagerPO userpo;
 	private ArrayList<OrderPO> uncompletedOrderList;
 	private boolean hasUpdateUncompleteOrder= false;
+	private JFileChooser chooser;
     // End of variables declaration
 }
 
