@@ -695,30 +695,3 @@ private static final long serialVersionUID = 1L;
  
     // End of variables declaration
 }
-
-class MyCellRender extends JLabel implements ListCellRenderer {  
-    Icon icon;  
-    /*类CellRenderer继承JLabel并实作ListCellRenderer.由于我们利用JLabel易于插图的特性，因此CellRenderer继承了JLabel   
-     *可让JList中的每个项目都视为是一个JLabel.   
-     */   
-     public MyCellRender(Icon icon)  {   
-    	    this.icon = icon;
-             setOpaque(true);   
-     }   
-     
-     /*从这里到结束：实作getListCellRendererComponent()方法*/   
-     public   Component   getListCellRendererComponent(JList list,Object   value,   int   index,   
-             boolean   isSelected,   boolean   cellHasFocus)    {         
-             /*我们判断list.getModel().getElementAt(index)所返回的值是否为null,例如上个例子中，若JList的标题是"你玩过哪   
-               *些数据库软件"，则index>=4的项目值我们全都设为null.而在这个例子中，因为不会有null值，因此有没有加上这个判   
-               *断并没有关系.   
-               */   
-             if   (value   !=   null){   
-                   //  setText(value.toString());   
-                     setIcon(icon);   
-             }   
-             return   this;   
-     }           
-
-}  
- 
