@@ -28,28 +28,28 @@ public class OrderView extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
+//        jLabel1.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
         jLabel1.setText("¶©µ¥±àºÅ£º");
 
-        jLabel2.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
+//        jLabel2.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
         jLabel2.setText("ÈÕÆÚ£º");
 
-        jLabel3.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
+//        jLabel3.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
         jLabel3.setText("»áÔ±±àºÅ£º");
 
-        jLabel4.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
+//        jLabel4.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
         jLabel4.setText("¶©µ¥×´Ì¬£º");
 
-        jLabel5.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
+//        jLabel5.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
         jLabel5.setText("×Ü¼Û¸ñ£º");
 
-        jLabel6.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
+//        jLabel6.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
         jLabel6.setText("¶©µ¥ÏêÇé");
 
         jTable1.setModel(new ProductTableModel(productList));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
+//        jButton1.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
         jButton1.setText("È·ÈÏ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
