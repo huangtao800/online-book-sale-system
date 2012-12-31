@@ -452,44 +452,44 @@ public class CustomerView extends JFrame {
 		jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(
 				javax.swing.BorderFactory.createEtchedBorder(), "ÎÒµÄĞÅÏ¢"));
 
-		ID.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
+//		ID.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
 		ID.setText("ID£º");
 
-		jLabel3.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
+//		jLabel3.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
 		jLabel3.setText("Ãû³Æ£º");
 
-		jLabel4.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
+//		jLabel4.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
 		jLabel4.setText("»ı·Ö£º");
 
-		jLabel5.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
+//		jLabel5.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
 		jLabel5.setText("µÈ¼¶£º");
 
-		idLabel.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
+//		idLabel.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
 		// idLabel.setText("XXX");
 //		idLabel.setText(memberPO.getUserID());
 		idLabel.setText(customerVO.userID);
 
-		nameLabel.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
+//		nameLabel.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
 		// nameLabel.setText("XXX");
 //		nameLabel.setText(memberPO.getUserName());
 		nameLabel.setText(customerVO.userName);
 
-		pointLabel.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
+//		pointLabel.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
 		// pointLabel.setText("XXX");
 //		pointLabel.setText(memberPO.getPoints() + "");
 		pointLabel.setText(customerVO.points + "");
 
-		rankLabel.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
+//		rankLabel.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
 		// rankLabel.setText("XXX");
 //		rankLabel.setText(memberPO.getRank().toString());
 		rankLabel.setText(customerVO.rank);
 
 		changeNameButton.setText("\u4FEE\u6539\u540D\u79F0");
 
-		jLabel1.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
+//		jLabel1.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
 		jLabel1.setText("³£ÓÃµØÖ·:");
 
-		addressLabel.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
+//		addressLabel.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
 		// addressLabel.setText("XXX");
 //		addressLabel.setText(memberPO.getAddress());
 		addressLabel.setText(customerVO.address);
@@ -542,7 +542,7 @@ public class CustomerView extends JFrame {
 			}
 		});
 
-		freshPointButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+//		freshPointButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 
 		javax.swing.GroupLayout gl_jPanel2 = new javax.swing.GroupLayout(
 				jPanel2);
@@ -673,10 +673,10 @@ public class CustomerView extends JFrame {
 
 		jScrollPane1.setViewportView(favorityTable);
 
-		removeFavorityButton.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 14)); // NOI18N
+//		removeFavorityButton.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 14)); // NOI18N
 		removeFavorityButton.setText("ÒÆ³ı");
 
-		putInCartButton.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 14)); // NOI18N
+//		putInCartButton.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 14)); // NOI18N
 		putInCartButton.setText("\u653E\u5165\u8D2D\u7269\u8F66");
 
 		JButton freshFavorityButton = new JButton("\u5237\u65B0\u5217\u8868");
@@ -685,7 +685,7 @@ public class CustomerView extends JFrame {
 				freshTableModel(favorityTable);
 			}
 		});
-		freshFavorityButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+//		freshFavorityButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 
 		JButton enterCartNewButton = new JButton(
 				"\u8FDB\u5165\u8D2D\u7269\u8F66");
@@ -694,7 +694,7 @@ public class CustomerView extends JFrame {
 				memberViewController.enterCart();
 			}
 		});
-		enterCartNewButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+//		enterCartNewButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 
 		javax.swing.GroupLayout gl_jPanel3 = new javax.swing.GroupLayout(
 				jPanel3);
@@ -840,7 +840,7 @@ public class CustomerView extends JFrame {
 				equivalentTable.setModel(new EquivalentVOTableModel());
 			}
 		});
-		freshButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+//		freshButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 
 		javax.swing.GroupLayout gl_jPanel4 = new javax.swing.GroupLayout(
 				jPanel4);
@@ -903,7 +903,7 @@ public class CustomerView extends JFrame {
 				freshOrderTable(orderTable);
 			}
 		});
-		freshOrderButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+//		freshOrderButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 
 		orderDetailButton = new JButton("\u67E5\u770B\u8BE6\u60C5");
 		orderDetailButton.addActionListener(new ActionListener() {
@@ -918,7 +918,7 @@ public class CustomerView extends JFrame {
 				orderDetailView.setVisible(true);
 			}
 		});
-		orderDetailButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+//		orderDetailButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 
 		javax.swing.GroupLayout gl_jPanel5 = new javax.swing.GroupLayout(
 				jPanel5);
@@ -968,7 +968,7 @@ public class CustomerView extends JFrame {
 				StartBLService startController=new StartController();
 			}
 		});
-		changeToAnotherCustomer.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+//		changeToAnotherCustomer.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 
 		button = new JButton("\u8FDB\u5165\u8D2D\u7269\u8F66");
 		button.addActionListener(new ActionListener() {
@@ -976,7 +976,7 @@ public class CustomerView extends JFrame {
 				memberViewController.enterCart();
 			}
 		});
-		button.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+//		button.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 		
 				JButton cancelButton = new JButton("\u6CE8\u9500");
 				cancelButton.addActionListener(new ActionListener() {
