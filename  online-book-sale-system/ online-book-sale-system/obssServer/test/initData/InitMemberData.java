@@ -27,12 +27,12 @@ public class InitMemberData {
 		// TODO Auto-generated method stub
 		CustomerPO customerPO=new CustomerPO("m1", "huang", "111111","江苏南通");
 		
-		BookPO bookPO = new BookPO("111111", "Java", "huang","中国", "2011","计算机", 10, 5, null, "aa");
-		
-		BookPO bookPO2=new BookPO("111112", "JavaCode", "gf","中国", "2011","计算机", 10, 50, null, "bbb");
+//		BookPO bookPO = new BookPO("111111", "Java", "huang","中国", "2011","计算机", 10, 5, null, "aa");
+//		
+//		BookPO bookPO2=new BookPO("111112", "JavaCode", "gf","中国", "2011","计算机", 10, 50, null, "bbb");
 		ArrayList<BookPO> bookList = new ArrayList<BookPO>();
-		bookList.add(bookPO);
-		bookList.add(bookPO2);
+//		bookList.add(bookPO);
+//		bookList.add(bookPO2);
 		
 		ArrayList<String> bookTypeList = new ArrayList<String>();
 		bookTypeList.add("文学");
@@ -41,7 +41,7 @@ public class InitMemberData {
 		bookTypeList.add("经济");
 		bookTypeList.add("其他");
 		
-		customerPO.getFavority().getFavorities().add(bookPO);
+//		customerPO.getFavority().getFavorities().add(bookPO);
 		
 		CustomerPO m2=new CustomerPO("m2", "hu", "000000","江苏南通");
 		ArrayList<CustomerPO> list=new ArrayList<CustomerPO>();
