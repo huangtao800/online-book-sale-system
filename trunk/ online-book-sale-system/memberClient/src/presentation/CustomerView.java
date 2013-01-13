@@ -1006,14 +1006,14 @@ public class CustomerView extends JFrame {
 		layout.setHorizontalGroup(
 			layout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(layout.createSequentialGroup()
-					.addContainerGap(408, Short.MAX_VALUE)
+					.addContainerGap(475, Short.MAX_VALUE)
 					.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
 					.addGap(41)
-					.addComponent(button, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-					.addGap(39)
+					.addComponent(button, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
 					.addComponent(changeToAnotherCustomer, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
 					.addGap(60))
-				.addComponent(jTabbedPane1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
+				.addComponent(jTabbedPane1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 927, Short.MAX_VALUE)
 		);
 		layout.setVerticalGroup(
 			layout.createParallelGroup(Alignment.LEADING)
@@ -1021,7 +1021,7 @@ public class CustomerView extends JFrame {
 					.addContainerGap()
 					.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(button)
+							.addComponent(button, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
 							.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
 						.addComponent(changeToAnotherCustomer, GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
 					.addGap(13)
