@@ -37,28 +37,28 @@ public class CartView extends javax.swing.JFrame {
         jTable1.setModel(new CartTableModel());
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
+        //jLabel1.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
         jLabel1.setText("¹ºÎï³µ£º");
 
-        jLabel2.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
+        //jLabel2.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
         jLabel2.setText("×Ü¼Û¸ñ£º");
 
-        jButton1.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
+       // jButton1.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
         jButton1.setText("Ìí¼Óµ½ÊÕ²Ø¼Ğ");
 
-        jButton2.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
+        //jButton2.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
         jButton2.setText("É¾³ı");
 
-        jButton3.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
+      //  jButton3.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
         jButton3.setText("½áÕË");
 
-        jButton4.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
+       // jButton4.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
         jButton4.setText("·µ»Ø");
 
-        jButton5.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
+      //  jButton5.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
         jButton5.setText("ĞŞ¸ÄÊıÁ¿");
 
-        jButton6.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
+    //    jButton6.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 0, 18)); // NOI18N
         jButton6.setText("Ë¢ĞÂÁĞ±í");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
