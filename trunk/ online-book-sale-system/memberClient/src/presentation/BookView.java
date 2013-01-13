@@ -279,6 +279,7 @@ private static final long serialVersionUID = 1L;
         jLabel7.setText("查找结果：");
 
         jButton4.setText("进入购物车");
+        jButton4.addActionListener(this);
 
         jButton7.setText("添加到收藏夹");
         jButton7.addActionListener(this);
