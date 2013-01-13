@@ -47,6 +47,8 @@ public class SalesManagerView extends javax.swing.JFrame {
 	
     public SalesManagerView(SalesManagerViewService salesManagerViewController) {
     	this.salesManagerViewController = salesManagerViewController;
+    	chooser.setSelectedFile(new File("null.jpg"));
+    	
     }
 
    
@@ -564,6 +566,7 @@ public class SalesManagerView extends javax.swing.JFrame {
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                  chooser=new JFileChooser();
+                 chooser.setSelectedFile(new File("null.jpg"));
            	     FileFilter filter;
        	         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);//设置选择模式，既可以选择文件又可以选择文件夹
        	         String extj[] = { "jpeg","jpg" };
@@ -576,6 +579,7 @@ public class SalesManagerView extends javax.swing.JFrame {
        	    
        		     try{
        		    	 if(s==JFileChooser.CANCEL_OPTION){
+       		    		chooser.setSelectedFile(new File("null.jpg"));
        		    		 return;
        		    	 }
        			     fileNameString=chooser.getSelectedFile().getPath();
@@ -1333,7 +1337,7 @@ public class SalesManagerView extends javax.swing.JFrame {
 	private SalesManagerPO userpo;
 	private ArrayList<OrderPO> uncompletedOrderList;
 	private boolean hasUpdateUncompleteOrder= false;
-	private JFileChooser chooser;
+	private JFileChooser chooser=new JFileChooser();
     // End of variables declaration
 }
 
