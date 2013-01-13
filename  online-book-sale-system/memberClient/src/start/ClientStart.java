@@ -2,6 +2,7 @@ package start;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 
 import javax.swing.UIManager;
@@ -29,20 +30,16 @@ public class ClientStart {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				java.io.File file=null;
-				try {
-					file = new java.io.File(ClientStart.class.getResource("/resource/Font11.ttf").toURI());
-				} catch (URISyntaxException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 				
-				if (!file.exists()) {
-					System.out.println("file not found");
-					return;
-				}
+				InputStream is = this.getClass().getResourceAsStream("Font11.ttf");
+				
+//				if (is.) {
+//					System.out.println("file not found");
+//					return;
+//				}
 					try {
-					       java.io.FileInputStream fi = new java.io.FileInputStream(file);
-					      java.io.BufferedInputStream fb = new java.io.BufferedInputStream(fi);
+//					       java.io.FileInputStream fi = new java.io.FileInputStream(file);
+					      java.io.BufferedInputStream fb = new java.io.BufferedInputStream(is);
 					    Font nf = Font.createFont(Font.TRUETYPE_FONT, fb);
 					  
 					   nf = nf.deriveFont(Font.PLAIN, 16);
