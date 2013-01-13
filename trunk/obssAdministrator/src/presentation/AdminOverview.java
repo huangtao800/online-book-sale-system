@@ -16,6 +16,7 @@ import po.UserRole;
 import presentationController.Admin.AdminOverviewService;
 import presentationController.start.StartController;
 
+
 /**
  *
  * @author YJQ
@@ -27,12 +28,12 @@ public class AdminOverview extends javax.swing.JFrame {
 		setTitle("\u7BA1\u7406\u5458\u5BA2\u6237\u7AEF");
 	       this.administratorPO = administratorPO;
 		   this.adminOverviewController = adminOverviewController;
-	       initComponents(this.administratorPO);
+	       initComponents();
 	}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
-    private void initComponents(final AdministratorPO administratorPO) {
+    private void initComponents() {
         
         jPanel1 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -135,6 +136,7 @@ public class AdminOverview extends javax.swing.JFrame {
         jButton7.setText("修改密码");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	
                 new changePassWordView(adminOverviewController,administratorPO).setVisible(true);
             }
         });
@@ -157,8 +159,9 @@ public class AdminOverview extends javax.swing.JFrame {
 				UserPO afterUserPO = new UserPO(id,newName,password,UserRole.Administrator);
 				ResultMessage message = adminOverviewController.changeName(beforeUserPO, afterUserPO);
 				if (message == ResultMessage.SUCCEED) {
-					JOptionPane.showMessageDialog(null, "修改成功！");
 					jLabel6.setText(newName);
+					JOptionPane.showMessageDialog(null, "修改成功！");
+					
 				} else if(message==ResultMessage.EXIST){
 					JOptionPane.showMessageDialog(null, "抱歉！该用户名已被使用！");
 				}else{
