@@ -68,6 +68,7 @@ public class changePassWordView extends JFrame{
 	                		ResultMessage resultMessage = adminOverviewController.changePassword(userPO);
 	                		if(resultMessage==ResultMessage.SUCCEED){
 	                			JOptionPane.showMessageDialog(null, "修改成功！");
+	                			dispose();
 	                        }else{
 	                        	JOptionPane.showMessageDialog(null, "系统异常，请稍后冲重试！");
 	                        }
