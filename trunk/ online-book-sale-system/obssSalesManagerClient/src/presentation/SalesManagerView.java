@@ -241,21 +241,24 @@ public class SalesManagerView extends javax.swing.JFrame {
 	    		    	  JOptionPane.showMessageDialog(null, "对不起，您要查看的顾客不存在！");
 	    		      }else{
 	    		    	  memberInfoTextArea.append("编号: "+customerPO.getUserID()+
-	    		    			                                          "\n名称: "+customerPO.getUserName()+
-	    		    			                                          "\n积分: "+customerPO.getPoints()+
-	    		    			                                          "\n等级: "+customerPO.getRank()
-	    		    			                                           );
+	    		    			                    "\n名称: "+customerPO.getUserName()+
+	    		    			                    "\n积分: "+customerPO.getPoints()+
+	    		    			                    "\n等级: "+customerPO.getRank()+
+	    		    			                    "\n拥有等价券: ");
 	    		    	  for(int i=0;i<customerPO.getEquivalentList().size(); i++){
-	    		    		  memberInfoTextArea.append("拥有等价券:  "+customerPO.getEquivalentList().get(i).toString());
+	    		    	      memberInfoTextArea.append("\n                     "+customerPO.getEquivalentList().get(i).toString());
 	    		    	  }
+	    		    	  
+	    		    	  memberInfoTextArea.append("\n拥有打折券: ");
 	    		    	  for(int j=0;j<customerPO.getCouponList().size(); j++){
-	    		    		  memberInfoTextArea.append("拥有打折券:  "+customerPO.getCouponList().get(j).toString());
+	    		    		  memberInfoTextArea.append("\n                     "+customerPO.getCouponList().get(j).toString());
 	    		    	  }
+	    		    	  
 	    		    	  if(customerPO.getOrderList().size()== 0){
 	    		    		  memberOrderTextArea.append("该顾客尚未进行任何购买活动！");
 	    		    	  }else{
 	    		    	           for(int k=0;k<customerPO.getOrderList().size(); k++){
-	    		    	                memberOrderTextArea.append(customerPO.getOrderList().get(k).toString()+"\n");
+	    		    	                memberOrderTextArea.append(customerPO.getOrderList().get(k).toString()+"\n\n");
 	    		    	            }
 	    		    	  }
 	    		      }    		      
@@ -572,7 +575,7 @@ public class SalesManagerView extends javax.swing.JFrame {
        	         String extj[] = { "jpeg","jpg" };
        	         filter = new FileNameExtensionFilter( "JPEG Image",extj);
        	         chooser.setFileFilter(filter);//设置文件后缀过滤器
-           	     chooser.setSelectedFile(new File("G:\\image"));
+           	   //  chooser.setSelectedFile(new File("G:\\image"));
        		     int s=chooser.showDialog(null, "Selected");
        	
        		     String fileNameString="";
@@ -621,6 +624,15 @@ public class SalesManagerView extends javax.swing.JFrame {
 	    		    	          JOptionPane.showMessageDialog(null, "系统异常请稍后重试！");
 	    		          }else{
 	    		    	         JOptionPane.showMessageDialog(null, "添加图书成功！");
+	    		    	         bookIDTextField.setText("");
+	    		    	         bookNameTextField.setText("");
+	    		    	         bookAuthorTextField.setText("");
+	    		    	         bookPublishHouseTextField.setText("");
+	    		    	         bookPublishYearField.setText("");
+	    		    	         bookPriceTextField.setText("");
+	    		    	         bookNumTextField.setText("");
+	    		    	         image.setText("");
+	    		    	         jTextArea2.setText("");
 	    		          }
 	    		     }else {JOptionPane.showMessageDialog(null, "请首先确认以上您输入的图书信息完整、合理！");}
             }
@@ -632,7 +644,11 @@ public class SalesManagerView extends javax.swing.JFrame {
             	bookIDTextField.setEditable(true);
 	    		String isbn2=JOptionPane.showInputDialog(null,"请输入您要删除的图书的ISBN：");
 	    		if(isbn2==null){
-	    			JOptionPane.showMessageDialog(null, "输入ISBN有误，请重新输入！");
+	    			return;
+	    		}
+	    		
+	    		if(isbn2.trim().equals("")){
+	    			JOptionPane.showMessageDialog(null, "输入有误，请重试！");
 	    		}else{
 	    			BookPO  bookPO=null;
 	    			bookPO=salesManagerViewController.getBookPO(isbn2);
@@ -653,7 +669,7 @@ public class SalesManagerView extends javax.swing.JFrame {
 		    			bookNumTextField.setText(""+bookPO.getNumOfBook());
 		    			bookPublishHouseTextField.setText(bookPO.getPress());
 		    			bookPublishYearField.setText(bookPO.getPublishDate());
-		    			
+		    			jTextArea2.setText(bookPO.getBriefIntroduction());
 	    				 int choice=JOptionPane.showConfirmDialog(null, "您确定要删除此书吗？");
 	    				 if(choice==JOptionPane.YES_OPTION){
 		    					bookAuthorTextField.setText("");
@@ -664,7 +680,8 @@ public class SalesManagerView extends javax.swing.JFrame {
 				    			bookNumTextField.setText("");
 				    			bookPublishHouseTextField.setText("");
 				    			bookPublishYearField.setText("");
-				 
+				    	
+				    			jTextArea2.setText("");
 				    			if(salesManagerViewController.deleteBook(isbn2) ==ResultMessage.SUCCEED){
 				    				 JOptionPane.showMessageDialog(null, "删除成功！");
 				    			}else{
@@ -679,6 +696,7 @@ public class SalesManagerView extends javax.swing.JFrame {
 				    			bookNumTextField.setText("");
 				    			bookPublishHouseTextField.setText("");
 				    			bookPublishYearField.setText("");
+				    			jTextArea2.setText("");
 	    				 }
 	    			}  				    			
 	    		}
@@ -707,6 +725,15 @@ public class SalesManagerView extends javax.swing.JFrame {
 	    		 ResultMessage resultMessage = salesManagerViewController.changeBookPO(bookPO);
 	    		 if(resultMessage==ResultMessage.SUCCEED){
 	    			  JOptionPane.showMessageDialog(null, "修改成功！");
+	    			  bookAuthorTextField.setText("");
+		    		  typeComboBox.setSelectedIndex(0);
+		    		  bookIDTextField.setText("");
+		    		  bookNameTextField.setText("");
+		    		  bookPriceTextField.setText("");
+		    		  bookNumTextField.setText("");
+		    		  bookPublishHouseTextField.setText("");
+		    	      bookPublishYearField.setText("");
+		    		  jTextArea2.setText("");
 	    		 }else{
 	    			  JOptionPane.showMessageDialog(null, "系统异常，请重试！");
 	    		 }
@@ -726,7 +753,10 @@ public class SalesManagerView extends javax.swing.JFrame {
         changeBookButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	String isbn=JOptionPane.showInputDialog(null,"请输入您要修改的图书的ISBN：");
-	    		if(isbn==null){
+            	if(isbn==null){
+            		return;
+            	}
+	    		if(isbn.trim().equals("")){
 	    			JOptionPane.showMessageDialog(null, "输入有误，请重试！");
 	    		}else{
 	    			if(salesManagerViewController.getBookPO(isbn)==null){
@@ -746,6 +776,7 @@ public class SalesManagerView extends javax.swing.JFrame {
 		    			bookNumTextField.setText(""+bookPO.getNumOfBook());
 		    			bookPublishHouseTextField.setText(bookPO.getPress());
 		    			bookPublishYearField.setText(bookPO.getPublishDate());
+		    			jTextArea2.setText(bookPO.getBriefIntroduction());
 		    			JOptionPane.showMessageDialog(null, "系统已显示您要修改的图书信息,请在界面上修改！\n注意：图书ISBN不可以修改！\n" 
 		    					                                                   +"修改完成后请点击‘确认修改’按钮。");
       	    			bookIDTextField.setEditable(false);
