@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Sun Dec 16 21:18:41 CST 2012
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=true
+jarname=F\:\\workspace\\obssServer\\obssServer_fat.jar
+manifest.mergeall=true
+manifest.mainclass=database.start.DatabaseStart
+manifest.file=<createnew>
+jarname.isextern=true
+onejar.expand=
+excludes=
+includes=

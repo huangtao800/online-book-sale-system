@@ -209,6 +209,7 @@ public class InitDatabase extends UnicastRemoteObject implements
 			result=searchAdministrator(userName, password);
 		}
 		
+		
 		return result;
 		
 	}
