@@ -35,6 +35,7 @@ public class CustomerViewController implements CustomerViewService{
 		customerView=new CustomerView(this,customerVO,customerPO);
 		customerView.setVisible(true);
 	}
+	
 
 	@Override
 	public void searchKeyword(KeywordVO keywordVO) {
@@ -43,11 +44,11 @@ public class CustomerViewController implements CustomerViewService{
 	}
 
 	public static CustomerViewService getInstance(CustomerPO customerPO){
-		if(instance==null){
-			instance=new CustomerViewController(customerPO);
-		}
+		
+		instance=new CustomerViewController(customerPO);
 		
 		return instance;
+		
 	}
 
 	@Override
@@ -125,6 +126,7 @@ public class CustomerViewController implements CustomerViewService{
 
 	public void changeToAnotherUser(){
 		customerView.setVisible(false);
+		customerView.dispose();
 	}
 	
 	@Override
@@ -136,6 +138,13 @@ public class CustomerViewController implements CustomerViewService{
 	private void freshMemberVO() {
 		// TODO Auto-generated method stub
 		customerView.setMemberVO(new CustomerVO(customerPO));
+	}
+
+
+	@Override
+	public void setOnFalse() {
+		// TODO Auto-generated method stub
+		memberController.setOnFalse();
 	}
 	
 }
