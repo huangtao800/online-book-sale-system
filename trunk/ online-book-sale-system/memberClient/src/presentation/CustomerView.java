@@ -31,6 +31,9 @@ import bussinessLogicService.StartBLService;
 import javax.swing.JTabbedPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.JOptionPane;
@@ -135,6 +138,7 @@ public class CustomerView extends JFrame {
 //		this.memberPO = memberPO;
 		this.customerVO = new CustomerVO(customerPO);
 		initComponents();
+		this.addWindowListener(new MyWindowHandler());
 //		bookNameField.requestFocus();
 	}
 
@@ -964,8 +968,10 @@ public class CustomerView extends JFrame {
 		changeToAnotherCustomer = new JButton("\u5207\u6362\u7528\u6237");
 		changeToAnotherCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				memberViewController.changeToAnotherUser();
+//				memberViewController.changeToAnotherUser();
 				StartBLService startController=new StartController();
+				memberViewController.changeToAnotherUser();
+				memberViewController.setOnFalse();
 			}
 		});
 //		changeToAnotherCustomer.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
@@ -1393,5 +1399,51 @@ public class CustomerView extends JFrame {
 			}
 		}
 
+	}
+	
+	class MyWindowHandler implements WindowListener{
+
+		@Override
+		public void windowOpened(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowClosing(WindowEvent e) {
+			// TODO Auto-generated method stub
+			memberViewController.setOnFalse();
+		}
+
+		@Override
+		public void windowClosed(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowIconified(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowDeiconified(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowActivated(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowDeactivated(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 }

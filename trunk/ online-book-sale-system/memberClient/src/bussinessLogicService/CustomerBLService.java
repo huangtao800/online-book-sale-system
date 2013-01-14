@@ -39,4 +39,5 @@ public interface CustomerBLService {
 	
 	public CustomerPO freshMemberPO(String memberID);
 	public ResultMessage freshBookNumber();
+	public void setOnFalse();
 }

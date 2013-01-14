@@ -5,6 +5,17 @@ import java.util.*;
 
 public class CustomerPO extends UserPO{
 
+	private boolean isOn;
+	public boolean isOn() {
+		return isOn;
+	}
+
+
+	public void setOn(boolean isOn) {
+		this.isOn = isOn;
+	}
+
+
 	private ArrayList<OrderPO> orderList;
 	private FavorityPO favority;
 	private ArrayList<CouponPO> couponList;

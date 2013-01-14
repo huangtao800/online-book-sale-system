@@ -337,5 +337,16 @@ public class Customer {
 		return -1;
 	}
 
+	public void setOnFalse() {
+		// TODO Auto-generated method stub
+		customerPO.setOn(false);
+		try {
+			customerDatabase.update(customerPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 
 }

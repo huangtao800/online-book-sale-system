@@ -23,4 +23,5 @@ public interface CustomerViewService {
 
 	public ArrayList<String> getBookType();
 	public void changeToAnotherUser();
+	public void setOnFalse();
 }

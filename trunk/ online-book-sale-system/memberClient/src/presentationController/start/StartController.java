@@ -3,6 +3,7 @@ package presentationController.start;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 
+import javax.management.relation.Role;
 import javax.swing.JOptionPane;
 
 import databaseService.init.InitDatabaseService;
@@ -71,6 +72,17 @@ public class StartController implements StartBLService {
 	public void enterMainView(UserRole role, UserPO userPO) {
 		// TODO Auto-generated method stub
 		CustomerPO customerPO = (CustomerPO) userPO;
+		if(customerPO.isOn()){
+			JOptionPane.showMessageDialog(null, "ÄúÒÑµÇÂ¼£¡");
+			System.exit(0);
+		}
+		customerPO.setOn(true);
+		try {
+			initDatabase.updateUserPO(customerPO, UserRole.Member);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		CustomerViewService memberViewController = CustomerViewController
 				.getInstance(customerPO);
 	}
